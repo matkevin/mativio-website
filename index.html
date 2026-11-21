@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mativio — Homes for Rent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: quiet, assured family landlord — heritage, not hype.
+   IDEA: a printed lettings brochure from a family estate, each home a card you can hand over.
+   PICTURE: a dusk apartment scene in navy with gold-lit windows; every listing gets its own lit facade.
+   COLOUR and TYPE: Midnight Navy #142235, Champagne Gold #C5AD83, Warm Ivory #F2EEE5, Heritage Olive #454C47; Cormorant Garamond + Jost.
+   LAYOUT: navy hero with search, then listings grid, opening-soon timeline, localities, story, tenant teaser, footer. */
+:root{color-scheme:light dark;
+--navy:#142235;--gold:#C5AD83;--goldd:#a88d5e;--ivory:#F2EEE5;--olive:#454C47;
+--bg:light-dark(#F2EEE5,#0e1826);--card:light-dark(#fbf9f4,#162539);--ink:light-dark(#142235,#efe9dd);
+--mute:light-dark(#5b6470,#a7b0bc);--line:light-dark(#ddd5c4,#2a3a52);--ok:light-dark(#3f6b4d,#8fc29e)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Jost,system-ui,sans-serif;overflow-x:clip}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.05;text-wrap:balance;margin:0}
+h2{font-size:clamp(32px,4vw,44px)}h3{font-size:24px}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding:clamp(40px,6vw,88px) max(5vw,16px)}
+.lede{color:var(--mute);max-width:62ch;margin:.6em 0 0}
+button,.btn{font:500 15px Jost,sans-serif;min-height:44px;padding:0 20px;border-radius:999px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.gold{background:var(--gold);color:var(--navy)}.gold:hover{background:#d4be96}
+.ghost{background:transparent;border-color:var(--line);color:var(--ink)}.ghost:hover{border-color:var(--gold)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+/* header */
+header{position:sticky;top:0;z-index:20;background:var(--navy);color:var(--ivory);border-bottom:1px solid #22344d}
+.nav{display:flex;align-items:center;gap:24px;padding:10px max(5vw,16px);max-width:1340px;margin:0 auto;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{height:34px}
+.brand b{font:600 24px "Cormorant Garamond",serif;letter-spacing:.14em;color:var(--gold)}
+.nav nav{display:flex;gap:22px;margin-left:auto;flex-wrap:wrap}
+.nav nav a{text-decoration:none;font-size:15px;opacity:.85}.nav nav a:hover{opacity:1;color:var(--gold)}
+/* hero */
+.hero{background:var(--navy);color:var(--ivory);position:relative;overflow:hidden}
+.hero .scene{position:absolute;inset:auto 0 0 0;height:78%;width:100%}
+.hero .in{position:relative;padding:clamp(48px,8vw,110px) max(5vw,16px) clamp(150px,18vw,220px);max-width:1240px;margin:0 auto}
+.hero h1{font-size:clamp(40px,6.2vw,72px);font-style:italic;font-weight:500;max-width:12ch}
+.hero p{max-width:46ch;color:#cfd6df;font-size:17px;margin:18px 0 26px}
+.tag{font:500 13px Jost;letter-spacing:.3em;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.tag::before,.tag::after{content:"";width:34px;height:1px;background:var(--gold)}
+.search{display:flex;flex-wrap:wrap;gap:10px;background:rgba(242,238,229,.97);padding:10px;border-radius:18px;max-width:760px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.search label{flex:1 1 160px;display:flex;flex-direction:column;padding:2px 12px;color:var(--navy);font-size:13px}
+.search select{font:16px Jost;border:0;background:transparent;color:var(--navy);min-height:30px;padding:0;cursor:pointer}
+.stats{display:flex;gap:32px;margin-top:28px;flex-wrap:wrap}
+.stats div{font-size:14px;color:#cfd6df}.stats b{display:block;font:600 36px "Cormorant Garamond",serif;color:var(--gold);line-height:1}
+/* listings */
+.head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:26px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:transparent;border:1px solid var(--line);color:var(--ink);min-height:40px}
+.chip[aria-pressed=true]{background:var(--navy);color:var(--ivory);border-color:var(--navy)}
+:root[data-theme=dark] .chip[aria-pressed=true]{background:var(--gold);color:var(--navy)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .chip[aria-pressed=true]{background:var(--gold);color:var(--navy)}}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(20,34,53,.14)}
+.pic{position:relative;aspect-ratio:16/10;background:var(--navy)}.pic svg{position:absolute;inset:0;width:100%;height:100%}
+.badge{position:absolute;left:14px;top:14px;font:500 13px Jost;padding:5px 12px;border-radius:999px;background:var(--ivory);color:var(--navy)}
+.badge.now{background:#e3ecdf;color:#2f5a3c}.badge.soon{background:var(--gold);color:var(--navy)}.badge.let{background:#3a4658;color:#dfe4ea}
+.body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.loc{color:var(--mute);font-size:14px}
+.facts{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--mute)}
+.price{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto;padding-top:12px;border-top:1px solid var(--line);flex-wrap:wrap}
+.price b{font:600 26px "Cormorant Garamond",serif;white-space:nowrap}.price small{color:var(--mute);font-size:13px}
+.acts{display:flex;gap:8px}
+.acts button{min-height:40px;padding:0 14px;font-size:14px}
+.empty{padding:40px;text-align:center;color:var(--mute);border:1px dashed var(--line);border-radius:18px}
+.note{font-size:13px;color:var(--mute);margin-top:18px}
+/* timeline */
+.soon{background:var(--navy);color:var(--ivory)}
+.soon .lede{color:#b9c2cd}
+.tl{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:0;margin-top:36px;border-top:1px solid #34465f}
+.tl div{padding:22px 22px 6px 0;position:relative}
+.tl div::before{content:"";position:absolute;top:-6px;left:0;width:11px;height:11px;border-radius:50%;background:var(--gold)}
+.tl time{font:600 28px "Cormorant Garamond",serif;color:var(--gold);white-space:nowrap}
+.tl p{margin:4px 0;color:#cfd6df;font-size:15px}
+.tl a{color:var(--gold);font-size:14px}
+.notify{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px;max-width:640px}
+.notify input,.notify select,.f input,.f select{font:16px Jost;min-height:46px;padding:0 14px;border-radius:12px;border:1px solid #34465f;background:#1b2d45;color:var(--ivory);flex:1 1 180px}
+.msg{font-size:14px;color:var(--gold);margin-top:12px;min-height:1.4em}
+/* localities */
+.locs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:16px;margin-top:30px}
+.locs button{flex-direction:column;align-items:flex-start;justify-content:center;border-radius:16px;min-height:110px;padding:18px 20px;background:var(--card);border:1px solid var(--line);color:var(--ink);text-align:left}
+.locs button:hover{border-color:var(--gold)}
+.locs b{font:600 24px "Cormorant Garamond",serif}.locs span{color:var(--mute);font-size:14px}
+/* story */
+.story{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center}
+.pill4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.pill4 div{border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--card)}
+.pill4 svg{width:38px;height:38px;stroke:var(--goldd);fill:none;stroke-width:1.4}
+.pill4 b{display:block;font:600 20px "Cormorant Garamond",serif;margin-top:6px}.pill4 span{font-size:14px;color:var(--mute)}
+.tenant{background:var(--olive);color:var(--ivory);border-radius:22px;padding:clamp(24px,4vw,44px);display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap}
+.tenant p{margin:8px 0 0;color:#d7dbd4;max-width:56ch}
+footer{background:var(--navy);color:#b9c2cd;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+footer .tag{margin:0}
+/* dialog */
+dialog{border:0;border-radius:22px;padding:0;width:min(880px,94vw);max-height:92vh;background:var(--card);color:var(--ink);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+dialog::backdrop{background:rgba(10,18,30,.65)}
+.dl{display:grid;grid-template-columns:1fr}
+.dl .pic{aspect-ratio:16/6}
+.dl .body{padding:26px}
+.x{position:absolute;right:12px;top:12px;z-index:2;background:var(--ivory);color:var(--navy);width:44px;padding:0;justify-content:center;font-size:22px}
+.spec{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 18px;font-size:14px;margin:8px 0}
+.spec dt{color:var(--mute)}.spec dd{margin:0 0 6px;font-weight:500}
+.amen{display:flex;flex-wrap:wrap;gap:6px}.amen span{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.f{display:grid;gap:8px;margin-top:10px}
+.f input,.f select{background:var(--bg);color:var(--ink);border-color:var(--line)}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(30px);opacity:0;background:var(--navy);color:var(--ivory);padding:12px 20px;border-radius:999px;font-size:14px;transition:.3s;z-index:50;border:1px solid var(--gold);max-width:90vw}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.dl .spec{grid-template-columns:repeat(4,minmax(0,auto))}
+@media(max-width:760px){.dl .spec{grid-template-columns:repeat(2,minmax(0,1fr))}.story,.dl{grid-template-columns:1fr}.nav nav{display:none}.dl .pic{min-height:200px}}
+@media(max-width:600px){.hero .scene{opacity:.45}.hero .in{padding-bottom:130px}.stats{gap:22px}.pill4{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="brand" href="#top" aria-label="Mativio home"><img src="assets/logo.png" alt=""><b>MATIVIO</b></a>
+  <nav><a href="#homes">Homes for rent</a><a href="#opening">Opening soon</a><a href="#localities">Localities</a><a href="#about">Our story</a></nav>
+  <a class="btn gold" href="#enquire">Enquire</a>
+</div></header>
+
+<section class="hero" id="top">
+  <svg class="scene" id="heroScene" viewBox="0 0 1400 520" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+  <div class="in">
+    <div class="tag">LAND · LIVING · LEGACY</div>
+    <h1>Rooted in Bengaluru. Built for Generations.</h1>
+    <p>Family-owned homes, cared for by the family that owns them. See which flats are ready to move into today, and which open up next.</p>
+    <form class="search" id="search" role="search">
+      <label>Locality<select id="sLoc"></select></label>
+      <label>Home size<select id="sBhk"><option value="">Any size</option><option>1 BHK</option><option>2 BHK</option><option>3 BHK</option></select></label>
+      <label>Move in<select id="sWhen"><option value="">Any time</option><option value="now">Ready now</option><option value="soon">Opening soon</option></select></label>
+      <button class="gold" type="submit">Show homes</button>
+    </form>
+    <div class="stats" id="stats"></div>
+  </div>
+</section>
+
+<section class="band" id="homes"><div class="wrap">
+  <div class="head">
+    <div><h2>Homes for rent</h2><p class="lede" id="count"></p></div>
+    <div class="chips" id="chips"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+  <p class="note">Sample listings for this first draft. Replace with your own properties, photos and rents.</p>
+</div></section>
+
+<section class="band soon" id="opening"><div class="wrap">
+  <h2>Opening soon</h2>
+  <p class="lede">Current leases ending in the coming months. Reserve a viewing early, or ask us to tell you the day a home is ready.</p>
+  <div class="tl" id="tl"></div>
+  <form class="notify" id="notify">
+    <input id="nName" required placeholder="Your name" autocomplete="name" aria-label="Your name">
+    <input id="nPhone" required placeholder="Phone or WhatsApp" inputmode="tel" aria-label="Phone">
+    <select id="nLoc" aria-label="Preferred locality"></select>
+    <button class="gold" type="submit">Notify me</button>
+  </form>
+  <div class="msg" id="nMsg" role="status"></div>
+</div></section>
+
+<section class="band" id="localities"><div class="wrap">
+  <h2>Where our homes are</h2>
+  <p class="lede">Tap a locality to see its homes.</p>
+  <div class="locs" id="locs"></div>
+</div></section>
+
+<section class="band" id="about" style="padding-top:0"><div class="wrap story">
+  <div>
+    <h2>A family legacy of thoughtfully owned properties</h2>
+    <p class="lede">Mativio is our family's home for the buildings we own and look after. Every flat is maintained by us, rented directly by us, and handed over ready to live in: no brokers between you and the people responsible for your home.</p>
+    <p class="lede">Clear agreements, quick repairs, and owners who answer the phone.</p>
+  </div>
+  <div class="pill4">
+    <div><svg viewBox="0 0 40 40"><path d="M6 34V16L20 6l14 10v18M14 34V22h12v12M4 34h32"/></svg><b>Properties</b><span>Homes ready to occupy</span></div>
+    <div><svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="9"/><path d="M20 23v13M14 36h12M16 28l4-3 4 3"/></svg><b>Land</b><span>Held for the long term</span></div>
+    <div><svg viewBox="0 0 40 40"><path d="M4 20l8-7 6 4 4-3 6 3 8 3M10 22l6 6 3-2 3 3 3-2 5-5"/></svg><b>Partnerships</b><span>Direct with tenants</span></div>
+    <div><svg viewBox="0 0 40 40"><path d="M20 36V18M20 22c-8 0-12-6-12-12 8 0 12 5 12 12zM20 18c0-8 5-12 12-12 0 7-4 12-12 12z"/></svg><b>Legacy</b><span>Cared for by generations</span></div>
+  </div>
+</div></section>
+
+<section class="band" id="enquire" style="padding-top:0"><div class="wrap tenant">
+  <div><h2>Already a Mativio tenant?</h2>
+  <p>Raising maintenance requests, rent receipts and lease renewals online are on the way. Until then, reach the family directly.</p></div>
+  <button class="gold" type="button" id="tenantBtn">Tenant services, coming soon</button>
+</div></section>
+
+<footer class="band" style="padding-block:36px"><div class="wrap">
+  <a class="brand" href="#top"><img src="assets/logo.png" alt="" style="height:28px"><b style="font-size:20px">MATIVIO</b></a>
+  <div class="tag">LAND · LIVING · LEGACY</div>
+  <div>Bengaluru · Contact details to be added</div>
+</div></footer>
+
+<dialog id="dlg" aria-labelledby="dTitle"></dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+{
+const P=[
+ {id:"whitefield-2bhk",name:"Ivory Court, Flat 302",loc:"Whitefield",bhk:"2 BHK",sqft:1180,rent:32000,dep:150000,maint:2500,floor:"3rd of 5",face:"East",furn:"Semi-furnished",status:"now",from:"",park:"1 car",pets:"Allowed",amen:["Lift","Power backup","Covered parking","24×7 water","CCTV"],hue:0},
+ {id:"hsr-3bhk",name:"Heritage Residency, 501",loc:"HSR Layout",bhk:"3 BHK",sqft:1650,rent:52000,dep:250000,maint:3500,floor:"5th of 6",face:"North",furn:"Semi-furnished",status:"now",from:"",park:"2 cars",pets:"On request",amen:["Lift","Gym","Power backup","Rooftop terrace","CCTV"],hue:1},
+ {id:"indiranagar-1bhk",name:"Olive House, G2",loc:"Indiranagar",bhk:"1 BHK",sqft:620,rent:26000,dep:100000,maint:1500,floor:"Ground of 3",face:"West",furn:"Fully furnished",status:"now",from:"",park:"Two-wheeler",pets:"Not allowed",amen:["Garden","24×7 water","CCTV"],hue:2},
+ {id:"jpnagar-2bhk",name:"Mativio Towers, 204",loc:"JP Nagar",bhk:"2 BHK",sqft:1100,rent:28000,dep:120000,maint:2000,floor:"2nd of 7",face:"East",furn:"Unfurnished",status:"soon",from:"2026-12-15",park:"1 car",pets:"Allowed",amen:["Lift","Power backup","Play area","CCTV"],hue:3},
+ {id:"hebbal-3bhk",name:"Lakeview Residency, 602",loc:"Hebbal",bhk:"3 BHK",sqft:1720,rent:48000,dep:240000,maint:3800,floor:"6th of 8",face:"Lake-facing",furn:"Semi-furnished",status:"soon",from:"2027-01-05",park:"2 cars",pets:"On request",amen:["Lift","Clubhouse","Pool","Power backup","CCTV"],hue:1},
+ {id:"whitefield-1bhk",name:"Ivory Court, Flat 104",loc:"Whitefield",bhk:"1 BHK",sqft:640,rent:19000,dep:80000,maint:1200,floor:"1st of 5",face:"South",furn:"Semi-furnished",status:"soon",from:"2027-02-01",park:"Two-wheeler",pets:"Allowed",amen:["Lift","Power backup","CCTV"],hue:0},
+ {id:"hsr-2bhk",name:"Heritage Residency, 203",loc:"HSR Layout",bhk:"2 BHK",sqft:1150,rent:36000,dep:180000,maint:2600,floor:"2nd of 6",face:"South",furn:"Fully furnished",status:"let",from:"",park:"1 car",pets:"On request",amen:["Lift","Gym","Power backup","CCTV"],hue:2}
+];
+const $=s=>document.querySelector(s);
+const inr=n=>"₹"+n.toLocaleString("en-IN");
+const fdate=d=>new Date(d+"T00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"});
+const badge=p=>p.status==="now"?'<span class="badge now">Ready to move in</span>':p.status==="soon"?`<span class="badge soon">Available ${fdate(p.from).replace(/ \d{4}$/,"")}</span>`:'<span class="badge let">Currently let</span>';
+const tones=[["#1c2f48","#2a4263"],["#23313a","#36494f"],["#2a2e3a","#3f4557"],["#1e2b3f","#30435e"]];
+
+function facade(p,big){
+  const [a,b]=tones[p.hue];const floors=big?9:5,cols=big?7:5,w=big?440:300,h=big?400:190,x0=big?840:50,y0=big?100:40;
+  const cw=w/cols,fh=(h-30)/floors;let win="";
+  let seed=p.id.length*7+p.hue;const rnd=()=>{seed=(seed*9301+49297)%233280;return seed/233280};
+  for(let f=0;f<floors;f++)for(let c=0;c<cols;c++){const lit=rnd()>.35;
+    win+=`<rect x="${x0+c*cw+cw*.2}" y="${y0+14+f*fh+fh*.18}" width="${cw*.6}" height="${fh*.55}" rx="2" fill="${lit?"url(#lit"+p.hue+")":"#0f1a29"}" opacity="${lit?.95:.8}"/>`;
+    if(f<floors-1)win+=`<rect x="${x0+c*cw+cw*.12}" y="${y0+14+f*fh+fh*.78}" width="${cw*.76}" height="3" fill="#c5ad83" opacity=".35"/>`}
+  const W=big?1400:400,H=big?520:250;
+  return `<defs><linearGradient id="sky${p.hue}${big?"b":""}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#142235"/><stop offset=".7" stop-color="#2b3550"/><stop offset="1" stop-color="#6b5a52"/></linearGradient>
+  <linearGradient id="lit${p.hue}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3dca8"/><stop offset="1" stop-color="#c5ad83"/></linearGradient>
+  <linearGradient id="wall${p.hue}${big?"b":""}" x1="0" x2="1"><stop offset="0" stop-color="${b}"/><stop offset="1" stop-color="${a}"/></linearGradient></defs>
+  ${big?"":`<rect width="${W}" height="${H}" fill="url(#sky${p.hue})"/>`}
+  ${big?`<g opacity=".5" fill="#1b2c44">${[0,120,260,980,1100,1240].map((x,i)=>`<rect x="${x}" y="${230+i%3*40}" width="${110+i%2*30}" height="400"/>`).join("")}</g>`:`<rect x="0" y="${H-80}" width="70" height="80" fill="#1a283c"/><rect x="${W-60}" y="${H-110}" width="60" height="110" fill="#1a283c"/>`}
+  <rect x="${x0-10}" y="${y0}" width="${w+20}" height="14" fill="#c5ad83" opacity=".55"/>
+  <rect x="${x0}" y="${y0+14}" width="${w}" height="${h}" fill="url(#wall${p.hue}${big?"b":""})"/>
+  <rect x="${x0+w}" y="${y0+14}" width="${big?60:26}" height="${h}" fill="#0f1a29" opacity=".55"/>
+  ${win}
+  <rect x="0" y="${y0+14+h}" width="${W}" height="${H}" fill="#101b2b"/>
+  ${[0,1,2,3,4,5,6,7].map(i=>{const tx=(big?60:10)+i*(W/8)+(i%2)*14;return `<g><rect x="${tx+8}" y="${y0+h-(big?20:4)}" width="3" height="${big?36:20}" fill="#2b3a2f"/><ellipse cx="${tx+9}" cy="${y0+h-(big?24:6)}" rx="${big?26:13}" ry="${big?30:15}" fill="#454C47" opacity=".9"/></g>`}).join("")}`;
+}
+$("#heroScene").innerHTML=facade({id:"hero-main",hue:0},true);
+
+const locs=[...new Set(P.map(p=>p.loc))].sort();
+const opts='<option value="">All localities</option>'+locs.map(l=>`<option>${l}</option>`).join("");
+$("#sLoc").innerHTML=opts;$("#nLoc").innerHTML=opts.replace("All localities","Any locality");
+
+const nNow=P.filter(p=>p.status==="now").length,nSoon=P.filter(p=>p.status==="soon").length;
+$("#stats").innerHTML=`<div><b>${nNow}</b>ready to move in</div><div><b>${nSoon}</b>opening in the next 3 months</div><div><b>${locs.length}</b>Bengaluru localities</div>`;
+
+let F={when:"",loc:"",bhk:""};
+const chipDefs=[["","All homes"],["now","Ready now"],["soon","Opening soon"],["let","Currently let"]];
+function chips(){$("#chips").innerHTML=chipDefs.map(([v,l])=>`<button class="chip" type="button" data-w="${v}" aria-pressed="${F.when===v}">${l}</button>`).join("")}
+function render(){
+  chips();
+  const list=P.filter(p=>(!F.when||p.status===F.when)&&(!F.loc||p.loc===F.loc)&&(!F.bhk||p.bhk===F.bhk))
+    .sort((a,b)=>"nsl".indexOf(a.status[0])-"nsl".indexOf(b.status[0])||(a.from||"").localeCompare(b.from||""));
+  $("#count").textContent=`${list.length} of ${P.length} homes`+(F.loc?` in ${F.loc}`:"")+(F.bhk?`, ${F.bhk}`:"");
+  $("#grid").innerHTML=list.length?list.map(p=>`<article class="card">
+    <div class="pic"><svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${facade(p)}</svg>${badge(p)}</div>
+    <div class="body"><h3>${p.name}</h3><div class="loc">${p.loc}, Bengaluru</div>
+    <div class="facts"><span>${p.bhk}</span><span>${p.sqft.toLocaleString("en-IN")} sq ft</span><span>${p.furn}</span></div>
+    <div class="price"><div><b>${inr(p.rent)}</b> <small>/ month</small></div>
+    <div class="acts"><button class="ghost" type="button" data-share="${p.id}" aria-label="Copy link to ${p.name}">Share</button><button class="gold" type="button" data-open="${p.id}">View</button></div></div></div>
+  </article>`).join(""):`<div class="empty">No homes match these filters yet. <button class="ghost" type="button" id="reset">Clear filters</button></div>`;
+}
+const toast=t=>{const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2600)};
+
+function share(id){
+  const p=P.find(x=>x.id===id);const url=location.href.split("#")[0]+"#p-"+id;
+  const txt=`${p.name}, ${p.bhk} in ${p.loc} — ${inr(p.rent)}/month. ${url}`;
+  navigator.clipboard.writeText(txt).then(()=>toast("Link copied. Paste it into WhatsApp or email."),()=>toast("Copy this link: "+url));
+}
+function open(id){
+  const p=P.find(x=>x.id===id);if(!p)return;const d=$("#dlg");
+  const avail=p.status==="now"?"Ready now":p.status==="soon"?fdate(p.from):"Currently let";
+  d.innerHTML=`<button class="x" type="button" aria-label="Close" id="dx">×</button><div class="dl">
+  <div class="pic"><svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${facade(p)}</svg>${badge(p)}</div>
+  <div class="body"><h3 id="dTitle" style="font-size:30px">${p.name}</h3><div class="loc">${p.loc}, Bengaluru</div>
+  <div class="price" style="border:0;padding:0;margin:6px 0"><div><b>${inr(p.rent)}</b> <small>/ month</small></div></div>
+  <dl class="spec"><dt>Available</dt><dd>${avail}</dd><dt>Size</dt><dd>${p.bhk}, ${p.sqft.toLocaleString("en-IN")} sq ft</dd>
+  <dt>Deposit</dt><dd>${inr(p.dep)}</dd><dt>Maintenance</dt><dd>${inr(p.maint)} / month</dd>
+  <dt>Floor</dt><dd>${p.floor}</dd><dt>Facing</dt><dd>${p.face}</dd><dt>Furnishing</dt><dd>${p.furn}</dd><dt>Parking</dt><dd>${p.park}</dd><dt>Pets</dt><dd>${p.pets}</dd></dl>
+  <div class="amen">${p.amen.map(a=>`<span>${a}</span>`).join("")}</div>
+  ${p.status==="let"?`<p class="loc">This home is occupied. Use "Notify me" to hear when it opens up.</p>`:`<form class="f" id="visit"><b style="font-family:'Cormorant Garamond',serif;font-size:20px;margin-top:8px">Book a viewing</b>
+  <input required placeholder="Your name" aria-label="Your name" autocomplete="name"><input required placeholder="Phone or WhatsApp" inputmode="tel" aria-label="Phone">
+  <input type="date" aria-label="Preferred date" min="2026-11-23"><button class="gold" type="submit">Request viewing</button><div class="msg" id="vMsg" role="status" style="color:var(--goldd)"></div></form>`}
+  <button class="ghost" type="button" data-share="${p.id}" style="margin-top:10px">Copy link to this home</button></div></div>`;
+  if(!d.open)d.showModal();
+  if(location.hash!=="#p-"+id)history.replaceState(null,"","#p-"+id);
+}
+function close(){const d=$("#dlg");if(d.open)d.close()}
+$("#dlg").addEventListener("close",()=>{if(location.hash.startsWith("#p-"))history.replaceState(null,"",location.pathname+location.search)});
+$("#dlg").addEventListener("click",e=>{if(e.target.id==="dx"||e.target===e.currentTarget)close()});
+$("#dlg").addEventListener("submit",e=>{e.preventDefault();$("#vMsg").textContent="Preview only: booking requests will reach the owner once the site goes live.";});
+
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-share],[data-open],[data-w],[data-loc],#reset");if(!t)return;
+  if(t.dataset.share)share(t.dataset.share);
+  else if(t.dataset.open)open(t.dataset.open);
+  else if(t.dataset.loc!==undefined){F={when:"",loc:t.dataset.loc,bhk:""};$("#sLoc").value=F.loc;render();$("#homes").scrollIntoView()}
+  else if(t.id==="reset"){F={when:"",loc:"",bhk:""};$("#sLoc").value="";$("#sBhk").value="";$("#sWhen").value="";render()}
+  else{F.when=t.dataset.w;$("#sWhen").value=F.when==="let"?"":F.when;render()}
+});
+$("#search").addEventListener("submit",e=>{e.preventDefault();F={loc:$("#sLoc").value,bhk:$("#sBhk").value,when:$("#sWhen").value};render();$("#homes").scrollIntoView()});
+
+$("#tl").innerHTML=P.filter(p=>p.status==="soon").sort((a,b)=>a.from.localeCompare(b.from)).map(p=>`<div><time>${fdate(p.from).replace(/ \d{4}$/,"")}</time><p>${p.bhk} · ${p.loc}<br>${p.name} · ${inr(p.rent)}/month</p><a href="#p-${p.id}">See this home</a></div>`).join("");
+$("#notify").addEventListener("submit",e=>{e.preventDefault();$("#nMsg").textContent="Preview only: alerts will start once the site goes live. Thank you, "+$("#nName").value.split(" ")[0]+".";});
+$("#tenantBtn").addEventListener("click",()=>toast("The tenant portal is the next phase of this site."));
+
+$("#locs").innerHTML=locs.map(l=>{const h=P.filter(p=>p.loc===l),n=h.filter(p=>p.status!=="let").length;return `<button type="button" data-loc="${l}"><b>${l}</b><span>${h.length} home${h.length>1?"s":""} · ${n} available or opening</span></button>`}).join("");
+
+function route(){const m=location.hash.match(/^#p-(.+)$/);if(m)open(m[1]);else close()}
+window.addEventListener("hashchange",route);
+render();route();
+}
+</script>
+</body>
+</html>
