@@ -4,315 +4,515 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mativio — Homes for Rent</title>
+<meta name="description" content="Family-owned rental homes, thoughtfully cared for in Bengaluru.">
+<link rel="icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("mativio-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <style>
-/* VOICE: quiet, assured family landlord — heritage, not hype.
-   IDEA: a printed lettings brochure from a family estate, each home a card you can hand over.
-   PICTURE: a dusk apartment scene in navy with gold-lit windows; every listing gets its own lit facade.
-   COLOUR and TYPE: Midnight Navy #142235, Champagne Gold #C5AD83, Warm Ivory #F2EEE5, Heritage Olive #454C47; Cormorant Garamond + Jost.
-   LAYOUT: navy hero with search, then listings grid, opening-soon timeline, localities, story, tenant teaser, footer. */
-:root{color-scheme:light dark;
---navy:#142235;--gold:#C5AD83;--goldd:#a88d5e;--ivory:#F2EEE5;--olive:#454C47;
---bg:light-dark(#F2EEE5,#0e1826);--card:light-dark(#fbf9f4,#162539);--ink:light-dark(#142235,#efe9dd);
---mute:light-dark(#5b6470,#a7b0bc);--line:light-dark(#ddd5c4,#2a3a52);--ok:light-dark(#3f6b4d,#8fc29e)}
-:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+/* VOICE: warm, assured family landlord: heritage, not hype.
+   IDEA: a sunlit Bengaluru residence brochure; each home a card you can hand over.
+   PICTURE: real photography of leafy, golden-hour apartment blocks.
+   COLOUR and TYPE: Warm Ivory light (default) / Midnight Navy dark; Champagne Gold accent; Heritage Olive status; Cormorant Garamond + Manrope.
+   LAYOUT: hash-routed views: home, properties, property detail, enquiry, confirmation, story, contact. */
+:root{--navy:#142235;--gold:#C5AD83;--ivory:#F2EEE5;--olive:#454C47;
+--bg:#f8f1e6;--bg2:#f3e6d4;--card:#fffaf3;--ink:#142235;--mute:#5d6570;--line:#e7dac6;
+--accent:#a9874f;--btn:linear-gradient(180deg,#c9a66c,#ad8a52);--btnInk:#fff;--field:#fffdf9;
+--okBg:#4a5a3f;--okInk:#f2eee5;--soonBg:#f1dcb4;--soonInk:#5b4318;--occBg:#e3e0da;--occInk:#4d4f52;
+--shadow:0 18px 40px rgba(93,70,35,.12);color-scheme:light}
+:root[data-theme=dark]{--bg:#142235;--bg2:#0f1b2b;--card:#182a40;--ink:#f2eee5;--mute:#aab3be;--line:#2c3f58;
+--accent:#C5AD83;--btn:linear-gradient(180deg,#d8bb88,#c5a46c);--btnInk:#142235;--field:#13243a;
+--okBg:#3f5143;--okInk:#e9f0e4;--soonBg:#d9bd8a;--soonInk:#2b2112;--occBg:#3a4658;--occInk:#dfe4ea;
+--shadow:0 18px 44px rgba(0,0,0,.35);color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Jost,system-ui,sans-serif;overflow-x:clip}
-html{scroll-padding-top:72px;scroll-behavior:smooth}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
-h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.05;text-wrap:balance;margin:0}
-h2{font-size:clamp(32px,4vw,44px)}h3{font-size:24px}
+html{scroll-padding-top:90px}
+body{margin:0;color:var(--ink);font:16px/1.6 Manrope,system-ui,sans-serif;overflow-x:clip;
+background:radial-gradient(1200px 600px at 0% 0%,var(--bg2),transparent 60%),var(--bg);min-height:100vh;transition:background-color .3s}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;line-height:1.05;margin:0;text-wrap:balance}
+h1{font-size:clamp(44px,6.4vw,84px);letter-spacing:-.01em}
+h2{font-size:clamp(34px,4.2vw,52px)}h3{font-size:clamp(24px,2.4vw,30px)}
 a{color:inherit}
-.wrap{max-width:1240px;margin:0 auto}
-.band{padding:clamp(40px,6vw,88px) max(5vw,16px)}
-.lede{color:var(--mute);max-width:62ch;margin:.6em 0 0}
-button,.btn{font:500 15px Jost,sans-serif;min-height:44px;padding:0 20px;border-radius:999px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
-.gold{background:var(--gold);color:var(--navy)}.gold:hover{background:#d4be96}
-.ghost{background:transparent;border-color:var(--line);color:var(--ink)}.ghost:hover{border-color:var(--gold)}
-:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+img{display:block;max-width:100%}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.wrap{max-width:1320px;margin:0 auto;padding:0 max(4vw,18px)}
+.mute{color:var(--mute)}
+.btn{font:600 16px Manrope,sans-serif;min-height:52px;padding:0 26px;border-radius:999px;border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:12px;text-decoration:none;background:var(--btn);color:var(--btnInk);box-shadow:0 8px 20px rgba(169,135,79,.28);transition:transform .2s,filter .2s}
+.btn:hover{filter:brightness(1.05);transform:translateY(-1px)}
+.btn.line{background:transparent;color:var(--ink);border:1px solid var(--accent);box-shadow:none}
+.link{font-weight:600;text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:3px;display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--ink)}
+.link.gold{color:var(--accent);border:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.tag{font:600 13px Manrope;letter-spacing:.32em;color:var(--accent);display:flex;align-items:center;gap:14px;text-transform:uppercase}
+.tag.rule::before,.tag.rule::after{content:"";width:34px;height:1px;background:currentColor}
 /* header */
-header{position:sticky;top:0;z-index:20;background:var(--navy);color:var(--ivory);border-bottom:1px solid #22344d}
-.nav{display:flex;align-items:center;gap:24px;padding:10px max(5vw,16px);max-width:1340px;margin:0 auto;flex-wrap:wrap}
-.brand{display:inline-flex;align-items:baseline;text-decoration:none;font:600 30px/1 "Cormorant Garamond",serif;color:var(--gold)}
-.brand img{height:.66em;width:auto;margin-right:.12em;align-self:baseline}
-.brand b{font:inherit;letter-spacing:.14em}
-.brand.sm{font-size:24px}
-.nav nav{display:flex;gap:22px;margin-left:auto;flex-wrap:wrap}
-.nav nav a{text-decoration:none;font-size:15px;opacity:.85}.nav nav a:hover{opacity:1;color:var(--gold)}
+header{position:sticky;top:0;z-index:30;transition:background .3s,box-shadow .3s,padding .3s}
+header.scrolled{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+.bar{display:flex;align-items:center;gap:28px;padding-block:22px;transition:padding .3s}
+header.scrolled .bar{padding-block:12px}
+.brand{display:inline-flex;align-items:center;text-decoration:none;color:var(--ink)}
+.word{display:inline-flex;align-items:flex-end;font:500 38px/1 "Cormorant Garamond",serif;letter-spacing:.16em}
+.word img{height:42px;width:auto;margin-right:.04em;transition:height .3s}
+.rest{display:inline-block;overflow:hidden;white-space:nowrap;max-width:6em;transition:max-width .45s ease,opacity .3s;padding-bottom:1px}
+.brand .tagline{margin-left:22px;padding-left:22px;border-left:1px solid var(--accent);font-size:13px;white-space:nowrap;overflow:hidden;max-width:24em;transition:max-width .45s,opacity .3s,margin .45s,padding .45s}
+header.scrolled .rest,header.scrolled .tagline{max-width:0;opacity:0}
+header.scrolled .brand .tagline{margin-left:0;padding-left:0;border:0}
+header.scrolled .word img{height:38px}
+.nav{margin-left:auto;display:flex;align-items:center;gap:30px}
+.nav a{text-decoration:none;font-weight:500;padding:8px 0;border-bottom:1.5px solid transparent}
+.nav a[aria-current=page]{border-color:var(--accent)}
+.nav a:hover{color:var(--accent)}
+.sep{width:1px;height:30px;background:var(--accent);opacity:.6}
+.mode{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--card)}
+.mode button{width:40px;height:38px;border-radius:999px;border:0;background:transparent;color:var(--mute);cursor:pointer;display:grid;place-items:center}
+.mode button[aria-pressed=true]{background:var(--gold);color:var(--navy)}
+.burger{display:none;background:none;border:0;color:var(--ink);width:44px;height:44px;cursor:pointer;margin-left:auto}
+.burger svg.i{width:26px;height:26px}
+.drawer{position:fixed;inset:0;z-index:50;background:var(--navy);color:var(--ivory);padding:22px max(5vw,18px);display:none;flex-direction:column}
+.drawer.open{display:flex}
+.drawer .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}
+.drawer .top button{background:none;border:0;color:var(--ivory);width:44px;height:44px}
+.drawer a{display:flex;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid #2a3b54;text-decoration:none;font-size:18px}
+.drawer .modes{margin-top:auto;border-top:1px solid #2a3b54;padding-top:12px}
+.drawer label{display:flex;align-items:center;gap:14px;min-height:52px;cursor:pointer}
+.drawer input{margin-left:auto;accent-color:var(--gold);width:20px;height:20px}
+/* views */
+[data-view]{display:none;animation:fade .4s ease}
+[data-view].on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.sec{padding:clamp(28px,4vw,56px) 0}
 /* hero */
-.hero{background:var(--navy);color:var(--ivory);position:relative;overflow:hidden}
-.hero .scene{position:absolute;inset:auto 0 0 0;height:78%;width:100%}
-.hero .in{position:relative;padding:clamp(48px,8vw,110px) max(5vw,16px) clamp(150px,18vw,220px);max-width:1240px;margin:0 auto}
-.hero h1{font-size:clamp(40px,6.2vw,72px);font-style:italic;font-weight:500;max-width:12ch}
-.hero p{max-width:46ch;color:#cfd6df;font-size:17px;margin:18px 0 26px}
-.tag{font:500 13px Jost;letter-spacing:.3em;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:22px}
-.tag::before,.tag::after{content:"";width:34px;height:1px;background:var(--gold)}
-.search{display:flex;flex-wrap:wrap;gap:10px;background:rgba(242,238,229,.97);padding:10px;border-radius:18px;max-width:760px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
-.search label{flex:1 1 160px;display:flex;flex-direction:column;padding:2px 12px;color:var(--navy);font-size:13px}
-.search select{font:16px Jost;border:0;background:transparent;color:var(--navy);min-height:30px;padding:0;cursor:pointer}
-.stats{display:flex;gap:32px;margin-top:28px;flex-wrap:wrap}
-.stats div{font-size:14px;color:#cfd6df}.stats b{display:block;font:600 36px "Cormorant Garamond",serif;color:var(--gold);line-height:1}
-/* listings */
-.head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:26px}
-.chips{display:flex;gap:8px;flex-wrap:wrap}
-.chip{background:transparent;border:1px solid var(--line);color:var(--ink);min-height:40px}
-.chip[aria-pressed=true]{background:var(--navy);color:var(--ivory);border-color:var(--navy)}
-:root[data-theme=dark] .chip[aria-pressed=true]{background:var(--gold);color:var(--navy)}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .chip[aria-pressed=true]{background:var(--gold);color:var(--navy)}}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:24px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
-.card:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(20,34,53,.14)}
-.pic{position:relative;aspect-ratio:16/10;background:var(--navy)}.pic svg{position:absolute;inset:0;width:100%;height:100%}
-.badge{position:absolute;left:14px;top:14px;font:500 13px Jost;padding:5px 12px;border-radius:999px;background:var(--ivory);color:var(--navy)}
-.badge.now{background:#e3ecdf;color:#2f5a3c}.badge.soon{background:var(--gold);color:var(--navy)}.badge.let{background:#3a4658;color:#dfe4ea}
-.body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
-.loc{color:var(--mute);font-size:14px}
-.facts{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--mute)}
-.price{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto;padding-top:12px;border-top:1px solid var(--line);flex-wrap:wrap}
-.price b{font:600 26px "Cormorant Garamond",serif;white-space:nowrap}.price small{color:var(--mute);font-size:13px}
-.acts{display:flex;gap:8px}
-.acts button{min-height:40px;padding:0 14px;font-size:14px}
-.empty{padding:40px;text-align:center;color:var(--mute);border:1px dashed var(--line);border-radius:18px}
-.note{font-size:13px;color:var(--mute);margin-top:18px}
-/* timeline */
-.soon{background:var(--navy);color:var(--ivory)}
-.soon .lede{color:#b9c2cd}
-.tl{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:0;margin-top:36px;border-top:1px solid #34465f}
-.tl div{padding:22px 22px 6px 0;position:relative}
-.tl div::before{content:"";position:absolute;top:-6px;left:0;width:11px;height:11px;border-radius:50%;background:var(--gold)}
-.tl time{font:600 28px "Cormorant Garamond",serif;color:var(--gold);white-space:nowrap}
-.tl p{margin:4px 0;color:#cfd6df;font-size:15px}
-.tl a{color:var(--gold);font-size:14px}
-.notify{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px;max-width:640px}
-.notify input,.notify select,.f input,.f select{font:16px Jost;min-height:46px;padding:0 14px;border-radius:12px;border:1px solid #34465f;background:#1b2d45;color:var(--ivory);flex:1 1 180px}
-.msg{font-size:14px;color:var(--gold);margin-top:12px;min-height:1.4em}
-/* localities */
-.locs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:16px;margin-top:30px}
-.locs button{flex-direction:column;align-items:flex-start;justify-content:center;border-radius:16px;min-height:110px;padding:18px 20px;background:var(--card);border:1px solid var(--line);color:var(--ink);text-align:left}
-.locs button:hover{border-color:var(--gold)}
-.locs b{font:600 24px "Cormorant Garamond",serif}.locs span{color:var(--mute);font-size:14px}
-/* story */
-.story{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center}
-.pill4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.pill4 div{border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--card)}
-.pill4 svg{width:38px;height:38px;stroke:var(--goldd);fill:none;stroke-width:1.4}
-.pill4 b{display:block;font:600 20px "Cormorant Garamond",serif;margin-top:6px}.pill4 span{font-size:14px;color:var(--mute)}
-.tenant{background:var(--olive);color:var(--ivory);border-radius:22px;padding:clamp(24px,4vw,44px);display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap}
-.tenant p{margin:8px 0 0;color:#d7dbd4;max-width:56ch}
-footer{background:var(--navy);color:#b9c2cd;font-size:14px}
-footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
-footer .tag{margin:0}
-/* dialog */
-dialog{border:0;border-radius:22px;padding:0;width:min(880px,94vw);max-height:92vh;background:var(--card);color:var(--ink);box-shadow:0 30px 80px rgba(0,0,0,.45)}
-dialog::backdrop{background:rgba(10,18,30,.65)}
-.dl{display:grid;grid-template-columns:1fr}
-.dl .pic{aspect-ratio:16/6}
-.dl .body{padding:26px}
-.x{position:absolute;right:12px;top:12px;z-index:2;background:var(--ivory);color:var(--navy);width:44px;padding:0;justify-content:center;font-size:22px}
-.spec{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 18px;font-size:14px;margin:8px 0}
-.spec dt{color:var(--mute)}.spec dd{margin:0 0 6px;font-weight:500}
-.amen{display:flex;flex-wrap:wrap;gap:6px}.amen span{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:3px 10px}
-.f{display:grid;gap:8px;margin-top:10px}
-.f input,.f select{background:var(--bg);color:var(--ink);border-color:var(--line)}
-.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(30px);opacity:0;background:var(--navy);color:var(--ivory);padding:12px 20px;border-radius:999px;font-size:14px;transition:.3s;z-index:50;border:1px solid var(--gold);max-width:90vw}
-.toast.on{opacity:1;transform:translateX(-50%)}
-.dl .spec{grid-template-columns:repeat(4,minmax(0,auto))}
-@media(max-width:760px){.dl .spec{grid-template-columns:repeat(2,minmax(0,1fr))}.story,.dl{grid-template-columns:1fr}.nav nav{display:none}.dl .pic{min-height:200px}}
-@media(max-width:600px){.hero .scene{opacity:.45}.hero .in{padding-bottom:130px}.stats{gap:22px}.pill4{grid-template-columns:1fr}}
+.hero{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,4vw,64px);align-items:center;padding:clamp(12px,2vw,24px) 0 clamp(28px,3vw,40px)}
+.hero p.sub{font-size:clamp(18px,1.6vw,22px);margin:22px 0 34px;max-width:30ch;line-height:1.45}
+.hero .ctas{display:flex;gap:30px;align-items:center;flex-wrap:wrap}
+.hero .tag{margin-bottom:26px}
+.shot{border-radius:32px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:2/1.05;position:relative}
+.shot img{width:100%;height:100%;object-fit:cover}
+.only-d{display:none!important}
+:root[data-theme=dark] .only-d{display:block!important}
+:root[data-theme=dark] .only-l{display:none!important}
+.pillars{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:12px 0}
+.pillars div{display:flex;gap:18px;align-items:center;padding:8px 24px;border-left:1px solid var(--line)}
+.pillars div:first-child{border:0;padding-left:0}
+.pillars svg.i{width:44px;height:44px;stroke:var(--accent);stroke-width:1.2}
+.pillars b{font:500 22px "Cormorant Garamond",serif;display:block;line-height:1.1}
+.pillars span{font-size:14px;color:var(--mute)}
+.shead{display:flex;align-items:center;gap:28px;flex-wrap:wrap;margin-bottom:28px}
+.shead .rule{width:50px;height:1px;background:var(--accent)}
+.shead .mute{font-size:17px}
+.shead .link{margin-left:auto}
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:26px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .25s}
+.card:hover{transform:translateY(-4px)}
+.card .pic{position:relative;aspect-ratio:16/7.2;overflow:hidden}
+.card .pic img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.card:hover .pic img{transform:scale(1.04)}
+.badge{position:absolute;top:16px;left:16px;font:600 14px Manrope;padding:6px 14px;border-radius:999px;display:inline-flex;gap:8px;align-items:center}
+.badge::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.b-now{background:var(--okBg);color:var(--okInk)}.b-soon{background:var(--soonBg);color:var(--soonInk)}.b-occ{background:var(--occBg);color:var(--occInk)}
+.badge.inline{position:static}
+.card .body{padding:20px 24px 22px}
+.row1{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.rent{font-weight:600;color:var(--accent);white-space:nowrap;font-size:20px}.rent small{font-size:14px;font-weight:500}
+.loc{display:flex;gap:8px;align-items:center;color:var(--mute);font-size:15px;margin-top:4px}
+.loc svg.i{width:16px;height:16px}
+.meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:16px;padding-top:14px;font-size:14px}
+.meta span{display:inline-flex;gap:8px;align-items:center}
+.meta svg.i{color:var(--accent)}
+.band{margin-top:clamp(36px,5vw,64px);border-radius:32px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:var(--navy);color:var(--ivory)}
+.band .txt{padding:clamp(28px,4vw,56px);display:flex;flex-direction:column;gap:18px;justify-content:center}
+.band .txt p{color:#cdd4dc;margin:0;max-width:44ch}
+.band .link{color:var(--ivory)}
+.band img{width:100%;height:100%;object-fit:cover;min-height:280px}
+footer{margin-top:clamp(40px,6vw,80px);border-top:1px solid var(--line);padding:30px 0 40px;font-size:14px;color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer .word{font-size:26px;color:var(--ink)}footer .word img{height:28px}
+/* list view */
+.filters{display:grid;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px;margin:26px 0;box-shadow:var(--shadow)}
+.search{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:999px;padding:0 18px;background:var(--field)}
+.search input{flex:1;border:0;background:transparent;font:16px Manrope;color:var(--ink);min-height:50px;outline:0}
+.pills{display:flex;gap:10px;flex-wrap:wrap}
+.pill{font:600 14px Manrope;min-height:42px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.pill[aria-pressed=true]{background:var(--navy);color:var(--ivory);border-color:var(--navy)}
+:root[data-theme=dark] .pill[aria-pressed=true]{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.pill .n{opacity:.6;margin-left:4px}
+.sels{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+select,input,textarea{font:16px Manrope;color:var(--ink)}
+.sels select{min-height:44px;border-radius:999px;border:1px solid var(--line);background:var(--field);padding:0 14px;cursor:pointer}
+.sels .count{margin-left:auto;font-size:14px;color:var(--mute)}
+.empty{grid-column:1/-1;text-align:center;padding:48px 20px;border:1px dashed var(--line);border-radius:24px;color:var(--mute)}
+/* detail */
+.back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;min-height:44px;color:var(--mute);margin-bottom:10px}
+.detail{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+.gal{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:16/10;box-shadow:var(--shadow);background:var(--card)}
+.gal img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s}
+.gal img.on{opacity:1}
+.gal .nav2{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:0;background:rgba(255,250,243,.92);color:var(--navy);cursor:pointer;display:grid;place-items:center}
+.gal .prev{left:14px}.gal .next{right:14px}
+.dots{position:absolute;bottom:14px;left:0;right:0;display:flex;gap:8px;justify-content:center}
+.dots button{width:9px;height:9px;padding:0;border-radius:50%;border:0;background:rgba(255,255,255,.55);cursor:pointer}
+.dots button.on{background:#fff;width:22px;border-radius:9px}
+.dhead{display:flex;justify-content:space-between;gap:14px;align-items:baseline;flex-wrap:wrap}
+.dhead .rent{font-size:26px}
+.tabs{display:flex;gap:28px;border-bottom:1px solid var(--line);margin:22px 0 18px}
+.tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:10px 0;font:600 15px Manrope;color:var(--mute);cursor:pointer;min-height:44px}
+.tabs button[aria-selected=true]{color:var(--ink);border-color:var(--accent)}
+.spec{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 20px;margin:16px 0;font-size:15px}
+.spec dt{color:var(--mute)}.spec dd{margin:0 0 10px;font-weight:600}
+.amen{display:flex;flex-wrap:wrap;gap:8px}
+.amen span{font-size:14px;border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+.thumbs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.thumbs button{padding:0;border:0;border-radius:14px;overflow:hidden;cursor:pointer;aspect-ratio:4/3}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.dacts{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+/* forms */
+.formwrap{max-width:640px;margin:0 auto}
+.formcard{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:clamp(22px,4vw,40px);box-shadow:var(--shadow);margin-top:22px}
+.fld{display:grid;gap:6px;margin-bottom:18px}
+.fld label{font-weight:600;font-size:15px}
+.fld input,.fld textarea{border:1px solid var(--line);border-radius:14px;background:var(--field);padding:12px 16px;min-height:50px;width:100%}
+.fld textarea{min-height:120px;resize:vertical}
+.tel{display:flex;border:1px solid var(--line);border-radius:14px;background:var(--field);overflow:hidden}
+.tel span{padding:0 14px;display:grid;place-items:center;border-right:1px solid var(--line);font-weight:600}
+.tel input{border:0;border-radius:0}
+.fld.bad input,.fld.bad textarea,.fld.bad .tel{border-color:#c0473b}
+.err{color:#c0473b;font-size:14px;display:none}.fld.bad .err{display:block}
+.hint{display:flex;gap:8px;align-items:center;justify-content:center;font-size:14px;color:var(--mute);margin-top:14px}
+.done{text-align:center;max-width:620px;margin:0 auto;padding:clamp(20px,5vw,60px) 0}
+.tick{width:92px;height:92px;border-radius:50%;background:color-mix(in srgb,var(--gold) 30%,transparent);display:grid;place-items:center;margin:0 auto 24px;color:var(--accent)}
+.tick svg.i{width:42px;height:42px;stroke-width:2.2}
+.sum{display:grid;gap:10px;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 22px;margin:26px auto;max-width:380px}
+.sum div{display:flex;gap:14px;align-items:center}.sum svg.i{color:var(--accent)}
+.note{font-size:13px;color:var(--mute);margin-top:12px}
+/* story & contact */
+.story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center}
+.story .shot{aspect-ratio:4/3.4}
+.story p{font-size:17px;color:var(--mute);max-width:52ch}
+.contact{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,72px);align-items:start}
+.cl{display:grid;gap:18px;margin-top:28px}
+.cl div{display:flex;gap:16px;align-items:center;font-size:17px}
+.cl .ic{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--accent);flex:none}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,30px);opacity:0;background:var(--navy);color:var(--ivory);padding:12px 22px;border-radius:999px;font-size:14px;transition:.3s;z-index:60;border:1px solid var(--gold);max-width:92vw;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media(max-width:1100px){.brand .tagline{display:none}.pillars{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.pillars div{border:0;padding-left:0}}
+@media(max-width:900px){.nav{display:none}.burger{display:grid;place-items:center}
+.hero,.detail,.story,.contact,.band{grid-template-columns:1fr}.hero .shot{order:-1}.word{font-size:30px}.word img{height:34px}}
+@media(max-width:600px){.pillars{grid-template-columns:1fr}.shead .link{margin-left:0}.shot{border-radius:22px}.sels select{flex:1 1 40%}.sels .count{margin-left:0;width:100%}}
 </style>
 </head>
 <body>
-<header><div class="nav">
-  <a class="brand" href="#top" aria-label="Mativio home"><img src="assets/logo.png" alt=""><b aria-hidden="true">ATIVIO</b></a>
-  <nav><a href="#homes">Homes for rent</a><a href="#opening">Opening soon</a><a href="#localities">Localities</a><a href="#about">Our story</a></nav>
-  <a class="btn gold" href="#enquire">Enquire</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+<symbol id="left" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+<symbol id="right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+<symbol id="pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+<symbol id="bed" viewBox="0 0 24 24"><path d="M3 18V7m0 6h18v5M21 13v-2a3 3 0 0 0-3-3h-7v5M3 18h18M6.5 10.5a1.5 1.5 0 1 0 0-.01"/></symbol>
+<symbol id="sofa" viewBox="0 0 24 24"><path d="M5 11V8a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3M3 13a2 2 0 0 1 4 0v2h10v-2a2 2 0 0 1 4 0v4H3zM5 17v2m14-2v2"/></symbol>
+<symbol id="cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4m8-4v4M8 14h2m4 0h2m-8 3h2"/></symbol>
+<symbol id="bldg" viewBox="0 0 24 24"><path d="M4 21V5l8-2v18M12 8h8v13M2 21h20M7 8h2m-2 4h2m-2 4h2m6-4h2m-2 4h2"/></symbol>
+<symbol id="home" viewBox="0 0 24 24"><path d="M3 11 12 4l9 7M5 9.5V20h14V9.5M10 20v-6h4v6"/></symbol>
+<symbol id="sprout" viewBox="0 0 24 24"><path d="M12 21V11m0 0C12 6 8 3 3 3c0 5 4 8 9 8zm0 0c0-4 3-7 8-7 0 4-3 7-8 7z"/></symbol>
+<symbol id="layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5zm-9 9 9 5 9-5M3 16l9 5 9-5"/></symbol>
+<symbol id="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+<symbol id="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+<symbol id="menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+<symbol id="share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.6-4.4m-7.6 6.8 7.6 4.4"/></symbol>
+<symbol id="phone" viewBox="0 0 24 24"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+<symbol id="mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
+</svg>
+
+<header id="hdr"><div class="wrap bar">
+  <a class="brand" href="#home" aria-label="Mativio home">
+    <span class="word"><img src="assets/logo.png" alt=""><span class="rest" aria-hidden="true">ATIVIO</span></span>
+    <span class="tag tagline">Land · Living · Legacy</span>
+  </a>
+  <nav class="nav" aria-label="Main">
+    <a href="#properties" data-nav="properties">Properties</a>
+    <a href="#story" data-nav="story">Our Story</a>
+    <a href="#contact" data-nav="contact">Contact</a>
+    <span class="sep"></span>
+    <div class="mode" role="group" aria-label="Theme">
+      <button type="button" data-mode="light" aria-label="Light theme"><svg class="i"><use href="#sun"/></svg></button>
+      <button type="button" data-mode="dark" aria-label="Dark theme"><svg class="i"><use href="#moon"/></svg></button>
+    </div>
+    <a class="btn" href="#properties" style="min-height:44px;padding:0 22px;border:0">Enquire</a>
+  </nav>
+  <button class="burger" type="button" id="burger" aria-label="Open menu"><svg class="i"><use href="#menu"/></svg></button>
 </div></header>
 
-<section class="hero" id="top">
-  <svg class="scene" id="heroScene" viewBox="0 0 1400 520" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
-  <div class="in">
-    <div class="tag">LAND · LIVING · LEGACY</div>
-    <h1>Rooted in Bengaluru. Built for Generations.</h1>
-    <p>Family-owned homes, cared for by the family that owns them. See which flats are ready to move into today, and which open up next.</p>
-    <form class="search" id="search" role="search">
-      <label>Locality<select id="sLoc"></select></label>
-      <label>Home size<select id="sBhk"><option value="">Any size</option><option>1 BHK</option><option>2 BHK</option><option>3 BHK</option></select></label>
-      <label>Move in<select id="sWhen"><option value="">Any time</option><option value="now">Ready now</option><option value="soon">Opening soon</option></select></label>
-      <button class="gold" type="submit">Show homes</button>
-    </form>
-    <div class="stats" id="stats"></div>
+<div class="drawer" id="drawer" role="dialog" aria-label="Menu">
+  <div class="top"><span class="word" style="font-size:28px;color:var(--ivory)"><img src="assets/logo.png" alt="" style="height:32px">ATIVIO</span>
+  <button type="button" id="dclose" aria-label="Close menu"><svg class="i"><use href="#close"/></svg></button></div>
+  <a href="#home"><svg class="i"><use href="#home"/></svg>Home</a>
+  <a href="#properties"><svg class="i"><use href="#bldg"/></svg>Properties</a>
+  <a href="#story"><svg class="i"><use href="#sprout"/></svg>Our Story</a>
+  <a href="#contact"><svg class="i"><use href="#mail"/></svg>Contact</a>
+  <div class="modes">
+    <label><svg class="i"><use href="#sun"/></svg>Light mode<input type="radio" name="dm" value="light"></label>
+    <label><svg class="i"><use href="#moon"/></svg>Dark mode<input type="radio" name="dm" value="dark"></label>
+  </div>
+</div>
+
+<main class="wrap">
+<!-- HOME -->
+<section data-view="home">
+  <div class="hero">
+    <div>
+      <div class="tag rule">Land · Living · Legacy</div>
+      <h1>Find a place to call home.</h1>
+      <p class="sub">Family-owned homes, thoughtfully cared for in Bengaluru.</p>
+      <div class="ctas"><a class="btn" href="#properties">Explore available homes <svg class="i"><use href="#arrow"/></svg></a><a class="link" href="#story">Get to know us</a></div>
+    </div>
+    <div class="shot"><img class="only-l" src="assets/photos/hero_light.jpg" alt="Mativio residence among trees in golden light"><img class="only-d" src="assets/photos/hero_dark.jpg" alt="Mativio residence at dusk with the Mativio sign"></div>
+  </div>
+  <div class="pillars">
+    <div><svg class="i"><use href="#home"/></svg><p style="margin:0"><b>Family-owned</b><span>A long-term, personal approach</span></p></div>
+    <div><svg class="i"><use href="#sprout"/></svg><p style="margin:0"><b>Thoughtfully managed</b><span>Well-maintained and resident-focused</span></p></div>
+    <div><svg class="i"><use href="#pin"/></svg><p style="margin:0"><b>Bengaluru rooted</b><span>In established, connected localities</span></p></div>
+    <div><svg class="i"><use href="#layers"/></svg><p style="margin:0"><b>Built for generations</b><span>Creating enduring value</span></p></div>
+  </div>
+  <div class="sec">
+    <div class="shead"><h2>Our Properties</h2><span class="rule"></span><span class="mute">Quality rental homes in Bengaluru, cared for by our family.</span><a class="link gold" href="#properties">View all properties <svg class="i"><use href="#arrow"/></svg></a></div>
+    <div class="grid" id="homeGrid"></div>
+  </div>
+  <div class="band">
+    <div class="txt"><div class="tag">Our Story</div><h2>Rooted in Bengaluru. Built for Generations.</h2>
+    <p>A family legacy of thoughtfully owned properties, enduring value and a vision for the future.</p>
+    <a class="link" href="#story" style="align-self:flex-start">Read our story <svg class="i"><use href="#arrow"/></svg></a></div>
+    <img src="assets/photos/hero_dark.jpg" alt="" loading="lazy">
   </div>
 </section>
 
-<section class="band" id="homes"><div class="wrap">
-  <div class="head">
-    <div><h2>Homes for rent</h2><p class="lede" id="count"></p></div>
-    <div class="chips" id="chips"></div>
+<!-- PROPERTIES -->
+<section data-view="properties" class="sec">
+  <h2>Our Properties</h2>
+  <p class="mute" style="margin:.5em 0 0">Browse our residential homes in Bengaluru.</p>
+  <div class="filters">
+    <label class="search"><svg class="i"><use href="#search"/></svg><input id="q" type="search" placeholder="Search by locality or property" aria-label="Search"></label>
+    <div class="pills" id="pills" role="group" aria-label="Availability"></div>
+    <div class="sels">
+      <select id="fLoc" aria-label="Locality"></select>
+      <select id="fBhk" aria-label="BHK"></select>
+      <select id="fFur" aria-label="Furnishing"></select>
+      <select id="fSort" aria-label="Sort"><option value="new">Sort: Newest</option><option value="lo">Rent: low to high</option><option value="hi">Rent: high to low</option></select>
+      <span class="count" id="count"></span>
+    </div>
   </div>
-  <div class="grid" id="grid"></div>
-  <p class="note">Sample listings for this first draft. Replace with your own properties, photos and rents.</p>
-</div></section>
+  <div class="grid" id="listGrid"></div>
+</section>
 
-<section class="band soon" id="opening"><div class="wrap">
-  <h2>Opening soon</h2>
-  <p class="lede">Current leases ending in the coming months. Reserve a viewing early, or ask us to tell you the day a home is ready.</p>
-  <div class="tl" id="tl"></div>
-  <form class="notify" id="notify">
-    <input id="nName" required placeholder="Your name" autocomplete="name" aria-label="Your name">
-    <input id="nPhone" required placeholder="Phone or WhatsApp" inputmode="tel" aria-label="Phone">
-    <select id="nLoc" aria-label="Preferred locality"></select>
-    <button class="gold" type="submit">Notify me</button>
-  </form>
-  <div class="msg" id="nMsg" role="status"></div>
-</div></section>
+<!-- DETAIL -->
+<section data-view="property" class="sec" id="detail"></section>
 
-<section class="band" id="localities"><div class="wrap">
-  <h2>Where our homes are</h2>
-  <p class="lede">Tap a locality to see its homes.</p>
-  <div class="locs" id="locs"></div>
-</div></section>
-
-<section class="band" id="about" style="padding-top:0"><div class="wrap story">
-  <div>
-    <h2>A family legacy of thoughtfully owned properties</h2>
-    <p class="lede">Mativio is our family's home for the buildings we own and look after. Every flat is maintained by us, rented directly by us, and handed over ready to live in: no brokers between you and the people responsible for your home.</p>
-    <p class="lede">Clear agreements, quick repairs, and owners who answer the phone.</p>
+<!-- ENQUIRE -->
+<section data-view="enquire" class="sec">
+  <div class="formwrap">
+    <a class="back" href="#properties" id="eBack"><svg class="i"><use href="#left"/></svg>Back to property</a>
+    <h2>Enquire about this home</h2>
+    <p class="mute" id="eSub" style="margin:.4em 0 0"></p>
+    <form class="formcard" id="eForm" novalidate>
+      <div class="fld"><label for="eName">Your name *</label><input id="eName" autocomplete="name" placeholder="Enter your full name"><span class="err">Please enter your name.</span></div>
+      <div class="fld"><label for="ePhone">Phone number *</label><div class="tel"><span>+91</span><input id="ePhone" inputmode="tel" autocomplete="tel-national" placeholder="Enter your number"></div><span class="err">Please enter a 10-digit mobile number.</span></div>
+      <div class="fld"><label for="eEmail">Email address</label><input id="eEmail" type="email" autocomplete="email" placeholder="Enter your email"><span class="err">Please check this email address.</span></div>
+      <div class="fld"><label for="eMsg">Message *</label><textarea id="eMsg" placeholder="Tell us about your requirement (e.g. move-in date, number of occupants)"></textarea><span class="err">Please enter a few more details (e.g. move-in date, duration).</span></div>
+      <button class="btn" type="submit" style="width:100%">Send enquiry <svg class="i"><use href="#arrow"/></svg></button>
+      <div class="hint"><svg class="i" style="width:16px;height:16px"><use href="#lock"/></svg>We'll get back to you within 1 business day.</div>
+    </form>
   </div>
-  <div class="pill4">
-    <div><svg viewBox="0 0 40 40"><path d="M6 34V16L20 6l14 10v18M14 34V22h12v12M4 34h32"/></svg><b>Properties</b><span>Homes ready to occupy</span></div>
-    <div><svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="9"/><path d="M20 23v13M14 36h12M16 28l4-3 4 3"/></svg><b>Land</b><span>Held for the long term</span></div>
-    <div><svg viewBox="0 0 40 40"><path d="M4 20l8-7 6 4 4-3 6 3 8 3M10 22l6 6 3-2 3 3 3-2 5-5"/></svg><b>Partnerships</b><span>Direct with tenants</span></div>
-    <div><svg viewBox="0 0 40 40"><path d="M20 36V18M20 22c-8 0-12-6-12-12 8 0 12 5 12 12zM20 18c0-8 5-12 12-12 0 7-4 12-12 12z"/></svg><b>Legacy</b><span>Cared for by generations</span></div>
+</section>
+
+<!-- THANKS -->
+<section data-view="thanks" class="sec"><div class="done" id="done"></div></section>
+
+<!-- STORY -->
+<section data-view="story" class="sec">
+  <div class="story">
+    <div class="shot"><img class="only-l" src="assets/photos/cof_l.jpg" alt="Leafy walkway beside a Mativio building"><img class="only-d" src="assets/photos/dev_d.jpg" alt="Mativio building among trees"></div>
+    <div>
+      <div class="tag rule" style="margin-bottom:22px">Our Story</div>
+      <h2>Rooted in Bengaluru. Built for Generations.</h2>
+      <p>Mativio is a family-owned residential property brand in Bengaluru, built on a simple belief: well-cared-for homes create better, more enduring communities.</p>
+      <p>We own every home we rent and look after it ourselves. No brokers stand between you and the people responsible for your home, so agreements are clear, repairs are quick and the owners answer the phone.</p>
+      <a class="btn" href="#properties" style="margin-top:12px">See our homes <svg class="i"><use href="#arrow"/></svg></a>
+    </div>
   </div>
-</div></section>
+</section>
 
-<section class="band" id="enquire" style="padding-top:0"><div class="wrap tenant">
-  <div><h2>Already a Mativio tenant?</h2>
-  <p>Raising maintenance requests, rent receipts and lease renewals online are on the way. Until then, reach the family directly.</p></div>
-  <button class="gold" type="button" id="tenantBtn">Tenant services, coming soon</button>
-</div></section>
+<!-- CONTACT -->
+<section data-view="contact" class="sec">
+  <div class="contact">
+    <div><h2>Get in Touch</h2><p class="mute">Have a question about a property, or want to know more? We're here to help.</p><div class="cl" id="cl"></div></div>
+    <form class="formcard" id="cForm" novalidate style="margin:0">
+      <div class="fld"><label for="cName">Your name *</label><input id="cName" autocomplete="name"><span class="err">Please enter your name.</span></div>
+      <div class="fld"><label for="cEmail">Your email *</label><input id="cEmail" type="email" autocomplete="email"><span class="err">Please enter a valid email.</span></div>
+      <div class="fld"><label for="cMsg">Your message *</label><textarea id="cMsg"></textarea><span class="err">Please write a short message.</span></div>
+      <button class="btn" type="submit" style="width:100%">Send message</button>
+      <p class="note" id="cNote" role="status"></p>
+    </form>
+  </div>
+</section>
+</main>
 
-<footer class="band" style="padding-block:36px"><div class="wrap">
-  <a class="brand sm" href="#top" aria-label="Mativio home"><img src="assets/logo.png" alt=""><b aria-hidden="true">ATIVIO</b></a>
-  <div class="tag">LAND · LIVING · LEGACY</div>
-  <div>Bengaluru · Contact details to be added</div>
+<footer><div class="wrap">
+  <a class="brand" href="#home" aria-label="Mativio home"><span class="word"><img src="assets/logo.png" alt="">ATIVIO</span></a>
+  <span class="tag">Land · Living · Legacy</span>
+  <span>© <span id="yr"></span> Mativio · Bengaluru</span>
 </div></footer>
-
-<dialog id="dlg" aria-labelledby="dTitle"></dialog>
 <div class="toast" id="toast" role="status"></div>
 
 <script>
 {
+/* ---- Edit these: contact details shown on the site and used for enquiries ---- */
+const CONTACT={phone:"",whatsapp:"",email:"",address:"Bengaluru, Karnataka"};
+/* phone/whatsapp: digits with country code, e.g. "919876543210". Leave "" until ready. */
+
+/* ---- Listings: add or change homes here ---- */
+/* status: "now" (Available), "soon" (Opening Soon), "let" (Occupied). from: "YYYY-MM-DD" or "" */
 const P=[
- {id:"whitefield-2bhk",name:"Ivory Court, Flat 302",loc:"Whitefield",bhk:"2 BHK",sqft:1180,rent:32000,dep:150000,maint:2500,floor:"3rd of 5",face:"East",furn:"Semi-furnished",status:"now",from:"",park:"1 car",pets:"Allowed",amen:["Lift","Power backup","Covered parking","24×7 water","CCTV"],hue:0},
- {id:"hsr-3bhk",name:"Heritage Residency, 501",loc:"HSR Layout",bhk:"3 BHK",sqft:1650,rent:52000,dep:250000,maint:3500,floor:"5th of 6",face:"North",furn:"Semi-furnished",status:"now",from:"",park:"2 cars",pets:"On request",amen:["Lift","Gym","Power backup","Rooftop terrace","CCTV"],hue:1},
- {id:"indiranagar-1bhk",name:"Olive House, G2",loc:"Indiranagar",bhk:"1 BHK",sqft:620,rent:26000,dep:100000,maint:1500,floor:"Ground of 3",face:"West",furn:"Fully furnished",status:"now",from:"",park:"Two-wheeler",pets:"Not allowed",amen:["Garden","24×7 water","CCTV"],hue:2},
- {id:"jpnagar-2bhk",name:"Mativio Towers, 204",loc:"JP Nagar",bhk:"2 BHK",sqft:1100,rent:28000,dep:120000,maint:2000,floor:"2nd of 7",face:"East",furn:"Unfurnished",status:"soon",from:"2026-12-15",park:"1 car",pets:"Allowed",amen:["Lift","Power backup","Play area","CCTV"],hue:3},
- {id:"hebbal-3bhk",name:"Lakeview Residency, 602",loc:"Hebbal",bhk:"3 BHK",sqft:1720,rent:48000,dep:240000,maint:3800,floor:"6th of 8",face:"Lake-facing",furn:"Semi-furnished",status:"soon",from:"2027-01-05",park:"2 cars",pets:"On request",amen:["Lift","Clubhouse","Pool","Power backup","CCTV"],hue:1},
- {id:"whitefield-1bhk",name:"Ivory Court, Flat 104",loc:"Whitefield",bhk:"1 BHK",sqft:640,rent:19000,dep:80000,maint:1200,floor:"1st of 5",face:"South",furn:"Semi-furnished",status:"soon",from:"2027-02-01",park:"Two-wheeler",pets:"Allowed",amen:["Lift","Power backup","CCTV"],hue:0},
- {id:"hsr-2bhk",name:"Heritage Residency, 203",loc:"HSR Layout",bhk:"2 BHK",sqft:1150,rent:36000,dep:180000,maint:2600,floor:"2nd of 6",face:"South",furn:"Fully furnished",status:"let",from:"",park:"1 car",pets:"On request",amen:["Lift","Gym","Power backup","CCTV"],hue:2}
+ {id:"devasandra",name:"Devasandra",area:"Devasandra, Bengaluru",type:"Apartment",bhk:"2 BHK",furn:"Semi-furnished",rent:28000,fromPrice:false,status:"now",from:"",added:3,
+  deposit:"To be confirmed",about:"A well-located residential home in Devasandra, offering a comfortable and practical place to live in a peaceful neighbourhood, with good natural light and easy access to daily essentials.",
+  amen:["Balcony","Power backup","Water supply 24×7","Covered parking","CCTV"],card:["dev_l","dev_d"],photos:["dev_l","dev_d","hero_light"]},
+ {id:"coffee-board",name:"Coffee Board",area:"Coffee Board Layout, Bengaluru",type:"Apartment",bhk:"3 BHK",furn:"Furnished",rent:32000,fromPrice:false,status:"now",from:"",added:2,
+  deposit:"To be confirmed",about:"A spacious furnished home on a quiet, tree-lined street in Coffee Board Layout. Generous rooms, private balconies and a calm green setting.",
+  amen:["Balconies","Lift","Power backup","Covered parking","CCTV"],card:["cof_l","cof_d"],photos:["cof_l","cof_d","hero_dark"]},
+ {id:"kempapura",name:"Kempapura",area:"Kempapura, Bengaluru",type:"Hostel Residence",bhk:"Rooms",furn:"Furnished",rent:26000,fromPrice:true,status:"soon",from:"",added:1,
+  deposit:"To be confirmed",about:"Furnished rooms in a well-kept residence in Kempapura, ready for professionals and students who want a calm, cared-for place to stay.",
+  amen:["Furnished rooms","Housekeeping","Power backup","Gated entry","CCTV"],card:["kem_l","kem_l"],photos:["kem_l","kem_d"]}
 ];
-const $=s=>document.querySelector(s);
+
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const ph=n=>`assets/photos/${n}.jpg`;
 const inr=n=>"₹"+n.toLocaleString("en-IN");
-const fdate=d=>new Date(d+"T00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"});
-const badge=p=>p.status==="now"?'<span class="badge now">Ready to move in</span>':p.status==="soon"?`<span class="badge soon">Available ${fdate(p.from).replace(/ \d{4}$/,"")}</span>`:'<span class="badge let">Currently let</span>';
-const tones=[["#1c2f48","#2a4263"],["#23313a","#36494f"],["#2a2e3a","#3f4557"],["#1e2b3f","#30435e"]];
+const fdate=d=>new Date(d+"T00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short"});
+const ST={now:["Available","b-now"],soon:["Opening Soon","b-soon"],let:["Occupied","b-occ"]};
+const avail=p=>p.status==="now"?"Available now":p.status==="soon"?(p.from?"From "+fdate(p.from):"Opening soon"):"Occupied";
+const ic=(n,s="")=>`<svg class="i" ${s}><use href="#${n}"/></svg>`;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const toast=t=>{const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2800)};
+$("#yr").textContent=new Date().getFullYear();
 
-function facade(p,big){
-  const [a,b]=tones[p.hue];const floors=big?9:5,cols=big?7:5,w=big?440:300,h=big?400:190,x0=big?840:50,y0=big?100:40;
-  const cw=w/cols,fh=(h-30)/floors;let win="";
-  let seed=p.id.length*7+p.hue;const rnd=()=>{seed=(seed*9301+49297)%233280;return seed/233280};
-  for(let f=0;f<floors;f++)for(let c=0;c<cols;c++){const lit=rnd()>.35;
-    win+=`<rect x="${x0+c*cw+cw*.2}" y="${y0+14+f*fh+fh*.18}" width="${cw*.6}" height="${fh*.55}" rx="2" fill="${lit?"url(#lit"+p.hue+")":"#0f1a29"}" opacity="${lit?.95:.8}"/>`;
-    if(f<floors-1)win+=`<rect x="${x0+c*cw+cw*.12}" y="${y0+14+f*fh+fh*.78}" width="${cw*.76}" height="3" fill="#c5ad83" opacity=".35"/>`}
-  const W=big?1400:400,H=big?520:250;
-  return `<defs><linearGradient id="sky${p.hue}${big?"b":""}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#142235"/><stop offset=".7" stop-color="#2b3550"/><stop offset="1" stop-color="#6b5a52"/></linearGradient>
-  <linearGradient id="lit${p.hue}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3dca8"/><stop offset="1" stop-color="#c5ad83"/></linearGradient>
-  <linearGradient id="wall${p.hue}${big?"b":""}" x1="0" x2="1"><stop offset="0" stop-color="${b}"/><stop offset="1" stop-color="${a}"/></linearGradient></defs>
-  ${big?"":`<rect width="${W}" height="${H}" fill="url(#sky${p.hue})"/>`}
-  ${big?`<g opacity=".5" fill="#1b2c44">${[0,120,260,980,1100,1240].map((x,i)=>`<rect x="${x}" y="${230+i%3*40}" width="${110+i%2*30}" height="400"/>`).join("")}</g>`:`<rect x="0" y="${H-80}" width="70" height="80" fill="#1a283c"/><rect x="${W-60}" y="${H-110}" width="60" height="110" fill="#1a283c"/>`}
-  <rect x="${x0-10}" y="${y0}" width="${w+20}" height="14" fill="#c5ad83" opacity=".55"/>
-  <rect x="${x0}" y="${y0+14}" width="${w}" height="${h}" fill="url(#wall${p.hue}${big?"b":""})"/>
-  <rect x="${x0+w}" y="${y0+14}" width="${big?60:26}" height="${h}" fill="#0f1a29" opacity=".55"/>
-  ${win}
-  <rect x="0" y="${y0+14+h}" width="${W}" height="${H}" fill="#101b2b"/>
-  ${[0,1,2,3,4,5,6,7].map(i=>{const tx=(big?60:10)+i*(W/8)+(i%2)*14;return `<g><rect x="${tx+8}" y="${y0+h-(big?20:4)}" width="3" height="${big?36:20}" fill="#2b3a2f"/><ellipse cx="${tx+9}" cy="${y0+h-(big?24:6)}" rx="${big?26:13}" ry="${big?30:15}" fill="#454C47" opacity=".9"/></g>`}).join("")}`;
+/* theme */
+function setMode(m,save){document.documentElement.dataset.theme=m;$$("[data-mode]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===m));$$("input[name=dm]").forEach(r=>r.checked=r.value===m);if(save)try{localStorage.setItem("mativio-theme",m)}catch(e){}}
+setMode(document.documentElement.dataset.theme==="dark"?"dark":"light");
+$$("[data-mode]").forEach(b=>b.addEventListener("click",()=>setMode(b.dataset.mode,1)));
+$$("input[name=dm]").forEach(r=>r.addEventListener("change",()=>setMode(r.value,1)));
+
+/* header collapse */
+const hdr=$("#hdr");const onScroll=()=>hdr.classList.toggle("scrolled",scrollY>40);addEventListener("scroll",onScroll,{passive:true});onScroll();
+
+/* drawer */
+const dr=$("#drawer");$("#burger").onclick=()=>dr.classList.add("open");$("#dclose").onclick=()=>dr.classList.remove("open");
+dr.addEventListener("click",e=>{if(e.target.closest("a"))dr.classList.remove("open")});
+
+/* cards */
+const card=p=>`<a class="card" href="#p-${p.id}">
+  <div class="pic"><img class="only-l" src="${ph(p.card[0])}" alt="${esc(p.name)} home" loading="lazy"><img class="only-d" src="${ph(p.card[1])}" alt="" loading="lazy"><span class="badge ${ST[p.status][1]}">${ST[p.status][0]}</span></div>
+  <div class="body"><div class="row1"><h3>${esc(p.name)}</h3><span class="rent">${p.fromPrice?"<small>From </small>":""}${inr(p.rent)} <small>/ month</small></span></div>
+  <div class="loc">${ic("pin")}${esc(p.area)}</div>
+  <div class="meta"><span>${ic("bldg")}${p.type}</span><span>${ic("bed")}${p.bhk}</span><span>${ic("sofa")}${p.furn}</span></div></div></a>`;
+$("#homeGrid").innerHTML=P.map(card).join("");
+
+/* list + filters */
+const F={st:"",q:"",loc:"",bhk:"",fur:"",sort:"new"};
+const uniq=k=>[...new Set(P.map(p=>p[k]))].sort();
+$("#fLoc").innerHTML=`<option value="">Locality: All</option>`+uniq("name").map(v=>`<option>${v}</option>`).join("");
+$("#fBhk").innerHTML=`<option value="">Size: Any</option>`+uniq("bhk").map(v=>`<option>${v}</option>`).join("");
+$("#fFur").innerHTML=`<option value="">Furnishing: Any</option>`+uniq("furn").map(v=>`<option>${v}</option>`).join("");
+function renderList(){
+  const n=s=>P.filter(p=>!s||p.status===s).length;
+  $("#pills").innerHTML=[["","All"],["now","Available"],["soon","Opening Soon"],["let","Occupied"]].map(([v,l])=>`<button type="button" class="pill" data-st="${v}" aria-pressed="${F.st===v}">${l}<span class="n">${n(v)}</span></button>`).join("");
+  const q=F.q.trim().toLowerCase();
+  let L=P.filter(p=>(!F.st||p.status===F.st)&&(!F.loc||p.name===F.loc)&&(!F.bhk||p.bhk===F.bhk)&&(!F.fur||p.furn===F.fur)&&(!q||(p.name+" "+p.area+" "+p.type).toLowerCase().includes(q)));
+  L.sort((a,b)=>F.sort==="lo"?a.rent-b.rent:F.sort==="hi"?b.rent-a.rent:b.added-a.added);
+  $("#count").textContent=`${L.length} ${L.length===1?"property":"properties"}`;
+  $("#listGrid").innerHTML=L.length?L.map(card).join(""):`<div class="empty">No homes match these filters right now.<br><button class="btn line" type="button" id="clr" style="margin-top:16px">Clear filters</button></div>`;
 }
-$("#heroScene").innerHTML=facade({id:"hero-main",hue:0},true);
+$("#pills").addEventListener("click",e=>{const b=e.target.closest("[data-st]");if(b){F.st=b.dataset.st;renderList()}});
+$("#q").addEventListener("input",e=>{F.q=e.target.value;renderList()});
+[["#fLoc","loc"],["#fBhk","bhk"],["#fFur","fur"],["#fSort","sort"]].forEach(([s,k])=>$(s).addEventListener("change",e=>{F[k]=e.target.value;renderList()}));
+$("#listGrid").addEventListener("click",e=>{if(e.target.id==="clr"){Object.assign(F,{st:"",q:"",loc:"",bhk:"",fur:"",sort:"new"});$("#q").value="";["#fLoc","#fBhk","#fFur"].forEach(s=>$(s).value="");$("#fSort").value="new";renderList()}});
 
-const locs=[...new Set(P.map(p=>p.loc))].sort();
-const opts='<option value="">All localities</option>'+locs.map(l=>`<option>${l}</option>`).join("");
-$("#sLoc").innerHTML=opts;$("#nLoc").innerHTML=opts.replace("All localities","Any locality");
-
-const nNow=P.filter(p=>p.status==="now").length,nSoon=P.filter(p=>p.status==="soon").length;
-$("#stats").innerHTML=`<div><b>${nNow}</b>ready to move in</div><div><b>${nSoon}</b>opening in the next 3 months</div><div><b>${locs.length}</b>Bengaluru localities</div>`;
-
-let F={when:"",loc:"",bhk:""};
-const chipDefs=[["","All homes"],["now","Ready now"],["soon","Opening soon"],["let","Currently let"]];
-function chips(){$("#chips").innerHTML=chipDefs.map(([v,l])=>`<button class="chip" type="button" data-w="${v}" aria-pressed="${F.when===v}">${l}</button>`).join("")}
-function render(){
-  chips();
-  const list=P.filter(p=>(!F.when||p.status===F.when)&&(!F.loc||p.loc===F.loc)&&(!F.bhk||p.bhk===F.bhk))
-    .sort((a,b)=>"nsl".indexOf(a.status[0])-"nsl".indexOf(b.status[0])||(a.from||"").localeCompare(b.from||""));
-  $("#count").textContent=`${list.length} of ${P.length} homes`+(F.loc?` in ${F.loc}`:"")+(F.bhk?`, ${F.bhk}`:"");
-  $("#grid").innerHTML=list.length?list.map(p=>`<article class="card">
-    <div class="pic"><svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${facade(p)}</svg>${badge(p)}</div>
-    <div class="body"><h3>${p.name}</h3><div class="loc">${p.loc}, Bengaluru</div>
-    <div class="facts"><span>${p.bhk}</span><span>${p.sqft.toLocaleString("en-IN")} sq ft</span><span>${p.furn}</span></div>
-    <div class="price"><div><b>${inr(p.rent)}</b> <small>/ month</small></div>
-    <div class="acts"><button class="ghost" type="button" data-share="${p.id}" aria-label="Copy link to ${p.name}">Share</button><button class="gold" type="button" data-open="${p.id}">View</button></div></div></div>
-  </article>`).join(""):`<div class="empty">No homes match these filters yet. <button class="ghost" type="button" id="reset">Clear filters</button></div>`;
+/* detail */
+let gi=0;
+function detail(p){
+  gi=0;const maps="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(p.area);
+  $("#detail").innerHTML=`<a class="back" href="#properties">${ic("left")}Back to Properties</a>
+  <div class="detail">
+    <div><div class="gal" id="gal">${p.photos.map((f,i)=>`<img src="${ph(f)}" alt="${esc(p.name)} photo ${i+1}" class="${i?"":"on"}">`).join("")}
+      <button class="nav2 prev" type="button" aria-label="Previous photo">${ic("left")}</button><button class="nav2 next" type="button" aria-label="Next photo">${ic("right")}</button>
+      <div class="dots">${p.photos.map((f,i)=>`<button type="button" aria-label="Photo ${i+1}" class="${i?"":"on"}" data-g="${i}"></button>`).join("")}</div></div></div>
+    <div>
+      <div class="dhead"><h2>${esc(p.name)}</h2><span class="rent">${p.fromPrice?"<small>From </small>":""}${inr(p.rent)} <small>/ month</small></span></div>
+      <div class="loc" style="margin-top:8px">${ic("pin")}${esc(p.area)}<span class="badge inline ${ST[p.status][1]}" style="margin-left:8px">${ST[p.status][0]}</span></div>
+      <div class="meta"><span>${ic("bed")}${p.bhk}</span><span>${ic("sofa")}${p.furn}</span><span>${ic("cal")}${avail(p)}</span></div>
+      <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-t="ov">Overview</button><button role="tab" aria-selected="false" data-t="ph">Photos</button><button role="tab" aria-selected="false" data-t="lo">Location</button></div>
+      <div data-tp="ov"><h3 style="font-size:24px">About this home</h3><p class="mute">${esc(p.about)}</p>
+        <dl class="spec"><dt>Property type</dt><dd>${p.type}</dd><dt>Size</dt><dd>${p.bhk}</dd><dt>Furnishing</dt><dd>${p.furn}</dd><dt>Availability</dt><dd>${avail(p)}</dd><dt>Monthly rent</dt><dd>${p.fromPrice?"From ":""}${inr(p.rent)}</dd><dt>Deposit</dt><dd>${esc(p.deposit)}</dd></dl>
+        <div class="amen">${p.amen.map(a=>`<span>${esc(a)}</span>`).join("")}</div></div>
+      <div data-tp="ph" hidden><div class="thumbs">${p.photos.map((f,i)=>`<button type="button" data-g="${i}" aria-label="Show photo ${i+1}"><img src="${ph(f)}" alt=""></button>`).join("")}</div></div>
+      <div data-tp="lo" hidden><p class="mute">${esc(p.area)}. The exact address is shared when you book a viewing.</p><a class="link gold" href="${maps}" target="_blank" rel="noopener">Open ${esc(p.name)} in Google Maps ${ic("arrow")}</a></div>
+      <div class="dacts">${p.status==="let"?`<span class="mute">This home is occupied. Ask us to tell you when it opens up.</span><a class="btn" href="#contact">Contact us</a>`:`<a class="btn" href="#enquire-${p.id}">Enquire about this home ${ic("arrow")}</a>`}
+      <button class="btn line" type="button" id="share">${ic("share")}Share link</button></div>
+    </div></div>`;
+  const imgs=$$("#gal img"),dots=$$("#gal .dots button");
+  const go=i=>{gi=(i+imgs.length)%imgs.length;imgs.forEach((m,k)=>m.classList.toggle("on",k===gi));dots.forEach((d,k)=>d.classList.toggle("on",k===gi))};
+  $("#detail").onclick=e=>{const t=e.target.closest("button");if(!t)return;
+    if(t.classList.contains("prev"))go(gi-1);else if(t.classList.contains("next"))go(gi+1);
+    else if(t.dataset.g){go(+t.dataset.g);$("#gal").scrollIntoView({block:"center"})}
+    else if(t.dataset.t){$$(".tabs button").forEach(b=>b.setAttribute("aria-selected",b===t));$$("[data-tp]").forEach(x=>x.hidden=x.dataset.tp!==t.dataset.t)}
+    else if(t.id==="share"){const url=location.href.split("#")[0]+"#p-"+p.id;const txt=`${p.name} · ${p.bhk} · ${p.fromPrice?"from ":""}${inr(p.rent)}/month. ${url}`;
+      (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast("Link copied. Paste it into WhatsApp or email."),()=>toast(url))}};
 }
-const toast=t=>{const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2600)};
 
-function share(id){
-  const p=P.find(x=>x.id===id);const url=location.href.split("#")[0]+"#p-"+id;
-  const txt=`${p.name}, ${p.bhk} in ${p.loc} — ${inr(p.rent)}/month. ${url}`;
-  navigator.clipboard.writeText(txt).then(()=>toast("Link copied. Paste it into WhatsApp or email."),()=>toast("Copy this link: "+url));
-}
-function open(id){
-  const p=P.find(x=>x.id===id);if(!p)return;const d=$("#dlg");
-  const avail=p.status==="now"?"Ready now":p.status==="soon"?fdate(p.from):"Currently let";
-  d.innerHTML=`<button class="x" type="button" aria-label="Close" id="dx">×</button><div class="dl">
-  <div class="pic"><svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${facade(p)}</svg>${badge(p)}</div>
-  <div class="body"><h3 id="dTitle" style="font-size:30px">${p.name}</h3><div class="loc">${p.loc}, Bengaluru</div>
-  <div class="price" style="border:0;padding:0;margin:6px 0"><div><b>${inr(p.rent)}</b> <small>/ month</small></div></div>
-  <dl class="spec"><dt>Available</dt><dd>${avail}</dd><dt>Size</dt><dd>${p.bhk}, ${p.sqft.toLocaleString("en-IN")} sq ft</dd>
-  <dt>Deposit</dt><dd>${inr(p.dep)}</dd><dt>Maintenance</dt><dd>${inr(p.maint)} / month</dd>
-  <dt>Floor</dt><dd>${p.floor}</dd><dt>Facing</dt><dd>${p.face}</dd><dt>Furnishing</dt><dd>${p.furn}</dd><dt>Parking</dt><dd>${p.park}</dd><dt>Pets</dt><dd>${p.pets}</dd></dl>
-  <div class="amen">${p.amen.map(a=>`<span>${a}</span>`).join("")}</div>
-  ${p.status==="let"?`<p class="loc">This home is occupied. Use "Notify me" to hear when it opens up.</p>`:`<form class="f" id="visit"><b style="font-family:'Cormorant Garamond',serif;font-size:20px;margin-top:8px">Book a viewing</b>
-  <input required placeholder="Your name" aria-label="Your name" autocomplete="name"><input required placeholder="Phone or WhatsApp" inputmode="tel" aria-label="Phone">
-  <input type="date" aria-label="Preferred date" min="2026-11-23"><button class="gold" type="submit">Request viewing</button><div class="msg" id="vMsg" role="status" style="color:var(--goldd)"></div></form>`}
-  <button class="ghost" type="button" data-share="${p.id}" style="margin-top:10px">Copy link to this home</button></div></div>`;
-  if(!d.open)d.showModal();
-  if(location.hash!=="#p-"+id)history.replaceState(null,"","#p-"+id);
-}
-function close(){const d=$("#dlg");if(d.open)d.close()}
-$("#dlg").addEventListener("close",()=>{if(location.hash.startsWith("#p-"))history.replaceState(null,"",location.pathname+location.search)});
-$("#dlg").addEventListener("click",e=>{if(e.target.id==="dx"||e.target===e.currentTarget)close()});
-$("#dlg").addEventListener("submit",e=>{e.preventDefault();$("#vMsg").textContent="Preview only: booking requests will reach the owner once the site goes live.";});
-
-document.addEventListener("click",e=>{
-  const t=e.target.closest("[data-share],[data-open],[data-w],[data-loc],#reset");if(!t)return;
-  if(t.dataset.share)share(t.dataset.share);
-  else if(t.dataset.open)open(t.dataset.open);
-  else if(t.dataset.loc!==undefined){F={when:"",loc:t.dataset.loc,bhk:""};$("#sLoc").value=F.loc;render();$("#homes").scrollIntoView()}
-  else if(t.id==="reset"){F={when:"",loc:"",bhk:""};$("#sLoc").value="";$("#sBhk").value="";$("#sWhen").value="";render()}
-  else{F.when=t.dataset.w;$("#sWhen").value=F.when==="let"?"":F.when;render()}
+/* enquiry */
+let cur=null;
+function enquire(p){cur=p;$("#eSub").textContent=`${p.name} · ${p.bhk} · ${p.fromPrice?"from ":""}${inr(p.rent)} / month`;$("#eBack").href="#p-"+p.id;$$("#eForm .fld").forEach(f=>f.classList.remove("bad"))}
+const bad=(id,b)=>{$(id).closest(".fld").classList.toggle("bad",b);return b};
+$("#eForm").addEventListener("submit",e=>{e.preventDefault();
+  const name=$("#eName").value.trim(),phone=$("#ePhone").value.replace(/\D/g,""),email=$("#eEmail").value.trim(),msg=$("#eMsg").value.trim();
+  const errs=[bad("#eName",!name),bad("#ePhone",!/^[6-9]\d{9}$/.test(phone.slice(-10))||phone.length<10),bad("#eEmail",!!email&&!/^\S+@\S+\.\S+$/.test(email)),bad("#eMsg",msg.length<10)];
+  if(errs.some(Boolean)){$("#eForm .bad input,#eForm .bad textarea")?.focus();return}
+  const ref="MTV-"+String(Math.floor(1000+Math.random()*9000));
+  const body=`Enquiry ${ref}\nHome: ${cur.name} (${cur.bhk}, ${cur.area})\nName: ${name}\nPhone: +91 ${phone.slice(-10)}${email?"\nEmail: "+email:""}\nMessage: ${msg}`;
+  const wa=CONTACT.whatsapp?`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(body)}`:"";
+  const mail=CONTACT.email?`mailto:${CONTACT.email}?subject=${encodeURIComponent("Mativio enquiry "+ref+" · "+cur.name)}&body=${encodeURIComponent(body)}`:"";
+  $("#done").innerHTML=`<div class="tick">${ic("check")}</div><h2>Enquiry ready, ${esc(name.split(" ")[0])}!</h2>
+    <p class="mute">Thank you for your interest in the ${esc(cur.name)} property.${wa||mail?" Tap below to send it to us and we'll get back to you within 1 business day.":""}</p>
+    <div class="sum"><div>${ic("home")}<span><b>${esc(cur.name)}</b><br><span class="mute">${cur.bhk}</span></span></div><div>${ic("cal")}<span>Enquiry ref. <b>${ref}</b></span></div></div>
+    <div class="dacts" style="justify-content:center">${wa?`<a class="btn" href="${wa}" target="_blank" rel="noopener">Send on WhatsApp</a>`:""}${mail?`<a class="btn${wa?" line":""}" href="${mail}">Send by email</a>`:""}<a class="btn line" href="#properties">Back to Properties ${ic("arrow")}</a></div>
+    ${wa||mail?"":`<p class="note">Preview site: enquiries are not delivered yet. Add a WhatsApp number or email in the site settings to switch this on.</p>`}`;
+  $("#eForm").reset();location.hash="thanks";
 });
-$("#search").addEventListener("submit",e=>{e.preventDefault();F={loc:$("#sLoc").value,bhk:$("#sBhk").value,when:$("#sWhen").value};render();$("#homes").scrollIntoView()});
 
-$("#tl").innerHTML=P.filter(p=>p.status==="soon").sort((a,b)=>a.from.localeCompare(b.from)).map(p=>`<div><time>${fdate(p.from).replace(/ \d{4}$/,"")}</time><p>${p.bhk} · ${p.loc}<br>${p.name} · ${inr(p.rent)}/month</p><a href="#p-${p.id}">See this home</a></div>`).join("");
-$("#notify").addEventListener("submit",e=>{e.preventDefault();$("#nMsg").textContent="Preview only: alerts will start once the site goes live. Thank you, "+$("#nName").value.split(" ")[0]+".";});
-$("#tenantBtn").addEventListener("click",()=>toast("The tenant portal is the next phase of this site."));
+/* contact */
+$("#cl").innerHTML=[["phone",CONTACT.phone?"+"+CONTACT.phone:"Phone number to be added"],["mail",CONTACT.email||"Email to be added"],["pin",CONTACT.address]].map(([i,t])=>`<div><span class="ic">${ic(i)}</span>${esc(t)}</div>`).join("");
+$("#cForm").addEventListener("submit",e=>{e.preventDefault();
+  const errs=[bad("#cName",!$("#cName").value.trim()),bad("#cEmail",!/^\S+@\S+\.\S+$/.test($("#cEmail").value.trim())),bad("#cMsg",$("#cMsg").value.trim().length<3)];
+  if(errs.some(Boolean))return;
+  if(CONTACT.email){location.href=`mailto:${CONTACT.email}?subject=${encodeURIComponent("Message from "+$("#cName").value)}&body=${encodeURIComponent($("#cMsg").value+"\n\n"+$("#cEmail").value)}`;$("#cNote").textContent="Your email app should open with the message ready to send."}
+  else $("#cNote").textContent="Preview site: messages are not delivered yet. Contact details will be added soon.";
+});
 
-$("#locs").innerHTML=locs.map(l=>{const h=P.filter(p=>p.loc===l),n=h.filter(p=>p.status!=="let").length;return `<button type="button" data-loc="${l}"><b>${l}</b><span>${h.length} home${h.length>1?"s":""} · ${n} available or opening</span></button>`}).join("");
-
-function route(){const m=location.hash.match(/^#p-(.+)$/);if(m)open(m[1]);else close()}
-window.addEventListener("hashchange",route);
-render();route();
+/* router */
+function route(){
+  const h=location.hash.slice(1)||"home";let v=h,p=null;
+  if(h.startsWith("p-")){p=P.find(x=>x.id===h.slice(2));v=p?"property":"properties"}
+  else if(h.startsWith("enquire-")){p=P.find(x=>x.id===h.slice(8));v=p?"enquire":"properties"}
+  else if(h==="thanks"&&!$("#done").innerHTML)v="properties";
+  if(!$$("[data-view]").some(s=>s.dataset.view===v))v="home";
+  if(v==="property")detail(p);if(v==="enquire")enquire(p);if(v==="properties")renderList();
+  $$("[data-view]").forEach(s=>s.classList.toggle("on",s.dataset.view===v));
+  $$("[data-nav]").forEach(a=>a.toggleAttribute("aria-current",a.dataset.nav===v||(v==="property"&&a.dataset.nav==="properties")));
+  $$("[data-nav][aria-current]").forEach(a=>a.setAttribute("aria-current","page"));
+  document.title=(p?p.name+" · ":"")+"Mativio — Homes for Rent";
+  scrollTo({top:0});
+}
+addEventListener("hashchange",route);route();
 }
 </script>
 </body>
