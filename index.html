@@ -62,13 +62,15 @@ header{position:sticky;top:0;z-index:30;transition:background .5s ease,box-shado
 header.scrolled{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
 .bar{display:flex;align-items:center;gap:28px;padding-block:22px;transition:padding .6s cubic-bezier(.4,0,.2,1)}
 header.scrolled .bar{padding-block:12px}
-.brand{display:inline-flex;align-items:center;text-decoration:none;color:var(--ink)}
+.brand{display:inline-flex;align-items:center;text-decoration:none;color:var(--ink);flex:none}
 .word{display:inline-flex;align-items:flex-end;font:500 38px/1 "Cormorant Garamond",serif;letter-spacing:.16em}
 .word img{height:42px;width:auto;margin-right:.04em;transition:height .6s cubic-bezier(.4,0,.2,1)}
-.rest{display:inline-block;overflow:hidden;white-space:nowrap;max-width:var(--restW,6em);transition:max-width .8s cubic-bezier(.4,0,.2,1),opacity .55s ease .15s,letter-spacing .7s cubic-bezier(.4,0,.2,1);padding-bottom:1px;will-change:max-width,opacity}
-.brand .tagline{margin-left:22px;padding-left:22px;border-left:1px solid var(--accent);font-size:13px;white-space:nowrap;overflow:hidden;max-width:var(--tagW,24em);transition:max-width .7s cubic-bezier(.4,0,.2,1),opacity .4s ease .2s,margin .7s cubic-bezier(.4,0,.2,1),padding .7s cubic-bezier(.4,0,.2,1),border-color .4s}
-header.scrolled .rest,header.scrolled .tagline{max-width:0;opacity:0;transition-delay:0s}
-header.scrolled .rest{letter-spacing:-.05em}
+/* wordmark fold: grid 1fr → 0fr animates to the exact width of the letters, whatever the font */
+.rest,.brand .tagline{display:inline-grid;grid-template-columns:1fr;transition:grid-template-columns .8s cubic-bezier(.4,0,.2,1),opacity .55s ease .15s,margin .8s cubic-bezier(.4,0,.2,1),padding .8s cubic-bezier(.4,0,.2,1),border-color .4s}
+.rest>span,.brand .tagline>span{overflow:hidden;min-width:0;white-space:nowrap}
+.rest>span{padding-right:.06em}
+.brand .tagline{margin-left:22px;padding-left:22px;border-left:1px solid var(--accent);font-size:13px}
+header.scrolled .rest,header.scrolled .brand .tagline{grid-template-columns:0fr;opacity:0;transition-delay:0s}
 header.scrolled .brand .tagline{margin-left:0;padding-left:0;border-color:transparent}
 header.scrolled .word img{height:38px}
 .nav{margin-left:auto;display:flex;align-items:center;gap:30px}
@@ -498,8 +500,8 @@ html{overflow-x:clip}
 
 <header id="hdr"><div class="wrap bar">
   <a class="brand" href="#home" aria-label="Mativio home">
-    <span class="word"><img src="assets/logo.png" alt=""><span class="rest" aria-hidden="true">ATIVIO</span></span>
-    <span class="tag tagline">Land · Living · Legacy</span>
+    <span class="word"><img src="assets/logo.png" alt=""><span class="rest" aria-hidden="true"><span>ATIVIO</span></span></span>
+    <span class="tag tagline"><span>Land · Living · Legacy</span></span>
   </a>
   <nav class="nav" aria-label="Main">
     <a href="#home" data-nav="home">Home</a>
@@ -840,9 +842,6 @@ mt.addEventListener("click",()=>{setMode(document.documentElement.dataset.theme=
 
 /* header collapse */
 const hdr=$("#hdr");
-/* measure the real widths so the logo folds and unfolds at an even pace */
-const measure=()=>{const r=hdr.querySelector(".rest"),t=hdr.querySelector(".brand .tagline");if(r)hdr.style.setProperty("--restW",r.scrollWidth+6+"px");if(t)hdr.style.setProperty("--tagW",t.scrollWidth+12+"px")};
-measure();addEventListener("resize",measure);document.fonts&&document.fonts.ready.then(measure);
 /* collapse after 80px, expand only back near the top: no flicker around one line */
 let tick=false,col=false;const onScroll=()=>{if(tick)return;tick=true;requestAnimationFrame(()=>{const y=scrollY;if(!col&&y>80)col=true;else if(col&&y<16)col=false;hdr.classList.toggle("scrolled",col);tick=false})};
 addEventListener("scroll",onScroll,{passive:true});onScroll();
