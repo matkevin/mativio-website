@@ -40,7 +40,14 @@ h2{font-size:clamp(34px,4.2vw,52px)}h3{font-size:clamp(24px,2.4vw,30px)}
 a{color:inherit}
 img{display:block;max-width:100%}
 svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
-.wrap{max-width:1320px;margin:0 auto;padding:0 max(4vw,18px)}
+/* Breakpoints (spec): 1440+ 80px · 1280 48px · 1024 32px · 834 24px · 390 20px · 360 16px */
+:root{--side:80px}
+@media(max-width:1439px){:root{--side:48px}}
+@media(max-width:1279px){:root{--side:32px}}
+@media(max-width:1023px){:root{--side:24px}}
+@media(max-width:833px){:root{--side:20px}}
+@media(max-width:374px){:root{--side:16px}}
+.wrap{max-width:1440px;margin:0 auto;padding:0 var(--side)}
 .mute{color:var(--mute)}
 .btn{font:600 16px Manrope,sans-serif;min-height:52px;padding:0 26px;border-radius:999px;border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:12px;text-decoration:none;background:var(--btn);color:var(--btnInk);box-shadow:0 8px 20px rgba(169,135,79,.28);transition:transform .2s,filter .2s}
 .btn:hover{filter:brightness(1.05);transform:translateY(-1px)}
@@ -108,17 +115,35 @@ header.scrolled .word img{height:38px}
 .shead .mute{font-size:17px}
 .shead .link{margin-left:auto}
 /* cards */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:26px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+@media(max-width:1023px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}}
+@media(max-width:599px){.grid{grid-template-columns:1fr}}
 .card{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .25s}
 .card:hover{transform:translateY(-4px)}
 .card .pic{position:relative;aspect-ratio:16/7.2;overflow:hidden}
 .card .pic img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
 .card:hover .pic img{transform:scale(1.04)}
+.card .pic{aspect-ratio:16/10}
 .badge{position:absolute;top:16px;left:16px;font:600 14px Manrope;padding:6px 14px;border-radius:999px;display:inline-flex;gap:8px;align-items:center}
 .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.b-reno{background:#e6dcf0;color:#4b2d6b}:root[data-theme=dark] .b-reno{background:#5a4670;color:#f1e9fa}
 .b-now{background:var(--okBg);color:var(--okInk)}.b-soon{background:var(--soonBg);color:var(--soonInk)}.b-occ{background:var(--occBg);color:var(--occInk)}
 .badge.inline{position:static}
-.card .body{padding:20px 24px 22px}
+.card .body{padding:18px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card .pic{display:block;margin:12px 12px 0;border-radius:16px}
+.card h3 a{text-decoration:none}.card h3 a:hover{color:var(--accent)}
+.crow{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px}
+.crow .badge{font-size:13px;padding:4px 12px}
+.cprice{display:flex;align-items:baseline;gap:6px;margin-top:2px}.cprice b{font-size:26px;font-weight:700}.cprice small{color:var(--mute);font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));text-align:center;border-top:1px solid var(--line);margin:8px 0 6px;padding-top:16px}
+.stats div{display:grid;justify-items:center;gap:2px}.stats svg.i{color:var(--accent);width:22px;height:22px;margin-bottom:4px}
+.stats.s4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.mtabs .pill{white-space:nowrap;flex:none}.mcta .btn{white-space:nowrap}
+@media(max-width:374px){.mcta .btn{padding:0 14px!important;font-size:15px}}
+.stats b{font-size:16px}.stats span{font-size:13px;color:var(--mute)}
+.card .btn{width:100%;min-height:48px;box-shadow:none}.card .btn+.btn{margin-top:2px}
+.btn.navy{background:var(--navy);color:var(--ivory)}:root[data-theme=dark] .btn.navy{background:#22364f}
+.card .badge::before{display:none}
 .row1{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
 .rent{font-weight:600;color:var(--accent);white-space:nowrap;font-size:20px}.rent small{font-size:14px;font-weight:500}
 .loc{display:flex;gap:8px;align-items:center;color:var(--mute);font-size:15px;margin-top:4px}
@@ -133,6 +158,7 @@ header.scrolled .word img{height:38px}
 .band img{width:100%;height:100%;object-fit:cover;min-height:280px}
 footer{margin-top:clamp(40px,6vw,80px);border-top:1px solid var(--line);padding:30px 0 40px;font-size:14px;color:var(--mute)}
 footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer .flinks{display:flex;gap:18px;flex-wrap:wrap}footer .flinks a{text-decoration:none;min-height:44px;display:inline-flex;align-items:center}footer .flinks a:hover{color:var(--accent)}
 footer .word{font-size:26px;color:var(--ink)}footer .word img{height:28px}
 /* list view */
 .filters{display:grid;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px;margin:26px 0;box-shadow:var(--shadow)}
@@ -204,6 +230,71 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
 .req{margin-top:32px;display:grid;gap:18px}
 .rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:0 16px;align-items:start}
 .rgrid .fld{margin-bottom:12px}
+/* filters: horizontal (desktop) · compact (tablet) · bottom sheet (mobile) */
+.fbar{display:flex;align-items:center;gap:12px}
+.fbtn{display:none;align-items:center;gap:8px}
+.fbtn .n{background:var(--gold);color:var(--navy);border-radius:999px;padding:0 7px;opacity:1;font-size:12px;min-width:20px;text-align:center}
+.fbar .count{margin-left:auto;font-size:14px;color:var(--mute)}
+.sheet .shd,.sheet .sft{display:none}
+.sl{display:contents}.sl>span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.scrim{position:fixed;inset:0;background:rgba(10,18,30,.5);z-index:69;opacity:0;pointer-events:none;transition:opacity .3s}
+.scrim.on{opacity:1;pointer-events:auto}
+@media(max-width:1023px){.sels select{flex:1 1 30%}}
+@media(max-width:599px){.fbtn{display:inline-flex}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:70;background:var(--card);border-radius:24px 24px 0 0;padding:10px 20px calc(16px + env(safe-area-inset-bottom));max-height:86vh;overflow:auto;transform:translateY(105%);transition:transform .35s ease;box-shadow:0 -20px 50px rgba(0,0,0,.25)}
+.sheet.open{transform:none}
+.sheet::before{content:"";display:block;width:42px;height:5px;border-radius:9px;background:var(--line);margin:0 auto 10px}
+.sheet .shd{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.sheet .shd b{font:500 26px "Cormorant Garamond",serif}
+.sheet .shd button{background:none;border:0;color:var(--ink);width:44px;height:44px;cursor:pointer}
+.sheet .sels{display:grid;gap:14px}
+.sl{display:grid;gap:6px}.sl>span{position:static;width:auto;height:auto;clip:auto;font-weight:600;font-size:14px}
+.sheet .sels select{width:100%;border-radius:14px;min-height:50px}
+.sheet .sft{display:grid;grid-template-columns:1fr 2fr;gap:10px;margin-top:18px;position:sticky;bottom:0;background:var(--card);padding-top:10px}}
+/* gallery swipe, full-width on mobile */
+.gal{touch-action:pan-y;user-select:none}
+@media(max-width:599px){.detail .stage{margin-inline:calc(-1*var(--side));border-radius:0;box-shadow:none}.detail .mtabs{overflow-x:auto;flex-wrap:nowrap}.gal .nav2{display:none}}
+/* sticky mobile CTA */
+.mcta{display:none}
+@media(max-width:599px){body[data-v=property] .mcta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;gap:12px;align-items:center;justify-content:space-between;padding:12px 20px calc(12px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--card) 94%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--line);box-shadow:0 -10px 30px rgba(0,0,0,.08)}
+body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{min-height:48px;padding:0 20px}}
+/* review step */
+.rev>*:not(#eReview){display:none!important}
+#eReview{display:none}.rev #eReview{display:block}
+.rvl{display:grid;grid-template-columns:auto 1fr;gap:10px 18px;margin:16px 0 22px;font-size:15px}
+.rvl dt{color:var(--mute)}.rvl dd{margin:0;font-weight:600}
+.consent{font-size:13px;color:var(--mute);margin:10px 0 0;text-align:center}
+.consent a{color:var(--accent)}
+/* localities */
+.ltiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+@media(max-width:1023px){.ltiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:599px){.ltiles{grid-template-columns:1fr}}
+.ltile{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/3;text-decoration:none;color:#fff;box-shadow:var(--shadow)}
+.ltile img{width:100%;height:100%;object-fit:cover;transition:transform .6s}.ltile:hover img{transform:scale(1.05)}
+.ltile div{position:absolute;inset:auto 0 0 0;padding:22px;background:linear-gradient(transparent,rgba(10,18,30,.82))}
+.ltile b{font:500 30px "Cormorant Garamond",serif;display:block}.ltile span{font-size:14px;opacity:.9}
+.lhero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;margin-bottom:clamp(28px,4vw,48px)}
+@media(max-width:833px){.lhero{grid-template-columns:1fr}.lhero .shot{order:-1}}
+.nbg{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:14px;margin-top:6px}
+.nbg>div{border:1px solid var(--line);border-radius:18px;padding:16px 18px;background:var(--card)}
+.nbg h4{margin:0 0 6px;display:flex;gap:10px;align-items:center;font-size:15px}.nbg h4 svg.i{color:var(--accent)}
+.nbg ul{margin:0;padding-left:18px;color:var(--mute);font-size:14px}.nbg li{margin:3px 0}
+.vv{display:flex;gap:14px;align-items:center;border:1px dashed var(--accent);border-radius:18px;padding:14px 18px;margin-top:18px;font-size:15px}
+.vv svg.i{color:var(--accent);width:28px;height:28px}.vv a{color:var(--accent);font-weight:600}
+.hl{list-style:none;padding:0;margin:18px 0;display:grid;gap:12px}
+.hl li{display:flex;gap:12px;align-items:flex-start}.hl svg.i{color:var(--accent);margin-top:3px}
+/* legal */
+.legal{max-width:780px}
+.legal h2{margin-bottom:8px}.legal h3{font-size:26px;margin:30px 0 8px}
+.legal p,.legal li{color:var(--mute);font-size:16px}.legal li{margin-bottom:6px}
+.draft{display:inline-block;font-size:13px;font-weight:600;background:var(--soonBg);color:var(--soonInk);border-radius:999px;padding:4px 12px;margin-bottom:16px}
+/* system states */
+.offline{position:fixed;top:0;left:0;right:0;z-index:80;background:#7a3b2e;color:#fff;text-align:center;font-size:14px;padding:8px 16px;transform:translateY(-100%);transition:transform .3s}
+.offline.on{transform:none}
+.card .pic,.ltile,.shot,.gal{background:linear-gradient(100deg,var(--line) 30%,color-mix(in srgb,var(--line) 50%,var(--card)) 50%,var(--line) 70%) 0 0/300% 100%;animation:shim 1.4s linear infinite}
+@keyframes shim{to{background-position:-150% 0}}
+.nf{text-align:center;max-width:560px;margin:0 auto;padding:clamp(30px,6vw,80px) 0}
+.nf .big{font:500 clamp(90px,14vw,150px)/1 "Cormorant Garamond",serif;color:var(--accent)}
 /* forms */
 .formwrap{max-width:640px;margin:0 auto}
 .formcard{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:clamp(22px,4vw,40px);box-shadow:var(--shadow);margin-top:22px}
@@ -233,10 +324,19 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
 .cl .ic{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--accent);flex:none}
 .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,30px);opacity:0;background:var(--navy);color:var(--ivory);padding:12px 22px;border-radius:999px;font-size:14px;transition:.3s;z-index:60;border:1px solid var(--gold);max-width:92vw;pointer-events:none}
 .toast.on{opacity:1;transform:translate(-50%,0)}
-@media(max-width:1100px){.brand .tagline{display:none}.pillars{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.pillars div{border:0;padding-left:0}}
-@media(max-width:900px){.nav{display:none}.burger{display:grid;place-items:center}
-.hero,.detail,.story,.contact,.band{grid-template-columns:1fr}.hero .shot{order:-1}.word{font-size:30px}.word img{height:34px}}
-@media(max-width:600px){.pillars{grid-template-columns:1fr}.shead .link{margin-left:0}.shot{border-radius:22px}.sels select{flex:1 1 40%}.sels .count{margin-left:0;width:100%}}
+/* laptop & tablet landscape */
+.nav a,.nav .btn{white-space:nowrap}
+@media(max-width:1365px){.brand .tagline{display:none}}
+@media(max-width:1279px){.nav{gap:22px}}
+@media(max-width:1023px){.bk{display:none}}
+@media(max-width:1100px){.pillars{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.pillars div{border:0;padding-left:0}}
+/* tablet portrait 834–1023: compact menu, balanced split hero */
+@media(max-width:1023px){.nav{gap:16px;font-size:15px}.nav .sep{display:none}.nav .btn{padding:0 16px!important}.word{font-size:32px}.word img{height:36px}
+.hero{grid-template-columns:1fr 1fr}.hero p.sub{font-size:18px}.detail,.story,.contact{grid-template-columns:1fr}.band{grid-template-columns:1fr}}
+/* mobile <834: hamburger, stacked hero */
+@media(max-width:833px){.nav{display:none}.burger{display:grid;place-items:center}
+.hero{grid-template-columns:1fr}.hero .shot{order:-1}.word{font-size:30px}.word img{height:34px}}
+@media(max-width:599px){.pillars{grid-template-columns:1fr}.shead .link{margin-left:0}.shot{border-radius:22px}}
 </style>
 </head>
 <body>
@@ -265,6 +365,17 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
 <symbol id="play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M10 8.5v7l6-3.5z"/></symbol>
 <symbol id="img" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="8.5" cy="10" r="1.8"/><path d="m3.5 17 5-4.5 4 3.5 3-2.5 5 4"/></symbol>
 <symbol id="bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20.5a2 2 0 0 0 4 0"/></symbol>
+<symbol id="sliders" viewBox="0 0 24 24"><path d="M4 7h10m4 0h2M4 17h4m4 0h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></symbol>
+<symbol id="train" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="14" rx="3"/><path d="M6 11h12M9 21l1.5-4m4.5 4L13.5 17M9.5 14h.01m5 0h.01"/></symbol>
+<symbol id="bath" viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4zM6 12V6a2 2 0 0 1 3.5-1.3M7 19l-1 2m11-2 1 2"/></symbol>
+<symbol id="car" viewBox="0 0 24 24"><path d="M5 16V11l2-5h10l2 5v5M5 16h14M5 16v2m14-2v2M4 11h16"/><circle cx="8" cy="13.5" r=".8"/><circle cx="16" cy="13.5" r=".8"/></symbol>
+<symbol id="key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 8-8m-3 3 2 2m-4 0 2 2"/></symbol>
+<symbol id="plan" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 11h7v10M10 3v5m4 13v-6h7M14 11h7"/></symbol>
+<symbol id="video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></symbol>
+<symbol id="cap" viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5zM6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></symbol>
+<symbol id="plus" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></symbol>
+<symbol id="cart" viewBox="0 0 24 24"><path d="M3 4h2l2.5 11h11L21 7H6.5"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></symbol>
+<symbol id="bus" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="14" rx="2"/><path d="M4 11h16M7 17v3m10-3v3M8 14h.01M16 14h.01"/></symbol>
 <symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
 </svg>
 
@@ -275,6 +386,7 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
   </a>
   <nav class="nav" aria-label="Main">
     <a href="#properties" data-nav="properties">Properties</a>
+    <a href="#localities" data-nav="localities">Localities</a>
     <a href="#story" data-nav="story">Our Story</a>
     <a href="#contact" data-nav="contact">Contact</a>
     <span class="sep"></span>
@@ -282,7 +394,7 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
       <button type="button" data-mode="light" aria-label="Light theme"><svg class="i"><use href="#sun"/></svg></button>
       <button type="button" data-mode="dark" aria-label="Dark theme"><svg class="i"><use href="#moon"/></svg></button>
     </div>
-    <a class="btn" href="#book" style="min-height:44px;padding:0 22px;border:0">Book a viewing</a>
+    <a class="btn" href="#book" style="min-height:44px;padding:0 22px;border:0;gap:0">Book<span class="bk">&nbsp;a viewing</span></a>
   </nav>
   <button class="burger" type="button" id="burger" aria-label="Open menu"><svg class="i"><use href="#menu"/></svg></button>
 </div></header>
@@ -292,6 +404,7 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
   <button type="button" id="dclose" aria-label="Close menu"><svg class="i"><use href="#close"/></svg></button></div>
   <a href="#home"><svg class="i"><use href="#home"/></svg>Home</a>
   <a href="#properties"><svg class="i"><use href="#bldg"/></svg>Properties</a>
+  <a href="#localities"><svg class="i"><use href="#pin"/></svg>Localities</a>
   <a href="#story"><svg class="i"><use href="#sprout"/></svg>Our Story</a>
   <a href="#contact"><svg class="i"><use href="#mail"/></svg>Contact</a>
   <a href="#book"><svg class="i"><use href="#cal"/></svg>Book a viewing</a>
@@ -323,6 +436,10 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
     <div class="shead"><h2>Our Properties</h2><span class="rule"></span><span class="mute">Quality rental homes in Bengaluru, cared for by our family.</span><a class="link gold" href="#properties">View all properties <svg class="i"><use href="#arrow"/></svg></a></div>
     <div class="grid" id="homeGrid"></div>
   </div>
+  <div class="sec" style="padding-top:0">
+    <div class="shead"><h2>Our Localities</h2><span class="rule"></span><span class="mute">Established, well-connected neighbourhoods in Bengaluru.</span><a class="link gold" href="#localities">All localities <svg class="i"><use href="#arrow"/></svg></a></div>
+    <div class="ltiles" id="homeLocs"></div>
+  </div>
   <div class="band">
     <div class="txt"><div class="tag">Our Story</div><h2>Rooted in Bengaluru. Built for Generations.</h2>
     <p>A family legacy of thoughtfully owned properties, enduring value and a vision for the future.</p>
@@ -338,14 +455,21 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
   <div class="filters">
     <label class="search"><svg class="i"><use href="#search"/></svg><input id="q" type="search" placeholder="Search by locality or property" aria-label="Search"></label>
     <div class="pills" id="pills" role="group" aria-label="Availability"></div>
-    <div class="sels">
-      <select id="fLoc" aria-label="Locality"></select>
-      <select id="fBhk" aria-label="BHK"></select>
-      <select id="fFur" aria-label="Furnishing"></select>
-      <select id="fSort" aria-label="Sort"><option value="new">Sort: Newest</option><option value="lo">Rent: low to high</option><option value="hi">Rent: high to low</option></select>
-      <span class="count" id="count"></span>
+    <div class="sheet" id="sheet" aria-label="Filters">
+      <div class="shd"><b>Filters</b><button type="button" id="fClose" aria-label="Close filters"><svg class="i"><use href="#close"/></svg></button></div>
+      <div class="sels">
+        <label class="sl"><span>Locality</span><select id="fLoc"></select></label>
+        <label class="sl"><span>Property type</span><select id="fType"></select></label>
+        <label class="sl"><span>Home size</span><select id="fBhk"></select></label>
+        <label class="sl"><span>Furnishing</span><select id="fFur"></select></label>
+        <label class="sl"><span>Budget per month</span><select id="fBud"><option value="">Budget: Any</option><option value="0-20000">Up to ₹20,000</option><option value="20000-30000">₹20,000 – ₹30,000</option><option value="30000-45000">₹30,000 – ₹45,000</option><option value="45000-99999999">₹45,000 +</option></select></label>
+        <label class="sl"><span>Sort by</span><select id="fSort"><option value="new">Sort: Newest</option><option value="lo">Rent: low to high</option><option value="hi">Rent: high to low</option></select></label>
+      </div>
+      <div class="sft"><button type="button" class="btn line" id="fReset">Reset</button><button type="button" class="btn" id="fApply">Show homes</button></div>
     </div>
+    <div class="fbar"><button type="button" class="pill fbtn" id="fOpen" aria-controls="sheet"><svg class="i" style="width:18px;height:18px"><use href="#sliders"/></svg>Filters<span class="n" id="fN" hidden></span></button><span class="count" id="count"></span></div>
   </div>
+  <div class="scrim" id="scrim"></div>
   <div class="grid" id="listGrid"></div>
   <form class="formcard req" id="rForm" novalidate>
     <div><h3>Not finding the right home?</h3><p class="mute" style="margin:.4em 0 0">Tell us what you're looking for. We'll message you as soon as a home that fits becomes available.</p></div>
@@ -358,6 +482,7 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
       <div class="fld"><label for="rPhone">Mobile number *</label><div class="tel"><span>+91</span><input id="rPhone" inputmode="tel" autocomplete="tel-national"></div><span class="err">Please enter a 10-digit mobile number.</span></div>
     </div>
     <div class="dacts" style="margin-top:4px;align-items:center"><button class="btn" type="submit">Notify me of matching homes</button><span class="note" id="rNote" role="status" style="margin:0"></span></div>
+    <p class="consent" style="text-align:left;margin:0">By signing up, you agree we may message you about matching homes, as set out in our <a href="#privacy">Privacy Policy</a>. Reply STOP at any time.</p>
   </form>
 </section>
 
@@ -371,22 +496,28 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
     <h2 id="eTitle">Book a viewing</h2>
     <p class="mute" id="eSub" style="margin:.4em 0 0"></p>
     <form class="formcard" id="eForm" name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
-      <input type="hidden" name="form-name" value="enquiry"><input type="hidden" name="home" id="eHome"><input type="hidden" name="ref" id="eRef">
+      <input type="hidden" name="form-name" value="enquiry"><input type="hidden" name="home" id="eHome"><input type="hidden" name="ref" id="eRef"><input type="hidden" name="viewing_type">
       <p hidden><label>Leave this empty <input name="bot-field"></label></p>
       <div class="fld" id="homeF"><label for="eHomeSel">Which home? *</label><select id="eHomeSel"></select><span class="err">Please choose a home.</span></div>
       <div class="fld"><span class="lab">I'd like to</span><div class="seg">
         <label><input type="radio" name="kind" value="Book a viewing" checked>Book a viewing</label>
         <label><input type="radio" name="kind" value="Ask a question">Ask a question</label></div></div>
-      <div class="two" id="visitF">
+      <div id="visitF">
+      <div class="fld"><span class="lab">Viewing type</span><div class="seg">
+        <label><input type="radio" name="mode" value="In person" checked>In person</label>
+        <label><input type="radio" name="mode" value="Video call">Video call (remote)</label></div></div>
+      <div class="two">
         <div class="fld"><label for="eDate">Preferred date *</label><input id="eDate" name="date" type="date"><span class="err">Please choose a date from tomorrow onwards.</span></div>
         <div class="fld"><label for="eSlot">Preferred time</label><select id="eSlot" name="slot"><option>Morning (9 am – 12 pm)</option><option>Afternoon (12 – 4 pm)</option><option>Evening (4 – 7 pm)</option></select></div>
-      </div>
+      </div></div>
       <div class="fld"><label for="eName">Your name *</label><input id="eName" name="name" autocomplete="name" placeholder="Enter your full name"><span class="err">Please enter your name.</span></div>
       <div class="fld"><label for="ePhone">Phone number *</label><div class="tel"><span>+91</span><input id="ePhone" name="phone" inputmode="tel" autocomplete="tel-national" placeholder="Enter your number"></div><span class="err">Please enter a 10-digit mobile number.</span></div>
       <div class="fld"><label for="eEmail">Email address</label><input id="eEmail" name="email" type="email" autocomplete="email" placeholder="Enter your email"><span class="err">Please check this email address.</span></div>
       <div class="fld"><label for="eMsg" id="eMsgL">Message</label><textarea id="eMsg" name="message" placeholder="Tell us about your requirement (e.g. move-in date, number of occupants)"></textarea><span class="err">Please enter a few more details (e.g. move-in date, duration).</span></div>
       <button class="btn" type="submit" id="eBtn" style="width:100%">Request viewing <svg class="i"><use href="#arrow"/></svg></button>
       <div class="hint"><svg class="i" style="width:16px;height:16px"><use href="#lock"/></svg>We'll get back to you within 1 business day.</div>
+      <p class="consent">By sending, you agree we may use these details to reply to you, as set out in our <a href="#privacy">Privacy Policy</a>.</p>
+      <div id="eReview" aria-live="polite"></div>
     </form>
   </div>
 </section>
@@ -418,16 +549,122 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
       <div class="fld"><label for="cName">Your name *</label><input id="cName" name="name" autocomplete="name"><span class="err">Please enter your name.</span></div>
       <div class="fld"><label for="cEmail">Your email *</label><input id="cEmail" name="email" type="email" autocomplete="email"><span class="err">Please enter a valid email.</span></div>
       <div class="fld"><label for="cMsg">Your message *</label><textarea id="cMsg" name="message"></textarea><span class="err">Please write a short message.</span></div>
-      <button class="btn" type="submit" style="width:100%">Send message</button>
+      <button class="btn" type="submit" style="width:100%">Send message</button><p class="consent">By sending, you agree we may use these details to reply to you, as set out in our <a href="#privacy">Privacy Policy</a>.</p>
       <p class="note" id="cNote" role="status"></p>
     </form>
   </div>
 </section>
+<!-- LOCALITIES -->
+<section data-view="localities" class="sec">
+  <h2>Our Localities</h2>
+  <p class="mute" style="margin:.5em 0 28px">Where our family's homes are in Bengaluru.</p>
+  <div class="ltiles" id="locList"></div>
+</section>
+<section data-view="locality" class="sec" id="locPage"></section>
+
+<!-- PRIVACY -->
+<section data-view="privacy" class="sec"><div class="legal">
+  <span class="draft">Draft for review</span>
+  <h2>Privacy Policy</h2>
+  <p>Last updated: 24 November 2026</p>
+  <p>This website is run by Mativio, a family-owned residential property business in Bengaluru, Karnataka ("we", "us"). This policy explains what personal data we collect through this website, why, and the choices you have. We follow India's Digital Personal Data Protection Act, 2023 and the Digital Personal Data Protection Rules, 2025.</p>
+  <h3>1. What we collect</h3>
+  <ul>
+    <li><b>Details you give us in our forms:</b> your name, mobile number, email address (optional), the home you're interested in, preferred viewing date, time and type, the locality, size, budget and move-in month you're looking for, and any message you write.</li>
+    <li><b>Basic technical data:</b> our hosting provider automatically records standard information such as your IP address and browser type to keep the site secure and working.</li>
+    <li><b>Your theme choice:</b> if you switch between light and dark mode, the choice is saved in your own browser (local storage). It is not sent to us.</li>
+  </ul>
+  <p>We do not ask for identity documents, bank details or payment information on this website.</p>
+  <h3>2. Why we use it</h3>
+  <ul>
+    <li>To reply to your enquiry and arrange an in-person or video viewing.</li>
+    <li>To tell you when a home you asked about, or one that matches your requirements, becomes available.</li>
+    <li>To keep the website secure and fix problems.</li>
+  </ul>
+  <p>We use your details only for these purposes, based on the consent you give when you submit a form. We do not sell your data, and we do not send marketing messages unrelated to your request.</p>
+  <h3>3. Who we share it with</h3>
+  <p>Your details are seen only by our family members who manage the properties. We use trusted service providers to run the website:</p>
+  <ul>
+    <li><b>Netlify</b>: hosts the website and stores form submissions. Its servers may be located outside India.</li>
+    <li><b>Google Fonts</b> and <b>cdnjs</b>: deliver fonts and the 360° tour viewer. Your browser connects to them directly.</li>
+    <li><b>YouTube</b> and <b>Google Maps</b>: only if you play a video tour or open a map link.</li>
+  </ul>
+  <p>We may also share data where the law requires it.</p>
+  <h3>4. How long we keep it</h3>
+  <p>We keep enquiries and alert sign-ups for up to 12 months after our last contact with you, then delete them. If you become a tenant, your details become part of the tenancy records, which we keep for as long as the law requires.</p>
+  <h3>5. Your rights</h3>
+  <p>You can ask us to:</p>
+  <ul>
+    <li>tell you what personal data we hold about you and how we use it;</li>
+    <li>correct, complete or update it;</li>
+    <li>delete it, or stop sending you availability alerts (withdraw consent);</li>
+    <li>let someone you nominate exercise these rights on your behalf.</li>
+  </ul>
+  <p>To make a request, contact us using the details below. If you're not satisfied with our response, you can complain to the Data Protection Board of India.</p>
+  <h3>6. Security</h3>
+  <p>The website uses an encrypted connection (HTTPS), and only the people who manage our properties can access form submissions.</p>
+  <h3>7. Children</h3>
+  <p>This website is meant for adults looking to rent a home. We don't knowingly collect data from anyone under 18.</p>
+  <h3>8. Changes to this policy</h3>
+  <p>We may update this policy from time to time. The date at the top shows when it last changed.</p>
+  <h3>9. Contact and grievances</h3>
+  <p id="privContact"></p>
+</div></section>
+
+<!-- TERMS -->
+<section data-view="terms" class="sec"><div class="legal">
+  <span class="draft">Draft for review</span>
+  <h2>Terms of Use</h2>
+  <p>Last updated: 24 November 2026</p>
+  <p>These terms apply to your use of this website, run by Mativio, a family-owned residential property business in Bengaluru, Karnataka. By using the website, you agree to them.</p>
+  <h3>1. About the listings</h3>
+  <ul>
+    <li>The homes shown are owned by our family and offered for rent directly by us.</li>
+    <li>Rent, deposit, availability dates, amenities and other details are given in good faith but may change without notice. Please confirm all details with us before making any decision.</li>
+    <li>Photos, 360° tours and videos may include representative or concept images and may not show the exact unit, its current condition or its furnishings.</li>
+    <li>A listing is an invitation to enquire. It is not an offer, and showing a home as "Available" does not reserve it for you.</li>
+  </ul>
+  <h3>2. Enquiries and viewings</h3>
+  <ul>
+    <li>Submitting a form sends us a request. A viewing is confirmed only when we confirm it with you by phone, WhatsApp or email.</li>
+    <li>We may reschedule or decline a viewing request, for example if the home has already been let.</li>
+    <li>Please treat homes, residents and neighbours with respect during viewings. Video-call viewings may not be recorded without our permission.</li>
+  </ul>
+  <h3>3. No bookings or payments on this website</h3>
+  <p>This website does not take bookings, tokens, deposits or rent. Never pay anyone claiming to represent Mativio without first meeting us and signing a rental agreement. If you're asked for money in our name, please contact us directly using the details on our Contact page.</p>
+  <h3>4. Rental agreements</h3>
+  <p>Any tenancy is governed only by a written rental agreement signed by you and us. That agreement sets out the rent, security deposit, maintenance charges, lock-in and notice periods, and other terms, and is executed as required by applicable law. Nothing on this website changes or replaces it. We may ask for identity and address documents, and for tenant verification as required by local authorities, at the agreement stage, not through this website.</p>
+  <h3>5. Using the website</h3>
+  <p>Please don't misuse the website, for example by submitting false information, sending spam, or trying to disrupt or gain unauthorised access to the site.</p>
+  <h3>6. Content and brand</h3>
+  <p>The Mativio name, logo, text, photos and design on this website belong to us or are used with permission. You may share links to our listings, but please don't copy or reuse the content for other purposes without our permission.</p>
+  <h3>7. Other websites</h3>
+  <p>Links to services such as Google Maps, YouTube or WhatsApp are provided for convenience. We're not responsible for their content or how they handle your data.</p>
+  <h3>8. Our responsibility</h3>
+  <p>We work to keep the website accurate and available, but we provide it "as is". To the extent the law allows, we aren't liable for any loss arising from use of the website or reliance on its content. This does not affect any rights you have under a signed rental agreement or under law.</p>
+  <h3>9. Changes</h3>
+  <p>We may update these terms from time to time. The date at the top shows when they last changed.</p>
+  <h3>10. Governing law</h3>
+  <p>These terms are governed by the laws of India. The courts at Bengaluru, Karnataka have jurisdiction over any dispute.</p>
+  <h3>11. Contact</h3>
+  <p id="termsContact"></p>
+</div></section>
+
+<!-- 404 -->
+<section data-view="notfound" class="sec"><div class="nf">
+  <div class="big">404</div>
+  <h2 id="nfTitle">This page isn't here</h2>
+  <p class="mute" id="nfText">The link may be old, or the page may have moved.</p>
+  <div class="dacts" style="justify-content:center"><a class="btn" href="#properties">See available homes <svg class="i"><use href="#arrow"/></svg></a><a class="btn line" href="#home">Go to home</a></div>
+</div></section>
 </main>
+<div class="mcta" id="mcta"></div>
+<div class="offline" id="offline" role="status">You're offline. Photos may not load, and forms will work again once you're back online.</div>
 
 <footer><div class="wrap">
   <a class="brand" href="#home" aria-label="Mativio home"><span class="word"><img src="assets/logo.png" alt="">ATIVIO</span></a>
   <span class="tag">Land · Living · Legacy</span>
+  <nav class="flinks" aria-label="Footer"><a href="#properties">Properties</a><a href="#localities">Localities</a><a href="#contact">Contact</a><a href="#privacy">Privacy</a><a href="#terms">Terms</a></nav>
   <span>© <span id="yr"></span> Mativio · Bengaluru</span>
 </div></footer>
 <div class="toast" id="toast" role="status"></div>
@@ -441,15 +678,17 @@ const CONTACT={phone:"",whatsapp:"",email:"",address:"Bengaluru, Karnataka"};
 /* ---- Listings: add or change homes here ---- */
 /* tour: 360° photos, e.g. [{title:"Living room",src:"assets/360/devasandra-living.jpg"}] (equirectangular JPGs)
    video: an MP4 path like "assets/video/devasandra.mp4", or youtube: the video id (e.g. "dQw4w9WgXcQ") */
-/* status: "now" (Available), "soon" (Opening Soon), "let" (Occupied). from: "YYYY-MM-DD" or "" */
+/* status: "now" (Available now), "soon" (Available soon), "let" (Currently occupied), "reno" (Under renovation). from: "YYYY-MM-DD" or ""
+   title: the name shown on cards. name: the locality (matches LOC). baths, sqft: number or null (null shows "TBC").
+   parking: "Available", "Not available" or null. floorplan: an image path like "assets/plans/devasandra.jpg", or "". */
 const P=[
- {id:"devasandra",name:"Devasandra",area:"Devasandra, Bengaluru",type:"Apartment",bhk:"2 BHK",furn:"Semi-furnished",rent:28000,fromPrice:false,status:"now",from:"",added:3,
+ {id:"devasandra",title:"Devasandra Residence",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Devasandra",area:"Devasandra, New BEL Road, Bengaluru",type:"Apartment",bhk:"2 BHK",furn:"Semi-furnished",rent:28000,fromPrice:false,status:"now",from:"",added:3,
   deposit:"To be confirmed",about:"A well-located residential home in Devasandra, offering a comfortable and practical place to live in a peaceful neighbourhood, with good natural light and easy access to daily essentials.",
   amen:["Balcony","Power backup","Water supply 24×7","Covered parking","CCTV"],card:["dev_l","dev_d"],photos:["dev_l","dev_d","hero_light"],tour:[],video:"",youtube:""},
- {id:"coffee-board",name:"Coffee Board",area:"Coffee Board Layout, Bengaluru",type:"Apartment",bhk:"3 BHK",furn:"Furnished",rent:32000,fromPrice:false,status:"now",from:"",added:2,
+ {id:"coffee-board",title:"Coffee Board Residence",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Coffee Board",area:"Coffee Board Layout, Bengaluru",type:"Apartment",bhk:"3 BHK",furn:"Furnished",rent:32000,fromPrice:false,status:"now",from:"",added:2,
   deposit:"To be confirmed",about:"A spacious furnished home on a quiet, tree-lined street in Coffee Board Layout. Generous rooms, private balconies and a calm green setting.",
   amen:["Balconies","Lift","Power backup","Covered parking","CCTV"],card:["cof_l","cof_d"],photos:["cof_l","cof_d","hero_dark"],tour:[],video:"",youtube:""},
- {id:"kempapura",name:"Kempapura",area:"Kempapura, Bengaluru",type:"Hostel Residence",bhk:"Rooms",furn:"Furnished",rent:26000,fromPrice:true,status:"soon",from:"",added:1,
+ {id:"kempapura",title:"Kempapura Residence",baths:null,sqft:null,parking:null,floorplan:"",name:"Kempapura",area:"Kempapura, Bengaluru",type:"Hostel Residence",bhk:"Rooms",furn:"Furnished",rent:26000,fromPrice:true,status:"soon",from:"",added:1,
   deposit:"To be confirmed",about:"Furnished rooms in a well-kept residence in Kempapura, ready for professionals and students who want a calm, cared-for place to stay.",
   amen:["Furnished rooms","Housekeeping","Power backup","Gated entry","CCTV"],card:["kem_l","kem_l"],photos:["kem_l","kem_d"],tour:[],video:"",youtube:""}
 ];
@@ -458,8 +697,11 @@ const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const ph=n=>`assets/photos/${n}.jpg`;
 const inr=n=>"₹"+n.toLocaleString("en-IN");
 const fdate=d=>new Date(d+"T00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short"});
-const ST={now:["Available","b-now"],soon:["Opening Soon","b-soon"],let:["Occupied","b-occ"]};
-const avail=p=>p.status==="now"?"Available now":p.status==="soon"?(p.from?"From "+fdate(p.from):"Opening soon"):"Occupied";
+const ST={now:["Available now","b-now"],soon:["Available soon","b-soon"],let:["Currently occupied","b-occ"],reno:["Under renovation","b-reno"]};
+/* primary call to action by status (spec): now → Book a viewing; soon, reno → Register interest; let → Notify me */
+const CTA=p=>p.status==="now"?{label:"Book a viewing",href:"#visit-"+p.id,icon:"cal"}:{label:p.status==="let"?"Notify me":"Register interest",href:"#interest-"+p.id,icon:"bell"};
+const tbc=v=>v===null||v===undefined||v===""?"TBC":v;
+const avail=p=>p.status==="now"?"Available now":p.status==="soon"?(p.from?"From "+fdate(p.from):"Available soon"):p.status==="reno"?"Under renovation":"Currently occupied";
 const ic=(n,s="")=>`<svg class="i" ${s}><use href="#${n}"/></svg>`;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const toast=t=>{const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2800)};
@@ -479,32 +721,84 @@ const dr=$("#drawer");$("#burger").onclick=()=>dr.classList.add("open");$("#dclo
 dr.addEventListener("click",e=>{if(e.target.closest("a"))dr.classList.remove("open")});
 
 /* cards */
-const card=p=>`<a class="card" href="#p-${p.id}">
-  <div class="pic"><img class="only-l" src="${ph(p.card[0])}" alt="${esc(p.name)} home" loading="lazy"><img class="only-d" src="${ph(p.card[1])}" alt="" loading="lazy"><span class="badge ${ST[p.status][1]}">${ST[p.status][0]}</span></div>
-  <div class="body"><div class="row1"><h3>${esc(p.name)}</h3><span class="rent">${p.fromPrice?"<small>From </small>":""}${inr(p.rent)} <small>/ month</small></span></div>
-  <div class="loc">${ic("pin")}${esc(p.area)}</div>
-  <div class="meta"><span>${ic("bldg")}${p.type}</span><span>${ic("bed")}${p.bhk}</span><span>${ic("sofa")}${p.furn}</span></div></div></a>`;
+document.addEventListener("load",e=>{const t=e.target;if(t.tagName==="IMG"){const b=t.closest(".pic,.ltile,.shot,.gal");if(b)b.style.animation="none"}},true);
+const card=p=>{const c=CTA(p);return `<article class="card">
+  <a class="pic" href="#p-${p.id}" aria-label="${esc(p.title)}"><img class="only-l" src="${ph(p.card[0])}" alt="${esc(p.title)}" loading="lazy"><img class="only-d" src="${ph(p.card[1])}" alt="" loading="lazy"></a>
+  <div class="body">
+    <div class="crow"><span class="badge inline ${ST[p.status][1]}">${p.status==="soon"&&p.from?"Available "+fdate(p.from):ST[p.status][0]}</span><span class="mute">${esc(p.furn)}</span></div>
+    <h3><a href="#p-${p.id}">${esc(p.title)}</a></h3>
+    <div class="loc">${ic("pin")}${esc(p.name)}, Bengaluru</div>
+    <div class="cprice">${p.fromPrice?"<small>From </small>":""}<b>${inr(p.rent)}</b> <small>/ month</small></div>
+    <div class="stats"><div>${ic("bath")}<b>${tbc(p.baths)}</b><span>Bathrooms*</span></div><div>${ic("car")}<b>${tbc(p.parking)}</b><span>Parking</span></div><div>${ic("key")}<b>Direct</b><span>Owner rental</span></div></div>
+    <a class="btn navy" href="#p-${p.id}">View property details</a>
+    <a class="btn line" href="${c.href}">${ic(c.icon)}${c.label}</a>
+  </div></article>`};
 $("#homeGrid").innerHTML=P.map(card).join("");
 
+/* localities */
+const LOC=[
+ {id:"devasandra",name:"Devasandra",area:"Devasandra, off New BEL Road, near Mathikere, North Bengaluru",img:"dev_d",
+  about:"A settled residential neighbourhood off New BEL Road near Mathikere in North Bengaluru, close to some of the city's best-known hospitals and institutions.",
+  hl:[["home","Ramaiah Memorial Hospital a short distance away"],["bldg","Near the Indian Institute of Science and M S Ramaiah Institute of Technology"],["pin","New BEL Road, CV Raman Road and the Outer Ring Road for travel across the city"],["sprout","Shops, cafes and eateries along New BEL Road and Mathikere Main Road"]]},
+ {id:"coffee-board",name:"Coffee Board",area:"Coffee Board Layout, Hebbal Kempapura, North Bengaluru",img:"cof_l",
+  about:"A quiet, leafy residential layout in Hebbal Kempapura, North Bengaluru, popular with families and professionals working nearby.",
+  hl:[["bldg","About 3 km from Manyata Tech Park"],["bldg","Close to Karle Town Centre and Kirloskar Business Park"],["home","Schools, banks and daily shops within walking distance"],["sprout","Calm, green streets"]]},
+ {id:"kempapura",name:"Kempapura",area:"Hebbal Kempapura, North Bengaluru",img:"kem_l",
+  about:"A well-connected residential neighbourhood along Bellary Road in North Bengaluru, right next to Manyata Tech Park.",
+  hl:[["bldg","Next to Manyata Tech Park"],["pin","Good links to Bellary Road, the airport road and the Outer Ring Road"],["sprout","Jakkur Lake and green spaces nearby"],["home","Cafes, shops and everyday services around"]]}
+];
+/* neighbourhood guide: nearby places by category. Distances are approximate, by road. */
+const NB={
+ "devasandra":[["cap","Colleges",["Indian Institute of Science (IISc)","M S Ramaiah Institute of Technology"]],["plus","Hospitals",["Ramaiah Memorial Hospital, New BEL Road"]],["cart","Shops & daily needs",["Shops, cafes and eateries on New BEL Road","Grocery and daily shops on Mathikere Main Road"]],["bus","Transport",["New BEL Road and CV Raman Road","Yeshwantpur railway station and bus depot"]],["bldg","Commercial areas",["New BEL Road shopping street"]]],
+ "coffee-board":[["cap","Schools",["St Johns School (about 0.3 km)","Eurokids preschool (about 0.3 km)"]],["plus","Hospitals",["Rainbow Children's Hospital, Hebbal (about 3.8 km)"]],["cart","Shops & daily needs",["Banks, post office and daily shops close by"]],["bus","Transport",["Coffee Board Layout and Kempapura bus stops","Bellary Road and the Outer Ring Road"]],["bldg","Business hubs",["Karle Town Centre (about 1.2 km)","Kirloskar Business Park (about 2.1 km)","Brigade Magnum (about 2.1 km)","Manyata Tech Park (about 2.9 km)"]]],
+ "kempapura":[["plus","Hospitals",["Bangalore Baptist Hospital, Bellary Road"]],["cart","Shops & daily needs",["Cafes, juice shops and daily stores around Hebbal"]],["bus","Transport",["Bellary Road","Airport Road and the Outer Ring Road"]],["bldg","Business hubs",["Manyata Tech Park (next door)","Kirloskar Business Park","Golden Square Business Centre"]],["sprout","Leisure",["Jakkur Lake"]]]
+};
+const nbHTML=id=>{const g=NB[id]||[];return g.length?`<div class="nbg">${g.map(([i,t,xs])=>`<div><h4>${ic(i)}${t}</h4><ul>${xs.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`).join("")}</div><p class="note">Distances are approximate, by road.</p>`:""};
+const locOf=p=>LOC.find(l=>l.name===p.name);
+const ltile=l=>{const n=P.filter(p=>p.name===l.name&&p.status!=="let").length;return `<a class="ltile" href="#loc-${l.id}"><img src="${ph(l.img)}" alt="${esc(l.name)}" loading="lazy"><div><b>${esc(l.name)}</b><span>${n} ${n===1?"home":"homes"} available or opening soon</span></div></a>`};
+$("#homeLocs").innerHTML=$("#locList").innerHTML=LOC.map(ltile).join("");
+function locality(l){
+  const homes=P.filter(p=>p.name===l.name);const maps="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(l.area);
+  $("#locPage").innerHTML=`<a class="back" href="#localities">${ic("left")}All localities</a>
+  <div class="lhero"><div><div class="tag rule" style="margin-bottom:18px">Locality</div><h2>${esc(l.name)}</h2><div class="loc" style="margin-top:8px">${ic("pin")}${esc(l.area)}</div>
+    <p class="mute" style="font-size:17px">${esc(l.about)}</p><ul class="hl">${l.hl.map(([i,t])=>`<li>${ic(i)}<span>${esc(t)}</span></li>`).join("")}</ul>
+    <div class="dacts" style="margin-top:8px"><a class="link gold" href="${maps}" target="_blank" rel="noopener">Open in Google Maps ${ic("arrow")}</a></div></div>
+    <div class="shot"><img src="${ph(l.img)}" alt="${esc(l.name)}"></div></div>
+  <div class="shead"><h2 style="font-size:clamp(30px,3.4vw,42px)">Explore the neighbourhood</h2></div>
+  ${nbHTML(l.id)}
+  <div class="shead" style="margin-top:40px"><h2 style="font-size:clamp(30px,3.4vw,42px)">Homes in ${esc(l.name)}</h2></div>
+  <div class="grid">${homes.map(card).join("")||`<div class="empty">No homes listed here right now.</div>`}</div>
+  <div class="dacts"><a class="btn line" href="#properties" data-alert="${esc(l.name)}">${ic("bell")}Get alerts for ${esc(l.name)}</a></div>`;
+}
+document.addEventListener("click",e=>{const a=e.target.closest("[data-alert]");if(!a)return;const n=a.dataset.alert;setTimeout(()=>{$("#rLoc").value=n;$("#rForm").scrollIntoView({behavior:"smooth",block:"start"});$("#rName").focus({preventScroll:true})},60)});
+
 /* list + filters */
-const F={st:"",q:"",loc:"",bhk:"",fur:"",sort:"new"};
+const F0={st:"",q:"",loc:"",type:"",bhk:"",fur:"",bud:"",sort:"new"};const F={...F0};
 const uniq=k=>[...new Set(P.map(p=>p[k]))].sort();
 $("#fLoc").innerHTML=`<option value="">Locality: All</option>`+uniq("name").map(v=>`<option>${v}</option>`).join("");
 $("#fBhk").innerHTML=`<option value="">Size: Any</option>`+uniq("bhk").map(v=>`<option>${v}</option>`).join("");
 $("#fFur").innerHTML=`<option value="">Furnishing: Any</option>`+uniq("furn").map(v=>`<option>${v}</option>`).join("");
+$("#fType").innerHTML=`<option value="">Type: Any</option>`+uniq("type").map(v=>`<option>${v}</option>`).join("");
 function renderList(){
   const n=s=>P.filter(p=>!s||p.status===s).length;
-  $("#pills").innerHTML=[["","All"],["now","Available"],["soon","Opening Soon"],["let","Occupied"]].map(([v,l])=>`<button type="button" class="pill" data-st="${v}" aria-pressed="${F.st===v}">${l}<span class="n">${n(v)}</span></button>`).join("");
+  $("#pills").innerHTML=[["","All"],["now","Available now"],["soon","Available soon"],["let","Occupied"],["reno","Under renovation"]].filter(([v])=>!v||v!=="reno"||n("reno")).map(([v,l])=>`<button type="button" class="pill" data-st="${v}" aria-pressed="${F.st===v}">${l}<span class="n">${n(v)}</span></button>`).join("");
   const q=F.q.trim().toLowerCase();
-  let L=P.filter(p=>(!F.st||p.status===F.st)&&(!F.loc||p.name===F.loc)&&(!F.bhk||p.bhk===F.bhk)&&(!F.fur||p.furn===F.fur)&&(!q||(p.name+" "+p.area+" "+p.type).toLowerCase().includes(q)));
+  const [bl,bh]=F.bud?F.bud.split("-").map(Number):[0,1e12];
+  let L=P.filter(p=>(!F.st||p.status===F.st)&&(!F.loc||p.name===F.loc)&&(!F.type||p.type===F.type)&&(!F.bhk||p.bhk===F.bhk)&&(!F.fur||p.furn===F.fur)&&p.rent>=bl&&p.rent<=bh&&(!q||(p.title+" "+p.name+" "+p.area+" "+p.type).toLowerCase().includes(q)));
+  const act=["loc","type","bhk","fur","bud"].filter(k=>F[k]).length+(F.sort!=="new"?1:0);$("#fN").hidden=!act;$("#fN").textContent=act;$("#fApply").textContent=`Show ${L.length} ${L.length===1?"home":"homes"}`;
   L.sort((a,b)=>F.sort==="lo"?a.rent-b.rent:F.sort==="hi"?b.rent-a.rent:b.added-a.added);
   $("#count").textContent=`${L.length} ${L.length===1?"property":"properties"}`;
   $("#listGrid").innerHTML=L.length?L.map(card).join(""):`<div class="empty">No homes match these filters right now.<br><button class="btn line" type="button" id="clr" style="margin-top:16px">Clear filters</button></div>`;
 }
 $("#pills").addEventListener("click",e=>{const b=e.target.closest("[data-st]");if(b){F.st=b.dataset.st;renderList()}});
 $("#q").addEventListener("input",e=>{F.q=e.target.value;renderList()});
-[["#fLoc","loc"],["#fBhk","bhk"],["#fFur","fur"],["#fSort","sort"]].forEach(([s,k])=>$(s).addEventListener("change",e=>{F[k]=e.target.value;renderList()}));
-$("#listGrid").addEventListener("click",e=>{if(e.target.id==="clr"){Object.assign(F,{st:"",q:"",loc:"",bhk:"",fur:"",sort:"new"});$("#q").value="";["#fLoc","#fBhk","#fFur"].forEach(s=>$(s).value="");$("#fSort").value="new";renderList()}});
+const FS=[["#fLoc","loc"],["#fType","type"],["#fBhk","bhk"],["#fFur","fur"],["#fBud","bud"],["#fSort","sort"]];
+FS.forEach(([s,k])=>$(s).addEventListener("change",e=>{F[k]=e.target.value;renderList()}));
+const resetF=()=>{Object.assign(F,F0);$("#q").value="";FS.forEach(([s,k])=>$(s).value=F[k]);renderList()};
+const sheet=(o)=>{$("#sheet").classList.toggle("open",o);$("#scrim").classList.toggle("on",o);document.body.style.overflow=o?"hidden":""};
+$("#fOpen").onclick=()=>sheet(true);$("#fClose").onclick=$("#scrim").onclick=$("#fApply").onclick=()=>sheet(false);$("#fReset").onclick=resetF;
+addEventListener("keydown",e=>{if(e.key==="Escape")sheet(false)});
+$("#listGrid").addEventListener("click",e=>{if(e.target.id==="clr")resetF()});
 
 /* detail */
 let gi=0;
@@ -515,36 +809,44 @@ function detail(p){
     <div><div class="mtabs" role="group" aria-label="Media">
       <button type="button" class="pill" data-m="ph" aria-pressed="true">${ic("img",'style="width:16px;height:16px;vertical-align:-3px;margin-right:6px"')}Photos</button>
       <button type="button" class="pill" data-m="tour" aria-pressed="false">${ic("r360",'style="width:16px;height:16px;vertical-align:-3px;margin-right:6px"')}360° Tour</button>
-      <button type="button" class="pill" data-m="vid" aria-pressed="false">${ic("play",'style="width:16px;height:16px;vertical-align:-3px;margin-right:6px"')}Video</button></div>
+      <button type="button" class="pill" data-m="vid" aria-pressed="false">${ic("play",'style="width:16px;height:16px;vertical-align:-3px;margin-right:6px"')}Video</button>
+      <button type="button" class="pill" data-m="plan" aria-pressed="false">${ic("plan",'style="width:16px;height:16px;vertical-align:-3px;margin-right:6px"')}Floor plan</button></div>
       <div class="stage"><div class="gal" id="gal">${p.photos.map((f,i)=>`<img src="${ph(f)}" alt="${esc(p.name)} photo ${i+1}" class="${i?"":"on"}">`).join("")}
       <button class="nav2 prev" type="button" aria-label="Previous photo">${ic("left")}</button><button class="nav2 next" type="button" aria-label="Next photo">${ic("right")}</button>
       <div class="dots">${p.photos.map((f,i)=>`<button type="button" aria-label="Photo ${i+1}" class="${i?"":"on"}" data-g="${i}"></button>`).join("")}</div></div><div id="alt" hidden></div></div></div>
     <div>
-      <div class="dhead"><h2>${esc(p.name)}</h2><span class="rent">${p.fromPrice?"<small>From </small>":""}${inr(p.rent)} <small>/ month</small></span></div>
+      <div class="dhead"><h2>${esc(p.title)}</h2><span class="rent">${p.fromPrice?"<small>From </small>":""}${inr(p.rent)} <small>/ month</small></span></div>
       <div class="loc" style="margin-top:8px">${ic("pin")}${esc(p.area)}<span class="badge inline ${ST[p.status][1]}" style="margin-left:8px">${ST[p.status][0]}</span></div>
-      <div class="meta"><span>${ic("bed")}${p.bhk}</span><span>${ic("sofa")}${p.furn}</span><span>${ic("cal")}${avail(p)}</span></div>
-      <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-t="ov">Overview</button><button role="tab" aria-selected="false" data-t="ph">Photos</button><button role="tab" aria-selected="false" data-t="lo">Location</button></div>
+      <div class="stats s4" style="margin-top:16px"><div>${ic("bed")}<b>${p.bhk}</b><span>Size</span></div><div>${ic("bath")}<b>${tbc(p.baths)}</b><span>Bathrooms*</span></div><div>${ic("car")}<b>${tbc(p.parking)}</b><span>Parking</span></div><div>${ic("key")}<b>Direct</b><span>Owner rental</span></div></div>
+      <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-t="ov">Overview</button><button role="tab" aria-selected="false" data-t="ph">Photos</button><button role="tab" aria-selected="false" data-t="lo">Neighbourhood</button></div>
       <div data-tp="ov"><h3 style="font-size:24px">About this home</h3><p class="mute">${esc(p.about)}</p>
-        <dl class="spec"><dt>Property type</dt><dd>${p.type}</dd><dt>Size</dt><dd>${p.bhk}</dd><dt>Furnishing</dt><dd>${p.furn}</dd><dt>Availability</dt><dd>${avail(p)}</dd><dt>Monthly rent</dt><dd>${p.fromPrice?"From ":""}${inr(p.rent)}</dd><dt>Deposit</dt><dd>${esc(p.deposit)}</dd></dl>
+        <dl class="spec"><dt>Monthly rent</dt><dd>${p.fromPrice?"From ":""}${inr(p.rent)}</dd><dt>Security deposit</dt><dd>${esc(p.deposit)}</dd><dt>Availability</dt><dd>${avail(p)}</dd><dt>Property type</dt><dd>${p.type}</dd><dt>Configuration</dt><dd>${p.bhk}</dd><dt>Area</dt><dd>${p.sqft?p.sqft.toLocaleString("en-IN")+" sq ft":"TBC"}</dd><dt>Bathrooms</dt><dd>${tbc(p.baths)}</dd><dt>Furnishing</dt><dd>${p.furn}</dd><dt>Parking</dt><dd>${tbc(p.parking)}</dd><dt>Rental</dt><dd>Direct from the owner</dd></dl>
+        <p class="note">*Details marked TBC are being confirmed.</p>
         <div class="amen">${p.amen.map(a=>`<span>${esc(a)}</span>`).join("")}</div></div>
       <div data-tp="ph" hidden><div class="thumbs">${p.photos.map((f,i)=>`<button type="button" data-g="${i}" aria-label="Show photo ${i+1}"><img src="${ph(f)}" alt=""></button>`).join("")}</div></div>
-      <div data-tp="lo" hidden><p class="mute">${esc(p.area)}. The exact address is shared when you book a viewing.</p><a class="link gold" href="${maps}" target="_blank" rel="noopener">Open ${esc(p.name)} in Google Maps ${ic("arrow")}</a></div>
-      <div class="dacts">${p.status==="let"?"":`<a class="btn" href="#visit-${p.id}">${ic("cal")}Book a viewing</a><a class="btn line" href="#enquire-${p.id}">Ask a question</a>`}
+      <div data-tp="lo" hidden><p class="mute" style="margin-top:0">${esc(p.area)}. The exact address is shared when you book a viewing.</p>${nbHTML((locOf(p)||{}).id)}
+        <div class="dacts" style="margin-top:14px"><a class="link gold" href="${maps}" target="_blank" rel="noopener">Open in Google Maps ${ic("arrow")}</a>${locOf(p)?`<a class="link gold" href="#loc-${locOf(p).id}">About ${esc(p.name)} ${ic("arrow")}</a>`:""}</div></div>
+      <div class="dacts">${p.status==="now"?`<a class="btn" href="#visit-${p.id}">${ic("cal")}Book a viewing</a>`:`<a class="btn" href="#interest-${p.id}">${ic("bell")}${CTA(p).label}</a>`}${p.status==="let"?"":`<a class="btn line" href="#enquire-${p.id}">Ask a question</a>`}
       <button class="btn line" type="button" id="share">${ic("share")}Share</button></div>
-      ${p.status==="now"?"":`<form class="notify" id="nForm" novalidate><b>${ic("bell",'style="color:var(--accent);vertical-align:-3px;margin-right:6px"')}${p.status==="let"?"Occupied right now":"Opening soon"}. Want to know first?</b>
+      ${p.status!=="let"?`<div class="vv">${ic("video")}<span>Relocating to Bengaluru? <a href="#video-${p.id}">Book a video-call viewing</a> and we'll walk you through the home live.</span></div>`:""}
+      ${p.status==="now"?"":`<form class="notify" id="nForm" novalidate><b>${ic("bell",'style="color:var(--accent);vertical-align:-3px;margin-right:6px"')}${p.status==="let"?"Currently occupied. Want to know first?":p.status==="reno"?"Under renovation. Register your interest":"Available soon. Register your interest"}</b>
         <span class="mute" style="font-size:14px">We'll message you the day ${esc(p.name)} is ready to view.</span>
-        <div class="row"><input id="nName" placeholder="Your name *" autocomplete="name" aria-label="Your name"><input id="nPhone" placeholder="Mobile number *" inputmode="tel" aria-label="Mobile number"><input id="nEmail" type="email" placeholder="Email (optional)" aria-label="Email"><button class="btn" type="submit" style="min-height:48px">Notify me</button></div>
+        <div class="row"><input id="nName" placeholder="Your name *" autocomplete="name" aria-label="Your name"><input id="nPhone" placeholder="Mobile number *" inputmode="tel" aria-label="Mobile number"><input id="nEmail" type="email" placeholder="Email (optional)" aria-label="Email"><button class="btn" type="submit" style="min-height:48px">${p.status==="let"?"Notify me":"Register interest"}</button></div>
         <p class="note" id="nNote" role="status"></p></form>`}
     </div></div>`;
   const imgs=$$("#gal img"),dots=$$("#gal .dots button");
   const go=i=>{gi=(i+imgs.length)%imgs.length;imgs.forEach((m,k)=>m.classList.toggle("on",k===gi));dots.forEach((d,k)=>d.classList.toggle("on",k===gi))};
+  let sx=null;const g=$("#gal");g.addEventListener("pointerdown",e=>{sx=e.clientX});
+  g.addEventListener("pointerup",e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>40)go(gi+(dx<0?1:-1))});
+  g.addEventListener("pointercancel",()=>sx=null);
+  $("#mcta").innerHTML=`<span class="rent">${p.fromPrice?"<small>From </small>":""}${inr(p.rent)}<small> / month</small></span><a class="btn" href="${CTA(p).href}">${ic(CTA(p).icon)}${CTA(p).label}</a>`;
   $("#detail").onclick=e=>{const t=e.target.closest("button");if(!t)return;
     if(t.classList.contains("prev"))go(gi-1);else if(t.classList.contains("next"))go(gi+1);
     else if(t.dataset.g){go(+t.dataset.g);$("#gal").scrollIntoView({block:"center"})}
     else if(t.dataset.m)media(p,t.dataset.m);
     else if(t.dataset.sc&&pv){pv.loadScene(t.dataset.sc);$$(".scenes button").forEach(b=>b.setAttribute("aria-pressed",b===t))}
     else if(t.dataset.t){$$(".tabs button").forEach(b=>b.setAttribute("aria-selected",b===t));$$("[data-tp]").forEach(x=>x.hidden=x.dataset.tp!==t.dataset.t)}
-    else if(t.id==="share"){const url=location.href.split("#")[0]+"#p-"+p.id;const txt=`${p.name} · ${p.bhk} · ${p.fromPrice?"from ":""}${inr(p.rent)}/month. ${url}`;
+    else if(t.id==="share"){const url=location.origin+"/homes/"+p.id+"/";const txt=`${p.title} · ${p.bhk} · ${p.fromPrice?"from ":""}${inr(p.rent)}/month. ${url}`;
       (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast("Link copied. Paste it into WhatsApp or email."),()=>toast(url))}};
   const nf=$("#nForm");if(nf)nf.addEventListener("submit",async e=>{e.preventDefault();
     const n=$("#nName").value.trim(),ph=$("#nPhone").value.replace(/\D/g,"").slice(-10),em=$("#nEmail").value.trim();
@@ -558,12 +860,13 @@ function detail(p){
 let pv=null;
 const loadPano=()=>window.pannellum?Promise.resolve():new Promise((res,rej)=>{const l=document.createElement("link");l.rel="stylesheet";l.href="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.css";document.head.append(l);
   const sc=document.createElement("script");sc.src="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.js";sc.onload=res;sc.onerror=rej;document.head.append(sc)});
-const soon=(p,icon,title,text)=>`<div class="soonph"><img src="${ph(p.photos[0])}" alt=""><div>${ic(icon)}<b>${title}</b><p>${text}</p></div></div>`;
+const soon=(p,icon,title,text)=>`<div class="soonph"><img src="${ph(p.photos[0])}" alt=""><div>${ic(icon)}<b>${title}</b><p>${text}</p>${p.status!=="let"?`<a class="btn" href="#video-${p.id}" style="margin-top:16px;min-height:44px">${ic("video")}Book a video-call viewing</a>`:""}</div></div>`;
 function media(p,m){
   $$(".mtabs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.m===m));
   const alt=$("#alt"),gal=$("#gal");if(pv){try{pv.destroy()}catch(e){}pv=null}
   alt.querySelectorAll("video").forEach(v=>v.pause());
   gal.hidden=m!=="ph";alt.hidden=m==="ph";if(m==="ph"){alt.innerHTML="";return}
+  if(m==="plan"){alt.innerHTML=p.floorplan?`<img src="${esc(p.floorplan)}" alt="${esc(p.title)} floor plan" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff">`:soon(p,"plan","Floor plan coming soon",`We're preparing a floor plan of ${esc(p.title)}. Ask us and we'll share the layout and room sizes.`);return}
   if(m==="vid"){
     alt.innerHTML=p.youtube?`<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(p.youtube)}?rel=0" title="${esc(p.name)} video tour" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`
       :p.video?`<video src="${esc(p.video)}" poster="${ph(p.photos[0])}" controls playsinline preload="metadata"></video>`
@@ -584,31 +887,47 @@ $$("#eForm input[name=kind]").forEach(r=>r.addEventListener("change",kindSync));
 const tmr=()=>{const d=new Date(Date.now()+864e5);return d.toISOString().slice(0,10)};
 const open=P.filter(x=>x.status!=="let");
 $("#eHomeSel").innerHTML=`<option value="">Choose a home</option>`+open.map(x=>`<option value="${x.id}">${esc(x.name)} · ${x.bhk} · ${x.fromPrice?"from ":""}${inr(x.rent)}</option>`).join("");
-const subOf=p=>`${p.name} · ${p.bhk} · ${p.fromPrice?"from ":""}${inr(p.rent)} / month`;
+const subOf=p=>`${p.title} · ${p.bhk} · ${p.fromPrice?"from ":""}${inr(p.rent)} / month`;
 $("#eHomeSel").addEventListener("change",e=>{cur=P.find(x=>x.id===e.target.value)||null;$("#eSub").textContent=cur?subOf(cur):"Choose a home and a time that suits you."});
-function enquire(p,visit){$("#eForm").querySelector(`input[value="${visit?"Book a viewing":"Ask a question"}"]`).checked=true;$("#eDate").min=tmr();kindSync();$$("#eForm .fld").forEach(f=>f.classList.remove("bad"));
+function enquire(p,visit){$("#eForm").classList.remove("rev");$("#eForm").querySelector(`input[value="${visit?"Book a viewing":"Ask a question"}"]`).checked=true;$("#eDate").min=tmr();kindSync();$$("#eForm .fld").forEach(f=>f.classList.remove("bad"));
   cur=p;$("#homeF").hidden=!!p;$("#eHomeSel").value=p?p.id:"";$("#eSub").textContent=p?subOf(p):"Choose a home and a time that suits you.";$("#eBack").href=p?"#p-"+p.id:"#properties";$("#eBack").lastChild.textContent=p?"Back to property":"Back to properties"}
 const bad=(id,b)=>{$(id).closest(".fld").classList.toggle("bad",b);return b};
-$("#eForm").addEventListener("submit",async e=>{e.preventDefault();
+let pend=null;
+$("#eForm").addEventListener("submit",e=>{e.preventDefault();
   const visit=$("#eForm").querySelector("input[name=kind]:checked").value==="Book a viewing";
+  const mode=$("#eForm").querySelector("input[name=mode]:checked").value;
   const name=$("#eName").value.trim(),phone=$("#ePhone").value.replace(/\D/g,""),email=$("#eEmail").value.trim(),msg=$("#eMsg").value.trim(),date=$("#eDate").value,slot=$("#eSlot").value;
   if(!cur){bad("#eHomeSel",true);$("#eHomeSel").focus();return}bad("#eHomeSel",false);
   const errs=[bad("#eDate",visit&&(!date||date<tmr())),bad("#eName",!name),bad("#ePhone",!/^[6-9]\d{9}$/.test(phone.slice(-10))||phone.length<10),bad("#eEmail",!!email&&!/^\S+@\S+\.\S+$/.test(email)),bad("#eMsg",!visit&&msg.length<10)];
-  if(errs.some(Boolean)){$("#eForm .bad input,#eForm .bad textarea")?.focus();return}
-  const ref="MTV-"+String(Math.floor(1000+Math.random()*9000));
+  if(errs.some(Boolean)){$("#eForm .bad input,#eForm .bad textarea,#eForm .bad select")?.focus();return}
   const when=visit?new Date(date+"T00:00").toLocaleDateString("en-IN",{weekday:"short",day:"numeric",month:"short"})+", "+slot.replace(/ \(.*/,""):"";
-  const btn=$("#eBtn");btn.disabled=true;btn.style.opacity=.7;
-  const ok=await sendForm("enquiry",{home:`${cur.name} (${cur.bhk}, ${cur.area})`,ref,kind:visit?"Book a viewing":"Ask a question",date:visit?date:"",slot:visit?slot:"",name,phone:"+91 "+phone.slice(-10),email,message:msg});
-  btn.disabled=false;btn.style.opacity="";
-  const body=`${visit?"Viewing request":"Enquiry"} ${ref}\nHome: ${cur.name} (${cur.bhk}, ${cur.area})${visit?"\nPreferred: "+when:""}\nName: ${name}\nPhone: +91 ${phone.slice(-10)}${email?"\nEmail: "+email:""}${msg?"\nMessage: "+msg:""}`;
-  const wa=CONTACT.whatsapp?`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(body)}`:"";
-  const mail=CONTACT.email?`mailto:${CONTACT.email}?subject=${encodeURIComponent("Mativio "+ref+" · "+cur.name)}&body=${encodeURIComponent(body)}`:"";
-  $("#done").innerHTML=`<div class="tick">${ic("check")}</div><h2>${ok?(visit?"Viewing requested!":"Enquiry received!"):`Almost there, ${esc(name.split(" ")[0])}`}</h2>
-    <p class="mute">${ok?`Thank you, ${esc(name.split(" ")[0])}. ${visit?"We'll call you to confirm the viewing time":"Our family will get back to you"} within 1 business day.`:"We couldn't send your request from this page."+(wa||mail?" Tap below to send it directly.":" Please try again in a moment.")}</p>
-    <div class="sum"><div>${ic("home")}<span><b>${esc(cur.name)}</b><br><span class="mute">${cur.bhk}</span></span></div>${visit?`<div>${ic("cal")}<span>${esc(when)}</span></div>`:""}<div>${ic("check")}<span>Reference <b>${ref}</b></span></div></div>
-    <div class="dacts" style="justify-content:center">${!ok&&wa?`<a class="btn" href="${wa}" target="_blank" rel="noopener">Send on WhatsApp</a>`:""}${!ok&&mail?`<a class="btn${wa?" line":""}" href="${mail}">Send by email</a>`:""}${ok&&wa?`<a class="btn line" href="${wa}" target="_blank" rel="noopener">Also message us on WhatsApp</a>`:""}<a class="btn line" href="#properties">Back to Properties ${ic("arrow")}</a></div>`;
-  if(ok||wa||mail)$("#eForm").reset();location.hash="thanks";
+  pend={visit,mode,name,phone:phone.slice(-10),email,msg,date,slot,when,home:cur};
+  const rows=[["Home",`${cur.name} · ${cur.bhk}`],["Request",visit?"Book a viewing":"Ask a question"],...(visit?[["Viewing",mode],["Preferred",when]]:[]),["Name",name],["Mobile","+91 "+pend.phone],...(email?[["Email",email]]:[]),...(msg?[["Message",msg]]:[])];
+  $("#eReview").innerHTML=`<h3 style="font-size:26px">Check your details</h3><dl class="rvl">${rows.map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+    <div class="dacts" style="margin-top:0"><button class="btn" type="button" id="eConfirm" style="flex:1">${visit?"Confirm viewing request":"Send enquiry"} ${ic("arrow")}</button><button class="btn line" type="button" id="eEdit">Edit</button></div>${CONSENT}`;
+  $("#eForm").classList.add("rev");$("#eTitle").textContent="Review your request";$("#eForm").scrollIntoView({block:"start"});
 });
+const CONSENT=`<p class="consent">By sending, you agree we may use these details to reply to you, as set out in our <a href="#privacy">Privacy Policy</a>.</p>`;
+const unreview=()=>{$("#eForm").classList.remove("rev");kindSync()};
+$("#eForm").addEventListener("click",async e=>{
+  if(e.target.closest("#eEdit")){unreview();return}
+  if(!e.target.closest("#eConfirm")||!pend)return;
+  const b=$("#eConfirm");b.disabled=true;b.style.opacity=.7;
+  const {visit,mode,name,phone,email,msg,date,slot,when,home}=pend;
+  const ref="MTV-"+String(Math.floor(1000+Math.random()*9000));
+  const ok=await sendForm("enquiry",{home:`${home.name} (${home.bhk}, ${home.area})`,ref,kind:visit?"Book a viewing":"Ask a question",viewing_type:visit?mode:"",date:visit?date:"",slot:visit?slot:"",name,phone:"+91 "+phone,email,message:msg});
+  b.disabled=false;b.style.opacity="";
+  const body=`${visit?"Viewing request":"Enquiry"} ${ref}\nHome: ${home.name} (${home.bhk}, ${home.area})${visit?"\nViewing: "+mode+"\nPreferred: "+when:""}\nName: ${name}\nPhone: +91 ${phone}${email?"\nEmail: "+email:""}${msg?"\nMessage: "+msg:""}`;
+  const wa=CONTACT.whatsapp?`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(body)}`:"";
+  const mail=CONTACT.email?`mailto:${CONTACT.email}?subject=${encodeURIComponent("Mativio "+ref+" · "+home.name)}&body=${encodeURIComponent(body)}`:"";
+  const first=esc(name.split(" ")[0]);
+  $("#done").innerHTML=`<div class="tick">${ic(ok?"check":"mail")}</div><h2>${ok?(visit?"Viewing requested!":"Enquiry received!"):`Almost there, ${first}`}</h2>
+    <p class="mute">${ok?`Thank you, ${first}. ${visit?(mode==="Video call"?"We'll call you to confirm the time and send a video-call link":"We'll call you to confirm the viewing time"):"Our family will get back to you"} within 1 business day.`:(navigator.onLine?"We couldn't send your request from this page.":"You seem to be offline, so we couldn't send your request.")+(wa||mail?" Tap below to send it directly.":" Please try again in a moment.")}</p>
+    <div class="sum"><div>${ic("home")}<span><b>${esc(home.name)}</b><br><span class="mute">${home.bhk}</span></span></div>${visit?`<div>${ic("cal")}<span>${esc(mode)} · ${esc(when)}</span></div>`:""}${ok?`<div>${ic("check")}<span>Reference <b>${ref}</b></span></div>`:""}</div>
+    <div class="dacts" style="justify-content:center">${!ok&&wa?`<a class="btn" href="${wa}" target="_blank" rel="noopener">Send on WhatsApp</a>`:""}${!ok&&mail?`<a class="btn${wa?" line":""}" href="${mail}">Send by email</a>`:""}${!ok&&!wa&&!mail?`<button class="btn" type="button" id="retry">Try again</button>`:""}${ok&&wa?`<a class="btn line" href="${wa}" target="_blank" rel="noopener">Also message us on WhatsApp</a>`:""}<a class="btn line" href="#properties">Back to Properties ${ic("arrow")}</a></div>`;
+  if(ok){$("#eForm").reset();pend=null}unreview();location.hash="thanks";
+});
+$("#done").addEventListener("click",e=>{if(e.target.closest("#retry")&&pend){const k=pend;history.back();setTimeout(()=>{cur=k.home;$("#eHomeSel").value=cur.id;$("#eSub").textContent=subOf(cur);$("#eForm").requestSubmit()},80)}});
 
 /* requirement / alert sign-up */
 $("#rLoc").innerHTML="<option>Any</option>"+[...new Set(P.map(x=>x.name))].map(n=>`<option>${n}</option>`).join("")+"<option>Elsewhere in Bengaluru</option>";
@@ -621,6 +940,11 @@ $("#rForm").addEventListener("submit",async e=>{e.preventDefault();
   $("#rNote").textContent=ok?`Thank you, ${n.split(" ")[0]}. We'll message you when a matching home opens up.`:"We couldn't save this just now. Please try again in a moment.";
   if(ok)$("#rForm").reset();
 });
+
+/* offline */
+const net=()=>$("#offline").classList.toggle("on",!navigator.onLine);addEventListener("online",net);addEventListener("offline",net);net();
+/* legal contact lines */
+$("#privContact").innerHTML=$("#termsContact").innerHTML=`Mativio, ${esc(CONTACT.address)}<br>Email: ${esc(CONTACT.email||"to be added")}<br>Phone: ${esc(CONTACT.phone?"+"+CONTACT.phone:"to be added")}`;
 
 /* contact */
 $("#cl").innerHTML=[["phone",CONTACT.phone?"+"+CONTACT.phone:"Phone number to be added"],["mail",CONTACT.email||"Email to be added"],["pin",CONTACT.address]].map(([i,t])=>`<div><span class="ic">${ic(i)}</span>${esc(t)}</div>`).join("");
@@ -635,20 +959,27 @@ $("#cForm").addEventListener("submit",e=>{e.preventDefault();
 });
 
 /* router */
+const VIEWS=["home","properties","story","contact","localities","privacy","terms"];
 function route(){
-  const h=location.hash.slice(1)||"home";let v=h,p=null;
-  if(h.startsWith("p-")){p=P.find(x=>x.id===h.slice(2));v=p?"property":"properties"}
-  else if(h.startsWith("enquire-")){p=P.find(x=>x.id===h.slice(8));v=p?"enquire":"properties"}
-  else if(h==="book"){v="enquire";var vis=true}
-  else if(h.startsWith("visit-")){p=P.find(x=>x.id===h.slice(6));v=p?"enquire":"properties";var vis=true}
-  else if(h==="thanks"&&!$("#done").innerHTML)v="properties";
-  if(!$$("[data-view]").some(s=>s.dataset.view===v))v="home";
-  if(v==="property")detail(p);if(v==="enquire")enquire(p,!!vis);if(v==="properties")renderList();
+  const h=location.hash.slice(1)||"home";let v=null,p=null,l=null,vis=false,miss="";
+  if(h.startsWith("p-")){p=P.find(x=>x.id===h.slice(2));v=p?"property":"notfound";miss=p?"":"home"}
+  else if(h.startsWith("enquire-")){p=P.find(x=>x.id===h.slice(8));v=p?"enquire":"notfound";miss=p?"":"home"}
+  else if(h.startsWith("visit-")){p=P.find(x=>x.id===h.slice(6));v=p?"enquire":"notfound";vis=true;miss=p?"":"home"}
+  else if(h.startsWith("video-")){p=P.find(x=>x.id===h.slice(6));v=p?"enquire":"notfound";vis=true;miss=p?"":"home";if(p)setTimeout(()=>{$("#eForm").querySelector('input[value="Video call"]').checked=true},0)}
+  else if(h.startsWith("interest-")){p=P.find(x=>x.id===h.slice(9));v=p?"property":"notfound";miss=p?"":"home";if(p)setTimeout(()=>{const f=$("#nForm");if(f){f.scrollIntoView({block:"center"});$("#nName").focus({preventScroll:true})}},80)}
+  else if(h.startsWith("loc-")){l=LOC.find(x=>x.id===h.slice(4));v=l?"locality":"notfound"}
+  else if(h==="book"){v="enquire";vis=true}
+  else if(h==="thanks")v=$("#done").innerHTML?"thanks":"properties";
+  else v=VIEWS.includes(h)?h:"notfound";
+  $("#nfTitle").textContent=miss?"This home isn't listed anymore":"This page isn't here";
+  $("#nfText").textContent=miss?"It may have been let or removed. Take a look at the homes available now.":"The link may be old, or the page may have moved.";
+  if(v==="property")detail(p);if(v==="enquire"){enquire(p,vis);$("#eForm").querySelector('input[value="In person"]').checked=true}if(v==="properties")renderList();if(v==="locality")locality(l);
   $$("[data-view]").forEach(s=>s.classList.toggle("on",s.dataset.view===v));
-  $$("[data-nav]").forEach(a=>a.toggleAttribute("aria-current",a.dataset.nav===v||(v==="property"&&a.dataset.nav==="properties")));
+  document.body.dataset.v=v;sheet(false);
+  $$("[data-nav]").forEach(a=>a.toggleAttribute("aria-current",a.dataset.nav===v||(v==="property"&&a.dataset.nav==="properties")||(v==="locality"&&a.dataset.nav==="localities")));
   $$("[data-nav][aria-current]").forEach(a=>a.setAttribute("aria-current","page"));
-  document.title=(p?p.name+" · ":"")+"Mativio — Homes for Rent";
-  scrollTo({top:0});
+  document.title=(p?p.title+" · ":l?l.name+" · ":v==="privacy"?"Privacy · ":v==="terms"?"Terms · ":v==="notfound"?"Not found · ":"")+"Mativio — Homes for Rent";
+  if(!h.startsWith("interest-"))scrollTo({top:0});
 }
 addEventListener("hashchange",route);route();
 }

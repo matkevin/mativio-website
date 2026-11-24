@@ -23,5 +23,24 @@ Until these are added, the property page shows "coming soon" in the 360° Tour a
 Four forms are sent to Netlify: `enquiry` (viewing requests and questions), `notify` (alerts for one Opening Soon / Occupied home), `requirement` (what a visitor is looking for: locality, size, budget, move-in) and `contact`.
 In Netlify: **Forms → Enable form detection**, then redeploy once. Submissions appear under **Forms**; add email alerts under **Site configuration → Notifications → Emails and webhooks → Form submission notifications**.
 
+## Shareable home links
+Each home has a clean link, `/homes/<id>/` (e.g. `/homes/devasandra/`), with its own preview (title, rent, photo) when shared on WhatsApp. These pages live in `homes/` and are made by:
+
+    node tools/build-home-pages.mjs
+
+Run it again whenever you add, rename or reprice a home in `P`.
+
+## Listing fields (in `P`)
+`title` (card name), `name` (locality), `status` (`now`, `soon`, `let`, `reno`), `rent`, `deposit`, `bhk`, `sqft`, `baths`, `parking`, `furn`, `floorplan`, `photos`, `tour`, `video`/`youtube`. Empty or `null` values show as "TBC".
+The main button on cards and pages follows the status: Available now → Book a viewing; Available soon or Under renovation → Register interest; Currently occupied → Notify me.
+
+## Neighbourhood guide
+`NB` (in the script) lists nearby colleges, hospitals, shops, transport and business hubs for each locality. It shows on the locality page and in the Neighbourhood tab of each home.
+
+## Localities and legal pages
+- `LOC` (in the script, above the listings filters): locality pages with description and highlights. Homes are matched to a locality by name.
+- Privacy Policy (`#privacy`) and Terms of Use (`#terms`) are drafts marked "Draft for review"; remove the label once approved.
+- `404.html` is shown by Netlify for unknown paths; unknown in-page links show the in-page 404.
+
 ## Pages (hash links)
-`#home`, `#properties`, `#book` (book a viewing for any home), `#p-<id>` (one home, shareable), `#visit-<id>` (book a viewing), `#enquire-<id>` (ask a question), `#story`, `#contact`.
+`#home`, `#properties`, `#book` (book a viewing for any home), `#localities`, `#loc-<id>`, `#privacy`, `#terms`, `#p-<id>` (one home, shareable), `#visit-<id>` (book a viewing), `#video-<id>` (book a video-call viewing), `#interest-<id>` (register interest / notify me), `#enquire-<id>` (ask a question), `#story`, `#contact`.
