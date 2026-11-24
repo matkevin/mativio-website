@@ -6,6 +6,12 @@
 <title>Mativio — Homes for Rent</title>
 <meta name="description" content="Family-owned rental homes, thoughtfully cared for in Bengaluru.">
 <link rel="icon" href="assets/logo.png">
+<meta property="og:title" content="Mativio — Family-owned homes for rent in Bengaluru">
+<meta property="og:description" content="Find a place to call home. See homes ready to move in and opening soon.">
+<meta property="og:image" content="https://mativio-website.netlify.app/assets/photos/hero_light.jpg">
+<meta property="og:url" content="https://mativio-website.netlify.app/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>try{const t=localStorage.getItem("mativio-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
@@ -166,6 +172,35 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
 .thumbs button{padding:0;border:0;border-radius:14px;overflow:hidden;cursor:pointer;aspect-ratio:4/3}
 .thumbs img{width:100%;height:100%;object-fit:cover}
 .dacts{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+/* media */
+.mtabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.stage{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:16/10;box-shadow:var(--shadow);background:#0e1826}
+.stage>.gal{border-radius:0;box-shadow:none;aspect-ratio:auto;position:absolute;inset:0}
+#pano{position:absolute;inset:0}
+.stage video,.stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}
+.soonph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#f2eee5;padding:24px;overflow:hidden}
+.soonph>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(7px) brightness(.42);transform:scale(1.12)}
+.soonph>div{position:relative;max-width:36ch}
+.soonph svg.i{width:48px;height:48px;color:var(--gold);margin:0 auto 10px}
+.soonph b{font:500 28px "Cormorant Garamond",serif;display:block;margin-bottom:6px}
+.soonph p{margin:0;color:#d6dbe1;font-size:15px}
+.scenes{position:absolute;left:12px;bottom:12px;display:flex;gap:6px;flex-wrap:wrap;z-index:3}
+.scenes button{font:600 13px Manrope;min-height:36px;padding:0 14px;border-radius:999px;border:0;background:rgba(255,250,243,.9);color:var(--navy);cursor:pointer}
+.scenes button[aria-pressed=true]{background:var(--gold)}
+.notify{margin-top:22px;border:1px solid var(--line);border-radius:20px;padding:18px 20px;background:var(--card)}
+.notify b{font:500 22px "Cormorant Garamond",serif;display:block}
+.notify .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:10px;margin-top:12px}
+.notify input{border:1px solid var(--line);border-radius:12px;background:var(--field);padding:0 14px;min-height:48px;width:100%}
+.seg{display:flex;gap:10px;flex-wrap:wrap}
+.seg label{flex:1 1 160px;display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:14px;padding:0 16px;cursor:pointer;background:var(--field);font-weight:600;min-height:52px}
+.seg label:has(input:checked){border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.fld .seg input{accent-color:var(--accent);width:18px;height:18px;min-height:0;padding:0;flex:none;border:0}
+[hidden]{display:none!important}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.fld{align-content:start}
+.fld select{border:1px solid var(--line);border-radius:14px;background:var(--field);padding:0 14px;min-height:50px;width:100%}
+.lab{font-weight:600;font-size:15px}
+@media(max-width:600px){.two{grid-template-columns:1fr}}
 /* forms */
 .formwrap{max-width:640px;margin:0 auto}
 .formcard{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:clamp(22px,4vw,40px);box-shadow:var(--shadow);margin-top:22px}
@@ -223,6 +258,10 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
 <symbol id="phone" viewBox="0 0 24 24"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
 <symbol id="mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></symbol>
 <symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="r360" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9.5" ry="4"/><path d="M12 3.5v4m0 9v4M15 18.5l2.5-.8-1-2.4"/></symbol>
+<symbol id="play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M10 8.5v7l6-3.5z"/></symbol>
+<symbol id="img" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="8.5" cy="10" r="1.8"/><path d="m3.5 17 5-4.5 4 3.5 3-2.5 5 4"/></symbol>
+<symbol id="bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20.5a2 2 0 0 0 4 0"/></symbol>
 <symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
 </svg>
 
@@ -313,19 +352,29 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
 <section data-view="enquire" class="sec">
   <div class="formwrap">
     <a class="back" href="#properties" id="eBack"><svg class="i"><use href="#left"/></svg>Back to property</a>
-    <h2>Enquire about this home</h2>
+    <h2 id="eTitle">Book a viewing</h2>
     <p class="mute" id="eSub" style="margin:.4em 0 0"></p>
-    <form class="formcard" id="eForm" novalidate>
-      <div class="fld"><label for="eName">Your name *</label><input id="eName" autocomplete="name" placeholder="Enter your full name"><span class="err">Please enter your name.</span></div>
-      <div class="fld"><label for="ePhone">Phone number *</label><div class="tel"><span>+91</span><input id="ePhone" inputmode="tel" autocomplete="tel-national" placeholder="Enter your number"></div><span class="err">Please enter a 10-digit mobile number.</span></div>
-      <div class="fld"><label for="eEmail">Email address</label><input id="eEmail" type="email" autocomplete="email" placeholder="Enter your email"><span class="err">Please check this email address.</span></div>
-      <div class="fld"><label for="eMsg">Message *</label><textarea id="eMsg" placeholder="Tell us about your requirement (e.g. move-in date, number of occupants)"></textarea><span class="err">Please enter a few more details (e.g. move-in date, duration).</span></div>
-      <button class="btn" type="submit" style="width:100%">Send enquiry <svg class="i"><use href="#arrow"/></svg></button>
+    <form class="formcard" id="eForm" name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="form-name" value="enquiry"><input type="hidden" name="home" id="eHome"><input type="hidden" name="ref" id="eRef">
+      <p hidden><label>Leave this empty <input name="bot-field"></label></p>
+      <div class="fld"><span class="lab">I'd like to</span><div class="seg">
+        <label><input type="radio" name="kind" value="Book a viewing" checked>Book a viewing</label>
+        <label><input type="radio" name="kind" value="Ask a question">Ask a question</label></div></div>
+      <div class="two" id="visitF">
+        <div class="fld"><label for="eDate">Preferred date *</label><input id="eDate" name="date" type="date"><span class="err">Please choose a date from tomorrow onwards.</span></div>
+        <div class="fld"><label for="eSlot">Preferred time</label><select id="eSlot" name="slot"><option>Morning (9 am – 12 pm)</option><option>Afternoon (12 – 4 pm)</option><option>Evening (4 – 7 pm)</option></select></div>
+      </div>
+      <div class="fld"><label for="eName">Your name *</label><input id="eName" name="name" autocomplete="name" placeholder="Enter your full name"><span class="err">Please enter your name.</span></div>
+      <div class="fld"><label for="ePhone">Phone number *</label><div class="tel"><span>+91</span><input id="ePhone" name="phone" inputmode="tel" autocomplete="tel-national" placeholder="Enter your number"></div><span class="err">Please enter a 10-digit mobile number.</span></div>
+      <div class="fld"><label for="eEmail">Email address</label><input id="eEmail" name="email" type="email" autocomplete="email" placeholder="Enter your email"><span class="err">Please check this email address.</span></div>
+      <div class="fld"><label for="eMsg" id="eMsgL">Message</label><textarea id="eMsg" name="message" placeholder="Tell us about your requirement (e.g. move-in date, number of occupants)"></textarea><span class="err">Please enter a few more details (e.g. move-in date, duration).</span></div>
+      <button class="btn" type="submit" id="eBtn" style="width:100%">Request viewing <svg class="i"><use href="#arrow"/></svg></button>
       <div class="hint"><svg class="i" style="width:16px;height:16px"><use href="#lock"/></svg>We'll get back to you within 1 business day.</div>
     </form>
   </div>
 </section>
 
+<form name="notify" data-netlify="true" netlify-honeypot="bot-field" hidden><input name="home"><input name="name"><input name="phone"><input name="email"><input name="bot-field"></form>
 <!-- THANKS -->
 <section data-view="thanks" class="sec"><div class="done" id="done"></div></section>
 
@@ -347,10 +396,10 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
 <section data-view="contact" class="sec">
   <div class="contact">
     <div><h2>Get in Touch</h2><p class="mute">Have a question about a property, or want to know more? We're here to help.</p><div class="cl" id="cl"></div></div>
-    <form class="formcard" id="cForm" novalidate style="margin:0">
-      <div class="fld"><label for="cName">Your name *</label><input id="cName" autocomplete="name"><span class="err">Please enter your name.</span></div>
-      <div class="fld"><label for="cEmail">Your email *</label><input id="cEmail" type="email" autocomplete="email"><span class="err">Please enter a valid email.</span></div>
-      <div class="fld"><label for="cMsg">Your message *</label><textarea id="cMsg"></textarea><span class="err">Please write a short message.</span></div>
+    <form class="formcard" id="cForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate style="margin:0"><input type="hidden" name="form-name" value="contact"><p hidden><input name="bot-field"></p>
+      <div class="fld"><label for="cName">Your name *</label><input id="cName" name="name" autocomplete="name"><span class="err">Please enter your name.</span></div>
+      <div class="fld"><label for="cEmail">Your email *</label><input id="cEmail" name="email" type="email" autocomplete="email"><span class="err">Please enter a valid email.</span></div>
+      <div class="fld"><label for="cMsg">Your message *</label><textarea id="cMsg" name="message"></textarea><span class="err">Please write a short message.</span></div>
       <button class="btn" type="submit" style="width:100%">Send message</button>
       <p class="note" id="cNote" role="status"></p>
     </form>
@@ -372,17 +421,19 @@ const CONTACT={phone:"",whatsapp:"",email:"",address:"Bengaluru, Karnataka"};
 /* phone/whatsapp: digits with country code, e.g. "919876543210". Leave "" until ready. */
 
 /* ---- Listings: add or change homes here ---- */
+/* tour: 360° photos, e.g. [{title:"Living room",src:"assets/360/devasandra-living.jpg"}] (equirectangular JPGs)
+   video: an MP4 path like "assets/video/devasandra.mp4", or youtube: the video id (e.g. "dQw4w9WgXcQ") */
 /* status: "now" (Available), "soon" (Opening Soon), "let" (Occupied). from: "YYYY-MM-DD" or "" */
 const P=[
  {id:"devasandra",name:"Devasandra",area:"Devasandra, Bengaluru",type:"Apartment",bhk:"2 BHK",furn:"Semi-furnished",rent:28000,fromPrice:false,status:"now",from:"",added:3,
   deposit:"To be confirmed",about:"A well-located residential home in Devasandra, offering a comfortable and practical place to live in a peaceful neighbourhood, with good natural light and easy access to daily essentials.",
-  amen:["Balcony","Power backup","Water supply 24×7","Covered parking","CCTV"],card:["dev_l","dev_d"],photos:["dev_l","dev_d","hero_light"]},
+  amen:["Balcony","Power backup","Water supply 24×7","Covered parking","CCTV"],card:["dev_l","dev_d"],photos:["dev_l","dev_d","hero_light"],tour:[],video:"",youtube:""},
  {id:"coffee-board",name:"Coffee Board",area:"Coffee Board Layout, Bengaluru",type:"Apartment",bhk:"3 BHK",furn:"Furnished",rent:32000,fromPrice:false,status:"now",from:"",added:2,
   deposit:"To be confirmed",about:"A spacious furnished home on a quiet, tree-lined street in Coffee Board Layout. Generous rooms, private balconies and a calm green setting.",
-  amen:["Balconies","Lift","Power backup","Covered parking","CCTV"],card:["cof_l","cof_d"],photos:["cof_l","cof_d","hero_dark"]},
+  amen:["Balconies","Lift","Power backup","Covered parking","CCTV"],card:["cof_l","cof_d"],photos:["cof_l","cof_d","hero_dark"],tour:[],video:"",youtube:""},
  {id:"kempapura",name:"Kempapura",area:"Kempapura, Bengaluru",type:"Hostel Residence",bhk:"Rooms",furn:"Furnished",rent:26000,fromPrice:true,status:"soon",from:"",added:1,
   deposit:"To be confirmed",about:"Furnished rooms in a well-kept residence in Kempapura, ready for professionals and students who want a calm, cared-for place to stay.",
-  amen:["Furnished rooms","Housekeeping","Power backup","Gated entry","CCTV"],card:["kem_l","kem_l"],photos:["kem_l","kem_d"]}
+  amen:["Furnished rooms","Housekeeping","Power backup","Gated entry","CCTV"],card:["kem_l","kem_l"],photos:["kem_l","kem_d"],tour:[],video:"",youtube:""}
 ];
 
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
@@ -443,9 +494,13 @@ function detail(p){
   gi=0;const maps="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(p.area);
   $("#detail").innerHTML=`<a class="back" href="#properties">${ic("left")}Back to Properties</a>
   <div class="detail">
-    <div><div class="gal" id="gal">${p.photos.map((f,i)=>`<img src="${ph(f)}" alt="${esc(p.name)} photo ${i+1}" class="${i?"":"on"}">`).join("")}
+    <div><div class="mtabs" role="group" aria-label="Media">
+      <button type="button" class="pill" data-m="ph" aria-pressed="true">${ic("img",'style="width:16px;height:16px;vertical-align:-3px;margin-right:6px"')}Photos</button>
+      <button type="button" class="pill" data-m="tour" aria-pressed="false">${ic("r360",'style="width:16px;height:16px;vertical-align:-3px;margin-right:6px"')}360° Tour</button>
+      <button type="button" class="pill" data-m="vid" aria-pressed="false">${ic("play",'style="width:16px;height:16px;vertical-align:-3px;margin-right:6px"')}Video</button></div>
+      <div class="stage"><div class="gal" id="gal">${p.photos.map((f,i)=>`<img src="${ph(f)}" alt="${esc(p.name)} photo ${i+1}" class="${i?"":"on"}">`).join("")}
       <button class="nav2 prev" type="button" aria-label="Previous photo">${ic("left")}</button><button class="nav2 next" type="button" aria-label="Next photo">${ic("right")}</button>
-      <div class="dots">${p.photos.map((f,i)=>`<button type="button" aria-label="Photo ${i+1}" class="${i?"":"on"}" data-g="${i}"></button>`).join("")}</div></div></div>
+      <div class="dots">${p.photos.map((f,i)=>`<button type="button" aria-label="Photo ${i+1}" class="${i?"":"on"}" data-g="${i}"></button>`).join("")}</div></div><div id="alt" hidden></div></div></div>
     <div>
       <div class="dhead"><h2>${esc(p.name)}</h2><span class="rent">${p.fromPrice?"<small>From </small>":""}${inr(p.rent)} <small>/ month</small></span></div>
       <div class="loc" style="margin-top:8px">${ic("pin")}${esc(p.area)}<span class="badge inline ${ST[p.status][1]}" style="margin-left:8px">${ST[p.status][0]}</span></div>
@@ -456,37 +511,79 @@ function detail(p){
         <div class="amen">${p.amen.map(a=>`<span>${esc(a)}</span>`).join("")}</div></div>
       <div data-tp="ph" hidden><div class="thumbs">${p.photos.map((f,i)=>`<button type="button" data-g="${i}" aria-label="Show photo ${i+1}"><img src="${ph(f)}" alt=""></button>`).join("")}</div></div>
       <div data-tp="lo" hidden><p class="mute">${esc(p.area)}. The exact address is shared when you book a viewing.</p><a class="link gold" href="${maps}" target="_blank" rel="noopener">Open ${esc(p.name)} in Google Maps ${ic("arrow")}</a></div>
-      <div class="dacts">${p.status==="let"?`<span class="mute">This home is occupied. Ask us to tell you when it opens up.</span><a class="btn" href="#contact">Contact us</a>`:`<a class="btn" href="#enquire-${p.id}">Enquire about this home ${ic("arrow")}</a>`}
-      <button class="btn line" type="button" id="share">${ic("share")}Share link</button></div>
+      <div class="dacts">${p.status==="let"?"":`<a class="btn" href="#visit-${p.id}">${ic("cal")}Book a viewing</a><a class="btn line" href="#enquire-${p.id}">Ask a question</a>`}
+      <button class="btn line" type="button" id="share">${ic("share")}Share</button></div>
+      ${p.status==="now"?"":`<form class="notify" id="nForm" novalidate><b>${ic("bell",'style="color:var(--accent);vertical-align:-3px;margin-right:6px"')}${p.status==="let"?"Occupied right now":"Opening soon"}. Want to know first?</b>
+        <span class="mute" style="font-size:14px">We'll message you the day ${esc(p.name)} is ready to view.</span>
+        <div class="row"><input id="nName" placeholder="Your name *" autocomplete="name" aria-label="Your name"><input id="nPhone" placeholder="Mobile number *" inputmode="tel" aria-label="Mobile number"><input id="nEmail" type="email" placeholder="Email (optional)" aria-label="Email"><button class="btn" type="submit" style="min-height:48px">Notify me</button></div>
+        <p class="note" id="nNote" role="status"></p></form>`}
     </div></div>`;
   const imgs=$$("#gal img"),dots=$$("#gal .dots button");
   const go=i=>{gi=(i+imgs.length)%imgs.length;imgs.forEach((m,k)=>m.classList.toggle("on",k===gi));dots.forEach((d,k)=>d.classList.toggle("on",k===gi))};
   $("#detail").onclick=e=>{const t=e.target.closest("button");if(!t)return;
     if(t.classList.contains("prev"))go(gi-1);else if(t.classList.contains("next"))go(gi+1);
     else if(t.dataset.g){go(+t.dataset.g);$("#gal").scrollIntoView({block:"center"})}
+    else if(t.dataset.m)media(p,t.dataset.m);
+    else if(t.dataset.sc&&pv){pv.loadScene(t.dataset.sc);$$(".scenes button").forEach(b=>b.setAttribute("aria-pressed",b===t))}
     else if(t.dataset.t){$$(".tabs button").forEach(b=>b.setAttribute("aria-selected",b===t));$$("[data-tp]").forEach(x=>x.hidden=x.dataset.tp!==t.dataset.t)}
     else if(t.id==="share"){const url=location.href.split("#")[0]+"#p-"+p.id;const txt=`${p.name} · ${p.bhk} · ${p.fromPrice?"from ":""}${inr(p.rent)}/month. ${url}`;
       (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast("Link copied. Paste it into WhatsApp or email."),()=>toast(url))}};
+  const nf=$("#nForm");if(nf)nf.addEventListener("submit",async e=>{e.preventDefault();
+    const n=$("#nName").value.trim(),ph=$("#nPhone").value.replace(/\D/g,"").slice(-10),em=$("#nEmail").value.trim();
+    if(!n||!/^[6-9]\d{9}$/.test(ph)){$("#nNote").textContent="Please add your name and a 10-digit mobile number.";return}
+    $("#nNote").textContent="Sending…";
+    const ok=await sendForm("notify",{home:p.name,name:n,phone:"+91 "+ph,email:em});
+    $("#nNote").textContent=ok?`Thank you, ${n.split(" ")[0]}. We'll let you know as soon as ${p.name} is ready.`:"We couldn't save this just now. Please try again, or use the Contact page.";
+    if(ok)nf.querySelectorAll("input,button").forEach(x=>x.disabled=true)});
 }
+/* media: photos / 360° tour / video */
+let pv=null;
+const loadPano=()=>window.pannellum?Promise.resolve():new Promise((res,rej)=>{const l=document.createElement("link");l.rel="stylesheet";l.href="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.css";document.head.append(l);
+  const sc=document.createElement("script");sc.src="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.js";sc.onload=res;sc.onerror=rej;document.head.append(sc)});
+const soon=(p,icon,title,text)=>`<div class="soonph"><img src="${ph(p.photos[0])}" alt=""><div>${ic(icon)}<b>${title}</b><p>${text}</p></div></div>`;
+function media(p,m){
+  $$(".mtabs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.m===m));
+  const alt=$("#alt"),gal=$("#gal");if(pv){try{pv.destroy()}catch(e){}pv=null}
+  alt.querySelectorAll("video").forEach(v=>v.pause());
+  gal.hidden=m!=="ph";alt.hidden=m==="ph";if(m==="ph"){alt.innerHTML="";return}
+  if(m==="vid"){
+    alt.innerHTML=p.youtube?`<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(p.youtube)}?rel=0" title="${esc(p.name)} video tour" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`
+      :p.video?`<video src="${esc(p.video)}" poster="${ph(p.photos[0])}" controls playsinline preload="metadata"></video>`
+      :soon(p,"play","Video tour coming soon",`We're filming a short walk-through of ${esc(p.name)}. Book a viewing to see it in person.`);return}
+  if(!p.tour.length){alt.innerHTML=soon(p,"r360","360° tour coming soon",`Soon you'll be able to walk through ${esc(p.name)} room by room, from the entrance to the balcony.`);return}
+  alt.innerHTML=`<div id="pano"></div>${p.tour.length>1?`<div class="scenes">${p.tour.map((t,i)=>`<button type="button" data-sc="s${i}" aria-pressed="${!i}">${esc(t.title)}</button>`).join("")}</div>`:""}`;
+  loadPano().then(()=>{const scenes={};p.tour.forEach((t,i)=>scenes["s"+i]={title:t.title,type:"equirectangular",panorama:t.src,autoLoad:true});
+    pv=pannellum.viewer("pano",{default:{firstScene:"s0",autoLoad:true,autoRotate:-2,compass:false,showZoomCtrl:false},scenes})})
+   .catch(()=>{alt.innerHTML=soon(p,"r360","360° tour couldn't load","Please check your connection and try again.")});
+}
+const sendForm=async(form,data)=>{try{const r=await fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams({"form-name":form,...data}).toString()});return r.ok}catch(e){return false}};
 
 /* enquiry */
 let cur=null;
-function enquire(p){cur=p;$("#eSub").textContent=`${p.name} · ${p.bhk} · ${p.fromPrice?"from ":""}${inr(p.rent)} / month`;$("#eBack").href="#p-"+p.id;$$("#eForm .fld").forEach(f=>f.classList.remove("bad"))}
+const kindSync=()=>{const v=$("#eForm").querySelector("input[name=kind]:checked").value==="Book a viewing";$("#visitF").hidden=!v;$("#eTitle").textContent=v?"Book a viewing":"Ask about this home";
+  $("#eBtn").firstChild.textContent=v?"Request viewing ":"Send enquiry ";$("#eMsgL").textContent=v?"Message (optional)":"Message *"};
+$$("#eForm input[name=kind]").forEach(r=>r.addEventListener("change",kindSync));
+const tmr=()=>{const d=new Date(Date.now()+864e5);return d.toISOString().slice(0,10)};
+function enquire(p,visit){$("#eForm").querySelector(`input[value="${visit?"Book a viewing":"Ask a question"}"]`).checked=true;$("#eDate").min=tmr();kindSync();cur=p;$("#eSub").textContent=`${p.name} · ${p.bhk} · ${p.fromPrice?"from ":""}${inr(p.rent)} / month`;$("#eBack").href="#p-"+p.id;$$("#eForm .fld").forEach(f=>f.classList.remove("bad"))}
 const bad=(id,b)=>{$(id).closest(".fld").classList.toggle("bad",b);return b};
-$("#eForm").addEventListener("submit",e=>{e.preventDefault();
-  const name=$("#eName").value.trim(),phone=$("#ePhone").value.replace(/\D/g,""),email=$("#eEmail").value.trim(),msg=$("#eMsg").value.trim();
-  const errs=[bad("#eName",!name),bad("#ePhone",!/^[6-9]\d{9}$/.test(phone.slice(-10))||phone.length<10),bad("#eEmail",!!email&&!/^\S+@\S+\.\S+$/.test(email)),bad("#eMsg",msg.length<10)];
+$("#eForm").addEventListener("submit",async e=>{e.preventDefault();
+  const visit=$("#eForm").querySelector("input[name=kind]:checked").value==="Book a viewing";
+  const name=$("#eName").value.trim(),phone=$("#ePhone").value.replace(/\D/g,""),email=$("#eEmail").value.trim(),msg=$("#eMsg").value.trim(),date=$("#eDate").value,slot=$("#eSlot").value;
+  const errs=[bad("#eDate",visit&&(!date||date<tmr())),bad("#eName",!name),bad("#ePhone",!/^[6-9]\d{9}$/.test(phone.slice(-10))||phone.length<10),bad("#eEmail",!!email&&!/^\S+@\S+\.\S+$/.test(email)),bad("#eMsg",!visit&&msg.length<10)];
   if(errs.some(Boolean)){$("#eForm .bad input,#eForm .bad textarea")?.focus();return}
   const ref="MTV-"+String(Math.floor(1000+Math.random()*9000));
-  const body=`Enquiry ${ref}\nHome: ${cur.name} (${cur.bhk}, ${cur.area})\nName: ${name}\nPhone: +91 ${phone.slice(-10)}${email?"\nEmail: "+email:""}\nMessage: ${msg}`;
+  const when=visit?new Date(date+"T00:00").toLocaleDateString("en-IN",{weekday:"short",day:"numeric",month:"short"})+", "+slot.replace(/ \(.*/,""):"";
+  const btn=$("#eBtn");btn.disabled=true;btn.style.opacity=.7;
+  const ok=await sendForm("enquiry",{home:`${cur.name} (${cur.bhk}, ${cur.area})`,ref,kind:visit?"Book a viewing":"Ask a question",date:visit?date:"",slot:visit?slot:"",name,phone:"+91 "+phone.slice(-10),email,message:msg});
+  btn.disabled=false;btn.style.opacity="";
+  const body=`${visit?"Viewing request":"Enquiry"} ${ref}\nHome: ${cur.name} (${cur.bhk}, ${cur.area})${visit?"\nPreferred: "+when:""}\nName: ${name}\nPhone: +91 ${phone.slice(-10)}${email?"\nEmail: "+email:""}${msg?"\nMessage: "+msg:""}`;
   const wa=CONTACT.whatsapp?`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(body)}`:"";
-  const mail=CONTACT.email?`mailto:${CONTACT.email}?subject=${encodeURIComponent("Mativio enquiry "+ref+" · "+cur.name)}&body=${encodeURIComponent(body)}`:"";
-  $("#done").innerHTML=`<div class="tick">${ic("check")}</div><h2>Enquiry ready, ${esc(name.split(" ")[0])}!</h2>
-    <p class="mute">Thank you for your interest in the ${esc(cur.name)} property.${wa||mail?" Tap below to send it to us and we'll get back to you within 1 business day.":""}</p>
-    <div class="sum"><div>${ic("home")}<span><b>${esc(cur.name)}</b><br><span class="mute">${cur.bhk}</span></span></div><div>${ic("cal")}<span>Enquiry ref. <b>${ref}</b></span></div></div>
-    <div class="dacts" style="justify-content:center">${wa?`<a class="btn" href="${wa}" target="_blank" rel="noopener">Send on WhatsApp</a>`:""}${mail?`<a class="btn${wa?" line":""}" href="${mail}">Send by email</a>`:""}<a class="btn line" href="#properties">Back to Properties ${ic("arrow")}</a></div>
-    ${wa||mail?"":`<p class="note">Preview site: enquiries are not delivered yet. Add a WhatsApp number or email in the site settings to switch this on.</p>`}`;
-  $("#eForm").reset();location.hash="thanks";
+  const mail=CONTACT.email?`mailto:${CONTACT.email}?subject=${encodeURIComponent("Mativio "+ref+" · "+cur.name)}&body=${encodeURIComponent(body)}`:"";
+  $("#done").innerHTML=`<div class="tick">${ic("check")}</div><h2>${ok?(visit?"Viewing requested!":"Enquiry received!"):`Almost there, ${esc(name.split(" ")[0])}`}</h2>
+    <p class="mute">${ok?`Thank you, ${esc(name.split(" ")[0])}. ${visit?"We'll call you to confirm the viewing time":"Our family will get back to you"} within 1 business day.`:"We couldn't send your request from this page."+(wa||mail?" Tap below to send it directly.":" Please try again in a moment.")}</p>
+    <div class="sum"><div>${ic("home")}<span><b>${esc(cur.name)}</b><br><span class="mute">${cur.bhk}</span></span></div>${visit?`<div>${ic("cal")}<span>${esc(when)}</span></div>`:""}<div>${ic("check")}<span>Reference <b>${ref}</b></span></div></div>
+    <div class="dacts" style="justify-content:center">${!ok&&wa?`<a class="btn" href="${wa}" target="_blank" rel="noopener">Send on WhatsApp</a>`:""}${!ok&&mail?`<a class="btn${wa?" line":""}" href="${mail}">Send by email</a>`:""}${ok&&wa?`<a class="btn line" href="${wa}" target="_blank" rel="noopener">Also message us on WhatsApp</a>`:""}<a class="btn line" href="#properties">Back to Properties ${ic("arrow")}</a></div>`;
+  if(ok||wa||mail)$("#eForm").reset();location.hash="thanks";
 });
 
 /* contact */
@@ -494,8 +591,11 @@ $("#cl").innerHTML=[["phone",CONTACT.phone?"+"+CONTACT.phone:"Phone number to be
 $("#cForm").addEventListener("submit",e=>{e.preventDefault();
   const errs=[bad("#cName",!$("#cName").value.trim()),bad("#cEmail",!/^\S+@\S+\.\S+$/.test($("#cEmail").value.trim())),bad("#cMsg",$("#cMsg").value.trim().length<3)];
   if(errs.some(Boolean))return;
-  if(CONTACT.email){location.href=`mailto:${CONTACT.email}?subject=${encodeURIComponent("Message from "+$("#cName").value)}&body=${encodeURIComponent($("#cMsg").value+"\n\n"+$("#cEmail").value)}`;$("#cNote").textContent="Your email app should open with the message ready to send."}
-  else $("#cNote").textContent="Preview site: messages are not delivered yet. Contact details will be added soon.";
+  $("#cNote").textContent="Sending…";
+  sendForm("contact",{name:$("#cName").value.trim(),email:$("#cEmail").value.trim(),message:$("#cMsg").value.trim()}).then(ok=>{
+    if(ok){$("#cNote").textContent="Thank you. Your message has been sent and we'll reply within 1 business day.";$("#cForm").reset()}
+    else if(CONTACT.email){location.href=`mailto:${CONTACT.email}?subject=${encodeURIComponent("Message from "+$("#cName").value)}&body=${encodeURIComponent($("#cMsg").value+"\n\n"+$("#cEmail").value)}`;$("#cNote").textContent="Your email app should open with the message ready to send."}
+    else $("#cNote").textContent="We couldn't send this just now. Please try again in a moment."});
 });
 
 /* router */
@@ -503,9 +603,10 @@ function route(){
   const h=location.hash.slice(1)||"home";let v=h,p=null;
   if(h.startsWith("p-")){p=P.find(x=>x.id===h.slice(2));v=p?"property":"properties"}
   else if(h.startsWith("enquire-")){p=P.find(x=>x.id===h.slice(8));v=p?"enquire":"properties"}
+  else if(h.startsWith("visit-")){p=P.find(x=>x.id===h.slice(6));v=p?"enquire":"properties";var vis=true}
   else if(h==="thanks"&&!$("#done").innerHTML)v="properties";
   if(!$$("[data-view]").some(s=>s.dataset.view===v))v="home";
-  if(v==="property")detail(p);if(v==="enquire")enquire(p);if(v==="properties")renderList();
+  if(v==="property")detail(p);if(v==="enquire")enquire(p,!!vis);if(v==="properties")renderList();
   $$("[data-view]").forEach(s=>s.classList.toggle("on",s.dataset.view===v));
   $$("[data-nav]").forEach(a=>a.toggleAttribute("aria-current",a.dataset.nav===v||(v==="property"&&a.dataset.nav==="properties")));
   $$("[data-nav][aria-current]").forEach(a=>a.setAttribute("aria-current","page"));
