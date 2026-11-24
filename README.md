@@ -20,8 +20,8 @@ Each home in `P` has:
 Until these are added, the property page shows "coming soon" in the 360° Tour and Video tabs.
 
 ## Enquiries (Netlify Forms)
-Three forms are sent to Netlify: `enquiry` (viewing requests and questions), `notify` (alerts for Opening Soon / Occupied homes) and `contact`.
+Four forms are sent to Netlify: `enquiry` (viewing requests and questions), `notify` (alerts for one Opening Soon / Occupied home), `requirement` (what a visitor is looking for: locality, size, budget, move-in) and `contact`.
 In Netlify: **Forms → Enable form detection**, then redeploy once. Submissions appear under **Forms**; add email alerts under **Site configuration → Notifications → Emails and webhooks → Form submission notifications**.
 
 ## Pages (hash links)
-`#home`, `#properties`, `#p-<id>` (one home, shareable), `#visit-<id>` (book a viewing), `#enquire-<id>` (ask a question), `#story`, `#contact`.
+`#home`, `#properties`, `#book` (book a viewing for any home), `#p-<id>` (one home, shareable), `#visit-<id>` (book a viewing), `#enquire-<id>` (ask a question), `#story`, `#contact`.

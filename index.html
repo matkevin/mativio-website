@@ -201,6 +201,9 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
 .fld select{border:1px solid var(--line);border-radius:14px;background:var(--field);padding:0 14px;min-height:50px;width:100%}
 .lab{font-weight:600;font-size:15px}
 @media(max-width:600px){.two{grid-template-columns:1fr}}
+.req{margin-top:32px;display:grid;gap:18px}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:0 16px;align-items:start}
+.rgrid .fld{margin-bottom:12px}
 /* forms */
 .formwrap{max-width:640px;margin:0 auto}
 .formcard{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:clamp(22px,4vw,40px);box-shadow:var(--shadow);margin-top:22px}
@@ -279,7 +282,7 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
       <button type="button" data-mode="light" aria-label="Light theme"><svg class="i"><use href="#sun"/></svg></button>
       <button type="button" data-mode="dark" aria-label="Dark theme"><svg class="i"><use href="#moon"/></svg></button>
     </div>
-    <a class="btn" href="#properties" style="min-height:44px;padding:0 22px;border:0">Enquire</a>
+    <a class="btn" href="#book" style="min-height:44px;padding:0 22px;border:0">Book a viewing</a>
   </nav>
   <button class="burger" type="button" id="burger" aria-label="Open menu"><svg class="i"><use href="#menu"/></svg></button>
 </div></header>
@@ -291,6 +294,7 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
   <a href="#properties"><svg class="i"><use href="#bldg"/></svg>Properties</a>
   <a href="#story"><svg class="i"><use href="#sprout"/></svg>Our Story</a>
   <a href="#contact"><svg class="i"><use href="#mail"/></svg>Contact</a>
+  <a href="#book"><svg class="i"><use href="#cal"/></svg>Book a viewing</a>
   <div class="modes">
     <label><svg class="i"><use href="#sun"/></svg>Light mode<input type="radio" name="dm" value="light"></label>
     <label><svg class="i"><use href="#moon"/></svg>Dark mode<input type="radio" name="dm" value="dark"></label>
@@ -343,6 +347,18 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
     </div>
   </div>
   <div class="grid" id="listGrid"></div>
+  <form class="formcard req" id="rForm" novalidate>
+    <div><h3>Not finding the right home?</h3><p class="mute" style="margin:.4em 0 0">Tell us what you're looking for. We'll message you as soon as a home that fits becomes available.</p></div>
+    <div class="rgrid">
+      <div class="fld"><label for="rLoc">Locality</label><select id="rLoc"></select></div>
+      <div class="fld"><label for="rSize">Home size</label><select id="rSize"><option>Any</option><option>Room</option><option>1 BHK</option><option>2 BHK</option><option>3 BHK</option><option>4 BHK or more</option></select></div>
+      <div class="fld"><label for="rBud">Budget per month</label><select id="rBud"><option>Any</option><option>Up to ₹20,000</option><option>₹20,000 – ₹30,000</option><option>₹30,000 – ₹45,000</option><option>₹45,000 +</option></select></div>
+      <div class="fld"><label for="rWhen">Move in</label><select id="rWhen"></select></div>
+      <div class="fld"><label for="rName">Your name *</label><input id="rName" autocomplete="name"><span class="err">Please enter your name.</span></div>
+      <div class="fld"><label for="rPhone">Mobile number *</label><div class="tel"><span>+91</span><input id="rPhone" inputmode="tel" autocomplete="tel-national"></div><span class="err">Please enter a 10-digit mobile number.</span></div>
+    </div>
+    <div class="dacts" style="margin-top:4px;align-items:center"><button class="btn" type="submit">Notify me of matching homes</button><span class="note" id="rNote" role="status" style="margin:0"></span></div>
+  </form>
 </section>
 
 <!-- DETAIL -->
@@ -357,6 +373,7 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
     <form class="formcard" id="eForm" name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
       <input type="hidden" name="form-name" value="enquiry"><input type="hidden" name="home" id="eHome"><input type="hidden" name="ref" id="eRef">
       <p hidden><label>Leave this empty <input name="bot-field"></label></p>
+      <div class="fld" id="homeF"><label for="eHomeSel">Which home? *</label><select id="eHomeSel"></select><span class="err">Please choose a home.</span></div>
       <div class="fld"><span class="lab">I'd like to</span><div class="seg">
         <label><input type="radio" name="kind" value="Book a viewing" checked>Book a viewing</label>
         <label><input type="radio" name="kind" value="Ask a question">Ask a question</label></div></div>
@@ -375,6 +392,7 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
 </section>
 
 <form name="notify" data-netlify="true" netlify-honeypot="bot-field" hidden><input name="home"><input name="name"><input name="phone"><input name="email"><input name="bot-field"></form>
+<form name="requirement" data-netlify="true" netlify-honeypot="bot-field" hidden><input name="locality"><input name="size"><input name="budget"><input name="move_in"><input name="name"><input name="phone"><input name="bot-field"></form>
 <!-- THANKS -->
 <section data-view="thanks" class="sec"><div class="done" id="done"></div></section>
 
@@ -564,11 +582,17 @@ const kindSync=()=>{const v=$("#eForm").querySelector("input[name=kind]:checked"
   $("#eBtn").firstChild.textContent=v?"Request viewing ":"Send enquiry ";$("#eMsgL").textContent=v?"Message (optional)":"Message *"};
 $$("#eForm input[name=kind]").forEach(r=>r.addEventListener("change",kindSync));
 const tmr=()=>{const d=new Date(Date.now()+864e5);return d.toISOString().slice(0,10)};
-function enquire(p,visit){$("#eForm").querySelector(`input[value="${visit?"Book a viewing":"Ask a question"}"]`).checked=true;$("#eDate").min=tmr();kindSync();cur=p;$("#eSub").textContent=`${p.name} · ${p.bhk} · ${p.fromPrice?"from ":""}${inr(p.rent)} / month`;$("#eBack").href="#p-"+p.id;$$("#eForm .fld").forEach(f=>f.classList.remove("bad"))}
+const open=P.filter(x=>x.status!=="let");
+$("#eHomeSel").innerHTML=`<option value="">Choose a home</option>`+open.map(x=>`<option value="${x.id}">${esc(x.name)} · ${x.bhk} · ${x.fromPrice?"from ":""}${inr(x.rent)}</option>`).join("");
+const subOf=p=>`${p.name} · ${p.bhk} · ${p.fromPrice?"from ":""}${inr(p.rent)} / month`;
+$("#eHomeSel").addEventListener("change",e=>{cur=P.find(x=>x.id===e.target.value)||null;$("#eSub").textContent=cur?subOf(cur):"Choose a home and a time that suits you."});
+function enquire(p,visit){$("#eForm").querySelector(`input[value="${visit?"Book a viewing":"Ask a question"}"]`).checked=true;$("#eDate").min=tmr();kindSync();$$("#eForm .fld").forEach(f=>f.classList.remove("bad"));
+  cur=p;$("#homeF").hidden=!!p;$("#eHomeSel").value=p?p.id:"";$("#eSub").textContent=p?subOf(p):"Choose a home and a time that suits you.";$("#eBack").href=p?"#p-"+p.id:"#properties";$("#eBack").lastChild.textContent=p?"Back to property":"Back to properties"}
 const bad=(id,b)=>{$(id).closest(".fld").classList.toggle("bad",b);return b};
 $("#eForm").addEventListener("submit",async e=>{e.preventDefault();
   const visit=$("#eForm").querySelector("input[name=kind]:checked").value==="Book a viewing";
   const name=$("#eName").value.trim(),phone=$("#ePhone").value.replace(/\D/g,""),email=$("#eEmail").value.trim(),msg=$("#eMsg").value.trim(),date=$("#eDate").value,slot=$("#eSlot").value;
+  if(!cur){bad("#eHomeSel",true);$("#eHomeSel").focus();return}bad("#eHomeSel",false);
   const errs=[bad("#eDate",visit&&(!date||date<tmr())),bad("#eName",!name),bad("#ePhone",!/^[6-9]\d{9}$/.test(phone.slice(-10))||phone.length<10),bad("#eEmail",!!email&&!/^\S+@\S+\.\S+$/.test(email)),bad("#eMsg",!visit&&msg.length<10)];
   if(errs.some(Boolean)){$("#eForm .bad input,#eForm .bad textarea")?.focus();return}
   const ref="MTV-"+String(Math.floor(1000+Math.random()*9000));
@@ -584,6 +608,18 @@ $("#eForm").addEventListener("submit",async e=>{e.preventDefault();
     <div class="sum"><div>${ic("home")}<span><b>${esc(cur.name)}</b><br><span class="mute">${cur.bhk}</span></span></div>${visit?`<div>${ic("cal")}<span>${esc(when)}</span></div>`:""}<div>${ic("check")}<span>Reference <b>${ref}</b></span></div></div>
     <div class="dacts" style="justify-content:center">${!ok&&wa?`<a class="btn" href="${wa}" target="_blank" rel="noopener">Send on WhatsApp</a>`:""}${!ok&&mail?`<a class="btn${wa?" line":""}" href="${mail}">Send by email</a>`:""}${ok&&wa?`<a class="btn line" href="${wa}" target="_blank" rel="noopener">Also message us on WhatsApp</a>`:""}<a class="btn line" href="#properties">Back to Properties ${ic("arrow")}</a></div>`;
   if(ok||wa||mail)$("#eForm").reset();location.hash="thanks";
+});
+
+/* requirement / alert sign-up */
+$("#rLoc").innerHTML="<option>Any</option>"+[...new Set(P.map(x=>x.name))].map(n=>`<option>${n}</option>`).join("")+"<option>Elsewhere in Bengaluru</option>";
+$("#rWhen").innerHTML="<option>Flexible</option>"+[0,1,2,3].map(i=>{const d=new Date();d.setDate(1);d.setMonth(d.getMonth()+i);return `<option>${d.toLocaleDateString("en-IN",{month:"long",year:"numeric"})}</option>`}).join("");
+$("#rForm").addEventListener("submit",async e=>{e.preventDefault();
+  const n=$("#rName").value.trim(),ph=$("#rPhone").value.replace(/\D/g,"").slice(-10);
+  const errs=[bad("#rName",!n),bad("#rPhone",!/^[6-9]\d{9}$/.test(ph))];if(errs.some(Boolean))return;
+  $("#rNote").textContent="Sending…";
+  const ok=await sendForm("requirement",{locality:$("#rLoc").value,size:$("#rSize").value,budget:$("#rBud").value,move_in:$("#rWhen").value,name:n,phone:"+91 "+ph});
+  $("#rNote").textContent=ok?`Thank you, ${n.split(" ")[0]}. We'll message you when a matching home opens up.`:"We couldn't save this just now. Please try again in a moment.";
+  if(ok)$("#rForm").reset();
 });
 
 /* contact */
@@ -603,6 +639,7 @@ function route(){
   const h=location.hash.slice(1)||"home";let v=h,p=null;
   if(h.startsWith("p-")){p=P.find(x=>x.id===h.slice(2));v=p?"property":"properties"}
   else if(h.startsWith("enquire-")){p=P.find(x=>x.id===h.slice(8));v=p?"enquire":"properties"}
+  else if(h==="book"){v="enquire";var vis=true}
   else if(h.startsWith("visit-")){p=P.find(x=>x.id===h.slice(6));v=p?"enquire":"properties";var vis=true}
   else if(h==="thanks"&&!$("#done").innerHTML)v="properties";
   if(!$$("[data-view]").some(s=>s.dataset.view===v))v="home";
