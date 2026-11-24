@@ -295,6 +295,35 @@ body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{
 @keyframes shim{to{background-position:-150% 0}}
 .nf{text-align:center;max-width:560px;margin:0 auto;padding:clamp(30px,6vw,80px) 0}
 .nf .big{font:500 clamp(90px,14vw,150px)/1 "Cormorant Garamond",serif;color:var(--accent)}
+/* hide the injected "Powered by Netlify" badge and its card */
+#nl-badge,.nl-badge,#nl-card,.nl-card{display:none!important}
+/* mobile first fold: full-bleed photo hero (<834px) */
+.mhero,.mtoggle{display:none}
+@media(max-width:833px){
+  .burger{margin-left:0}
+  .mtoggle{display:grid;place-items:center;margin-left:auto;width:48px;height:48px;border-radius:50%;border:0;cursor:pointer;background:color-mix(in srgb,#fffaf3 85%,transparent);color:var(--accent);box-shadow:0 4px 14px rgba(93,70,35,.15)}
+  .mtoggle svg.i{width:24px;height:24px}
+  :root[data-theme=dark] .mtoggle{width:62px;height:34px;border-radius:999px;background:transparent;border:1.5px solid var(--gold);color:var(--gold);box-shadow:none;justify-items:start;padding-left:8px}
+  :root[data-theme=dark] .mtoggle svg.i{width:20px;height:20px}
+  body[data-v=home] header:not(.scrolled){background:transparent}
+  body[data-v=home] main>[data-view=home]{margin-top:-92px}
+  .hero{display:flex;flex-direction:column;position:relative;margin-inline:calc(-1*var(--side));padding:120px var(--side) 0;min-height:100svh;overflow:hidden;gap:0}
+  .hero>div:not(.mhero){position:relative;z-index:2}
+  .hero .shot{display:none}
+  .hero .tag{justify-content:center;margin-bottom:30px;font-size:12px;letter-spacing:.3em}
+  .hero .tag.rule::before,.hero .tag.rule::after{width:40px}
+  .hero h1{font-size:clamp(44px,12.4vw,60px);line-height:1.02}
+  .hero p.sub{font-size:19px;max-width:20ch;margin:20px 0 30px}
+  .hero .ctas .know{display:none}
+  .hero .ctas .btn{min-height:56px;padding:0 30px;font-size:17px}
+  .mhero{display:block;position:absolute;left:0;right:0;bottom:0;height:62%;z-index:1}
+  .mhero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center bottom}
+  .mhero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(var(--bg) 0%,color-mix(in srgb,var(--bg) 70%,transparent) 14%,transparent 42%)}
+  :root[data-theme=dark] .mhero{height:52%}
+  :root[data-theme=dark] .hero{background:linear-gradient(#0f1b2b,#142235 60%)}
+  :root[data-theme=dark] .mhero::before{background:linear-gradient(#142235 0%,rgba(20,34,53,.6) 18%,transparent 45%)}
+  .pillars{margin-top:24px}
+}
 /* forms */
 .formwrap{max-width:640px;margin:0 auto}
 .formcard{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:clamp(22px,4vw,40px);box-shadow:var(--shadow);margin-top:22px}
@@ -396,6 +425,7 @@ body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{
     </div>
     <a class="btn" href="#book" style="min-height:44px;padding:0 22px;border:0;gap:0">Book<span class="bk">&nbsp;a viewing</span></a>
   </nav>
+  <button class="mtoggle" type="button" id="mtoggle" aria-label="Switch to dark theme"><svg class="i"><use href="#sun"/></svg></button>
   <button class="burger" type="button" id="burger" aria-label="Open menu"><svg class="i"><use href="#menu"/></svg></button>
 </div></header>
 
@@ -418,11 +448,12 @@ body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{
 <!-- HOME -->
 <section data-view="home">
   <div class="hero">
+    <div class="mhero" aria-hidden="true"><img class="only-l" src="assets/photos/mhero_l.jpg" alt=""><img class="only-d" src="assets/photos/mhero_d.jpg" alt=""></div>
     <div>
       <div class="tag rule">Land · Living · Legacy</div>
       <h1>Find a place to call home.</h1>
       <p class="sub">Family-owned homes, thoughtfully cared for in Bengaluru.</p>
-      <div class="ctas"><a class="btn" href="#properties">Explore available homes <svg class="i"><use href="#arrow"/></svg></a><a class="link" href="#story">Get to know us</a></div>
+      <div class="ctas"><a class="btn" href="#properties">Explore available homes <svg class="i"><use href="#arrow"/></svg></a><a class="link know" href="#story">Get to know us</a></div>
     </div>
     <div class="shot"><img class="only-l" src="assets/photos/hero_light.jpg" alt="Mativio residence among trees in golden light"><img class="only-d" src="assets/photos/hero_dark.jpg" alt="Mativio residence at dusk with the Mativio sign"></div>
   </div>
@@ -710,6 +741,8 @@ function setMode(m,save){document.documentElement.dataset.theme=m;$$("[data-mode
 setMode(document.documentElement.dataset.theme==="dark"?"dark":"light");
 $$("[data-mode]").forEach(b=>b.addEventListener("click",()=>setMode(b.dataset.mode,1)));
 $$("input[name=dm]").forEach(r=>r.addEventListener("change",()=>setMode(r.value,1)));
+const mt=$("#mtoggle");const mtSync=()=>{const d=document.documentElement.dataset.theme==="dark";mt.setAttribute("aria-label",d?"Switch to light theme":"Switch to dark theme")};
+mt.addEventListener("click",()=>{setMode(document.documentElement.dataset.theme==="dark"?"light":"dark",1);mtSync()});mtSync();
 
 /* header collapse */
 const hdr=$("#hdr");const onScroll=()=>hdr.classList.toggle("scrolled",scrollY>40);addEventListener("scroll",onScroll,{passive:true});onScroll();
