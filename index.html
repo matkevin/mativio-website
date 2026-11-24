@@ -318,7 +318,7 @@ body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{
   .hero .ctas .btn{min-height:56px;padding:0 30px;font-size:17px}
   .mhero{display:block;position:absolute;left:0;right:0;bottom:0;height:62%;z-index:1}
   .mhero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center bottom}
-  .mhero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(var(--bg) 0%,color-mix(in srgb,var(--bg) 70%,transparent) 14%,transparent 42%)}
+  .mhero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,var(--bg) 0%,transparent 14%),linear-gradient(var(--bg) 0%,color-mix(in srgb,var(--bg) 70%,transparent) 14%,transparent 42%)}
   :root[data-theme=dark] .mhero{height:52%}
   :root[data-theme=dark] .hero{background:linear-gradient(#0f1b2b,#142235 60%)}
   :root[data-theme=dark] .mhero::before{background:linear-gradient(#142235 0%,rgba(20,34,53,.6) 18%,transparent 45%)}
@@ -366,6 +366,87 @@ body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{
 @media(max-width:833px){.nav{display:none}.burger{display:grid;place-items:center}
 .hero{grid-template-columns:1fr}.hero .shot{order:-1}.word{font-size:30px}.word img{height:34px}}
 @media(max-width:599px){.pillars{grid-template-columns:1fr}.shead .link{margin-left:0}.shot{border-radius:22px}}
+/* ===== Botanical theme ===== */
+body{background:radial-gradient(900px 500px at 8% 0%,var(--bg2),transparent 60%),radial-gradient(1100px 700px at 100% 55%,color-mix(in srgb,var(--bg2) 70%,transparent),transparent 60%),radial-gradient(800px 500px at 0% 90%,color-mix(in srgb,var(--bg2) 60%,transparent),transparent 60%),var(--bg)}
+.lf{position:absolute;display:block;pointer-events:none;z-index:3;width:220px;height:220px}
+.lf svg{width:100%;height:100%;display:block;filter:drop-shadow(0 6px 10px rgba(60,70,20,.18))}
+:root[data-theme=dark] .lf{opacity:.55;filter:brightness(.6) saturate(.8)}
+.botan{position:relative}
+.lf-a{top:-150px;left:-170px;width:250px;height:250px;transform:rotate(-14deg);z-index:1}
+.hero>div:not(.mhero):not(.shot){position:relative;z-index:2}
+.lf-m{display:none}
+.lf-b{right:-130px;bottom:-90px;width:200px;height:200px;transform:rotate(160deg)}
+.lf-c{left:-140px;bottom:-60px;width:190px;height:190px;transform:rotate(20deg);filter:blur(1.2px)}
+/* hero: photo bleeds to the edge and melts into the page */
+@media(min-width:834px){
+ .hero{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:0;margin-right:calc(-1*var(--side));padding-top:0}
+ .hero>div:not(.mhero):not(.shot){position:relative;z-index:2;padding-right:24px}
+ .hero .shot{border-radius:0;box-shadow:none;aspect-ratio:auto;height:clamp(380px,40vw,560px);background:none;animation:none;margin-left:-14%}
+ .hero .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,color-mix(in srgb,var(--bg) 55%,transparent) 14%,transparent 36%),linear-gradient(0deg,var(--bg) 0%,transparent 20%),linear-gradient(180deg,var(--bg) 0%,transparent 10%)}
+}
+/* pillars: icon + title (+ text on desktop) with dividers */
+.pillars{position:relative;padding:22px 0 8px}
+.pillars div{gap:16px}
+.pillars p{margin:0}
+.pillars svg.i{width:42px;height:42px;stroke-width:1.1}
+.pillars b{font:600 16px Manrope,sans-serif;margin-bottom:4px}
+.pillars span{font-size:13.5px;line-height:1.45;display:block}
+@media(max-width:1100px){.pillars{grid-template-columns:repeat(4,minmax(0,1fr));gap:0}.pillars div{border-left:1px solid var(--line);padding:6px 10px;flex-direction:column;text-align:center}.pillars div:first-child{border:0}.pillars span{display:none}.pillars b{font-weight:500;font-size:15px}}
+@media(max-width:599px){.pillars svg.i{width:34px;height:34px}.pillars b{font-size:13.5px;line-height:1.3}.pillars div{padding:4px 6px;gap:8px}}
+/* centred section titles with gold rules */
+.ctitle{white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:clamp(14px,3vw,30px);text-align:center;margin:0 0 26px}
+.ctitle::before,.ctitle::after{content:"";height:1px;background:var(--accent);opacity:.7;width:clamp(40px,16vw,200px)}
+.csub{text-align:center;margin:-16px 0 24px;color:var(--ink)}
+.cmore{text-align:center;margin-top:14px}
+/* compact home cards */
+.minis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.mini{background:var(--card);border-radius:18px;overflow:hidden;box-shadow:0 10px 28px rgba(93,70,35,.10);text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .25s}
+.mini:hover{transform:translateY(-3px)}
+.mpic{aspect-ratio:16/7.6;overflow:hidden}.mpic img{width:100%;height:100%;object-fit:cover}
+.mb{padding:14px 16px 16px;display:grid;gap:4px}
+.mr{display:flex;justify-content:space-between;align-items:center;gap:8px}.mr b{font-size:17px}
+.mpill{font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--occBg);color:var(--occInk);white-space:nowrap}
+.mpill.ok{background:#e3eed7;color:#2f5a1f}:root[data-theme=dark] .mpill.ok{background:#3f5143;color:#e9f0e4}
+.ms{font-size:15px;display:flex;align-items:center;gap:8px}
+.dot{width:9px;height:9px;border-radius:50%;background:#9a9a9a;flex:none}
+.mm{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--mute)}
+.go{width:30px;height:30px;border-radius:50%;border:1px solid var(--accent);display:grid;place-items:center;color:var(--accent);flex:none}.go svg.i{width:16px;height:16px}
+@media(max-width:599px){.minis{gap:10px}.mb{padding:10px 10px 12px}.mr b{font-size:14px}.mpill,.mm{display:none}.ms{font-size:13px}.mpic{aspect-ratio:4/3}}
+/* Bengaluru banner */
+.blr{position:relative;display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);border-radius:24px;overflow:hidden;background:color-mix(in srgb,var(--card) 70%,var(--bg2));box-shadow:0 14px 34px rgba(93,70,35,.10)}
+.bimg{position:relative;min-height:190px}.bimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bimg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,color-mix(in srgb,var(--card) 70%,var(--bg2)))}
+.btxt{padding:24px 30px;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.btxt h3{font-size:34px}.btxt p{margin:0 0 8px;color:var(--mute)}
+.btxt .btn{align-self:flex-start;min-height:46px}
+@media(max-width:833px){.blr{grid-template-columns:1fr;overflow:visible;background:none;box-shadow:none}.bimg{border-radius:22px;overflow:hidden;min-height:0;aspect-ratio:4.4/1.6}.bimg::after{display:none}.btxt{padding:0;margin-top:-24px;align-items:center;position:relative;z-index:2}.btxt h3,.btxt p{display:none}.btxt .btn{align-self:center;background:var(--card);box-shadow:0 8px 20px rgba(93,70,35,.18)}}
+/* story with photo */
+.bstory{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:center;margin:clamp(40px,6vw,72px) calc(-1*var(--side)) 0 0;min-height:320px}
+.stx{position:relative;z-index:2;padding:20px 0}
+.stx .tag{margin-bottom:16px}.tline{display:inline-block;width:30px;height:1px;background:currentColor}
+.stx h2{font-size:clamp(32px,3.6vw,46px)}.stx p{color:var(--ink);max-width:40ch;margin:16px 0 22px}
+.simg{position:relative;align-self:stretch;min-height:300px}.simg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.simg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,color-mix(in srgb,var(--bg) 50%,transparent) 22%,transparent 48%),linear-gradient(180deg,var(--bg) 0%,transparent 16%)}
+@media(max-width:599px){.bstory{grid-template-columns:1fr 0.8fr;margin-right:calc(-1*var(--side))}.stx p{font-size:15px}.simg{min-height:280px}}
+/* navy footer with leaves */
+footer{position:relative;overflow:hidden;background:var(--navy);color:#cdd4dc;border:0;margin-top:clamp(40px,6vw,72px)}
+:root[data-theme=dark] footer{background:#0b1420}
+footer .word{color:var(--ivory)}footer .flinks a{color:var(--ivory)}footer .tag{color:var(--gold)}
+footer .wrap{position:relative;z-index:2}
+.lf-f1{left:-80px;bottom:-110px;width:200px;height:200px;transform:rotate(-30deg);opacity:.9}
+.lf-f2{right:-70px;top:-60px;width:170px;height:170px;transform:rotate(120deg);opacity:.9}
+@media(max-width:833px){footer{border-radius:46px 46px 0 0/26px 26px 0 0}footer .wrap{flex-direction:column;text-align:center}footer .flinks{justify-content:center}}
+/* mobile menu: one switch */
+.drawer .sw{position:relative}
+.sw input{position:absolute;opacity:0;width:1px;height:1px}
+.track{margin-left:auto;width:54px;height:32px;border-radius:999px;background:#3a4a62;position:relative;transition:background .25s;flex:none}
+.knob{position:absolute;top:4px;left:4px;width:24px;height:24px;border-radius:50%;background:#fff;transition:transform .25s;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.sw input:checked+.track{background:var(--gold)}.sw input:checked+.track .knob{transform:translateX(22px)}
+.sw input:focus-visible+.track{outline:2px solid var(--gold);outline-offset:3px}
+@media(max-width:833px){.lf-a{display:none}.lf-m{display:block;top:-40px;right:-70px;left:auto;width:200px;height:200px;transform:rotate(100deg)}.lf-b{right:-110px;width:150px;height:150px}.lf-c{left:-100px;width:150px;height:150px}}
+html{overflow-x:clip}
+@media(max-width:1100px){.lf-a{display:none}}
+@media(max-width:599px){.ctitle{font-size:32px;gap:12px}.ctitle::before,.ctitle::after{width:34px}.pillars{grid-template-columns:repeat(4,minmax(0,1fr))}}
 </style>
 </head>
 <body>
@@ -405,6 +486,11 @@ body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{
 <symbol id="plus" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></symbol>
 <symbol id="cart" viewBox="0 0 24 24"><path d="M3 4h2l2.5 11h11L21 7H6.5"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></symbol>
 <symbol id="bus" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="14" rx="2"/><path d="M4 11h16M7 17v3m10-3v3M8 14h.01M16 14h.01"/></symbol>
+<linearGradient id="lg1" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#4f7a2a"/><stop offset="1" stop-color="#9cb84a"/></linearGradient>
+<linearGradient id="lg2" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#6e9a34"/><stop offset="1" stop-color="#c9d96a"/></linearGradient>
+<symbol id="shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v6c0 4.5 3.2 7.8 7.5 9 4.3-1.2 7.5-4.5 7.5-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></symbol>
+<symbol id="tree" viewBox="0 0 24 24"><path d="M12 21v-8m0 3-3-2.5m3 1 3-2.5M8 13.5a4 4 0 0 1-1.5-7.6A4.5 4.5 0 0 1 15 4.5a4 4 0 0 1 2.5 7A3.5 3.5 0 0 1 15 15H9a3.5 3.5 0 0 1-1-1.5z"/></symbol>
+<symbol id="gem" viewBox="0 0 24 24"><path d="M6 4h12l3.5 5L12 20.5 2.5 9z"/><path d="M2.5 9h19M9 4 7.5 9 12 20.5 16.5 9 15 4"/></symbol>
 <symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
 </svg>
 
@@ -414,6 +500,7 @@ body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{
     <span class="tag tagline">Land · Living · Legacy</span>
   </a>
   <nav class="nav" aria-label="Main">
+    <a href="#home" data-nav="home">Home</a>
     <a href="#properties" data-nav="properties">Properties</a>
     <a href="#localities" data-nav="localities">Localities</a>
     <a href="#story" data-nav="story">Our Story</a>
@@ -439,14 +526,14 @@ body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{
   <a href="#contact"><svg class="i"><use href="#mail"/></svg>Contact</a>
   <a href="#book"><svg class="i"><use href="#cal"/></svg>Book a viewing</a>
   <div class="modes">
-    <label><svg class="i"><use href="#sun"/></svg>Light mode<input type="radio" name="dm" value="light"></label>
-    <label><svg class="i"><use href="#moon"/></svg>Dark mode<input type="radio" name="dm" value="dark"></label>
+    <label class="sw"><svg class="i"><use href="#moon"/></svg>Dark mode<input type="checkbox" role="switch" id="dmSwitch"><span class="track" aria-hidden="true"><span class="knob"></span></span></label>
   </div>
 </div>
 
 <main class="wrap">
 <!-- HOME -->
-<section data-view="home">
+<section data-view="home" class="botan">
+  <i class="lf lf-a" data-lf="7,0,1"></i><i class="lf lf-m" data-lf="6,1,2"></i>
   <div class="hero">
     <div class="mhero" aria-hidden="true"><img class="only-l" src="assets/photos/mhero_l.jpg" alt=""><img class="only-d" src="assets/photos/mhero_d.jpg" alt=""></div>
     <div>
@@ -458,24 +545,29 @@ body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{
     <div class="shot"><img class="only-l" src="assets/photos/hero_light.jpg" alt="Mativio residence among trees in golden light"><img class="only-d" src="assets/photos/hero_dark.jpg" alt="Mativio residence at dusk with the Mativio sign"></div>
   </div>
   <div class="pillars">
-    <div><svg class="i"><use href="#home"/></svg><p style="margin:0"><b>Family-owned</b><span>A long-term, personal approach</span></p></div>
-    <div><svg class="i"><use href="#sprout"/></svg><p style="margin:0"><b>Thoughtfully managed</b><span>Well-maintained and resident-focused</span></p></div>
-    <div><svg class="i"><use href="#pin"/></svg><p style="margin:0"><b>Bengaluru rooted</b><span>In established, connected localities</span></p></div>
-    <div><svg class="i"><use href="#layers"/></svg><p style="margin:0"><b>Built for generations</b><span>Creating enduring value</span></p></div>
+    <div><svg class="i"><use href="#home"/></svg><p><b>Family-Owned</b><span>A personal, long-term approach to our properties</span></p></div>
+    <div><svg class="i"><use href="#shield"/></svg><p><b>Thoughtfully Managed</b><span>Well-maintained homes and responsive support</span></p></div>
+    <div><svg class="i"><use href="#tree"/></svg><p><b>Bengaluru Rooted</b><span>Prime neighbourhoods with everyday conveniences</span></p></div>
+    <div><svg class="i"><use href="#gem"/></svg><p><b>Built for Generations</b><span>Homes created and cared for with lasting value</span></p></div>
+    <i class="lf lf-b" data-lf="6,1,1"></i>
   </div>
   <div class="sec">
-    <div class="shead"><h2>Our Properties</h2><span class="rule"></span><span class="mute">Quality rental homes in Bengaluru, cared for by our family.</span><a class="link gold" href="#properties">View all properties <svg class="i"><use href="#arrow"/></svg></a></div>
-    <div class="grid" id="homeGrid"></div>
+    <h2 class="ctitle">Our Properties</h2>
+    <div class="minis" id="homeGrid"></div>
+    <div class="cmore"><a class="link gold" href="#properties">View all properties <svg class="i"><use href="#arrow"/></svg></a></div>
   </div>
   <div class="sec" style="padding-top:0">
-    <div class="shead"><h2>Our Localities</h2><span class="rule"></span><span class="mute">Established, well-connected neighbourhoods in Bengaluru.</span><a class="link gold" href="#localities">All localities <svg class="i"><use href="#arrow"/></svg></a></div>
-    <div class="ltiles" id="homeLocs"></div>
+    <h2 class="ctitle">Our Localities</h2>
+    <p class="csub">Discover prime locations in Bengaluru.</p>
+    <div class="blr"><div class="bimg"><img src="assets/photos/blr_banner.jpg" alt="Bengaluru skyline with Vidhana Soudha" loading="lazy"></div>
+      <div class="btxt"><h3>Bengaluru</h3><p>A connected, vibrant and enduring place to live.</p><a class="btn line" href="#localities">Explore localities <svg class="i"><use href="#arrow"/></svg></a></div></div>
+    <i class="lf lf-c" data-lf="5,0,1"></i>
   </div>
-  <div class="band">
-    <div class="txt"><div class="tag">Our Story</div><h2>Rooted in Bengaluru. Built for Generations.</h2>
-    <p>A family legacy of thoughtfully owned properties, enduring value and a vision for the future.</p>
-    <a class="link" href="#story" style="align-self:flex-start">Read our story <svg class="i"><use href="#arrow"/></svg></a></div>
-    <img src="assets/photos/hero_dark.jpg" alt="" loading="lazy">
+  <div class="bstory">
+    <div class="stx"><div class="tag">Our Story <span class="tline"></span></div><h2>Rooted in Bengaluru.<br>Built for Generations.</h2>
+      <p>MATIVIO is a family-owned property brand focused on thoughtfully managed homes and enduring value.</p>
+      <a class="btn line" href="#story">Get to know us <svg class="i"><use href="#arrow"/></svg></a></div>
+    <div class="simg"><img class="only-l" src="assets/photos/story_l.jpg" alt="" loading="lazy"><img class="only-d" src="assets/photos/dev_d.jpg" alt="" loading="lazy"></div>
   </div>
 </section>
 
@@ -690,7 +782,7 @@ body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{
 <div class="mcta" id="mcta"></div>
 <div class="offline" id="offline" role="status">You're offline. Photos may not load, and forms will work again once you're back online.</div>
 
-<footer><div class="wrap">
+<footer><i class="lf lf-f1" data-lf="6,0,1"></i><i class="lf lf-f2" data-lf="5,1,2"></i><div class="wrap">
   <a class="brand" href="#home" aria-label="Mativio home"><span class="word"><img src="assets/logo.png" alt="">ATIVIO</span></a>
   <span class="tag">Land · Living · Legacy</span>
   <nav class="flinks" aria-label="Footer"><a href="#properties">Properties</a><a href="#localities">Localities</a><a href="#contact">Contact</a><a href="#privacy">Privacy</a><a href="#terms">Terms</a></nav>
@@ -711,7 +803,7 @@ const CONTACT={phone:"",whatsapp:"",email:"",address:"Bengaluru, Karnataka"};
    title: the name shown on cards. name: the locality (matches LOC). baths, sqft: number or null (null shows "TBC").
    parking: "Available", "Not available" or null. floorplan: an image path like "assets/plans/devasandra.jpg", or "". */
 const P=[
- {id:"devasandra",title:"Devasandra Residence",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Devasandra",area:"Devasandra, New BEL Road, Bengaluru",type:"Apartment",bhk:"2 BHK",furn:"Semi-furnished",rent:28000,fromPrice:false,status:"now",from:"",added:3,
+ {id:"devasandra",title:"Devasandra Residence",hint:"Near New BEL Road",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Devasandra",area:"Devasandra, New BEL Road, Bengaluru",type:"Apartment",bhk:"2 BHK",furn:"Semi-furnished",rent:28000,fromPrice:false,status:"now",from:"",added:3,
   deposit:"To be confirmed",about:"A well-located residential home in Devasandra, offering a comfortable and practical place to live in a peaceful neighbourhood, with good natural light and easy access to daily essentials.",
   amen:["Balcony","Power backup","Water supply 24×7","Covered parking","CCTV"],card:["dev_l","dev_d"],photos:["dev_l","dev_d","hero_light"],tour:[],video:"",youtube:""},
  {id:"coffee-board",title:"Coffee Board Residence",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Coffee Board",area:"Coffee Board Layout, Bengaluru",type:"Apartment",bhk:"3 BHK",furn:"Semi-furnished",rent:32000,fromPrice:false,status:"now",from:"",added:2,
@@ -736,11 +828,21 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",
 const toast=t=>{const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2800)};
 $("#yr").textContent=new Date().getFullYear();
 
+/* botanical leaves: data-lf="count,flip,variant" */
+const branch=(n,flip,v)=>{let g="";const P0=[10,10],P1=[150,40],P2=[290,250];
+  for(let i=0;i<n;i++){const t=.12+.82*i/(n-1||1),u=1-t;
+    const x=u*u*P0[0]+2*u*t*P1[0]+t*t*P2[0],y=u*u*P0[1]+2*u*t*P1[1]+t*t*P2[1];
+    const dx=2*u*(P1[0]-P0[0])+2*t*(P2[0]-P1[0]),dy=2*u*(P1[1]-P0[1])+2*t*(P2[1]-P1[1]);
+    const a=Math.atan2(dy,dx)*180/Math.PI+90+(i%2?58:-58),sc=1.05-.45*t;
+    g+=`<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${a.toFixed(1)}) scale(${sc.toFixed(2)})"><path d="M0 0C15-18 17-54 0-92C-17-54-15-18 0 0Z" fill="url(#lg${(i+v)%2+1})"/><path d="M0-2V-86" stroke="#3f5f22" stroke-width="1.1" opacity=".45"/></g>`}
+  return `<svg viewBox="0 0 320 320" aria-hidden="true" style="${flip?"transform:scaleX(-1)":""}"><path d="M10 10Q150 40 290 250" fill="none" stroke="#5b6b2e" stroke-width="2.4" stroke-linecap="round" opacity=".7"/>${g}</svg>`};
+document.querySelectorAll(".lf").forEach(e=>{const [n,f,v]=(e.dataset.lf||"6,0,1").split(",").map(Number);e.innerHTML=branch(n,f,v)});
+
 /* theme */
-function setMode(m,save){document.documentElement.dataset.theme=m;$$("[data-mode]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===m));$$("input[name=dm]").forEach(r=>r.checked=r.value===m);if(save)try{localStorage.setItem("mativio-theme",m)}catch(e){}}
+function setMode(m,save){document.documentElement.dataset.theme=m;$$("[data-mode]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===m));const sw=document.getElementById("dmSwitch");if(sw)sw.checked=m==="dark";const mtb=document.getElementById("mtoggle");if(mtb)mtb.setAttribute("aria-label",m==="dark"?"Switch to light theme":"Switch to dark theme");if(save)try{localStorage.setItem("mativio-theme",m)}catch(e){}}
 setMode(document.documentElement.dataset.theme==="dark"?"dark":"light");
 $$("[data-mode]").forEach(b=>b.addEventListener("click",()=>setMode(b.dataset.mode,1)));
-$$("input[name=dm]").forEach(r=>r.addEventListener("change",()=>setMode(r.value,1)));
+$("#dmSwitch").addEventListener("change",e=>setMode(e.target.checked?"dark":"light",1));
 const mt=$("#mtoggle");const mtSync=()=>{const d=document.documentElement.dataset.theme==="dark";mt.setAttribute("aria-label",d?"Switch to light theme":"Switch to dark theme")};
 mt.addEventListener("click",()=>{setMode(document.documentElement.dataset.theme==="dark"?"light":"dark",1);mtSync()});mtSync();
 
@@ -764,7 +866,12 @@ const card=p=>{const c=CTA(p);return `<article class="card">
     <a class="btn navy" href="#p-${p.id}">View property details</a>
     <a class="btn line" href="${c.href}">${ic(c.icon)}${c.label}</a>
   </div></article>`};
-$("#homeGrid").innerHTML=P.map(card).join("");
+const hint=p=>p.hint||(p.type==="Hostel Residence"?"Hostel accommodation":`${p.bhk} ${p.type.toLowerCase()}`);
+const mini=p=>`<a class="mini" href="#p-${p.id}"><div class="mpic"><img class="only-l" src="${ph(p.card[0])}" alt="${esc(p.title)}" loading="lazy"><img class="only-d" src="${ph(p.card[1])}" alt="" loading="lazy"></div>
+  <div class="mb"><div class="mr"><b>${esc(p.name)}</b><span class="mpill ${p.status==="now"?"ok":""}">${p.status==="now"?"Available":p.status==="soon"?"Opening soon":p.status==="reno"?"Renovation":"Occupied"}</span></div>
+  <div class="ms">${p.status==="now"?`${p.fromPrice?"From ":""}${inr(p.rent)} / month`:`<span class="dot"></span>${avail(p)}`}</div>
+  <div class="mm"><span>${p.status==="now"?esc(p.furn)+" · ":""}${esc(hint(p))}</span><span class="go">${ic("arrow")}</span></div></div></a>`;
+$("#homeGrid").innerHTML=P.map(mini).join("");
 
 /* localities */
 const LOC=[
@@ -787,7 +894,7 @@ const NB={
 const nbHTML=id=>{const g=NB[id]||[];return g.length?`<div class="nbg">${g.map(([i,t,xs])=>`<div><h4>${ic(i)}${t}</h4><ul>${xs.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`).join("")}</div><p class="note">Distances are approximate, by road.</p>`:""};
 const locOf=p=>LOC.find(l=>l.name===p.name);
 const ltile=l=>{const n=P.filter(p=>p.name===l.name&&p.status!=="let").length;return `<a class="ltile" href="#loc-${l.id}"><img src="${ph(l.img)}" alt="${esc(l.name)}" loading="lazy"><div><b>${esc(l.name)}</b><span>${n} ${n===1?"home":"homes"} available or opening soon</span></div></a>`};
-$("#homeLocs").innerHTML=$("#locList").innerHTML=LOC.map(ltile).join("");
+$("#locList").innerHTML=LOC.map(ltile).join("");
 function locality(l){
   const homes=P.filter(p=>p.name===l.name);const maps="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(l.area);
   $("#locPage").innerHTML=`<a class="back" href="#localities">${ic("left")}All localities</a>
