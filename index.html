@@ -58,17 +58,18 @@ svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stro
 .tag{font:600 13px Manrope;letter-spacing:.32em;color:var(--accent);display:flex;align-items:center;gap:14px;text-transform:uppercase}
 .tag.rule::before,.tag.rule::after{content:"";width:34px;height:1px;background:currentColor}
 /* header */
-header{position:sticky;top:0;z-index:30;transition:background .3s,box-shadow .3s,padding .3s}
+header{position:sticky;top:0;z-index:30;transition:background .5s ease,box-shadow .5s ease}
 header.scrolled{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
-.bar{display:flex;align-items:center;gap:28px;padding-block:22px;transition:padding .3s}
+.bar{display:flex;align-items:center;gap:28px;padding-block:22px;transition:padding .6s cubic-bezier(.4,0,.2,1)}
 header.scrolled .bar{padding-block:12px}
 .brand{display:inline-flex;align-items:center;text-decoration:none;color:var(--ink)}
 .word{display:inline-flex;align-items:flex-end;font:500 38px/1 "Cormorant Garamond",serif;letter-spacing:.16em}
-.word img{height:42px;width:auto;margin-right:.04em;transition:height .3s}
-.rest{display:inline-block;overflow:hidden;white-space:nowrap;max-width:6em;transition:max-width .45s ease,opacity .3s;padding-bottom:1px}
-.brand .tagline{margin-left:22px;padding-left:22px;border-left:1px solid var(--accent);font-size:13px;white-space:nowrap;overflow:hidden;max-width:24em;transition:max-width .45s,opacity .3s,margin .45s,padding .45s}
-header.scrolled .rest,header.scrolled .tagline{max-width:0;opacity:0}
-header.scrolled .brand .tagline{margin-left:0;padding-left:0;border:0}
+.word img{height:42px;width:auto;margin-right:.04em;transition:height .6s cubic-bezier(.4,0,.2,1)}
+.rest{display:inline-block;overflow:hidden;white-space:nowrap;max-width:var(--restW,6em);transition:max-width .8s cubic-bezier(.4,0,.2,1),opacity .55s ease .15s,letter-spacing .7s cubic-bezier(.4,0,.2,1);padding-bottom:1px;will-change:max-width,opacity}
+.brand .tagline{margin-left:22px;padding-left:22px;border-left:1px solid var(--accent);font-size:13px;white-space:nowrap;overflow:hidden;max-width:var(--tagW,24em);transition:max-width .7s cubic-bezier(.4,0,.2,1),opacity .4s ease .2s,margin .7s cubic-bezier(.4,0,.2,1),padding .7s cubic-bezier(.4,0,.2,1),border-color .4s}
+header.scrolled .rest,header.scrolled .tagline{max-width:0;opacity:0;transition-delay:0s}
+header.scrolled .rest{letter-spacing:-.05em}
+header.scrolled .brand .tagline{margin-left:0;padding-left:0;border-color:transparent}
 header.scrolled .word img{height:38px}
 .nav{margin-left:auto;display:flex;align-items:center;gap:30px}
 .nav a{text-decoration:none;font-weight:500;padding:8px 0;border-bottom:1.5px solid transparent}
@@ -368,15 +369,15 @@ body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{
 @media(max-width:599px){.pillars{grid-template-columns:1fr}.shead .link{margin-left:0}.shot{border-radius:22px}}
 /* ===== Botanical theme ===== */
 body{background:radial-gradient(900px 500px at 8% 0%,var(--bg2),transparent 60%),radial-gradient(1100px 700px at 100% 55%,color-mix(in srgb,var(--bg2) 70%,transparent),transparent 60%),radial-gradient(800px 500px at 0% 90%,color-mix(in srgb,var(--bg2) 60%,transparent),transparent 60%),var(--bg)}
-.lf{position:absolute;display:block;pointer-events:none;z-index:3;width:220px;height:220px}
-.lf svg{width:100%;height:100%;display:block;filter:drop-shadow(0 6px 10px rgba(60,70,20,.18))}
-:root[data-theme=dark] .lf{opacity:.55;filter:brightness(.6) saturate(.8)}
+.lf{position:absolute;display:block;pointer-events:none;z-index:3;height:auto;max-width:none;user-select:none}
+:root[data-theme=dark] .lf{opacity:.6;filter:brightness(.55) saturate(.85)}
 .botan{position:relative}
-.lf-a{top:-150px;left:-170px;width:250px;height:250px;transform:rotate(-14deg);z-index:1}
-.hero>div:not(.mhero):not(.shot){position:relative;z-index:2}
+.lf-a{top:-30px;left:-110px;width:190px;z-index:1}
 .lf-m{display:none}
-.lf-b{right:-130px;bottom:-90px;width:200px;height:200px;transform:rotate(160deg)}
-.lf-c{left:-140px;bottom:-60px;width:190px;height:190px;transform:rotate(20deg);filter:blur(1.2px)}
+.lf-b{right:-60px;top:40px;width:150px;opacity:.95}
+.lf-c{left:-70px;top:120px;width:150px;opacity:.8}
+.lf-s{left:-50px;bottom:-40px;width:140px;opacity:.9}
+.blr,.bstory{position:relative}
 /* hero: photo bleeds to the edge and melts into the page */
 @media(min-width:834px){
  .hero{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:0;margin-right:calc(-1*var(--side));padding-top:0}
@@ -411,7 +412,8 @@ body{background:radial-gradient(900px 500px at 8% 0%,var(--bg2),transparent 60%)
 .dot{width:9px;height:9px;border-radius:50%;background:#9a9a9a;flex:none}
 .mm{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--mute)}
 .go{width:30px;height:30px;border-radius:50%;border:1px solid var(--accent);display:grid;place-items:center;color:var(--accent);flex:none}.go svg.i{width:16px;height:16px}
-@media(max-width:599px){.minis{gap:10px}.mb{padding:10px 10px 12px}.mr b{font-size:14px}.mpill,.mm{display:none}.ms{font-size:13px}.mpic{aspect-ratio:4/3}}
+@media(max-width:599px){.minis{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:calc(-1*var(--side));padding:4px var(--side) 18px;scroll-padding-inline:var(--side);scrollbar-width:none}
+.minis::-webkit-scrollbar{display:none}.mini{flex:0 0 78%;scroll-snap-align:start}.mpic{aspect-ratio:16/9}}
 /* Bengaluru banner */
 .blr{position:relative;display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);border-radius:24px;overflow:hidden;background:color-mix(in srgb,var(--card) 70%,var(--bg2));box-shadow:0 14px 34px rgba(93,70,35,.10)}
 .bimg{position:relative;min-height:190px}.bimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -433,8 +435,8 @@ footer{position:relative;overflow:hidden;background:var(--navy);color:#cdd4dc;bo
 :root[data-theme=dark] footer{background:#0b1420}
 footer .word{color:var(--ivory)}footer .flinks a{color:var(--ivory)}footer .tag{color:var(--gold)}
 footer .wrap{position:relative;z-index:2}
-.lf-f1{left:-80px;bottom:-110px;width:200px;height:200px;transform:rotate(-30deg);opacity:.9}
-.lf-f2{right:-70px;top:-60px;width:170px;height:170px;transform:rotate(120deg);opacity:.9}
+.lf-f1{left:-40px;bottom:-30px;width:170px;opacity:.85}
+.lf-f2{right:-30px;bottom:-20px;width:120px;opacity:.85}
 @media(max-width:833px){footer{border-radius:46px 46px 0 0/26px 26px 0 0}footer .wrap{flex-direction:column;text-align:center}footer .flinks{justify-content:center}}
 /* mobile menu: one switch */
 .drawer .sw{position:relative}
@@ -443,7 +445,7 @@ footer .wrap{position:relative;z-index:2}
 .knob{position:absolute;top:4px;left:4px;width:24px;height:24px;border-radius:50%;background:#fff;transition:transform .25s;box-shadow:0 2px 6px rgba(0,0,0,.3)}
 .sw input:checked+.track{background:var(--gold)}.sw input:checked+.track .knob{transform:translateX(22px)}
 .sw input:focus-visible+.track{outline:2px solid var(--gold);outline-offset:3px}
-@media(max-width:833px){.lf-a{display:none}.lf-m{display:block;top:-40px;right:-70px;left:auto;width:200px;height:200px;transform:rotate(100deg)}.lf-b{right:-110px;width:150px;height:150px}.lf-c{left:-100px;width:150px;height:150px}}
+@media(max-width:833px){.lf-a{display:none}.lf-m{display:block;top:84px;right:-30px;left:auto;width:min(48vw,200px);z-index:3}.lf-b{display:none}.lf-c{left:-46px;top:40px;width:100px}.lf-s{width:100px;left:-36px}.lf-f1{width:120px}.lf-f2{width:90px}}
 html{overflow-x:clip}
 @media(max-width:1100px){.lf-a{display:none}}
 @media(max-width:599px){.ctitle{font-size:32px;gap:12px}.ctitle::before,.ctitle::after{width:34px}.pillars{grid-template-columns:repeat(4,minmax(0,1fr))}}
@@ -533,7 +535,7 @@ html{overflow-x:clip}
 <main class="wrap">
 <!-- HOME -->
 <section data-view="home" class="botan">
-  <i class="lf lf-a" data-lf="7,0,1"></i><i class="lf lf-m" data-lf="6,1,2"></i>
+  <img class="lf lf-a" src="assets/leaves/d_tl.png" alt="" aria-hidden="true" loading="lazy"><img class="lf lf-m" src="assets/leaves/m_tr.png" alt="" aria-hidden="true" loading="lazy">
   <div class="hero">
     <div class="mhero" aria-hidden="true"><img class="only-l" src="assets/photos/mhero_l.jpg" alt=""><img class="only-d" src="assets/photos/mhero_d.jpg" alt=""></div>
     <div>
@@ -549,7 +551,7 @@ html{overflow-x:clip}
     <div><svg class="i"><use href="#shield"/></svg><p><b>Thoughtfully Managed</b><span>Well-maintained homes and responsive support</span></p></div>
     <div><svg class="i"><use href="#tree"/></svg><p><b>Bengaluru Rooted</b><span>Prime neighbourhoods with everyday conveniences</span></p></div>
     <div><svg class="i"><use href="#gem"/></svg><p><b>Built for Generations</b><span>Homes created and cared for with lasting value</span></p></div>
-    <i class="lf lf-b" data-lf="6,1,1"></i>
+    <img class="lf lf-b" src="assets/leaves/t_br.png" alt="" aria-hidden="true" loading="lazy">
   </div>
   <div class="sec">
     <h2 class="ctitle">Our Properties</h2>
@@ -561,9 +563,9 @@ html{overflow-x:clip}
     <p class="csub">Discover prime locations in Bengaluru.</p>
     <div class="blr"><div class="bimg"><img src="assets/photos/blr_banner.jpg" alt="Bengaluru skyline with Vidhana Soudha" loading="lazy"></div>
       <div class="btxt"><h3>Bengaluru</h3><p>A connected, vibrant and enduring place to live.</p><a class="btn line" href="#localities">Explore localities <svg class="i"><use href="#arrow"/></svg></a></div></div>
-    <i class="lf lf-c" data-lf="5,0,1"></i>
+    <img class="lf lf-c" src="assets/leaves/d_l.png" alt="" aria-hidden="true" loading="lazy">
   </div>
-  <div class="bstory">
+  <div class="bstory"><img class="lf lf-s" src="assets/leaves/t_l.png" alt="" aria-hidden="true" loading="lazy">
     <div class="stx"><div class="tag">Our Story <span class="tline"></span></div><h2>Rooted in Bengaluru.<br>Built for Generations.</h2>
       <p>MATIVIO is a family-owned property brand focused on thoughtfully managed homes and enduring value.</p>
       <a class="btn line" href="#story">Get to know us <svg class="i"><use href="#arrow"/></svg></a></div>
@@ -782,7 +784,7 @@ html{overflow-x:clip}
 <div class="mcta" id="mcta"></div>
 <div class="offline" id="offline" role="status">You're offline. Photos may not load, and forms will work again once you're back online.</div>
 
-<footer><i class="lf lf-f1" data-lf="6,0,1"></i><i class="lf lf-f2" data-lf="5,1,2"></i><div class="wrap">
+<footer><img class="lf lf-f1" src="assets/leaves/m_l2.png" alt="" aria-hidden="true" loading="lazy"><img class="lf lf-f2" src="assets/leaves/m_r1.png" alt="" aria-hidden="true" loading="lazy"><div class="wrap">
   <a class="brand" href="#home" aria-label="Mativio home"><span class="word"><img src="assets/logo.png" alt="">ATIVIO</span></a>
   <span class="tag">Land · Living · Legacy</span>
   <nav class="flinks" aria-label="Footer"><a href="#properties">Properties</a><a href="#localities">Localities</a><a href="#contact">Contact</a><a href="#privacy">Privacy</a><a href="#terms">Terms</a></nav>
@@ -828,16 +830,6 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",
 const toast=t=>{const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2800)};
 $("#yr").textContent=new Date().getFullYear();
 
-/* botanical leaves: data-lf="count,flip,variant" */
-const branch=(n,flip,v)=>{let g="";const P0=[10,10],P1=[150,40],P2=[290,250];
-  for(let i=0;i<n;i++){const t=.12+.82*i/(n-1||1),u=1-t;
-    const x=u*u*P0[0]+2*u*t*P1[0]+t*t*P2[0],y=u*u*P0[1]+2*u*t*P1[1]+t*t*P2[1];
-    const dx=2*u*(P1[0]-P0[0])+2*t*(P2[0]-P1[0]),dy=2*u*(P1[1]-P0[1])+2*t*(P2[1]-P1[1]);
-    const a=Math.atan2(dy,dx)*180/Math.PI+90+(i%2?58:-58),sc=1.05-.45*t;
-    g+=`<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${a.toFixed(1)}) scale(${sc.toFixed(2)})"><path d="M0 0C15-18 17-54 0-92C-17-54-15-18 0 0Z" fill="url(#lg${(i+v)%2+1})"/><path d="M0-2V-86" stroke="#3f5f22" stroke-width="1.1" opacity=".45"/></g>`}
-  return `<svg viewBox="0 0 320 320" aria-hidden="true" style="${flip?"transform:scaleX(-1)":""}"><path d="M10 10Q150 40 290 250" fill="none" stroke="#5b6b2e" stroke-width="2.4" stroke-linecap="round" opacity=".7"/>${g}</svg>`};
-document.querySelectorAll(".lf").forEach(e=>{const [n,f,v]=(e.dataset.lf||"6,0,1").split(",").map(Number);e.innerHTML=branch(n,f,v)});
-
 /* theme */
 function setMode(m,save){document.documentElement.dataset.theme=m;$$("[data-mode]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===m));const sw=document.getElementById("dmSwitch");if(sw)sw.checked=m==="dark";const mtb=document.getElementById("mtoggle");if(mtb)mtb.setAttribute("aria-label",m==="dark"?"Switch to light theme":"Switch to dark theme");if(save)try{localStorage.setItem("mativio-theme",m)}catch(e){}}
 setMode(document.documentElement.dataset.theme==="dark"?"dark":"light");
@@ -847,7 +839,13 @@ const mt=$("#mtoggle");const mtSync=()=>{const d=document.documentElement.datase
 mt.addEventListener("click",()=>{setMode(document.documentElement.dataset.theme==="dark"?"light":"dark",1);mtSync()});mtSync();
 
 /* header collapse */
-const hdr=$("#hdr");const onScroll=()=>hdr.classList.toggle("scrolled",scrollY>40);addEventListener("scroll",onScroll,{passive:true});onScroll();
+const hdr=$("#hdr");
+/* measure the real widths so the logo folds and unfolds at an even pace */
+const measure=()=>{const r=hdr.querySelector(".rest"),t=hdr.querySelector(".brand .tagline");if(r)hdr.style.setProperty("--restW",r.scrollWidth+6+"px");if(t)hdr.style.setProperty("--tagW",t.scrollWidth+12+"px")};
+measure();addEventListener("resize",measure);document.fonts&&document.fonts.ready.then(measure);
+/* collapse after 80px, expand only back near the top: no flicker around one line */
+let tick=false,col=false;const onScroll=()=>{if(tick)return;tick=true;requestAnimationFrame(()=>{const y=scrollY;if(!col&&y>80)col=true;else if(col&&y<16)col=false;hdr.classList.toggle("scrolled",col);tick=false})};
+addEventListener("scroll",onScroll,{passive:true});onScroll();
 
 /* drawer */
 const dr=$("#drawer");$("#burger").onclick=()=>dr.classList.add("open");$("#dclose").onclick=()=>dr.classList.remove("open");
