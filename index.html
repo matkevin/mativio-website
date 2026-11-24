@@ -123,11 +123,27 @@ header.scrolled .word img{height:38px}
 .card .pic{position:relative;aspect-ratio:16/7.2;overflow:hidden}
 .card .pic img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
 .card:hover .pic img{transform:scale(1.04)}
+.card .pic{aspect-ratio:16/10}
 .badge{position:absolute;top:16px;left:16px;font:600 14px Manrope;padding:6px 14px;border-radius:999px;display:inline-flex;gap:8px;align-items:center}
 .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.b-reno{background:#e6dcf0;color:#4b2d6b}:root[data-theme=dark] .b-reno{background:#5a4670;color:#f1e9fa}
 .b-now{background:var(--okBg);color:var(--okInk)}.b-soon{background:var(--soonBg);color:var(--soonInk)}.b-occ{background:var(--occBg);color:var(--occInk)}
 .badge.inline{position:static}
-.card .body{padding:20px 24px 22px}
+.card .body{padding:18px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card .pic{display:block;margin:12px 12px 0;border-radius:16px}
+.card h3 a{text-decoration:none}.card h3 a:hover{color:var(--accent)}
+.crow{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px}
+.crow .badge{font-size:13px;padding:4px 12px}
+.cprice{display:flex;align-items:baseline;gap:6px;margin-top:2px}.cprice b{font-size:26px;font-weight:700}.cprice small{color:var(--mute);font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));text-align:center;border-top:1px solid var(--line);margin:8px 0 6px;padding-top:16px}
+.stats div{display:grid;justify-items:center;gap:2px}.stats svg.i{color:var(--accent);width:22px;height:22px;margin-bottom:4px}
+.stats.s4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.mtabs .pill{white-space:nowrap;flex:none}.mcta .btn{white-space:nowrap}
+@media(max-width:374px){.mcta .btn{padding:0 14px!important;font-size:15px}}
+.stats b{font-size:16px}.stats span{font-size:13px;color:var(--mute)}
+.card .btn{width:100%;min-height:48px;box-shadow:none}.card .btn+.btn{margin-top:2px}
+.btn.navy{background:var(--navy);color:var(--ivory)}:root[data-theme=dark] .btn.navy{background:#22364f}
+.card .badge::before{display:none}
 .row1{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
 .rent{font-weight:600;color:var(--accent);white-space:nowrap;font-size:20px}.rent small{font-size:14px;font-weight:500}
 .loc{display:flex;gap:8px;align-items:center;color:var(--mute);font-size:15px;margin-top:4px}
@@ -259,6 +275,12 @@ body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{
 .ltile b{font:500 30px "Cormorant Garamond",serif;display:block}.ltile span{font-size:14px;opacity:.9}
 .lhero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;margin-bottom:clamp(28px,4vw,48px)}
 @media(max-width:833px){.lhero{grid-template-columns:1fr}.lhero .shot{order:-1}}
+.nbg{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:14px;margin-top:6px}
+.nbg>div{border:1px solid var(--line);border-radius:18px;padding:16px 18px;background:var(--card)}
+.nbg h4{margin:0 0 6px;display:flex;gap:10px;align-items:center;font-size:15px}.nbg h4 svg.i{color:var(--accent)}
+.nbg ul{margin:0;padding-left:18px;color:var(--mute);font-size:14px}.nbg li{margin:3px 0}
+.vv{display:flex;gap:14px;align-items:center;border:1px dashed var(--accent);border-radius:18px;padding:14px 18px;margin-top:18px;font-size:15px}
+.vv svg.i{color:var(--accent);width:28px;height:28px}.vv a{color:var(--accent);font-weight:600}
 .hl{list-style:none;padding:0;margin:18px 0;display:grid;gap:12px}
 .hl li{display:flex;gap:12px;align-items:flex-start}.hl svg.i{color:var(--accent);margin-top:3px}
 /* legal */
@@ -345,6 +367,15 @@ body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{
 <symbol id="bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20.5a2 2 0 0 0 4 0"/></symbol>
 <symbol id="sliders" viewBox="0 0 24 24"><path d="M4 7h10m4 0h2M4 17h4m4 0h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></symbol>
 <symbol id="train" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="14" rx="3"/><path d="M6 11h12M9 21l1.5-4m4.5 4L13.5 17M9.5 14h.01m5 0h.01"/></symbol>
+<symbol id="bath" viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4zM6 12V6a2 2 0 0 1 3.5-1.3M7 19l-1 2m11-2 1 2"/></symbol>
+<symbol id="car" viewBox="0 0 24 24"><path d="M5 16V11l2-5h10l2 5v5M5 16h14M5 16v2m14-2v2M4 11h16"/><circle cx="8" cy="13.5" r=".8"/><circle cx="16" cy="13.5" r=".8"/></symbol>
+<symbol id="key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 8-8m-3 3 2 2m-4 0 2 2"/></symbol>
+<symbol id="plan" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 11h7v10M10 3v5m4 13v-6h7M14 11h7"/></symbol>
+<symbol id="video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></symbol>
+<symbol id="cap" viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5zM6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></symbol>
+<symbol id="plus" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></symbol>
+<symbol id="cart" viewBox="0 0 24 24"><path d="M3 4h2l2.5 11h11L21 7H6.5"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></symbol>
+<symbol id="bus" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="14" rx="2"/><path d="M4 11h16M7 17v3m10-3v3M8 14h.01M16 14h.01"/></symbol>
 <symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
 </svg>
 
@@ -647,15 +678,17 @@ const CONTACT={phone:"",whatsapp:"",email:"",address:"Bengaluru, Karnataka"};
 /* ---- Listings: add or change homes here ---- */
 /* tour: 360° photos, e.g. [{title:"Living room",src:"assets/360/devasandra-living.jpg"}] (equirectangular JPGs)
    video: an MP4 path like "assets/video/devasandra.mp4", or youtube: the video id (e.g. "dQw4w9WgXcQ") */
-/* status: "now" (Available), "soon" (Opening Soon), "let" (Occupied). from: "YYYY-MM-DD" or "" */
+/* status: "now" (Available now), "soon" (Available soon), "let" (Currently occupied), "reno" (Under renovation). from: "YYYY-MM-DD" or ""
+   title: the name shown on cards. name: the locality (matches LOC). baths, sqft: number or null (null shows "TBC").
+   parking: "Available", "Not available" or null. floorplan: an image path like "assets/plans/devasandra.jpg", or "". */
 const P=[
- {id:"devasandra",name:"Devasandra",area:"Devasandra, New BEL Road, Bengaluru",type:"Apartment",bhk:"2 BHK",furn:"Semi-furnished",rent:28000,fromPrice:false,status:"now",from:"",added:3,
+ {id:"devasandra",title:"Devasandra Residence",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Devasandra",area:"Devasandra, New BEL Road, Bengaluru",type:"Apartment",bhk:"2 BHK",furn:"Semi-furnished",rent:28000,fromPrice:false,status:"now",from:"",added:3,
   deposit:"To be confirmed",about:"A well-located residential home in Devasandra, offering a comfortable and practical place to live in a peaceful neighbourhood, with good natural light and easy access to daily essentials.",
   amen:["Balcony","Power backup","Water supply 24×7","Covered parking","CCTV"],card:["dev_l","dev_d"],photos:["dev_l","dev_d","hero_light"],tour:[],video:"",youtube:""},
- {id:"coffee-board",name:"Coffee Board",area:"Coffee Board Layout, Bengaluru",type:"Apartment",bhk:"3 BHK",furn:"Furnished",rent:32000,fromPrice:false,status:"now",from:"",added:2,
+ {id:"coffee-board",title:"Coffee Board Residence",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Coffee Board",area:"Coffee Board Layout, Bengaluru",type:"Apartment",bhk:"3 BHK",furn:"Furnished",rent:32000,fromPrice:false,status:"now",from:"",added:2,
   deposit:"To be confirmed",about:"A spacious furnished home on a quiet, tree-lined street in Coffee Board Layout. Generous rooms, private balconies and a calm green setting.",
   amen:["Balconies","Lift","Power backup","Covered parking","CCTV"],card:["cof_l","cof_d"],photos:["cof_l","cof_d","hero_dark"],tour:[],video:"",youtube:""},
- {id:"kempapura",name:"Kempapura",area:"Kempapura, Bengaluru",type:"Hostel Residence",bhk:"Rooms",furn:"Furnished",rent:26000,fromPrice:true,status:"soon",from:"",added:1,
+ {id:"kempapura",title:"Kempapura Residence",baths:null,sqft:null,parking:null,floorplan:"",name:"Kempapura",area:"Kempapura, Bengaluru",type:"Hostel Residence",bhk:"Rooms",furn:"Furnished",rent:26000,fromPrice:true,status:"soon",from:"",added:1,
   deposit:"To be confirmed",about:"Furnished rooms in a well-kept residence in Kempapura, ready for professionals and students who want a calm, cared-for place to stay.",
   amen:["Furnished rooms","Housekeeping","Power backup","Gated entry","CCTV"],card:["kem_l","kem_l"],photos:["kem_l","kem_d"],tour:[],video:"",youtube:""}
 ];
@@ -664,8 +697,11 @@ const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const ph=n=>`assets/photos/${n}.jpg`;
 const inr=n=>"₹"+n.toLocaleString("en-IN");
 const fdate=d=>new Date(d+"T00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short"});
-const ST={now:["Available","b-now"],soon:["Opening Soon","b-soon"],let:["Occupied","b-occ"]};
-const avail=p=>p.status==="now"?"Available now":p.status==="soon"?(p.from?"From "+fdate(p.from):"Opening soon"):"Occupied";
+const ST={now:["Available now","b-now"],soon:["Available soon","b-soon"],let:["Currently occupied","b-occ"],reno:["Under renovation","b-reno"]};
+/* primary call to action by status (spec): now → Book a viewing; soon, reno → Register interest; let → Notify me */
+const CTA=p=>p.status==="now"?{label:"Book a viewing",href:"#visit-"+p.id,icon:"cal"}:{label:p.status==="let"?"Notify me":"Register interest",href:"#interest-"+p.id,icon:"bell"};
+const tbc=v=>v===null||v===undefined||v===""?"TBC":v;
+const avail=p=>p.status==="now"?"Available now":p.status==="soon"?(p.from?"From "+fdate(p.from):"Available soon"):p.status==="reno"?"Under renovation":"Currently occupied";
 const ic=(n,s="")=>`<svg class="i" ${s}><use href="#${n}"/></svg>`;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const toast=t=>{const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2800)};
@@ -686,11 +722,17 @@ dr.addEventListener("click",e=>{if(e.target.closest("a"))dr.classList.remove("op
 
 /* cards */
 document.addEventListener("load",e=>{const t=e.target;if(t.tagName==="IMG"){const b=t.closest(".pic,.ltile,.shot,.gal");if(b)b.style.animation="none"}},true);
-const card=p=>`<a class="card" href="#p-${p.id}">
-  <div class="pic"><img class="only-l" src="${ph(p.card[0])}" alt="${esc(p.name)} home" loading="lazy"><img class="only-d" src="${ph(p.card[1])}" alt="" loading="lazy"><span class="badge ${ST[p.status][1]}">${ST[p.status][0]}</span></div>
-  <div class="body"><div class="row1"><h3>${esc(p.name)}</h3><span class="rent">${p.fromPrice?"<small>From </small>":""}${inr(p.rent)} <small>/ month</small></span></div>
-  <div class="loc">${ic("pin")}${esc(p.area)}</div>
-  <div class="meta"><span>${ic("bldg")}${p.type}</span><span>${ic("bed")}${p.bhk}</span><span>${ic("sofa")}${p.furn}</span></div></div></a>`;
+const card=p=>{const c=CTA(p);return `<article class="card">
+  <a class="pic" href="#p-${p.id}" aria-label="${esc(p.title)}"><img class="only-l" src="${ph(p.card[0])}" alt="${esc(p.title)}" loading="lazy"><img class="only-d" src="${ph(p.card[1])}" alt="" loading="lazy"></a>
+  <div class="body">
+    <div class="crow"><span class="badge inline ${ST[p.status][1]}">${p.status==="soon"&&p.from?"Available "+fdate(p.from):ST[p.status][0]}</span><span class="mute">${esc(p.furn)}</span></div>
+    <h3><a href="#p-${p.id}">${esc(p.title)}</a></h3>
+    <div class="loc">${ic("pin")}${esc(p.name)}, Bengaluru</div>
+    <div class="cprice">${p.fromPrice?"<small>From </small>":""}<b>${inr(p.rent)}</b> <small>/ month</small></div>
+    <div class="stats"><div>${ic("bath")}<b>${tbc(p.baths)}</b><span>Bathrooms*</span></div><div>${ic("car")}<b>${tbc(p.parking)}</b><span>Parking</span></div><div>${ic("key")}<b>Direct</b><span>Owner rental</span></div></div>
+    <a class="btn navy" href="#p-${p.id}">View property details</a>
+    <a class="btn line" href="${c.href}">${ic(c.icon)}${c.label}</a>
+  </div></article>`};
 $("#homeGrid").innerHTML=P.map(card).join("");
 
 /* localities */
@@ -705,16 +747,26 @@ const LOC=[
   about:"A well-connected residential neighbourhood along Bellary Road in North Bengaluru, right next to Manyata Tech Park.",
   hl:[["bldg","Next to Manyata Tech Park"],["pin","Good links to Bellary Road, the airport road and the Outer Ring Road"],["sprout","Jakkur Lake and green spaces nearby"],["home","Cafes, shops and everyday services around"]]}
 ];
+/* neighbourhood guide: nearby places by category. Distances are approximate, by road. */
+const NB={
+ "devasandra":[["cap","Colleges",["Indian Institute of Science (IISc)","M S Ramaiah Institute of Technology"]],["plus","Hospitals",["Ramaiah Memorial Hospital, New BEL Road"]],["cart","Shops & daily needs",["Shops, cafes and eateries on New BEL Road","Grocery and daily shops on Mathikere Main Road"]],["bus","Transport",["New BEL Road and CV Raman Road","Yeshwantpur railway station and bus depot"]],["bldg","Commercial areas",["New BEL Road shopping street"]]],
+ "coffee-board":[["cap","Schools",["St Johns School (about 0.3 km)","Eurokids preschool (about 0.3 km)"]],["plus","Hospitals",["Rainbow Children's Hospital, Hebbal (about 3.8 km)"]],["cart","Shops & daily needs",["Banks, post office and daily shops close by"]],["bus","Transport",["Coffee Board Layout and Kempapura bus stops","Bellary Road and the Outer Ring Road"]],["bldg","Business hubs",["Karle Town Centre (about 1.2 km)","Kirloskar Business Park (about 2.1 km)","Brigade Magnum (about 2.1 km)","Manyata Tech Park (about 2.9 km)"]]],
+ "kempapura":[["plus","Hospitals",["Bangalore Baptist Hospital, Bellary Road"]],["cart","Shops & daily needs",["Cafes, juice shops and daily stores around Hebbal"]],["bus","Transport",["Bellary Road","Airport Road and the Outer Ring Road"]],["bldg","Business hubs",["Manyata Tech Park (next door)","Kirloskar Business Park","Golden Square Business Centre"]],["sprout","Leisure",["Jakkur Lake"]]]
+};
+const nbHTML=id=>{const g=NB[id]||[];return g.length?`<div class="nbg">${g.map(([i,t,xs])=>`<div><h4>${ic(i)}${t}</h4><ul>${xs.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`).join("")}</div><p class="note">Distances are approximate, by road.</p>`:""};
+const locOf=p=>LOC.find(l=>l.name===p.name);
 const ltile=l=>{const n=P.filter(p=>p.name===l.name&&p.status!=="let").length;return `<a class="ltile" href="#loc-${l.id}"><img src="${ph(l.img)}" alt="${esc(l.name)}" loading="lazy"><div><b>${esc(l.name)}</b><span>${n} ${n===1?"home":"homes"} available or opening soon</span></div></a>`};
 $("#homeLocs").innerHTML=$("#locList").innerHTML=LOC.map(ltile).join("");
 function locality(l){
-  const homes=P.filter(p=>p.name===l.name),maps="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(l.area);
+  const homes=P.filter(p=>p.name===l.name);const maps="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(l.area);
   $("#locPage").innerHTML=`<a class="back" href="#localities">${ic("left")}All localities</a>
   <div class="lhero"><div><div class="tag rule" style="margin-bottom:18px">Locality</div><h2>${esc(l.name)}</h2><div class="loc" style="margin-top:8px">${ic("pin")}${esc(l.area)}</div>
     <p class="mute" style="font-size:17px">${esc(l.about)}</p><ul class="hl">${l.hl.map(([i,t])=>`<li>${ic(i)}<span>${esc(t)}</span></li>`).join("")}</ul>
     <div class="dacts" style="margin-top:8px"><a class="link gold" href="${maps}" target="_blank" rel="noopener">Open in Google Maps ${ic("arrow")}</a></div></div>
     <div class="shot"><img src="${ph(l.img)}" alt="${esc(l.name)}"></div></div>
-  <div class="shead"><h2 style="font-size:clamp(30px,3.4vw,42px)">Homes in ${esc(l.name)}</h2></div>
+  <div class="shead"><h2 style="font-size:clamp(30px,3.4vw,42px)">Explore the neighbourhood</h2></div>
+  ${nbHTML(l.id)}
+  <div class="shead" style="margin-top:40px"><h2 style="font-size:clamp(30px,3.4vw,42px)">Homes in ${esc(l.name)}</h2></div>
   <div class="grid">${homes.map(card).join("")||`<div class="empty">No homes listed here right now.</div>`}</div>
   <div class="dacts"><a class="btn line" href="#properties" data-alert="${esc(l.name)}">${ic("bell")}Get alerts for ${esc(l.name)}</a></div>`;
 }
@@ -729,10 +781,10 @@ $("#fFur").innerHTML=`<option value="">Furnishing: Any</option>`+uniq("furn").ma
 $("#fType").innerHTML=`<option value="">Type: Any</option>`+uniq("type").map(v=>`<option>${v}</option>`).join("");
 function renderList(){
   const n=s=>P.filter(p=>!s||p.status===s).length;
-  $("#pills").innerHTML=[["","All"],["now","Available"],["soon","Opening Soon"],["let","Occupied"]].map(([v,l])=>`<button type="button" class="pill" data-st="${v}" aria-pressed="${F.st===v}">${l}<span class="n">${n(v)}</span></button>`).join("");
+  $("#pills").innerHTML=[["","All"],["now","Available now"],["soon","Available soon"],["let","Occupied"],["reno","Under renovation"]].filter(([v])=>!v||v!=="reno"||n("reno")).map(([v,l])=>`<button type="button" class="pill" data-st="${v}" aria-pressed="${F.st===v}">${l}<span class="n">${n(v)}</span></button>`).join("");
   const q=F.q.trim().toLowerCase();
   const [bl,bh]=F.bud?F.bud.split("-").map(Number):[0,1e12];
-  let L=P.filter(p=>(!F.st||p.status===F.st)&&(!F.loc||p.name===F.loc)&&(!F.type||p.type===F.type)&&(!F.bhk||p.bhk===F.bhk)&&(!F.fur||p.furn===F.fur)&&p.rent>=bl&&p.rent<=bh&&(!q||(p.name+" "+p.area+" "+p.type).toLowerCase().includes(q)));
+  let L=P.filter(p=>(!F.st||p.status===F.st)&&(!F.loc||p.name===F.loc)&&(!F.type||p.type===F.type)&&(!F.bhk||p.bhk===F.bhk)&&(!F.fur||p.furn===F.fur)&&p.rent>=bl&&p.rent<=bh&&(!q||(p.title+" "+p.name+" "+p.area+" "+p.type).toLowerCase().includes(q)));
   const act=["loc","type","bhk","fur","bud"].filter(k=>F[k]).length+(F.sort!=="new"?1:0);$("#fN").hidden=!act;$("#fN").textContent=act;$("#fApply").textContent=`Show ${L.length} ${L.length===1?"home":"homes"}`;
   L.sort((a,b)=>F.sort==="lo"?a.rent-b.rent:F.sort==="hi"?b.rent-a.rent:b.added-a.added);
   $("#count").textContent=`${L.length} ${L.length===1?"property":"properties"}`;
@@ -757,25 +809,29 @@ function detail(p){
     <div><div class="mtabs" role="group" aria-label="Media">
       <button type="button" class="pill" data-m="ph" aria-pressed="true">${ic("img",'style="width:16px;height:16px;vertical-align:-3px;margin-right:6px"')}Photos</button>
       <button type="button" class="pill" data-m="tour" aria-pressed="false">${ic("r360",'style="width:16px;height:16px;vertical-align:-3px;margin-right:6px"')}360° Tour</button>
-      <button type="button" class="pill" data-m="vid" aria-pressed="false">${ic("play",'style="width:16px;height:16px;vertical-align:-3px;margin-right:6px"')}Video</button></div>
+      <button type="button" class="pill" data-m="vid" aria-pressed="false">${ic("play",'style="width:16px;height:16px;vertical-align:-3px;margin-right:6px"')}Video</button>
+      <button type="button" class="pill" data-m="plan" aria-pressed="false">${ic("plan",'style="width:16px;height:16px;vertical-align:-3px;margin-right:6px"')}Floor plan</button></div>
       <div class="stage"><div class="gal" id="gal">${p.photos.map((f,i)=>`<img src="${ph(f)}" alt="${esc(p.name)} photo ${i+1}" class="${i?"":"on"}">`).join("")}
       <button class="nav2 prev" type="button" aria-label="Previous photo">${ic("left")}</button><button class="nav2 next" type="button" aria-label="Next photo">${ic("right")}</button>
       <div class="dots">${p.photos.map((f,i)=>`<button type="button" aria-label="Photo ${i+1}" class="${i?"":"on"}" data-g="${i}"></button>`).join("")}</div></div><div id="alt" hidden></div></div></div>
     <div>
-      <div class="dhead"><h2>${esc(p.name)}</h2><span class="rent">${p.fromPrice?"<small>From </small>":""}${inr(p.rent)} <small>/ month</small></span></div>
+      <div class="dhead"><h2>${esc(p.title)}</h2><span class="rent">${p.fromPrice?"<small>From </small>":""}${inr(p.rent)} <small>/ month</small></span></div>
       <div class="loc" style="margin-top:8px">${ic("pin")}${esc(p.area)}<span class="badge inline ${ST[p.status][1]}" style="margin-left:8px">${ST[p.status][0]}</span></div>
-      <div class="meta"><span>${ic("bed")}${p.bhk}</span><span>${ic("sofa")}${p.furn}</span><span>${ic("cal")}${avail(p)}</span></div>
-      <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-t="ov">Overview</button><button role="tab" aria-selected="false" data-t="ph">Photos</button><button role="tab" aria-selected="false" data-t="lo">Location</button></div>
+      <div class="stats s4" style="margin-top:16px"><div>${ic("bed")}<b>${p.bhk}</b><span>Size</span></div><div>${ic("bath")}<b>${tbc(p.baths)}</b><span>Bathrooms*</span></div><div>${ic("car")}<b>${tbc(p.parking)}</b><span>Parking</span></div><div>${ic("key")}<b>Direct</b><span>Owner rental</span></div></div>
+      <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-t="ov">Overview</button><button role="tab" aria-selected="false" data-t="ph">Photos</button><button role="tab" aria-selected="false" data-t="lo">Neighbourhood</button></div>
       <div data-tp="ov"><h3 style="font-size:24px">About this home</h3><p class="mute">${esc(p.about)}</p>
-        <dl class="spec"><dt>Property type</dt><dd>${p.type}</dd><dt>Size</dt><dd>${p.bhk}</dd><dt>Furnishing</dt><dd>${p.furn}</dd><dt>Availability</dt><dd>${avail(p)}</dd><dt>Monthly rent</dt><dd>${p.fromPrice?"From ":""}${inr(p.rent)}</dd><dt>Deposit</dt><dd>${esc(p.deposit)}</dd></dl>
+        <dl class="spec"><dt>Monthly rent</dt><dd>${p.fromPrice?"From ":""}${inr(p.rent)}</dd><dt>Security deposit</dt><dd>${esc(p.deposit)}</dd><dt>Availability</dt><dd>${avail(p)}</dd><dt>Property type</dt><dd>${p.type}</dd><dt>Configuration</dt><dd>${p.bhk}</dd><dt>Area</dt><dd>${p.sqft?p.sqft.toLocaleString("en-IN")+" sq ft":"TBC"}</dd><dt>Bathrooms</dt><dd>${tbc(p.baths)}</dd><dt>Furnishing</dt><dd>${p.furn}</dd><dt>Parking</dt><dd>${tbc(p.parking)}</dd><dt>Rental</dt><dd>Direct from the owner</dd></dl>
+        <p class="note">*Details marked TBC are being confirmed.</p>
         <div class="amen">${p.amen.map(a=>`<span>${esc(a)}</span>`).join("")}</div></div>
       <div data-tp="ph" hidden><div class="thumbs">${p.photos.map((f,i)=>`<button type="button" data-g="${i}" aria-label="Show photo ${i+1}"><img src="${ph(f)}" alt=""></button>`).join("")}</div></div>
-      <div data-tp="lo" hidden><p class="mute">${esc(p.area)}. The exact address is shared when you book a viewing.</p><a class="link gold" href="${maps}" target="_blank" rel="noopener">Open ${esc(p.name)} in Google Maps ${ic("arrow")}</a></div>
-      <div class="dacts">${p.status==="let"?"":`<a class="btn" href="#visit-${p.id}">${ic("cal")}Book a viewing</a><a class="btn line" href="#enquire-${p.id}">Ask a question</a>`}
+      <div data-tp="lo" hidden><p class="mute" style="margin-top:0">${esc(p.area)}. The exact address is shared when you book a viewing.</p>${nbHTML((locOf(p)||{}).id)}
+        <div class="dacts" style="margin-top:14px"><a class="link gold" href="${maps}" target="_blank" rel="noopener">Open in Google Maps ${ic("arrow")}</a>${locOf(p)?`<a class="link gold" href="#loc-${locOf(p).id}">About ${esc(p.name)} ${ic("arrow")}</a>`:""}</div></div>
+      <div class="dacts">${p.status==="now"?`<a class="btn" href="#visit-${p.id}">${ic("cal")}Book a viewing</a>`:`<a class="btn" href="#interest-${p.id}">${ic("bell")}${CTA(p).label}</a>`}${p.status==="let"?"":`<a class="btn line" href="#enquire-${p.id}">Ask a question</a>`}
       <button class="btn line" type="button" id="share">${ic("share")}Share</button></div>
-      ${p.status==="now"?"":`<form class="notify" id="nForm" novalidate><b>${ic("bell",'style="color:var(--accent);vertical-align:-3px;margin-right:6px"')}${p.status==="let"?"Occupied right now":"Opening soon"}. Want to know first?</b>
+      ${p.status!=="let"?`<div class="vv">${ic("video")}<span>Relocating to Bengaluru? <a href="#video-${p.id}">Book a video-call viewing</a> and we'll walk you through the home live.</span></div>`:""}
+      ${p.status==="now"?"":`<form class="notify" id="nForm" novalidate><b>${ic("bell",'style="color:var(--accent);vertical-align:-3px;margin-right:6px"')}${p.status==="let"?"Currently occupied. Want to know first?":p.status==="reno"?"Under renovation. Register your interest":"Available soon. Register your interest"}</b>
         <span class="mute" style="font-size:14px">We'll message you the day ${esc(p.name)} is ready to view.</span>
-        <div class="row"><input id="nName" placeholder="Your name *" autocomplete="name" aria-label="Your name"><input id="nPhone" placeholder="Mobile number *" inputmode="tel" aria-label="Mobile number"><input id="nEmail" type="email" placeholder="Email (optional)" aria-label="Email"><button class="btn" type="submit" style="min-height:48px">Notify me</button></div>
+        <div class="row"><input id="nName" placeholder="Your name *" autocomplete="name" aria-label="Your name"><input id="nPhone" placeholder="Mobile number *" inputmode="tel" aria-label="Mobile number"><input id="nEmail" type="email" placeholder="Email (optional)" aria-label="Email"><button class="btn" type="submit" style="min-height:48px">${p.status==="let"?"Notify me":"Register interest"}</button></div>
         <p class="note" id="nNote" role="status"></p></form>`}
     </div></div>`;
   const imgs=$$("#gal img"),dots=$$("#gal .dots button");
@@ -783,14 +839,14 @@ function detail(p){
   let sx=null;const g=$("#gal");g.addEventListener("pointerdown",e=>{sx=e.clientX});
   g.addEventListener("pointerup",e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>40)go(gi+(dx<0?1:-1))});
   g.addEventListener("pointercancel",()=>sx=null);
-  $("#mcta").innerHTML=`<span class="rent">${p.fromPrice?"<small>From </small>":""}${inr(p.rent)}<small> / month</small></span>${p.status==="let"?`<button class="btn" type="button" onclick="document.getElementById('nForm').scrollIntoView({block:'center'});document.getElementById('nName').focus({preventScroll:true})">${ic("bell")}Notify me</button>`:`<a class="btn" href="#visit-${p.id}">${ic("cal")}Book a viewing</a>`}`;
+  $("#mcta").innerHTML=`<span class="rent">${p.fromPrice?"<small>From </small>":""}${inr(p.rent)}<small> / month</small></span><a class="btn" href="${CTA(p).href}">${ic(CTA(p).icon)}${CTA(p).label}</a>`;
   $("#detail").onclick=e=>{const t=e.target.closest("button");if(!t)return;
     if(t.classList.contains("prev"))go(gi-1);else if(t.classList.contains("next"))go(gi+1);
     else if(t.dataset.g){go(+t.dataset.g);$("#gal").scrollIntoView({block:"center"})}
     else if(t.dataset.m)media(p,t.dataset.m);
     else if(t.dataset.sc&&pv){pv.loadScene(t.dataset.sc);$$(".scenes button").forEach(b=>b.setAttribute("aria-pressed",b===t))}
     else if(t.dataset.t){$$(".tabs button").forEach(b=>b.setAttribute("aria-selected",b===t));$$("[data-tp]").forEach(x=>x.hidden=x.dataset.tp!==t.dataset.t)}
-    else if(t.id==="share"){const url=location.href.split("#")[0]+"#p-"+p.id;const txt=`${p.name} · ${p.bhk} · ${p.fromPrice?"from ":""}${inr(p.rent)}/month. ${url}`;
+    else if(t.id==="share"){const url=location.origin+"/homes/"+p.id+"/";const txt=`${p.title} · ${p.bhk} · ${p.fromPrice?"from ":""}${inr(p.rent)}/month. ${url}`;
       (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast("Link copied. Paste it into WhatsApp or email."),()=>toast(url))}};
   const nf=$("#nForm");if(nf)nf.addEventListener("submit",async e=>{e.preventDefault();
     const n=$("#nName").value.trim(),ph=$("#nPhone").value.replace(/\D/g,"").slice(-10),em=$("#nEmail").value.trim();
@@ -804,12 +860,13 @@ function detail(p){
 let pv=null;
 const loadPano=()=>window.pannellum?Promise.resolve():new Promise((res,rej)=>{const l=document.createElement("link");l.rel="stylesheet";l.href="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.css";document.head.append(l);
   const sc=document.createElement("script");sc.src="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.js";sc.onload=res;sc.onerror=rej;document.head.append(sc)});
-const soon=(p,icon,title,text)=>`<div class="soonph"><img src="${ph(p.photos[0])}" alt=""><div>${ic(icon)}<b>${title}</b><p>${text}</p></div></div>`;
+const soon=(p,icon,title,text)=>`<div class="soonph"><img src="${ph(p.photos[0])}" alt=""><div>${ic(icon)}<b>${title}</b><p>${text}</p>${p.status!=="let"?`<a class="btn" href="#video-${p.id}" style="margin-top:16px;min-height:44px">${ic("video")}Book a video-call viewing</a>`:""}</div></div>`;
 function media(p,m){
   $$(".mtabs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.m===m));
   const alt=$("#alt"),gal=$("#gal");if(pv){try{pv.destroy()}catch(e){}pv=null}
   alt.querySelectorAll("video").forEach(v=>v.pause());
   gal.hidden=m!=="ph";alt.hidden=m==="ph";if(m==="ph"){alt.innerHTML="";return}
+  if(m==="plan"){alt.innerHTML=p.floorplan?`<img src="${esc(p.floorplan)}" alt="${esc(p.title)} floor plan" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff">`:soon(p,"plan","Floor plan coming soon",`We're preparing a floor plan of ${esc(p.title)}. Ask us and we'll share the layout and room sizes.`);return}
   if(m==="vid"){
     alt.innerHTML=p.youtube?`<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(p.youtube)}?rel=0" title="${esc(p.name)} video tour" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`
       :p.video?`<video src="${esc(p.video)}" poster="${ph(p.photos[0])}" controls playsinline preload="metadata"></video>`
@@ -830,7 +887,7 @@ $$("#eForm input[name=kind]").forEach(r=>r.addEventListener("change",kindSync));
 const tmr=()=>{const d=new Date(Date.now()+864e5);return d.toISOString().slice(0,10)};
 const open=P.filter(x=>x.status!=="let");
 $("#eHomeSel").innerHTML=`<option value="">Choose a home</option>`+open.map(x=>`<option value="${x.id}">${esc(x.name)} · ${x.bhk} · ${x.fromPrice?"from ":""}${inr(x.rent)}</option>`).join("");
-const subOf=p=>`${p.name} · ${p.bhk} · ${p.fromPrice?"from ":""}${inr(p.rent)} / month`;
+const subOf=p=>`${p.title} · ${p.bhk} · ${p.fromPrice?"from ":""}${inr(p.rent)} / month`;
 $("#eHomeSel").addEventListener("change",e=>{cur=P.find(x=>x.id===e.target.value)||null;$("#eSub").textContent=cur?subOf(cur):"Choose a home and a time that suits you."});
 function enquire(p,visit){$("#eForm").classList.remove("rev");$("#eForm").querySelector(`input[value="${visit?"Book a viewing":"Ask a question"}"]`).checked=true;$("#eDate").min=tmr();kindSync();$$("#eForm .fld").forEach(f=>f.classList.remove("bad"));
   cur=p;$("#homeF").hidden=!!p;$("#eHomeSel").value=p?p.id:"";$("#eSub").textContent=p?subOf(p):"Choose a home and a time that suits you.";$("#eBack").href=p?"#p-"+p.id:"#properties";$("#eBack").lastChild.textContent=p?"Back to property":"Back to properties"}
@@ -908,19 +965,21 @@ function route(){
   if(h.startsWith("p-")){p=P.find(x=>x.id===h.slice(2));v=p?"property":"notfound";miss=p?"":"home"}
   else if(h.startsWith("enquire-")){p=P.find(x=>x.id===h.slice(8));v=p?"enquire":"notfound";miss=p?"":"home"}
   else if(h.startsWith("visit-")){p=P.find(x=>x.id===h.slice(6));v=p?"enquire":"notfound";vis=true;miss=p?"":"home"}
+  else if(h.startsWith("video-")){p=P.find(x=>x.id===h.slice(6));v=p?"enquire":"notfound";vis=true;miss=p?"":"home";if(p)setTimeout(()=>{$("#eForm").querySelector('input[value="Video call"]').checked=true},0)}
+  else if(h.startsWith("interest-")){p=P.find(x=>x.id===h.slice(9));v=p?"property":"notfound";miss=p?"":"home";if(p)setTimeout(()=>{const f=$("#nForm");if(f){f.scrollIntoView({block:"center"});$("#nName").focus({preventScroll:true})}},80)}
   else if(h.startsWith("loc-")){l=LOC.find(x=>x.id===h.slice(4));v=l?"locality":"notfound"}
   else if(h==="book"){v="enquire";vis=true}
   else if(h==="thanks")v=$("#done").innerHTML?"thanks":"properties";
   else v=VIEWS.includes(h)?h:"notfound";
   $("#nfTitle").textContent=miss?"This home isn't listed anymore":"This page isn't here";
   $("#nfText").textContent=miss?"It may have been let or removed. Take a look at the homes available now.":"The link may be old, or the page may have moved.";
-  if(v==="property")detail(p);if(v==="enquire")enquire(p,vis);if(v==="properties")renderList();if(v==="locality")locality(l);
+  if(v==="property")detail(p);if(v==="enquire"){enquire(p,vis);$("#eForm").querySelector('input[value="In person"]').checked=true}if(v==="properties")renderList();if(v==="locality")locality(l);
   $$("[data-view]").forEach(s=>s.classList.toggle("on",s.dataset.view===v));
   document.body.dataset.v=v;sheet(false);
   $$("[data-nav]").forEach(a=>a.toggleAttribute("aria-current",a.dataset.nav===v||(v==="property"&&a.dataset.nav==="properties")||(v==="locality"&&a.dataset.nav==="localities")));
   $$("[data-nav][aria-current]").forEach(a=>a.setAttribute("aria-current","page"));
-  document.title=(p?p.name+" · ":l?l.name+" · ":v==="privacy"?"Privacy · ":v==="terms"?"Terms · ":v==="notfound"?"Not found · ":"")+"Mativio — Homes for Rent";
-  scrollTo({top:0});
+  document.title=(p?p.title+" · ":l?l.name+" · ":v==="privacy"?"Privacy · ":v==="terms"?"Terms · ":v==="notfound"?"Not found · ":"")+"Mativio — Homes for Rent";
+  if(!h.startsWith("interest-"))scrollTo({top:0});
 }
 addEventListener("hashchange",route);route();
 }
