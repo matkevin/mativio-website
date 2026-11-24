@@ -23,5 +23,10 @@ Until these are added, the property page shows "coming soon" in the 360° Tour a
 Four forms are sent to Netlify: `enquiry` (viewing requests and questions), `notify` (alerts for one Opening Soon / Occupied home), `requirement` (what a visitor is looking for: locality, size, budget, move-in) and `contact`.
 In Netlify: **Forms → Enable form detection**, then redeploy once. Submissions appear under **Forms**; add email alerts under **Site configuration → Notifications → Emails and webhooks → Form submission notifications**.
 
+## Localities and legal pages
+- `LOC` (in the script, above the listings filters): locality pages with description and highlights. Homes are matched to a locality by name.
+- Privacy Policy (`#privacy`) and Terms of Use (`#terms`) are drafts marked "Draft for review"; remove the label once approved.
+- `404.html` is shown by Netlify for unknown paths; unknown in-page links show the in-page 404.
+
 ## Pages (hash links)
-`#home`, `#properties`, `#book` (book a viewing for any home), `#p-<id>` (one home, shareable), `#visit-<id>` (book a viewing), `#enquire-<id>` (ask a question), `#story`, `#contact`.
+`#home`, `#properties`, `#book` (book a viewing for any home), `#localities`, `#loc-<id>`, `#privacy`, `#terms`, `#p-<id>` (one home, shareable), `#visit-<id>` (book a viewing), `#enquire-<id>` (ask a question), `#story`, `#contact`.
