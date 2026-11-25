@@ -451,6 +451,23 @@ footer .wrap{position:relative;z-index:2}
 html{overflow-x:clip}
 @media(max-width:1100px){.lf-a{display:none}}
 @media(max-width:599px){.ctitle{font-size:32px;gap:12px}.ctitle::before,.ctitle::after{width:34px}.pillars{grid-template-columns:repeat(4,minmax(0,1fr))}}
+/* view toggle, list view and paging */
+.vtog{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--card)}
+.vtog button{width:40px;height:36px;border:0;border-radius:999px;background:transparent;color:var(--mute);display:grid;place-items:center;cursor:pointer}
+.vtog button[aria-pressed=true]{background:var(--navy);color:var(--ivory)}:root[data-theme=dark] .vtog button[aria-pressed=true]{background:var(--gold);color:var(--navy)}
+.vtog svg.i{width:18px;height:18px}
+.grid.list{grid-template-columns:1fr;gap:18px}
+.grid.list .card{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);align-items:stretch}
+.grid.list .card .pic{margin:12px 0 12px 12px;aspect-ratio:auto;min-height:220px}
+.grid.list .card .body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,260px);grid-template-areas:"crow crow" "title stats" "loc stats" "price stats" "b1 b1" "b2 b2";column-gap:24px;align-content:center}
+.grid.list .crow{grid-area:crow}.grid.list h3{grid-area:title}.grid.list .loc{grid-area:loc}.grid.list .cprice{grid-area:price}
+.grid.list .stats{grid-area:stats;border-top:0;border-left:1px solid var(--line);margin:0;padding:0 0 0 16px;align-self:center}
+.grid.list .card .btn.navy{grid-area:b1}.grid.list .card .btn.line{grid-area:b2}
+@media(min-width:1024px){.grid.list .card .body{grid-template-areas:"crow crow" "title stats" "loc stats" "price stats" "b1 b2";grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.grid.list .card .btn+.btn{margin-top:0}}
+@media(max-width:833px){.grid.list .card{grid-template-columns:minmax(0,40%) minmax(0,1fr)}.grid.list .card .pic{min-height:0}.grid.list .card .body{grid-template-columns:1fr;grid-template-areas:"crow" "title" "loc" "price" "stats" "b1" "b2"}.grid.list .stats{border-left:0;border-top:1px solid var(--line);padding:12px 0 0}}
+@media(max-width:599px){.vtog{display:none}.grid.list{grid-template-columns:1fr}.grid.list .card{display:flex;flex-direction:column}.grid.list .card .pic{margin:12px 12px 0;aspect-ratio:16/10}.grid.list .card .body{display:flex}}
+.more{text-align:center;margin-top:28px;display:grid;justify-items:center;gap:6px}.more p{margin:0;font-size:14px}
+@media(min-width:600px){.minis{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 </head>
 <body>
@@ -495,6 +512,8 @@ html{overflow-x:clip}
 <symbol id="shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v6c0 4.5 3.2 7.8 7.5 9 4.3-1.2 7.5-4.5 7.5-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></symbol>
 <symbol id="tree" viewBox="0 0 24 24"><path d="M12 21v-8m0 3-3-2.5m3 1 3-2.5M8 13.5a4 4 0 0 1-1.5-7.6A4.5 4.5 0 0 1 15 4.5a4 4 0 0 1 2.5 7A3.5 3.5 0 0 1 15 15H9a3.5 3.5 0 0 1-1-1.5z"/></symbol>
 <symbol id="gem" viewBox="0 0 24 24"><path d="M6 4h12l3.5 5L12 20.5 2.5 9z"/><path d="M2.5 9h19M9 4 7.5 9 12 20.5 16.5 9 15 4"/></symbol>
+<symbol id="vgrid" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></symbol>
+<symbol id="vlist" viewBox="0 0 24 24"><rect x="4" y="4.5" width="5" height="5" rx="1.2"/><rect x="4" y="14.5" width="5" height="5" rx="1.2"/><path d="M12 6h8M12 9h5M12 16h8M12 19h5"/></symbol>
 <symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
 </svg>
 
@@ -590,14 +609,15 @@ html{overflow-x:clip}
         <label class="sl"><span>Home size</span><select id="fBhk"></select></label>
         <label class="sl"><span>Furnishing</span><select id="fFur"></select></label>
         <label class="sl"><span>Budget per month</span><select id="fBud"><option value="">Budget: Any</option><option value="0-20000">Up to ₹20,000</option><option value="20000-30000">₹20,000 – ₹30,000</option><option value="30000-45000">₹30,000 – ₹45,000</option><option value="45000-99999999">₹45,000 +</option></select></label>
-        <label class="sl"><span>Sort by</span><select id="fSort"><option value="new">Sort: Newest</option><option value="lo">Rent: low to high</option><option value="hi">Rent: high to low</option></select></label>
+        <label class="sl"><span>Sort by</span><select id="fSort"><option value="rel">Sort: Relevance</option><option value="new">Latest</option><option value="soon">Available soonest</option><option value="lo">Rent: low to high</option><option value="hi">Rent: high to low</option></select></label>
       </div>
       <div class="sft"><button type="button" class="btn line" id="fReset">Reset</button><button type="button" class="btn" id="fApply">Show homes</button></div>
     </div>
-    <div class="fbar"><button type="button" class="pill fbtn" id="fOpen" aria-controls="sheet"><svg class="i" style="width:18px;height:18px"><use href="#sliders"/></svg>Filters<span class="n" id="fN" hidden></span></button><span class="count" id="count"></span></div>
+    <div class="fbar"><button type="button" class="pill fbtn" id="fOpen" aria-controls="sheet"><svg class="i" style="width:18px;height:18px"><use href="#sliders"/></svg>Filters<span class="n" id="fN" hidden></span></button><span class="count" id="count"></span><div class="vtog" role="group" aria-label="View"><button type="button" data-view-as="grid" aria-label="Grid view" aria-pressed="true"><svg class="i"><use href="#vgrid"/></svg></button><button type="button" data-view-as="list" aria-label="List view" aria-pressed="false"><svg class="i"><use href="#vlist"/></svg></button></div></div>
   </div>
   <div class="scrim" id="scrim"></div>
   <div class="grid" id="listGrid"></div>
+  <div class="more" id="moreBox" hidden><p class="mute" id="moreTxt"></p><button type="button" class="btn line" id="moreBtn">Show more homes</button></div>
   <form class="formcard req" id="rForm" novalidate>
     <div><h3>Not finding the right home?</h3><p class="mute" style="margin:.4em 0 0">Tell us what you're looking for. We'll message you as soon as a home that fits becomes available.</p></div>
     <div class="rgrid">
@@ -805,6 +825,7 @@ const CONTACT={phone:"",whatsapp:"",email:"",address:"Bengaluru, Karnataka"};
    video: an MP4 path like "assets/video/devasandra.mp4", or youtube: the video id (e.g. "dQw4w9WgXcQ") */
 /* status: "now" (Available now), "soon" (Available soon), "let" (Currently occupied), "reno" (Under renovation). from: "YYYY-MM-DD" or ""
    title: the name shown on cards. name: the locality (matches LOC). baths, sqft: number or null (null shows "TBC").
+   listed: date the home was listed "YYYY-MM-DD" (used by Latest; optional). featured: true to pin it near the top and on the home page (optional).
    parking: "Available", "Not available" or null. floorplan: an image path like "assets/plans/devasandra.jpg", or "". */
 const P=[
  {id:"devasandra",title:"Devasandra Residence",hint:"Near New BEL Road",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Devasandra",area:"Devasandra, New BEL Road, Bengaluru",type:"Apartment",bhk:"2 BHK",furn:"Semi-furnished",rent:28000,fromPrice:false,status:"now",from:"",added:3,
@@ -863,12 +884,29 @@ const card=p=>{const c=CTA(p);return `<article class="card">
     <a class="btn navy" href="#p-${p.id}">View property details</a>
     <a class="btn line" href="${c.href}">${ic(c.icon)}${c.label}</a>
   </div></article>`};
+/* Many listings: relevance and latest sorting, grid or list view, and paging */
+const PAGE=9;let pg=1;
+let VIEW="grid";try{VIEW=localStorage.getItem("mativio-view")||"grid"}catch(e){}
+const RANK={now:0,soon:1,reno:2,let:3};
+const listedOf=p=>p.listed||"";
+function sortHomes(L,how,q){
+  const latest=(a,b)=>listedOf(b).localeCompare(listedOf(a))||(b.added||0)-(a.added||0);
+  const hit=p=>!q?0:(p.title+" "+p.name).toLowerCase().startsWith(q)?2:(p.title+" "+p.name+" "+p.area).toLowerCase().includes(q)?1:0;
+  const by={
+    rel:(a,b)=>hit(b)-hit(a)||RANK[a.status]-RANK[b.status]||(b.featured?1:0)-(a.featured?1:0)||latest(a,b),
+    new:latest,
+    soon:(a,b)=>RANK[a.status]-RANK[b.status]||(a.from||"9999").localeCompare(b.from||"9999")||latest(a,b),
+    lo:(a,b)=>a.rent-b.rent,hi:(a,b)=>b.rent-a.rent}[how]||latest;
+  return [...L].sort(by);
+}
 const hint=p=>p.hint||(p.type==="Hostel Residence"?"Hostel accommodation":`${p.bhk} ${p.type.toLowerCase()}`);
 const mini=p=>`<a class="mini" href="#p-${p.id}"><div class="mpic"><img class="only-l" src="${ph(p.card[0])}" alt="${esc(p.title)}" loading="lazy"><img class="only-d" src="${ph(p.card[1])}" alt="" loading="lazy"></div>
   <div class="mb"><div class="mr"><b>${esc(p.name)}</b><span class="mpill ${p.status==="now"?"ok":""}">${p.status==="now"?"Available":p.status==="soon"?"Opening soon":p.status==="reno"?"Renovation":"Occupied"}</span></div>
   <div class="ms">${p.status==="now"?`${p.fromPrice?"From ":""}${inr(p.rent)} / month`:`<span class="dot"></span>${avail(p)}`}</div>
   <div class="mm"><span>${p.status==="now"?esc(p.furn)+" · ":""}${esc(hint(p))}</span><span class="go">${ic("arrow")}</span></div></div></a>`;
-$("#homeGrid").innerHTML=P.map(mini).join("");
+const HOME_MAX=6;const homeList=sortHomes(P,"rel","").slice(0,HOME_MAX);
+$("#homeGrid").innerHTML=homeList.map(mini).join("");
+$(".cmore .link").firstChild.textContent=P.length>HOME_MAX?`View all ${P.length} properties `:"View all properties ";
 
 /* localities */
 const LOC=[
@@ -908,7 +946,7 @@ function locality(l){
 document.addEventListener("click",e=>{const a=e.target.closest("[data-alert]");if(!a)return;const n=a.dataset.alert;setTimeout(()=>{$("#rLoc").value=n;$("#rForm").scrollIntoView({behavior:"smooth",block:"start"});$("#rName").focus({preventScroll:true})},60)});
 
 /* list + filters */
-const F0={st:"",q:"",loc:"",type:"",bhk:"",fur:"",bud:"",sort:"new"};const F={...F0};
+const F0={st:"",q:"",loc:"",type:"",bhk:"",fur:"",bud:"",sort:"rel"};const F={...F0};
 const uniq=k=>[...new Set(P.map(p=>p[k]))].sort();
 $("#fLoc").innerHTML=`<option value="">Locality: All</option>`+uniq("name").map(v=>`<option>${v}</option>`).join("");
 $("#fBhk").innerHTML=`<option value="">Size: Any</option>`+uniq("bhk").map(v=>`<option>${v}</option>`).join("");
@@ -920,16 +958,23 @@ function renderList(){
   const q=F.q.trim().toLowerCase();
   const [bl,bh]=F.bud?F.bud.split("-").map(Number):[0,1e12];
   let L=P.filter(p=>(!F.st||p.status===F.st)&&(!F.loc||p.name===F.loc)&&(!F.type||p.type===F.type)&&(!F.bhk||p.bhk===F.bhk)&&(!F.fur||p.furn===F.fur)&&p.rent>=bl&&p.rent<=bh&&(!q||(p.title+" "+p.name+" "+p.area+" "+p.type).toLowerCase().includes(q)));
-  const act=["loc","type","bhk","fur","bud"].filter(k=>F[k]).length+(F.sort!=="new"?1:0);$("#fN").hidden=!act;$("#fN").textContent=act;$("#fApply").textContent=`Show ${L.length} ${L.length===1?"home":"homes"}`;
-  L.sort((a,b)=>F.sort==="lo"?a.rent-b.rent:F.sort==="hi"?b.rent-a.rent:b.added-a.added);
-  $("#count").textContent=`${L.length} ${L.length===1?"property":"properties"}`;
-  $("#listGrid").innerHTML=L.length?L.map(card).join(""):`<div class="empty">No homes match these filters right now.<br><button class="btn line" type="button" id="clr" style="margin-top:16px">Clear filters</button></div>`;
+  const act=["loc","type","bhk","fur","bud"].filter(k=>F[k]).length+(F.sort!=="rel"?1:0);$("#fN").hidden=!act;$("#fN").textContent=act;$("#fApply").textContent=`Show ${L.length} ${L.length===1?"home":"homes"}`;
+  L=sortHomes(L,F.sort,q);
+  const shown=L.slice(0,PAGE*pg);
+  $("#count").textContent=L.length>shown.length?`Showing ${shown.length} of ${L.length} homes`:`${L.length} ${L.length===1?"property":"properties"}`;
+  $("#listGrid").classList.toggle("list",VIEW==="list");
+  $("#listGrid").innerHTML=L.length?shown.map(card).join(""):`<div class="empty">No homes match these filters right now.<br><button class="btn line" type="button" id="clr" style="margin-top:16px">Clear filters</button></div>`;
+  const left=L.length-shown.length;$("#moreBox").hidden=left<=0;
+  if(left>0){$("#moreTxt").textContent=`${left} more ${left===1?"home":"homes"} to see`;$("#moreBtn").textContent=`Show ${Math.min(PAGE,left)} more`}
 }
-$("#pills").addEventListener("click",e=>{const b=e.target.closest("[data-st]");if(b){F.st=b.dataset.st;renderList()}});
-$("#q").addEventListener("input",e=>{F.q=e.target.value;renderList()});
+$("#pills").addEventListener("click",e=>{const b=e.target.closest("[data-st]");if(b){F.st=b.dataset.st;pg=1;renderList()}});
+$("#moreBtn").addEventListener("click",()=>{const first=PAGE*pg;pg++;renderList();const c=$$("#listGrid .card")[first];if(c)c.querySelector("a")?.focus({preventScroll:true})});
+const syncView=()=>$$("[data-view-as]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.viewAs===VIEW));syncView();
+$$("[data-view-as]").forEach(b=>b.addEventListener("click",()=>{VIEW=b.dataset.viewAs;try{localStorage.setItem("mativio-view",VIEW)}catch(e){}syncView();renderList()}));
+$("#q").addEventListener("input",e=>{F.q=e.target.value;pg=1;renderList()});
 const FS=[["#fLoc","loc"],["#fType","type"],["#fBhk","bhk"],["#fFur","fur"],["#fBud","bud"],["#fSort","sort"]];
-FS.forEach(([s,k])=>$(s).addEventListener("change",e=>{F[k]=e.target.value;renderList()}));
-const resetF=()=>{Object.assign(F,F0);$("#q").value="";FS.forEach(([s,k])=>$(s).value=F[k]);renderList()};
+FS.forEach(([s,k])=>$(s).addEventListener("change",e=>{F[k]=e.target.value;pg=1;renderList()}));
+const resetF=()=>{Object.assign(F,F0);pg=1;$("#q").value="";FS.forEach(([s,k])=>$(s).value=F[k]);renderList()};
 const sheet=(o)=>{$("#sheet").classList.toggle("open",o);$("#scrim").classList.toggle("on",o);document.body.style.overflow=o?"hidden":""};
 $("#fOpen").onclick=()=>sheet(true);$("#fClose").onclick=$("#scrim").onclick=$("#fApply").onclick=()=>sheet(false);$("#fReset").onclick=resetF;
 addEventListener("keydown",e=>{if(e.key==="Escape")sheet(false)});

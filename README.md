@@ -34,6 +34,12 @@ Run it again whenever you add, rename or reprice a home in `P`.
 `title` (card name), `name` (locality), `status` (`now`, `soon`, `let`, `reno`), `rent`, `deposit`, `bhk`, `sqft`, `baths`, `parking`, `furn`, `floorplan`, `photos`, `tour`, `video`/`youtube`. Empty or `null` values show as "TBC".
 The main button on cards and pages follows the status: Available now → Book a viewing; Available soon or Under renovation → Register interest; Currently occupied → Notify me.
 
+## Many listings
+- The Properties page shows 9 homes at a time with "Show more", in **grid or list view** (the visitor's choice is remembered).
+- **Sort:** Relevance (default: available now first, then available soon, under renovation, occupied; search matches and `featured` homes rise; newest next), Latest (by `listed` date), Available soonest, Rent low→high, Rent high→low.
+- The home page shows up to 6 homes (best first) and "View all N properties".
+- Optional fields per home: `listed: "YYYY-MM-DD"`, `featured: true`.
+
 ## Neighbourhood guide
 `NB` (in the script) lists nearby colleges, hospitals, shops, transport and business hubs for each locality. It shows on the locality page and in the Neighbourhood tab of each home.
 
