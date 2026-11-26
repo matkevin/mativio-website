@@ -23,7 +23,7 @@
    LAYOUT: hash-routed views: home, properties, property detail, enquiry, confirmation, story, contact. */
 :root{--navy:#142235;--gold:#C5AD83;--ivory:#F2EEE5;--olive:#454C47;
 --bg:#F8F5EF;--bg2:#f3e9da;--card:#FFFFFF;--ink:#142235;--mute:#525A58;--line:#e7dac6;
---accent:#80613C;--btn:linear-gradient(180deg,#c9a66c,#ad8a52);--btnInk:#142235;--footer:var(--navy);--field:#fffdf9;
+--accent:#80613C;--btn:linear-gradient(180deg,#c9a66c,#ad8a52);--btnInk:#fff;--footer:var(--navy);--field:#fffdf9;
 --okBg:#4a5a3f;--okInk:#f2eee5;--soonBg:#f1dcb4;--soonInk:#5b4318;--occBg:#e3e0da;--occInk:#4d4f52;
 --shadow:0 18px 40px rgba(93,70,35,.12);color-scheme:light}
 :root[data-theme=dark]{--bg:#142235;--bg2:#0f1b2b;--card:#1D2D40;--ink:#F2EEE5;--mute:#B6BFCA;--footer:#0b1420;--line:#2c3f58;
@@ -678,6 +678,11 @@ header.scrolled .bar{padding-block:0;min-height:calc(var(--hdr) - 10px)}
     </div>
     <div class="shot"><img class="only-l" src="assets/photos/hero_light.jpg" alt="Mativio residence among trees in golden light"><img class="only-d" src="assets/photos/hero_dark.jpg" alt="Mativio residence at dusk with the Mativio sign"></div>
   </div>
+  <div class="sec">
+    <h2 class="ctitle">Our Properties</h2>
+    <div class="minis" id="homeGrid"></div>
+    <div class="cmore"><a class="link gold" href="#properties">View all properties <svg class="i"><use href="#arrow"/></svg></a></div>
+  </div>
   <div class="pillars">
     <div><svg class="i"><use href="#home"/></svg><p><b>Family-Owned</b><span>A personal, long-term approach to our properties</span></p></div>
     <div><svg class="i"><use href="#shield"/></svg><p><b>Thoughtfully Managed</b><span>Well-maintained homes and responsive support</span></p></div>
@@ -686,11 +691,6 @@ header.scrolled .bar{padding-block:0;min-height:calc(var(--hdr) - 10px)}
     <img class="lf lf-b" src="assets/leaves/t_br.png" alt="" aria-hidden="true" loading="lazy">
   </div>
   <div class="sec">
-    <h2 class="ctitle">Our Properties</h2>
-    <div class="minis" id="homeGrid"></div>
-    <div class="cmore"><a class="link gold" href="#properties">View all properties <svg class="i"><use href="#arrow"/></svg></a></div>
-  </div>
-  <div class="sec" style="padding-top:0">
     <h2 class="ctitle">Our Localities</h2>
     <p class="csub">Discover prime locations in Bengaluru.</p>
     <div class="blr"><div class="bimg"><img src="assets/photos/blr_banner.jpg" alt="Bengaluru skyline with Vidhana Soudha" loading="lazy"></div>

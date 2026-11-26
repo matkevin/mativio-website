@@ -5,11 +5,11 @@
 | Branch | PR | State | Contents |
 |---|---|---|---|
 | `main` | — | **Live** at https://mativio-website.netlify.app | PRs #1–#5 and #7 merged |
-| `review/botanical` | #6 | Open, awaiting owner approval | Botanical theme, mobile menu switch, listings scaling, gallery/lightbox, time-slot picker, legal updates, neighbourhood content, exact locations, real statuses and rents, mobile pillars 2 × 2 |
+| `review/botanical` | #6 | Superseded by #8; owner to close it | Botanical theme, mobile menu switch, listings scaling, gallery/lightbox, time-slot picker, legal updates, neighbourhood content, exact locations, real statuses and rents, mobile pillars 2 × 2 |
 | **`review/responsive-ux`** | **#8** | **Open, current development branch** (built on `review/botanical`, so it contains #6) | Responsive/accessibility audit fixes, plus these handover docs and `tools/audit/` |
 
 - Previews: https://deploy-preview-6--mativio-website.netlify.app and https://deploy-preview-8--mativio-website.netlify.app.
-- **Merge plan (owner decides):** merging #8 ships #6 as well; close #6 afterwards or merge it first. Before merging, bring `main` into the branch (`git merge origin/main`). The branch doesn't yet have the PR #7 skill files (`.claude/skills/ui-ux-pro-max/`); no conflicts are expected.
+- **Merge plan (owner decides):** #8 contains everything in #6, so #6 can be closed without merging. `main` (including the PR #7 skill files) was merged into `review/responsive-ux` on 26 Nov 2026, so #8 is up to date with production.
 - Other branches (`claude/*`, `review/spec-alignment`, `review/batch-2`, `review/batch-3`) are already merged.
 - Ship to production in **one batch** when the owner approves (about 15 Netlify credits per production deploy).
 
@@ -34,7 +34,8 @@
 - **Legal:** Privacy Policy and Terms (DPDP Act 2023 and Rules 2025), dated 26 Nov 2026, with no host named.
 - **Responsive and accessibility audit (PR #8):**
   - Country-code phone fields (fixes non-Indian numbers being saved as +91).
-  - AA contrast: 0 failures; navy text on gold buttons; accent `#80613C`.
+  - AA contrast: accent `#80613C`; 0 failures apart from the gold primary buttons in light mode, which keep white text at the owner's request (2.3–3.2:1, accepted exception).
+  - Home page order: hero, Our Properties, pillars, Our Localities, Our Story (owner's request, 26 Nov 2026).
   - One H1 per view; linked form errors; skip link; modal menu and filter sheet.
   - Fluid type tokens; header 84/72/64; hero 42/58; tablet portrait stack; compact tablet nav.
   - 44 px targets; swipeable chips; keyboard-operable gallery; "Sending…" state.

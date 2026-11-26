@@ -12,7 +12,7 @@ These are the journeys as built on `review/responsive-ux` (PR #8, which includes
 
 ## A. Find an available home (primary conversion)
 
-1. **Home** (`#home`): hero "Find a place to call home." with "Explore available homes" and "Get to know us". Then the four pillars, "Our Properties" (up to 6 homes, best first, then "View all N properties"), the Bengaluru/localities banner, the Our Story band and the footer.
+1. **Home** (`#home`): hero "Find a place to call home." with "Explore available homes" and "Get to know us". Then "Our Properties" (up to 6 homes, best first, then "View all N properties"), the four pillars, the Bengaluru/localities banner, the Our Story band and the footer.
 2. **Properties** (`#properties`): search, filters and sort (journey D). Cards follow the standard card order.
 3. **Property details** (`#p-<id>`): back link; tabs Overview · Photos · 360° Tour · Video · Location · Neighbourhood; gallery with lightbox; title (H1), rent, address and status badge; key facts (size, bathrooms*, parking, owner rental "Direct"); about text; amenities; Google Maps link; neighbourhood guide. The action follows status (see `docs/property-data.md`). On phones an available home shows a **sticky bottom bar** with the rent and "Book a viewing".
 4. **Enquire or book** (journeys B and C), leading to the **confirmation** (`#thanks`) with a reference `MTV-xxxx`.

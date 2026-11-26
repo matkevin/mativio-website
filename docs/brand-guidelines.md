@@ -28,7 +28,7 @@ Source: the owner's brand board (Nov 2026), the first brand draft and approved w
 
 Accessible web values (from the responsive audit, PR #8):
 - Light theme accent **text** is a deeper bronze, `#80613C` (5.2:1 on ivory). Pure Champagne Gold is too light for small text on ivory.
-- Gold buttons use **navy text** in both themes (owner's choice, 26 Nov 2026).
+- Gold buttons use **white text in light mode** and **navy text in dark mode** (owner's choice, 26 Nov 2026, restoring the PR #6 styling). White on the light-mode gold is about 2.3–3.2:1, below WCAG AA's 4.5:1; this is an accepted owner exception.
 
 Status colours: Available now = olive; Available soon = gold; Currently occupied = grey; Under renovation = purple; Under construction = amber/bronze. Exact values are in `docs/design-system.md`.
 

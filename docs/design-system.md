@@ -16,13 +16,13 @@ Themes switch with `html[data-theme=dark]`, saved in `localStorage["mativio-them
 | `--line` | `#e7dac6` | `#2c3f58` | Borders, dividers |
 | `--accent` | `#80613C` | `#C5AD83` | Accent text, links, rules, focus ring |
 | `--btn` | gold gradient `#c9a66c→#ad8a52` | `#d8bb88→#c5a46c` | Primary button fill |
-| `--btnInk` | `#142235` (navy) | `#142235` | Primary button text |
+| `--btnInk` | `#fff` (white) | `#142235` (navy) | Primary button text (owner's choice; light-mode contrast is an accepted exception, see below) |
 | `--field` | `#fffdf9` | `#13243a` | Inputs |
 | `--footer` | navy | `#0b1420` | Footer background |
 | `--shadow` | warm brown, soft | black, soft | Elevation |
 | Fixed | `--navy #142235`, `--gold #C5AD83`, `--ivory #F2EEE5`, `--olive #454C47` | | Brand constants |
 
-On production `main`, the light values were `--bg #f8f1e6`, `--card #fffaf3`, `--mute #5d6570`, `--accent #a9874f` and `--btnInk #fff`, and the dark values were `--card #182a40` and `--mute #aab3be`. These were changed in PR #8 for contrast and to match the brief.
+On production `main`, the light values were `--bg #f8f1e6`, `--card #fffaf3`, `--mute #5d6570`, `--accent #a9874f`, and the dark values were `--card #182a40` and `--mute #aab3be`. These were changed in PR #8 for contrast and to match the brief. PR #8 also briefly set the light `--btnInk` to navy; at the owner's request (26 Nov 2026) it is back to white, as in PR #6. White on the gold gradient is 2.3–3.2:1, so primary buttons in light mode are a known, owner-accepted exception to AA text contrast.
 
 Status badges (`.badge` + class):
 
@@ -72,7 +72,7 @@ Property listing grid: 3 columns on desktop, 2 on tablet, 1 on mobile. Card imag
 
 ## Components
 
-- **Buttons:** `.btn` is a pill (radius 999 px), min-height 52 px, gold gradient, navy text; on hover it brightens and lifts 1 px. `.btn.line` is outlined with an accent border. `.link` is a text link with an accent underline, min-height 44 px.
+- **Buttons:** `.btn` is a pill (radius 999 px), min-height 52 px, gold gradient, white text in light mode and navy in dark; on hover it brightens and lifts 1 px. `.btn.line` is outlined with an accent border. `.link` is a text link with an accent underline, min-height 44 px.
 - **Pills/chips:** `.pill`, 44 px high, used for availability filters (with counts), gallery tabs and segmented choices. The selected pill is navy (gold in dark).
 - **Property card (standard, use everywhere):** photo → status pill (left) + furnishing (right) → title → locality → rent ("₹32,000 / month" or "Price on request") → three stats (Bathrooms* · Parking · Owner rental "Direct") → "View property details" → status action (see `docs/property-data.md`).
 - **Header:** sticky; becomes translucent with blur and a hairline on scroll; the wordmark folds (see Animations).
