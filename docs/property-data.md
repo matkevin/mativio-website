@@ -14,6 +14,8 @@
 
 All homes are semi-furnished with parking (owner, 24 Nov 2026), except #674, which is TBC while under construction.
 
+**Parking display rule (owner, 27 Nov 2026):** the site shows parking in general terms only, with no car or space counts. Use `parking:"Available"` and the amenity "Parking available" for apartments, and `"Bike parking"` for the Kempapura Hostel (`"TBC"` for #674 until confirmed). The counts in the table above are kept as the owner's record and are not shown on the site.
+
 ### Not yet supplied (show as "TBC" / "To be confirmed")
 
 - Deposits for every home.

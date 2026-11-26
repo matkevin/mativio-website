@@ -4,7 +4,7 @@ Mativio, family-owned homes for rent in North Bengaluru. *Land · Living · Lega
 
 - **Live (production):** https://mativio-website.netlify.app (deploys from `main`)
 - **Repository:** https://github.com/matkevin/mativio-website
-- **Current development branch:** `review/responsive-ux`, PR #8, preview https://deploy-preview-8--mativio-website.netlify.app
+- **Current development branch:** `review/radial-backgrounds`, PR #9, preview https://deploy-preview-9--mativio-website.netlify.app
 - **Status:** test mode; changes are reviewed on deploy previews and shipped to `main` in batches with owner approval. See `docs/project-status.md`.
 
 Working rules for contributors and Claude Code are in **`CLAUDE.md`**.
@@ -47,8 +47,7 @@ There's no backend or database yet. Phase 2 (admin) proposes Supabase; see `docs
 ├── assets/
 │   ├── logo.png               # Mativio "M" monogram (used as the first letter of the wordmark)
 │   ├── photos/                # hero, card and gallery photos (*_l light theme, *_d dark theme)
-│   ├── leaves/                # botanical leaf cut-outs (transparent PNG)
-│   └── bg/                    # page background art: light-champagne-wave.svg, dark-sapphire-wave.svg
+│   └── leaves/                # botanical leaf cut-outs (transparent PNG)
 ├── tools/
 │   ├── build-home-pages.mjs   # builds homes/<id>/ share pages from P
 │   └── audit/                 # Playwright responsive/a11y/regression scripts (see below)

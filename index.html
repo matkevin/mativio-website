@@ -22,11 +22,11 @@
    COLOUR and TYPE: Warm Ivory light (default) / Midnight Navy dark; Champagne Gold accent; Heritage Olive status; Cormorant Garamond + Manrope.
    LAYOUT: hash-routed views: home, properties, property detail, enquiry, confirmation, story, contact. */
 :root{--navy:#142235;--gold:#C5AD83;--ivory:#F2EEE5;--olive:#454C47;
---bgArt:url(assets/bg/light-champagne-wave.svg);--bg:#F8F5EF;--bg2:#f3e9da;--card:#FFFFFF;--ink:#142235;--mute:#525A58;--line:#e7dac6;
+--bgArt:radial-gradient(ellipse 62% 58% at 36% 44%,#FCFAF5 0%,rgba(252,250,245,.7) 38%,rgba(252,250,245,0) 72%),radial-gradient(ellipse 130% 110% at 40% 45%,#F7EFE3 35%,#F2E6D3 100%);--bg:#F8F5EF;--bg2:#f3e9da;--card:#FFFFFF;--ink:#142235;--mute:#525A58;--line:#e7dac6;
 --accent:#80613C;--btn:linear-gradient(180deg,#c9a66c,#ad8a52);--btnInk:#fff;--footer:var(--navy);--field:#fffdf9;
 --okBg:#4a5a3f;--okInk:#f2eee5;--soonBg:#f1dcb4;--soonInk:#5b4318;--occBg:#e3e0da;--occInk:#4d4f52;
 --shadow:0 18px 40px rgba(93,70,35,.12);color-scheme:light}
-:root[data-theme=dark]{--bgArt:url(assets/bg/dark-sapphire-wave.svg);--bg:#142235;--bg2:#0f1b2b;--card:#1D2D40;--ink:#F2EEE5;--mute:#B6BFCA;--footer:#0b1420;--line:#2c3f58;
+:root[data-theme=dark]{--bgArt:radial-gradient(ellipse 58% 55% at 34% 42%,rgba(34,58,83,.8) 0%,rgba(34,58,83,.34) 42%,rgba(34,58,83,0) 74%),radial-gradient(ellipse 130% 110% at 40% 45%,#13223A 30%,#0E1B2E 100%);--bg:#142235;--bg2:#0f1b2b;--card:#1D2D40;--ink:#F2EEE5;--mute:#B6BFCA;--footer:#0b1420;--line:#2c3f58;
 --accent:#C5AD83;--btn:linear-gradient(180deg,#d8bb88,#c5a46c);--btnInk:#142235;--field:#13243a;
 --okBg:#3f5143;--okInk:#e9f0e4;--soonBg:#d9bd8a;--soonInk:#2b2112;--occBg:#3a4658;--occInk:#dfe4ea;
 --shadow:0 18px 44px rgba(0,0,0,.35);color-scheme:dark}
@@ -88,7 +88,7 @@ header.scrolled .word img{height:38px}
 .drawer .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}
 .drawer .top button{background:none;border:0;color:var(--ivory);width:44px;height:44px}
 .drawer a{display:flex;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid #2a3b54;text-decoration:none;font-size:18px}
-.drawer .modes{margin-top:auto;border-top:1px solid #2a3b54;padding-top:12px}
+.drawer .modes{margin-top:4px;padding-top:4px}
 .drawer label{display:flex;align-items:center;gap:14px;min-height:52px;cursor:pointer}
 .drawer input{margin-left:auto;accent-color:var(--gold);width:20px;height:20px}
 /* views */
@@ -261,7 +261,11 @@ select,input,textarea{font:16px Manrope,system-ui,sans-serif;color:var(--ink)}
 /* sticky mobile CTA */
 .mcta{display:none}
 @media(max-width:599px){body[data-v=property] .mcta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;gap:12px;align-items:center;justify-content:space-between;padding:12px 20px calc(12px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--card) 94%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--line);box-shadow:0 -10px 30px rgba(0,0,0,.08)}
-body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{min-height:48px;padding:0 20px}}
+.mcta .rent{font-size:19px}.mcta .btn{min-height:48px;padding:0 20px}
+body[data-v=property] .mcta{transition:transform .3s ease,visibility 0s}
+body[data-v=property] .mcta.off{transform:translateY(110%);visibility:hidden;transition:transform .3s ease,visibility 0s .3s}
+/* room for the bar only while it shows, inside the navy footer (no beige gap) */
+body[data-v=property].cta-on footer::after{content:"";display:block;height:calc(76px + env(safe-area-inset-bottom))}}
 /* review step */
 .rev>*:not(#eReview){display:none!important}
 #eReview{display:none}.rev #eReview{display:block}
@@ -372,7 +376,7 @@ body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{
 @media(max-width:599px){.pillars{grid-template-columns:1fr}.shead .link{margin-left:0}.shot{border-radius:22px}}
 /* ===== Botanical theme ===== */
 body{background:var(--bg)}
-/* page background: Champagne Wave (light) / Sapphire Wave (dark), fixed behind all views */
+/* page background: Radial Mist (light) / Radial Depth (dark), fixed behind all views */
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:var(--bgArt) center/cover no-repeat,var(--bg)}
 .lf{position:absolute;display:block;pointer-events:none;z-index:3;height:auto;max-width:none;user-select:none}
 :root[data-theme=dark] .lf{opacity:.6;filter:brightness(.55) saturate(.85)}
@@ -613,6 +617,33 @@ header.scrolled .bar{padding-block:0;min-height:calc(var(--hdr) - 10px)}
 /* leaf nudges: keep the left hero leaf clear of the copy */
 @media(min-width:834px) and (max-width:1279px){.lf-c{left:-118px}}
 @media(max-width:833px){.lf-c{top:calc(100svh - 40px);left:-50px;z-index:3}}
+/* full-bleed leaves: each cut-out's cropped edge sits on the screen edge, not the content column.
+   calc(50% - 50vw) = distance from the (centred) containing block to the viewport edge. */
+.lf-a{left:calc(50% - 50vw - 30px);-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 22%);mask-image:linear-gradient(180deg,transparent 0,#000 22%)}
+.lf-s{left:calc((min(100vw,1440px) - 100vw)/2 - var(--side) - 16px)}
+.lf-b{right:calc(50% - 50vw - 4px);top:auto;bottom:-10px;aspect-ratio:224/320;transform-origin:right bottom;transform:rotate(-90deg)}
+.lf-f2{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24%);mask-image:linear-gradient(90deg,transparent 0,#000 24%)}
+@media(min-width:1280px){.lf-c{left:calc(50% - 50vw - 10px)}}
+@media(max-width:1100px){.lf-b{width:118px}}
+@media(max-width:833px){.lf-m{right:calc(50% - 50vw - 10px);-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 18%);mask-image:linear-gradient(180deg,transparent 0,#000 18%)}}
+/* phones/tablets: give titles and addresses room; status pills never squeeze */
+.mpill{flex:none}
+@media(max-width:599px){
+ .dloc{display:grid;grid-template-columns:auto 1fr;column-gap:8px;row-gap:12px;align-items:start}
+ .dloc .badge{grid-column:1/-1;grid-row:1;justify-self:start;margin:0!important}
+ .dloc svg.i{margin-top:3px}
+}
+@media(max-width:374px){.stats.s4{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:16px}}
+@media(max-width:1199px){
+ .mini{position:relative}
+ .mpill{position:absolute;top:12px;left:12px;z-index:1;padding:5px 12px;box-shadow:0 2px 10px rgba(20,34,53,.18)}
+}
+/* Our Story band: keep "Get to know us" on one line on phones */
+@media(max-width:599px){.stx .btn{white-space:nowrap;padding:0 20px;gap:10px}}
+@media(max-width:374px){.stx .btn{padding:0 16px;gap:8px;font-size:15px}}
+/* phones: form buttons keep their label on one line */
+@media(max-width:599px){.notify .row .btn{grid-column:1/-1;white-space:nowrap}}
+@media(max-width:374px){.dacts .btn{white-space:nowrap;padding:0 16px;font-size:15px}}
 </style>
 </head>
 <body>
@@ -666,6 +697,7 @@ header.scrolled .bar{padding-block:0;min-height:calc(var(--hdr) - 10px)}
 <header id="hdr"><div class="wrap bar">
   <a class="brand" href="#home" aria-label="Mativio home">
     <span class="word"><img src="assets/logo.png" alt=""><span class="rest" aria-hidden="true"><span>ATIVIO</span></span></span>
+    <span class="tag tagline"><span>Land · Living · Legacy</span></span>
   </a>
   <nav class="nav" aria-label="Main">
     <a href="#home" data-nav="home">Home</a>
@@ -973,21 +1005,21 @@ const CONTACT={phone:"",whatsapp:"",email:"",address:"Bengaluru, Karnataka"};
    listed: date the home was listed "YYYY-MM-DD" (used by Latest; optional). featured: true to pin it near the top and on the home page (optional).
    parking: "Available", "Not available" or null. floorplan: an image path like "assets/plans/devasandra.jpg", or "". */
 const P=[
- {id:"devasandra",title:"Devasandra Residence",map:"https://maps.app.goo.gl/Pbh5tyYMyPwbS9TV8",hint:"1 of 2 units available · Near New BEL Road",units:"2 apartments (1 available now)",baths:null,sqft:null,parking:"2 car spaces",floorplan:"",name:"Devasandra",area:"Devasandra, New BEL Road, Bengaluru",type:"Apartment",bhk:"2 BHK",furn:"Semi-furnished",rent:32000,fromPrice:false,status:"now",from:"",added:3,
-  deposit:"To be confirmed",about:"A semi-furnished apartment in an established residential neighbourhood near New BEL Road, close to Ramaiah Institute of Technology, Ramaiah Medical College and Ramaiah Memorial Hospital, with cafés, shops and everyday conveniences nearby. The building has 2 apartments at ₹32,000 per month each, with 2 car parking spaces; 1 apartment is available now.",seo:"Apartment for rent in Devasandra, Bengaluru, near New BEL Road and MS Ramaiah College.",
-  amen:["2 car parking spaces","Balcony","Power backup","Water supply 24×7","CCTV"],card:["dev_l","dev_d"],photos:["dev_l","dev_d","hero_light"],tour:[],video:"",youtube:""},
- {id:"coffee-board",title:"Coffee Board Residence, #568",addr:"#568, Coffee Board Layout, Hebbal Kempapura, Bengaluru 560024",hint:"3 × 3 BHK apartments",units:"3 × 3 BHK apartments (all occupied)",baths:"1 + WC",sqft:null,parking:"Car + bike",floorplan:"",name:"Coffee Board",area:"Coffee Board Layout, Hebbal, Bengaluru",type:"Apartment",bhk:"3 BHK",furn:"Semi-furnished",rent:40000,fromPrice:false,status:"let",from:"",added:2,
-  deposit:"To be confirmed",about:"Spacious semi-furnished 3 BHK family apartments in Coffee Board Layout, Hebbal, an established residential neighbourhood with green spaces, reputed schools and easy access to Embassy Manyata Business Park. Each apartment has 1 bathroom and 1 separate toilet. The building has 3 car parking spaces and bike parking. All apartments are currently occupied.",seo:"Family apartment for rent in Coffee Board Layout, Hebbal, North Bengaluru.",
-  amen:["1 bathroom + 1 toilet","3 car parking spaces (building)","Bike parking","Balconies","Power backup","CCTV"],card:["cof_l","cof_d"],photos:["cof_l","cof_d","hero_dark"],tour:[],video:"",youtube:""},
- {id:"coffee-board-1hk",title:"Coffee Board Residence, #568 (1 HK)",addr:"#568, Coffee Board Layout, Hebbal Kempapura, Bengaluru 560024",hint:"1 HK unit",units:"1 × 1 HK (occupied)",baths:"1 toilet",sqft:null,parking:"Shared",floorplan:"",name:"Coffee Board",area:"Coffee Board Layout, Hebbal, Bengaluru",type:"Apartment",bhk:"1 HK",furn:"Semi-furnished",rent:20000,fromPrice:false,status:"let",from:"",added:2,
-  deposit:"To be confirmed",about:"A compact semi-furnished 1 HK (hall and kitchen) unit with 1 toilet in our #568 building in Coffee Board Layout, Hebbal, sharing the building's car and bike parking. Currently occupied.",seo:"1 HK for rent in Coffee Board Layout, Hebbal, North Bengaluru.",
-  amen:["1 toilet","Shared car and bike parking","Power backup","CCTV"],card:["cof_d","cof_l"],photos:["cof_d","cof_l"],tour:[],video:"",youtube:""},
+ {id:"devasandra",title:"Devasandra Residence",map:"https://maps.app.goo.gl/Pbh5tyYMyPwbS9TV8",hint:"1 of 2 units available · Near New BEL Road",units:"2 apartments (1 available now)",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Devasandra",area:"Devasandra, New BEL Road, Bengaluru",type:"Apartment",bhk:"2 BHK",furn:"Semi-furnished",rent:32000,fromPrice:false,status:"now",from:"",added:3,
+  deposit:"To be confirmed",about:"A semi-furnished apartment in an established residential neighbourhood near New BEL Road, close to Ramaiah Institute of Technology, Ramaiah Medical College and Ramaiah Memorial Hospital, with cafés, shops and everyday conveniences nearby. The building has 2 apartments at ₹32,000 per month each, with parking; 1 apartment is available now.",seo:"Apartment for rent in Devasandra, Bengaluru, near New BEL Road and MS Ramaiah College.",
+  amen:["Parking available","Balcony","Power backup","Water supply 24×7","CCTV"],card:["dev_l","dev_d"],photos:["dev_l","dev_d","hero_light"],tour:[],video:"",youtube:""},
+ {id:"coffee-board",title:"Coffee Board Residence, #568",addr:"#568, Coffee Board Layout, Hebbal Kempapura, Bengaluru 560024",hint:"3 × 3 BHK apartments",units:"3 × 3 BHK apartments (all occupied)",baths:"1 + WC",sqft:null,parking:"Available",floorplan:"",name:"Coffee Board",area:"Coffee Board Layout, Hebbal, Bengaluru",type:"Apartment",bhk:"3 BHK",furn:"Semi-furnished",rent:40000,fromPrice:false,status:"let",from:"",added:2,
+  deposit:"To be confirmed",about:"Spacious semi-furnished 3 BHK family apartments in Coffee Board Layout, Hebbal, an established residential neighbourhood with green spaces, reputed schools and easy access to Embassy Manyata Business Park. Each apartment has 1 bathroom and 1 separate toilet. The building has parking. All apartments are currently occupied.",seo:"Family apartment for rent in Coffee Board Layout, Hebbal, North Bengaluru.",
+  amen:["1 bathroom + 1 toilet","Parking available","Balconies","Power backup","CCTV"],card:["cof_l","cof_d"],photos:["cof_l","cof_d","hero_dark"],tour:[],video:"",youtube:""},
+ {id:"coffee-board-1hk",title:"Coffee Board Residence, #568 (1 HK)",addr:"#568, Coffee Board Layout, Hebbal Kempapura, Bengaluru 560024",hint:"1 HK unit",units:"1 × 1 HK (occupied)",baths:"1 toilet",sqft:null,parking:"Available",floorplan:"",name:"Coffee Board",area:"Coffee Board Layout, Hebbal, Bengaluru",type:"Apartment",bhk:"1 HK",furn:"Semi-furnished",rent:20000,fromPrice:false,status:"let",from:"",added:2,
+  deposit:"To be confirmed",about:"A compact semi-furnished 1 HK (hall and kitchen) unit with 1 toilet in our #568 building in Coffee Board Layout, Hebbal, sharing the building's parking. Currently occupied.",seo:"1 HK for rent in Coffee Board Layout, Hebbal, North Bengaluru.",
+  amen:["1 toilet","Parking available","Power backup","CCTV"],card:["cof_d","cof_l"],photos:["cof_d","cof_l"],tour:[],video:"",youtube:""},
  {id:"coffee-board-674",title:"Coffee Board Residence, #674",addr:"#674, Coffee Board Layout, Hebbal Kempapura, Bengaluru 560024",map:"https://maps.app.goo.gl/1DsC1DBcLu2BLS2V6",hint:"New building · 2 × 2 BHK, 5 × 1 BHK",units:"7 apartments: 2 × 2 BHK and 5 × 1 BHK",baths:null,sqft:null,parking:"TBC",floorplan:"",name:"Coffee Board",area:"Coffee Board Layout, Hebbal, Bengaluru",type:"Apartment",bhk:"1 & 2 BHK",furn:"TBC",rent:null,fromPrice:false,status:"build",from:"",added:4,featured:true,
   deposit:"To be confirmed",about:"A new residential building under construction in Coffee Board Layout, Hebbal, with 7 apartments: 2 two-bedroom (2 BHK) and 5 one-bedroom (1 BHK) homes. It sits in the same established neighbourhood as our #568 residence, with green spaces, reputed schools and easy access to Embassy Manyata Business Park. Rents will be announced closer to completion. Register your interest to hear first.",seo:"New apartments for rent in Coffee Board Layout, Hebbal: 2 BHK and 1 BHK homes, under construction.",
   amen:["New building","2 × 2 BHK","5 × 1 BHK"],card:["cof674_wide","cof674_wide"],photos:["cof674","cof674_wide"],tour:[],video:"",youtube:""},
- {id:"kempapura",title:"Kempapura Hostel",addr:"1st Cross Road, Vinayaka Layout 2nd Stage, Hebbal Kempapura, Bengaluru 560024",near:"Near Treat restaurant. Presidency College and St Mary's College are close by.",map:"https://maps.app.goo.gl/YaLAnFr4UK3qQGUf6",hint:"Hostel · 30 rooms · Whole building",units:"Whole hostel building: 30 rooms with hostel dining, leased as one unit",baths:null,sqft:null,parking:"Bikes only",floorplan:"",name:"Kempapura",area:"Vinayaka Layout, Hebbal Kempapura, Bengaluru",type:"Hostel",bhk:"30 rooms",furn:"Semi-furnished",rent:185000,fromPrice:false,status:"let",from:"",added:1,
+ {id:"kempapura",title:"Kempapura Hostel",addr:"1st Cross Road, Vinayaka Layout 2nd Stage, Hebbal Kempapura, Bengaluru 560024",near:"Near Treat restaurant. Presidency College and St Mary's College are close by.",map:"https://maps.app.goo.gl/YaLAnFr4UK3qQGUf6",hint:"Hostel · 30 rooms · Whole building",units:"Whole hostel building: 30 rooms with hostel dining, leased as one unit",baths:null,sqft:null,parking:"Bike parking",floorplan:"",name:"Kempapura",area:"Vinayaka Layout, Hebbal Kempapura, Bengaluru",type:"Hostel",bhk:"30 rooms",furn:"Semi-furnished",rent:185000,fromPrice:false,status:"let",from:"",added:1,
   deposit:"To be confirmed",about:"A 30-room hostel building with hostel dining and bike parking on 1st Cross Road, Vinayaka Layout 2nd Stage, Hebbal Kempapura, with Presidency College and St Mary's College close by. It is leased as one whole unit at ₹1,85,000 per month and is currently occupied.",seo:"Hostel accommodation in Kempapura, Hebbal, near Presidency College, St Mary's College and Manyata Tech Park.",
-  amen:["30 rooms","Hostel dining","Bike parking only","Leased as a whole unit"],card:["kem_l","kem_l"],photos:["kem_l","kem_d"],tour:[],video:"",youtube:""}
+  amen:["30 rooms","Hostel dining","Bike parking","Leased as a whole unit"],card:["kem_l","kem_l"],photos:["kem_l","kem_d"],tour:[],video:"",youtube:""}
 ];
 
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
@@ -997,6 +1029,13 @@ const rentTxt=p=>p.rent==null?"Price on request":`${p.fromPrice?"from ":""}${inr
 const fdate=d=>new Date(d+"T00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short"});
 const ST={now:["Available now","b-now"],soon:["Available soon","b-soon"],let:["Currently occupied","b-occ"],reno:["Under renovation","b-reno"],build:["Under construction","b-build"]};
 /* primary call to action by status (spec): now → Book a viewing; soon, reno → Register interest; let → Notify me */
+/* sticky phone CTA: shown only while the page's own action buttons are off screen */
+let ctaIO=null;
+const watchCTA=()=>{ctaIO&&ctaIO.disconnect();const bar=$("#mcta"),els=[...$("#detail").querySelectorAll("[data-pcta]")],seen=new Set();
+  const set=off=>{bar.classList.toggle("off",off);document.body.classList.toggle("cta-on",!off);bar.inert=off;bar.setAttribute("aria-hidden",off?"true":"false")};
+  if(!els.length||!("IntersectionObserver" in window)){set(false);return}
+  set(true);ctaIO=new IntersectionObserver(es=>{es.forEach(e=>e.isIntersecting?seen.add(e.target):seen.delete(e.target));set(seen.size>0)},{threshold:0});
+  els.forEach(e=>ctaIO.observe(e))};
 const CTA=p=>p.status==="now"?{label:"Book a viewing",href:"#visit-"+p.id,icon:"cal"}:{label:p.status==="let"?"Notify me":"Register interest",href:"#interest-"+p.id,icon:"bell"};
 const tbc=v=>v===null||v===undefined||v===""?"TBC":v;
 const avail=p=>p.status==="now"?"Available now":p.status==="soon"?(p.from?"From "+fdate(p.from):"Available soon"):p.status==="reno"?"Under renovation":p.status==="build"?"Under construction":"Currently occupied";
@@ -1197,7 +1236,7 @@ function detail(p){
       <div class="dots">${p.photos.map((f,i)=>`<button type="button" aria-label="Photo ${i+1}" class="${i?"":"on"}" data-g="${i}"></button>`).join("")}</div></div><div id="alt" hidden></div></div></div>
     <div>
       <div class="dhead"><h1>${esc(p.title)}</h1><span class="rent">${p.rent==null?"Price on request":`${p.fromPrice?"<small>From </small>":""}${inr(p.rent)} <small>/ month</small>`}</span></div>
-      <div class="loc" style="margin-top:8px">${ic("pin")}${esc(p.area)}<span class="badge inline ${ST[p.status][1]}" style="margin-left:8px">${ST[p.status][0]}</span></div>
+      <div class="loc dloc" style="margin-top:8px">${ic("pin")}<span class="addr">${esc(p.area)}</span><span class="badge inline ${ST[p.status][1]}" style="margin-left:8px">${ST[p.status][0]}</span></div>
       <div class="stats s4" style="margin-top:16px"><div>${ic("bed")}<b>${p.bhk}</b><span>Size</span></div><div>${ic("bath")}<b>${tbc(p.baths)}</b><span>Bathrooms*</span></div><div>${ic("car")}<b>${tbc(p.parking)}</b><span>Parking</span></div><div>${ic("key")}<b>Direct</b><span>Owner rental</span></div></div>
       <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-t="ov">Overview</button><button role="tab" aria-selected="false" data-t="ph">Photos</button><button role="tab" aria-selected="false" data-t="lo">Neighbourhood</button></div>
       <div data-tp="ov"><h3 style="font-size:24px">About this home</h3><p class="mute">${esc(p.about)}</p>
@@ -1207,12 +1246,12 @@ function detail(p){
       <div data-tp="ph" hidden>${galleryHTML(p)}</div>
       <div data-tp="lo" hidden><p class="mute" style="margin-top:0">${esc(p.addr||p.area)}.${p.near?" "+esc(p.near):""}${p.map?"":" The exact address is shared when you book a viewing."}</p>${nbHTML((locOf(p)||{}).id)}
         <div class="dacts" style="margin-top:14px"><a class="link gold" href="${maps}" target="_blank" rel="noopener">Open in Google Maps ${ic("arrow")}</a>${locOf(p)?`<a class="link gold" href="#loc-${locOf(p).id}">About ${esc(p.name)} ${ic("arrow")}</a>`:""}</div></div>
-      <div class="dacts">${p.status==="now"?`<a class="btn" href="#visit-${p.id}">${ic("cal")}Book a viewing</a>`:`<a class="btn" href="#interest-${p.id}">${ic("bell")}${CTA(p).label}</a>`}${p.status==="let"?"":`<a class="btn line" href="#enquire-${p.id}">Ask a question</a>`}
+      <div class="dacts">${p.status==="now"?`<a class="btn" data-pcta href="#visit-${p.id}">${ic("cal")}Book a viewing</a>`:`<a class="btn" data-pcta href="#interest-${p.id}">${ic("bell")}${CTA(p).label}</a>`}${p.status==="let"?"":`<a class="btn line" href="#enquire-${p.id}">Ask a question</a>`}
       <button class="btn line" type="button" id="share">${ic("share")}Share</button></div>
       ${p.status==="now"||p.status==="soon"?`<div class="vv">${ic("video")}<span>Relocating to Bengaluru? <a href="#video-${p.id}">Book a video-call viewing</a> and we'll walk you through the home live.</span></div>`:""}
       ${p.status==="now"?"":`<form class="notify" id="nForm" novalidate><b>${ic("bell",'style="color:var(--accent);vertical-align:-3px;margin-right:6px"')}${p.status==="let"?"Currently occupied. Want to know first?":p.status==="build"?"Under construction. Register your interest":p.status==="reno"?"Under renovation. Register your interest":"Available soon. Register your interest"}</b>
         <span class="mute" style="font-size:14px">We'll message you the day ${esc(p.name)} is ready to view.</span>
-        <div class="row"><input id="nName" placeholder="Your name *" autocomplete="name" aria-label="Your name"><div class="tel"><select class="cc" id="nCC" aria-label="Country code"><option value="+91">+91 IN</option><option value="+974">+974 QA</option><option value="+971">+971 AE</option><option value="+966">+966 SA</option><option value="+965">+965 KW</option><option value="+968">+968 OM</option><option value="+973">+973 BH</option><option value="+44">+44 UK</option><option value="+1">+1 US/CA</option><option value="+61">+61 AU</option><option value="+65">+65 SG</option><option value="+49">+49 DE</option></select><input id="nPhone" type="tel" placeholder="Mobile number *" inputmode="tel" autocomplete="tel-national" aria-label="Mobile number"></div><input id="nEmail" type="email" placeholder="Email (optional)" aria-label="Email"><button class="btn" type="submit" style="min-height:48px">${p.status==="let"?"Notify me":"Register interest"}</button></div>
+        <div class="row"><input id="nName" placeholder="Your name *" autocomplete="name" aria-label="Your name"><div class="tel"><select class="cc" id="nCC" aria-label="Country code"><option value="+91">+91 IN</option><option value="+974">+974 QA</option><option value="+971">+971 AE</option><option value="+966">+966 SA</option><option value="+965">+965 KW</option><option value="+968">+968 OM</option><option value="+973">+973 BH</option><option value="+44">+44 UK</option><option value="+1">+1 US/CA</option><option value="+61">+61 AU</option><option value="+65">+65 SG</option><option value="+49">+49 DE</option></select><input id="nPhone" type="tel" placeholder="Mobile number *" inputmode="tel" autocomplete="tel-national" aria-label="Mobile number"></div><input id="nEmail" type="email" placeholder="Email (optional)" aria-label="Email"><button class="btn" data-pcta type="submit" style="min-height:48px">${p.status==="let"?"Notify me":"Register interest"}</button></div>
         <p class="note" id="nNote" role="status"></p></form>`}
     </div></div>`;
   const imgs=$$("#gal img"),dots=$$("#gal .dots button");
@@ -1222,6 +1261,7 @@ function detail(p){
   g.querySelectorAll("img").forEach(m=>{m.style.cursor="zoom-in"});g.tabIndex=0;g.setAttribute("role","group");g.setAttribute("aria-roledescription","gallery");g.setAttribute("aria-label",`Photos of ${p.name}. Press Enter to enlarge, arrow keys to move.`);g.addEventListener("keydown",e=>{if(e.target!==g)return;if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();go(gi+(e.key==="ArrowRight"?1:-1))}else if(e.key==="Enter"||e.key===" "){e.preventDefault();lbOpen(photosOf(p),gi,imgs[gi])}});
   g.addEventListener("pointercancel",()=>sx=null);
   $("#mcta").innerHTML=`<span class="rent">${p.rent==null?"Price on request":`${p.fromPrice?"<small>From </small>":""}${inr(p.rent)}<small> / month</small>`}</span><a class="btn" href="${CTA(p).href}">${ic(CTA(p).icon)}${CTA(p).label}</a>`;
+  watchCTA();
   $("#detail").onclick=e=>{const t=e.target.closest("button");if(!t)return;
     if(t.classList.contains("prev"))go(gi-1);else if(t.classList.contains("next"))go(gi+1);
     else if(t.dataset.lb!==undefined){const vis=[...$$("#detail .ggrid li")].filter(li=>!li.hidden);const all=photosOf(p);const idx=vis.map(li=>+li.querySelector("[data-lb]").dataset.lb);
