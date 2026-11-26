@@ -22,11 +22,11 @@
    COLOUR and TYPE: Warm Ivory light (default) / Midnight Navy dark; Champagne Gold accent; Heritage Olive status; Cormorant Garamond + Manrope.
    LAYOUT: hash-routed views: home, properties, property detail, enquiry, confirmation, story, contact. */
 :root{--navy:#142235;--gold:#C5AD83;--ivory:#F2EEE5;--olive:#454C47;
---bg:#f8f1e6;--bg2:#f3e6d4;--card:#fffaf3;--ink:#142235;--mute:#5d6570;--line:#e7dac6;
---accent:#a9874f;--btn:linear-gradient(180deg,#c9a66c,#ad8a52);--btnInk:#fff;--field:#fffdf9;
+--bg:#F8F5EF;--bg2:#f3e9da;--card:#FFFFFF;--ink:#142235;--mute:#525A58;--line:#e7dac6;
+--accent:#80613C;--btn:linear-gradient(180deg,#c9a66c,#ad8a52);--btnInk:#142235;--footer:var(--navy);--field:#fffdf9;
 --okBg:#4a5a3f;--okInk:#f2eee5;--soonBg:#f1dcb4;--soonInk:#5b4318;--occBg:#e3e0da;--occInk:#4d4f52;
 --shadow:0 18px 40px rgba(93,70,35,.12);color-scheme:light}
-:root[data-theme=dark]{--bg:#142235;--bg2:#0f1b2b;--card:#182a40;--ink:#f2eee5;--mute:#aab3be;--line:#2c3f58;
+:root[data-theme=dark]{--bg:#142235;--bg2:#0f1b2b;--card:#1D2D40;--ink:#F2EEE5;--mute:#B6BFCA;--footer:#0b1420;--line:#2c3f58;
 --accent:#C5AD83;--btn:linear-gradient(180deg,#d8bb88,#c5a46c);--btnInk:#142235;--field:#13243a;
 --okBg:#3f5143;--okInk:#e9f0e4;--soonBg:#d9bd8a;--soonInk:#2b2112;--occBg:#3a4658;--occInk:#dfe4ea;
 --shadow:0 18px 44px rgba(0,0,0,.35);color-scheme:dark}
@@ -55,7 +55,7 @@ svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stro
 .link{font-weight:600;text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:3px;display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--ink)}
 .link.gold{color:var(--accent);border:0}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
-.tag{font:600 13px Manrope;letter-spacing:.32em;color:var(--accent);display:flex;align-items:center;gap:14px;text-transform:uppercase}
+.tag{font:600 13px Manrope,system-ui,sans-serif;letter-spacing:.32em;color:var(--accent);display:flex;align-items:center;gap:14px;text-transform:uppercase}
 .tag.rule::before,.tag.rule::after{content:"";width:34px;height:1px;background:currentColor}
 /* header */
 header{position:sticky;top:0;z-index:30;transition:background .5s ease,box-shadow .5s ease}
@@ -127,7 +127,7 @@ header.scrolled .word img{height:38px}
 .card .pic img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
 .card:hover .pic img{transform:scale(1.04)}
 .card .pic{aspect-ratio:16/10}
-.badge{position:absolute;top:16px;left:16px;font:600 14px Manrope;padding:6px 14px;border-radius:999px;display:inline-flex;gap:8px;align-items:center}
+.badge{position:absolute;top:16px;left:16px;font:600 14px Manrope,system-ui,sans-serif;padding:6px 14px;border-radius:999px;display:inline-flex;gap:8px;align-items:center}
 .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
 .b-build{background:#f3e3c4;color:#6a4a12}:root[data-theme=dark] .b-build{background:#7a5a24;color:#fbefd8}
 .b-reno{background:#e6dcf0;color:#4b2d6b}:root[data-theme=dark] .b-reno{background:#5a4670;color:#f1e9fa}
@@ -167,14 +167,14 @@ footer .word{font-size:26px;color:var(--ink)}footer .word img{height:28px}
 /* list view */
 .filters{display:grid;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px;margin:26px 0;box-shadow:var(--shadow)}
 .search{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:999px;padding:0 18px;background:var(--field)}
-.search input{flex:1;border:0;background:transparent;font:16px Manrope;color:var(--ink);min-height:50px;outline:0}
+.search input{flex:1;border:0;background:transparent;font:16px Manrope,system-ui,sans-serif;color:var(--ink);min-height:50px;outline:0}
 .pills{display:flex;gap:10px;flex-wrap:wrap}
-.pill{font:600 14px Manrope;min-height:42px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.pill{font:600 14px Manrope,system-ui,sans-serif;min-height:42px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
 .pill[aria-pressed=true]{background:var(--navy);color:var(--ivory);border-color:var(--navy)}
 :root[data-theme=dark] .pill[aria-pressed=true]{background:var(--gold);color:var(--navy);border-color:var(--gold)}
 .pill .n{opacity:.6;margin-left:4px}
 .sels{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-select,input,textarea{font:16px Manrope;color:var(--ink)}
+select,input,textarea{font:16px Manrope,system-ui,sans-serif;color:var(--ink)}
 .sels select{min-height:44px;border-radius:999px;border:1px solid var(--line);background:var(--field);padding:0 14px;cursor:pointer}
 .sels .count{margin-left:auto;font-size:14px;color:var(--mute)}
 .empty{grid-column:1/-1;text-align:center;padding:48px 20px;border:1px dashed var(--line);border-radius:24px;color:var(--mute)}
@@ -192,7 +192,7 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
 .dhead{display:flex;justify-content:space-between;gap:14px;align-items:baseline;flex-wrap:wrap}
 .dhead .rent{font-size:26px}
 .tabs{display:flex;gap:28px;border-bottom:1px solid var(--line);margin:22px 0 18px}
-.tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:10px 0;font:600 15px Manrope;color:var(--mute);cursor:pointer;min-height:44px}
+.tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:10px 0;font:600 15px Manrope,system-ui,sans-serif;color:var(--mute);cursor:pointer;min-height:44px}
 .tabs button[aria-selected=true]{color:var(--ink);border-color:var(--accent)}
 .spec{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 20px;margin:16px 0;font-size:15px}
 .spec dt{color:var(--mute)}.spec dd{margin:0 0 10px;font-weight:600}
@@ -215,7 +215,7 @@ select,input,textarea{font:16px Manrope;color:var(--ink)}
 .soonph b{font:500 28px "Cormorant Garamond",serif;display:block;margin-bottom:6px}
 .soonph p{margin:0;color:#d6dbe1;font-size:15px}
 .scenes{position:absolute;left:12px;bottom:12px;display:flex;gap:6px;flex-wrap:wrap;z-index:3}
-.scenes button{font:600 13px Manrope;min-height:36px;padding:0 14px;border-radius:999px;border:0;background:rgba(255,250,243,.9);color:var(--navy);cursor:pointer}
+.scenes button{font:600 13px Manrope,system-ui,sans-serif;min-height:36px;padding:0 14px;border-radius:999px;border:0;background:rgba(255,250,243,.9);color:var(--navy);cursor:pointer}
 .scenes button[aria-pressed=true]{background:var(--gold)}
 .notify{margin-top:22px;border:1px solid var(--line);border-radius:20px;padding:18px 20px;background:var(--card)}
 .notify b{font:500 22px "Cormorant Garamond",serif;display:block}
@@ -289,7 +289,7 @@ body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{
 .hl li{display:flex;gap:12px;align-items:flex-start}.hl svg.i{color:var(--accent);margin-top:3px}
 /* legal */
 .legal{max-width:780px}
-.legal h2{margin-bottom:8px}.legal h3{font-size:26px;margin:30px 0 8px}
+.legal h1{margin-bottom:8px}.legal h3{font-size:26px;margin:30px 0 8px}
 .legal p,.legal li{color:var(--mute);font-size:16px}.legal li{margin-bottom:6px}
 .draft{display:inline-block;font-size:13px;font-weight:600;background:var(--soonBg);color:var(--soonInk);border-radius:999px;padding:4px 12px;margin-bottom:16px}
 /* system states */
@@ -435,7 +435,7 @@ body{background:radial-gradient(900px 500px at 8% 0%,var(--bg2),transparent 60%)
 @media(max-width:599px){.bstory{grid-template-columns:1fr 0.8fr;margin-right:calc(-1*var(--side))}.stx p{font-size:15px}.simg{min-height:280px}}
 /* navy footer with leaves */
 footer{position:relative;overflow:hidden;background:var(--navy);color:#cdd4dc;border:0;margin-top:clamp(40px,6vw,72px)}
-:root[data-theme=dark] footer{background:#0b1420}
+:root[data-theme=dark] footer{background:var(--footer)}
 footer .word{color:var(--ivory)}footer .flinks a{color:var(--ivory)}footer .tag{color:var(--gold)}
 footer .wrap{position:relative;z-index:2}
 .lf-f1{left:-40px;bottom:-30px;width:170px;opacity:.85}
@@ -452,8 +452,8 @@ footer .wrap{position:relative;z-index:2}
 html{overflow-x:clip}
 @media(max-width:1100px){.lf-a{display:none}}
 @media(max-width:599px){.ctitle{font-size:32px;gap:12px}.ctitle::before,.ctitle::after{width:34px}.pillars{grid-template-columns:repeat(4,minmax(0,1fr))}}
-/* phones: pillars as a roomy 2x2 grid instead of four squeezed columns */
-@media(max-width:599px){
+/* tablet + phones: pillars as a roomy 2x2 grid with descriptions */
+@media(max-width:1100px){
   .pillars{grid-template-columns:repeat(2,minmax(0,1fr));gap:0;padding:18px 0 6px}
   .pillars div{flex-direction:column;align-items:flex-start;text-align:left;gap:10px;padding:16px 14px;border:0}
   .pillars div:nth-child(odd){padding-left:0;padding-right:16px;border-right:1px solid var(--line)}
@@ -531,6 +531,53 @@ html{overflow-x:clip}
 .lb-frame img{width:100%;height:100%;object-fit:cover;user-select:none;pointer-events:none}
 .lb-cap{text-align:center;display:grid;gap:2px}.lb-cap b{font-size:15px}.lb-cap span{font-size:13px;color:var(--mute)}
 @media(max-width:599px){.lb-nav{display:none!important}.lb-frame{width:94vw}}
+
+/* ===== Responsive refinement (audit 26 Nov 2026): shared type + layout tokens ===== */
+:root{--fs-hero:clamp(76px,5.9vw,88px);--fs-h1:clamp(56px,4.3vw,64px);--fs-h2:clamp(44px,3.2vw,48px);--fs-badge:12px;--hdr:84px}
+@media(max-width:1199px){:root{--fs-hero:clamp(56px,6.2vw,64px);--fs-h1:clamp(44px,5.4vw,48px);--fs-h2:clamp(36px,4.4vw,40px);--hdr:72px}}
+@media(max-width:833px){:root{--hdr:64px}}
+@media(max-width:599px){:root{--fs-hero:clamp(40px,11.5vw,48px);--fs-h1:clamp(36px,9.6vw,40px);--fs-h2:clamp(30px,8.4vw,34px)}}
+h1{font-size:var(--fs-h1)}h2,.ctitle,.stx h2{font-size:var(--fs-h2)}
+.hero h1{font-size:var(--fs-hero)}
+.badge,.crow .badge{font-size:var(--fs-badge)}
+html{scroll-padding-top:var(--hdr)}
+/* header heights: 84 desktop / 72 tablet / 64 mobile */
+.bar{padding-block:0;min-height:var(--hdr);transition:min-height .6s cubic-bezier(.4,0,.2,1)}
+header.scrolled .bar{padding-block:0;min-height:calc(var(--hdr) - 10px)}
+@media(max-width:833px){body[data-v=home] main>[data-view=home]{margin-top:calc(-1*var(--hdr))}.hero{padding-top:calc(var(--hdr) + 40px)}}
+/* skip link */
+.skip{position:absolute;left:12px;top:-80px;z-index:100;background:var(--navy);color:var(--ivory);padding:12px 18px;border-radius:10px;font-weight:600;text-decoration:none}
+.skip:focus{top:12px}
+/* touch targets >= 44px */
+.nav a{min-height:44px;display:inline-flex;align-items:center}
+.brand{min-height:44px}
+.pill{min-height:44px}
+.mtoggle,.burger{flex:none}
+@media(max-width:833px){:root[data-theme=dark] .mtoggle{height:44px}}
+/* desktop hero: ~42% copy / 58% photo */
+@media(min-width:834px){.hero{grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr)}.hero .shot{margin-left:-4%}}
+.hero .tag{white-space:nowrap}
+/* tablet portrait: copy first, photo full width below */
+@media(min-width:834px) and (max-width:1199px) and (orientation:portrait){
+ .hero{grid-template-columns:1fr;margin-right:0;gap:28px;padding-top:28px}
+ .hero>div:not(.mhero):not(.shot){padding-right:0;max-width:640px}
+ .hero .shot{margin:0 calc(-1*var(--side));height:clamp(320px,52vw,500px)}
+ .hero .shot::after{background:linear-gradient(180deg,var(--bg) 0%,transparent 24%),linear-gradient(0deg,var(--bg) 0%,transparent 18%)}
+}
+/* tablet 834-1023: compact navigation (menu button), keep theme switch + Book */
+@media(min-width:834px) and (max-width:1023px){.nav>a[data-nav],.nav .sep{display:none}.nav{gap:12px}.burger{display:grid;place-items:center;margin-left:6px}}
+/* mobile: full-width hero CTA */
+@media(max-width:599px){.hero .ctas{width:100%}.hero .ctas .btn{width:100%}}
+/* mobile: availability chips in one swipeable row */
+@media(max-width:833px){#pills{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent);padding-right:24px}#pills::-webkit-scrollbar{display:none}#pills .pill{flex:none}}
+/* country code picker */
+.tel select.cc{border:0;border-right:1px solid var(--line);border-radius:0;background:transparent;color:var(--ink);font:600 16px Manrope,system-ui,sans-serif;padding:0 8px 0 12px;min-height:48px;width:auto;flex:none;max-width:110px}
+@media(min-width:600px){.notify .row .tel{grid-column:span 2}}.notify .tel{min-width:0}.notify .tel input{min-width:0;flex:1}
+/* detail: keep status + specs from breaking awkwardly on phones */
+.dhead .badge,.badge{white-space:nowrap}
+/* touch targets on touch-sized screens */
+@media(max-width:1199px){.mode button{width:44px;height:44px}[data-view-as]{min-width:44px;min-height:44px}}
+.card h3 a,article h3 a{display:inline-block;padding-block:10px;margin-block:-10px}
 </style>
 </head>
 <body>
@@ -580,6 +627,7 @@ html{overflow-x:clip}
 <symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
 </svg>
 
+<a class="skip" href="#home" id="skip">Skip to content</a>
 <header id="hdr"><div class="wrap bar">
   <a class="brand" href="#home" aria-label="Mativio home">
     <span class="word"><img src="assets/logo.png" alt=""><span class="rest" aria-hidden="true"><span>ATIVIO</span></span></span>
@@ -659,7 +707,7 @@ html{overflow-x:clip}
 
 <!-- PROPERTIES -->
 <section data-view="properties" class="sec">
-  <h2>Our Properties</h2>
+  <h1>Our Properties</h1>
   <p class="mute" style="margin:.5em 0 0">Browse our residential homes in Bengaluru.</p>
   <div class="filters">
     <label class="search"><svg class="i"><use href="#search"/></svg><input id="q" type="search" placeholder="Search by locality or property" aria-label="Search"></label>
@@ -689,7 +737,7 @@ html{overflow-x:clip}
       <div class="fld"><label for="rBud">Budget per month</label><select id="rBud"><option>Any</option><option>Up to ₹20,000</option><option>₹20,000 – ₹30,000</option><option>₹30,000 – ₹45,000</option><option>₹45,000 +</option></select></div>
       <div class="fld"><label for="rWhen">Move in</label><select id="rWhen"></select></div>
       <div class="fld"><label for="rName">Your name *</label><input id="rName" autocomplete="name"><span class="err">Please enter your name.</span></div>
-      <div class="fld"><label for="rPhone">Mobile number *</label><div class="tel"><span>+91</span><input id="rPhone" inputmode="tel" autocomplete="tel-national"></div><span class="err">Please enter a 10-digit mobile number.</span></div>
+      <div class="fld"><label for="rPhone">Mobile number *</label><div class="tel"><select class="cc" id="rCC" aria-label="Country code"><option value="+91">+91 IN</option><option value="+974">+974 QA</option><option value="+971">+971 AE</option><option value="+966">+966 SA</option><option value="+965">+965 KW</option><option value="+968">+968 OM</option><option value="+973">+973 BH</option><option value="+44">+44 UK</option><option value="+1">+1 US/CA</option><option value="+61">+61 AU</option><option value="+65">+65 SG</option><option value="+49">+49 DE</option></select><input id="rPhone" type="tel" inputmode="tel" autocomplete="tel-national"></div><span class="err">Please enter a valid mobile number.</span></div>
     </div>
     <div class="dacts" style="margin-top:4px;align-items:center"><button class="btn" type="submit">Notify me of matching homes</button><span class="note" id="rNote" role="status" style="margin:0"></span></div>
     <p class="consent" style="text-align:left;margin:0">By signing up, you agree we may message you about matching homes, as set out in our <a href="#privacy">Privacy Policy</a>. Reply STOP at any time.</p>
@@ -703,7 +751,7 @@ html{overflow-x:clip}
 <section data-view="enquire" class="sec">
   <div class="formwrap">
     <a class="back" href="#properties" id="eBack"><svg class="i"><use href="#left"/></svg>Back to property</a>
-    <h2 id="eTitle">Book a viewing</h2>
+    <h1 id="eTitle">Book a viewing</h1>
     <p class="mute" id="eSub" style="margin:.4em 0 0"></p>
     <form class="formcard" id="eForm" name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
       <input type="hidden" name="form-name" value="enquiry"><input type="hidden" name="home" id="eHome"><input type="hidden" name="ref" id="eRef"><input type="hidden" name="viewing_type">
@@ -713,7 +761,7 @@ html{overflow-x:clip}
         <label><input type="radio" name="kind" value="Book a viewing" checked>Book a viewing</label>
         <label><input type="radio" name="kind" value="Ask a question">Ask a question</label></div></div>
       <div id="visitF">
-      <div class="fld"><span class="lab">Viewing type</span><div class="seg">
+      <div class="fld"><span class="lab" id="vtLab">Viewing type</span><div class="seg" role="radiogroup" aria-labelledby="vtLab">
         <label><input type="radio" name="mode" value="In person" checked>In person</label>
         <label><input type="radio" name="mode" value="Video call">Video call (remote)</label></div></div>
       <div class="fld tsp-fld"><span class="lab" id="tspLab">Choose a day and time *</span>
@@ -722,7 +770,7 @@ html{overflow-x:clip}
         <span class="err">Please choose a day and a time.</span></div>
       </div>
       <div class="fld"><label for="eName">Your name *</label><input id="eName" name="name" autocomplete="name" placeholder="Enter your full name"><span class="err">Please enter your name.</span></div>
-      <div class="fld"><label for="ePhone">Phone number *</label><div class="tel"><span>+91</span><input id="ePhone" name="phone" inputmode="tel" autocomplete="tel-national" placeholder="Enter your number"></div><span class="err">Please enter a 10-digit mobile number.</span></div>
+      <div class="fld"><label for="ePhone">Phone number *</label><div class="tel"><select class="cc" id="eCC" aria-label="Country code"><option value="+91">+91 IN</option><option value="+974">+974 QA</option><option value="+971">+971 AE</option><option value="+966">+966 SA</option><option value="+965">+965 KW</option><option value="+968">+968 OM</option><option value="+973">+973 BH</option><option value="+44">+44 UK</option><option value="+1">+1 US/CA</option><option value="+61">+61 AU</option><option value="+65">+65 SG</option><option value="+49">+49 DE</option></select><input id="ePhone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Enter your number"></div><span class="err">Please enter a valid mobile number.</span></div>
       <div class="fld"><label for="eEmail">Email address</label><input id="eEmail" name="email" type="email" autocomplete="email" placeholder="Enter your email"><span class="err">Please check this email address.</span></div>
       <div class="fld"><label for="eMsg" id="eMsgL">Message</label><textarea id="eMsg" name="message" placeholder="Tell us about your requirement (e.g. move-in date, number of occupants)"></textarea><span class="err">Please enter a few more details (e.g. move-in date, duration).</span></div>
       <button class="btn" type="submit" id="eBtn" style="width:100%">Request viewing <svg class="i"><use href="#arrow"/></svg></button>
@@ -744,7 +792,7 @@ html{overflow-x:clip}
     <div class="shot"><img class="only-l" src="assets/photos/cof_l.jpg" alt="Leafy walkway beside a Mativio building"><img class="only-d" src="assets/photos/dev_d.jpg" alt="Mativio building among trees"></div>
     <div>
       <div class="tag rule" style="margin-bottom:22px">Our Story</div>
-      <h2>Rooted in Bengaluru. Built for Generations.</h2>
+      <h1>Rooted in Bengaluru. Built for Generations.</h1>
       <p>Mativio is a family-owned residential property brand in Bengaluru, built on a simple belief: well-cared-for homes create better, more enduring communities.</p>
       <p>We own every home we rent and look after it ourselves. No brokers stand between you and the people responsible for your home, so agreements are clear, repairs are quick and the owners answer the phone.</p>
       <a class="btn" href="#properties" style="margin-top:12px">See our homes <svg class="i"><use href="#arrow"/></svg></a>
@@ -755,7 +803,7 @@ html{overflow-x:clip}
 <!-- CONTACT -->
 <section data-view="contact" class="sec">
   <div class="contact">
-    <div><h2>Get in Touch</h2><p class="mute">Have a question about a property, or want to know more? We're here to help.</p><div class="cl" id="cl"></div></div>
+    <div><h1>Get in Touch</h1><p class="mute">Have a question about a property, or want to know more? We're here to help.</p><div class="cl" id="cl"></div></div>
     <form class="formcard" id="cForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate style="margin:0"><input type="hidden" name="form-name" value="contact"><p hidden><input name="bot-field"></p>
       <div class="fld"><label for="cName">Your name *</label><input id="cName" name="name" autocomplete="name"><span class="err">Please enter your name.</span></div>
       <div class="fld"><label for="cEmail">Your email *</label><input id="cEmail" name="email" type="email" autocomplete="email"><span class="err">Please enter a valid email.</span></div>
@@ -767,7 +815,7 @@ html{overflow-x:clip}
 </section>
 <!-- LOCALITIES -->
 <section data-view="localities" class="sec">
-  <h2>Our Localities</h2>
+  <h1>Our Localities</h1>
   <p class="mute" style="margin:.5em 0 28px">Where our family's homes are in Bengaluru.</p>
   <div class="ltiles" id="locList"></div>
 </section>
@@ -775,7 +823,7 @@ html{overflow-x:clip}
 
 <!-- PRIVACY -->
 <section data-view="privacy" class="sec"><div class="legal">
-  <h2>Privacy Policy</h2>
+  <h1>Privacy Policy</h1>
   <p>Last updated: 26 November 2026</p>
   <p>This website is run by Mativio, a family-owned residential property business in Bengaluru, Karnataka ("we", "us"). This notice explains what personal data we collect through this website, why we collect it, and the choices and rights you have. We follow India's Digital Personal Data Protection Act, 2023 and the Digital Personal Data Protection Rules, 2025.</p>
   <h3>1. What we collect</h3>
@@ -820,7 +868,7 @@ html{overflow-x:clip}
 
 <!-- TERMS -->
 <section data-view="terms" class="sec"><div class="legal">
-  <h2>Terms of Use</h2>
+  <h1>Terms of Use</h1>
   <p>Last updated: 26 November 2026</p>
   <p>These terms apply to your use of this website, run by Mativio, a family-owned residential property business in Bengaluru, Karnataka. By using the website, you agree to them.</p>
   <h3>1. About the listings</h3>
@@ -861,7 +909,7 @@ html{overflow-x:clip}
 <!-- 404 -->
 <section data-view="notfound" class="sec"><div class="nf">
   <div class="big">404</div>
-  <h2 id="nfTitle">This page isn't here</h2>
+  <h1 id="nfTitle">This page isn't here</h1>
   <p class="mute" id="nfText">The link may be old, or the page may have moved.</p>
   <div class="dacts" style="justify-content:center"><a class="btn" href="#properties">See available homes <svg class="i"><use href="#arrow"/></svg></a><a class="btn line" href="#home">Go to home</a></div>
 </div></section>
@@ -938,8 +986,14 @@ let tick=false,col=false;const onScroll=()=>{if(tick)return;tick=true;requestAni
 addEventListener("scroll",onScroll,{passive:true});onScroll();
 
 /* drawer */
-const dr=$("#drawer");$("#burger").onclick=()=>dr.classList.add("open");$("#dclose").onclick=()=>dr.classList.remove("open");
-dr.addEventListener("click",e=>{if(e.target.closest("a"))dr.classList.remove("open")});
+const dr=$("#drawer");const FOC='a[href],button:not([disabled]),input:not([type=hidden]):not([disabled]),select,textarea,[tabindex="0"]';
+function modal(el,open){if(open){el._op=document.activeElement;el.setAttribute("aria-modal","true");setTimeout(()=>{const f=[...el.querySelectorAll(FOC)].find(x=>x.offsetParent!==null);f&&f.focus()},40);
+  el._trap=e=>{if(e.key==="Escape"&&el===dr){closeDr();return}if(e.key!=="Tab")return;const fs=[...el.querySelectorAll(FOC)].filter(x=>x.offsetParent!==null);if(!fs.length)return;const a=fs[0],z=fs[fs.length-1];
+    if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}};document.addEventListener("keydown",el._trap)}
+  else{el.removeAttribute("aria-modal");if(el._trap)document.removeEventListener("keydown",el._trap);el._trap=null;if(el._op&&el._op.isConnected&&el._op.offsetParent!==null)el._op.focus({preventScroll:true})}}
+const closeDr=()=>{if(!dr.classList.contains("open"))return;dr.classList.remove("open");modal(dr,false)};
+$("#burger").onclick=()=>{dr.classList.add("open");modal(dr,true)};$("#dclose").onclick=closeDr;
+dr.addEventListener("click",e=>{if(e.target.closest("a"))closeDr()});
 
 /* cards */
 document.addEventListener("load",e=>{const t=e.target;if(t.tagName==="IMG"){const b=t.closest(".pic,.ltile,.shot,.gal");if(b)b.style.animation="none"}},true);
@@ -1025,13 +1079,13 @@ $("#locList").innerHTML=LOC.map(ltile).join("");
 function locality(l){
   const homes=P.filter(p=>p.name===l.name);const maps="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(l.area);
   $("#locPage").innerHTML=`<a class="back" href="#localities">${ic("left")}All localities</a>
-  <div class="lhero"><div><div class="tag rule" style="margin-bottom:18px">${esc(l.tagline||"Locality")}</div><h2>${esc(l.name)}</h2><div class="loc" style="margin-top:8px">${ic("pin")}${esc(l.area)}</div>
+  <div class="lhero"><div><div class="tag rule" style="margin-bottom:18px">${esc(l.tagline||"Locality")}</div><h1>${esc(l.name)}</h1><div class="loc" style="margin-top:8px">${ic("pin")}${esc(l.area)}</div>
     <p class="mute" style="font-size:17px">${esc(l.about)}</p><ul class="hl">${l.hl.map(([i,t])=>`<li>${ic(i)}<span>${esc(t)}</span></li>`).join("")}</ul>
     <div class="dacts" style="margin-top:8px"><a class="link gold" href="${maps}" target="_blank" rel="noopener">Open in Google Maps ${ic("arrow")}</a></div></div>
     <div class="shot"><img src="${ph(l.img)}" alt="${esc(l.name)}"></div></div>
-  <div class="shead"><h2 style="font-size:clamp(30px,3.4vw,42px)">Explore the neighbourhood</h2></div>
+  <div class="shead"><h2>Explore the neighbourhood</h2></div>
   ${nbHTML(l.id)}
-  <div class="shead" style="margin-top:40px"><h2 style="font-size:clamp(30px,3.4vw,42px)">Homes in ${esc(l.name)}</h2></div>
+  <div class="shead" style="margin-top:40px"><h2>Homes in ${esc(l.name)}</h2></div>
   <div class="grid">${homes.map(card).join("")||`<div class="empty">No homes listed here right now.</div>`}</div>
   <div class="dacts"><a class="btn line" href="#properties" data-alert="${esc(l.name)}">${ic("bell")}Get alerts for ${esc(l.name)}</a></div>`;
 }
@@ -1067,7 +1121,7 @@ $("#q").addEventListener("input",e=>{F.q=e.target.value;pg=1;renderList()});
 const FS=[["#fLoc","loc"],["#fType","type"],["#fBhk","bhk"],["#fFur","fur"],["#fBud","bud"],["#fSort","sort"]];
 FS.forEach(([s,k])=>$(s).addEventListener("change",e=>{F[k]=e.target.value;pg=1;renderList()}));
 const resetF=()=>{Object.assign(F,F0);pg=1;$("#q").value="";FS.forEach(([s,k])=>$(s).value=F[k]);renderList()};
-const sheet=(o)=>{$("#sheet").classList.toggle("open",o);$("#scrim").classList.toggle("on",o);document.body.style.overflow=o?"hidden":""};
+const sheet=(o)=>{const sh=$("#sheet"),was=sh.classList.contains("open");if(o&&!was){sh.setAttribute("role","dialog");modal(sh,true)}else if(!o&&was){sh.removeAttribute("role");modal(sh,false)}sh.classList.toggle("open",o);$("#scrim").classList.toggle("on",o);document.body.style.overflow=o?"hidden":""};
 $("#fOpen").onclick=()=>sheet(true);$("#fClose").onclick=$("#scrim").onclick=$("#fApply").onclick=()=>sheet(false);$("#fReset").onclick=resetF;
 addEventListener("keydown",e=>{if(e.key==="Escape")sheet(false)});
 $("#listGrid").addEventListener("click",e=>{if(e.target.id==="clr")resetF()});
@@ -1087,7 +1141,7 @@ function detail(p){
       <button class="nav2 prev" type="button" aria-label="Previous photo">${ic("left")}</button><button class="nav2 next" type="button" aria-label="Next photo">${ic("right")}</button>
       <div class="dots">${p.photos.map((f,i)=>`<button type="button" aria-label="Photo ${i+1}" class="${i?"":"on"}" data-g="${i}"></button>`).join("")}</div></div><div id="alt" hidden></div></div></div>
     <div>
-      <div class="dhead"><h2>${esc(p.title)}</h2><span class="rent">${p.rent==null?"Price on request":`${p.fromPrice?"<small>From </small>":""}${inr(p.rent)} <small>/ month</small>`}</span></div>
+      <div class="dhead"><h1>${esc(p.title)}</h1><span class="rent">${p.rent==null?"Price on request":`${p.fromPrice?"<small>From </small>":""}${inr(p.rent)} <small>/ month</small>`}</span></div>
       <div class="loc" style="margin-top:8px">${ic("pin")}${esc(p.area)}<span class="badge inline ${ST[p.status][1]}" style="margin-left:8px">${ST[p.status][0]}</span></div>
       <div class="stats s4" style="margin-top:16px"><div>${ic("bed")}<b>${p.bhk}</b><span>Size</span></div><div>${ic("bath")}<b>${tbc(p.baths)}</b><span>Bathrooms*</span></div><div>${ic("car")}<b>${tbc(p.parking)}</b><span>Parking</span></div><div>${ic("key")}<b>Direct</b><span>Owner rental</span></div></div>
       <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-t="ov">Overview</button><button role="tab" aria-selected="false" data-t="ph">Photos</button><button role="tab" aria-selected="false" data-t="lo">Neighbourhood</button></div>
@@ -1103,14 +1157,14 @@ function detail(p){
       ${p.status==="now"||p.status==="soon"?`<div class="vv">${ic("video")}<span>Relocating to Bengaluru? <a href="#video-${p.id}">Book a video-call viewing</a> and we'll walk you through the home live.</span></div>`:""}
       ${p.status==="now"?"":`<form class="notify" id="nForm" novalidate><b>${ic("bell",'style="color:var(--accent);vertical-align:-3px;margin-right:6px"')}${p.status==="let"?"Currently occupied. Want to know first?":p.status==="build"?"Under construction. Register your interest":p.status==="reno"?"Under renovation. Register your interest":"Available soon. Register your interest"}</b>
         <span class="mute" style="font-size:14px">We'll message you the day ${esc(p.name)} is ready to view.</span>
-        <div class="row"><input id="nName" placeholder="Your name *" autocomplete="name" aria-label="Your name"><input id="nPhone" placeholder="Mobile number *" inputmode="tel" aria-label="Mobile number"><input id="nEmail" type="email" placeholder="Email (optional)" aria-label="Email"><button class="btn" type="submit" style="min-height:48px">${p.status==="let"?"Notify me":"Register interest"}</button></div>
+        <div class="row"><input id="nName" placeholder="Your name *" autocomplete="name" aria-label="Your name"><div class="tel"><select class="cc" id="nCC" aria-label="Country code"><option value="+91">+91 IN</option><option value="+974">+974 QA</option><option value="+971">+971 AE</option><option value="+966">+966 SA</option><option value="+965">+965 KW</option><option value="+968">+968 OM</option><option value="+973">+973 BH</option><option value="+44">+44 UK</option><option value="+1">+1 US/CA</option><option value="+61">+61 AU</option><option value="+65">+65 SG</option><option value="+49">+49 DE</option></select><input id="nPhone" type="tel" placeholder="Mobile number *" inputmode="tel" autocomplete="tel-national" aria-label="Mobile number"></div><input id="nEmail" type="email" placeholder="Email (optional)" aria-label="Email"><button class="btn" type="submit" style="min-height:48px">${p.status==="let"?"Notify me":"Register interest"}</button></div>
         <p class="note" id="nNote" role="status"></p></form>`}
     </div></div>`;
   const imgs=$$("#gal img"),dots=$$("#gal .dots button");
   const go=i=>{gi=(i+imgs.length)%imgs.length;imgs.forEach((m,k)=>m.classList.toggle("on",k===gi));dots.forEach((d,k)=>d.classList.toggle("on",k===gi))};
   let sx=null;const g=$("#gal");g.addEventListener("pointerdown",e=>{sx=e.clientX});
   g.addEventListener("pointerup",e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>40)go(gi+(dx<0?1:-1));else if(e.target.tagName==="IMG")lbOpen(photosOf(p),gi,imgs[gi])});
-  g.querySelectorAll("img").forEach(m=>{m.style.cursor="zoom-in"});
+  g.querySelectorAll("img").forEach(m=>{m.style.cursor="zoom-in"});g.tabIndex=0;g.setAttribute("role","group");g.setAttribute("aria-roledescription","gallery");g.setAttribute("aria-label",`Photos of ${p.name}. Press Enter to enlarge, arrow keys to move.`);g.addEventListener("keydown",e=>{if(e.target!==g)return;if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();go(gi+(e.key==="ArrowRight"?1:-1))}else if(e.key==="Enter"||e.key===" "){e.preventDefault();lbOpen(photosOf(p),gi,imgs[gi])}});
   g.addEventListener("pointercancel",()=>sx=null);
   $("#mcta").innerHTML=`<span class="rent">${p.rent==null?"Price on request":`${p.fromPrice?"<small>From </small>":""}${inr(p.rent)}<small> / month</small>`}</span><a class="btn" href="${CTA(p).href}">${ic(CTA(p).icon)}${CTA(p).label}</a>`;
   $("#detail").onclick=e=>{const t=e.target.closest("button");if(!t)return;
@@ -1126,10 +1180,10 @@ function detail(p){
     else if(t.id==="share"){const url=location.origin+"/homes/"+p.id+"/";const txt=`${p.title} · ${p.bhk} · ${rentTxt(p)}. ${url}`;
       (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast("Link copied. Paste it into WhatsApp or email."),()=>toast(url))}};
   const nf=$("#nForm");if(nf)nf.addEventListener("submit",async e=>{e.preventDefault();
-    const n=$("#nName").value.trim(),ph=$("#nPhone").value.replace(/\D/g,"").slice(-10),em=$("#nEmail").value.trim();
-    if(!n||!/^[6-9]\d{9}$/.test(ph)){$("#nNote").textContent="Please add your name and a 10-digit mobile number.";return}
+    const n=$("#nName").value.trim(),NP=phoneOf("#nCC","#nPhone"),ph=NP.value,em=$("#nEmail").value.trim();
+    if(!n||!NP.ok){$("#nNote").textContent="Please add your name and a valid mobile number.";$(n?"#nPhone":"#nName").setAttribute("aria-invalid","true");return}
     $("#nNote").textContent="Sending…";
-    const ok=await sendForm("notify",{home:p.name,name:n,phone:"+91 "+ph,email:em});
+    const ok=await sendForm("notify",{home:p.name,name:n,phone:ph,email:em});
     $("#nNote").textContent=ok?`Thank you, ${n.split(" ")[0]}. We'll let you know as soon as ${p.name} is ready.`:"We couldn't save this just now. Please try again, or use the Contact page.";
     if(ok)nf.querySelectorAll("input,button").forEach(x=>x.disabled=true)});
 }
@@ -1197,6 +1251,11 @@ function media(p,m){
     pv=pannellum.viewer("pano",{default:{firstScene:"s0",autoLoad:true,autoRotate:-2,compass:false,showZoomCtrl:false},scenes})})
    .catch(()=>{alt.innerHTML=soon(p,"r360","360° tour couldn't load","Please check your connection and try again.")});
 }
+/* phone: country code + number -> international format. India: 10 digits starting 6-9; others: 6-14 digits */
+const phoneOf=(ccSel,inSel)=>{const raw=$(inSel).value.trim();let cc=$(ccSel).value,d=raw.replace(/\D/g,"");
+  if(raw.startsWith("+")||raw.startsWith("00")){d=d.replace(/^00/,"");const m=["974","971","966","965","968","973","91","44","61","65","49","1"].find(c=>d.startsWith(c));if(m){cc="+"+m;d=d.slice(m.length)}}
+  d=d.replace(/^0+/,"");if(cc==="+91"&&d.length===12&&d.startsWith("91"))d=d.slice(2);
+  const ok=cc==="+91"?/^[6-9]\d{9}$/.test(d):/^\d{6,14}$/.test(d);return{ok,value:cc+" "+d}};
 const sendForm=async(form,data)=>{try{const r=await fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams({"form-name":form,...data}).toString()});return r.ok}catch(e){return false}};
 
 /* enquiry */
@@ -1211,18 +1270,18 @@ const subOf=p=>`${p.title} · ${p.bhk} · ${rentTxt(p)}`;
 $("#eHomeSel").addEventListener("change",e=>{cur=P.find(x=>x.id===e.target.value)||null;$("#eSub").textContent=cur?subOf(cur):"Choose a home and a time that suits you."});
 function enquire(p,visit){$("#eForm").classList.remove("rev");if(typeof tspReset==="function"&&!$("#eDate").value)tspReset();$("#eForm").querySelector(`input[value="${visit?"Book a viewing":"Ask a question"}"]`).checked=true;$("#eDate").min=tmr();kindSync();$$("#eForm .fld").forEach(f=>f.classList.remove("bad"));
   cur=p;$("#homeF").hidden=!!p;$("#eHomeSel").value=p?p.id:"";$("#eSub").textContent=p?subOf(p):"Choose a home and a time that suits you.";$("#eBack").href=p?"#p-"+p.id:"#properties";$("#eBack").lastChild.textContent=p?"Back to property":"Back to properties"}
-const bad=(id,b)=>{$(id).closest(".fld").classList.toggle("bad",b);return b};
+const bad=(id,b)=>{const el=$(id),f=el.closest(".fld");f.classList.toggle("bad",b);const t=el.type==="hidden"?f.querySelector("[role=group]")||el:el,er=f.querySelector(".err");if(er){er.id=er.id||(el.id+"Err");const d=new Set((t.getAttribute("aria-describedby")||"").split(" ").filter(Boolean));b?d.add(er.id):d.delete(er.id);d.size?t.setAttribute("aria-describedby",[...d].join(" ")):t.removeAttribute("aria-describedby")}t.setAttribute("aria-invalid",b?"true":"false");return b};
 let pend=null;
 $("#eForm").addEventListener("submit",e=>{e.preventDefault();
   const visit=$("#eForm").querySelector("input[name=kind]:checked").value==="Book a viewing";
   const mode=$("#eForm").querySelector("input[name=mode]:checked").value;
-  const name=$("#eName").value.trim(),phone=$("#ePhone").value.replace(/\D/g,""),email=$("#eEmail").value.trim(),msg=$("#eMsg").value.trim(),date=$("#eDate").value,slot=$("#eSlot").value;
+  const name=$("#eName").value.trim(),PH=phoneOf("#eCC","#ePhone"),phone=PH.value,email=$("#eEmail").value.trim(),msg=$("#eMsg").value.trim(),date=$("#eDate").value,slot=$("#eSlot").value;
   if(!cur){bad("#eHomeSel",true);$("#eHomeSel").focus();return}bad("#eHomeSel",false);
-  const errs=[bad("#eDate",visit&&(!date||date<tmr()||!slot)),bad("#eName",!name),bad("#ePhone",!/^[6-9]\d{9}$/.test(phone.slice(-10))||phone.length<10),bad("#eEmail",!!email&&!/^\S+@\S+\.\S+$/.test(email)),bad("#eMsg",!visit&&msg.length<10)];
+  const errs=[bad("#eDate",visit&&(!date||date<tmr()||!slot)),bad("#eName",!name),bad("#ePhone",!PH.ok),bad("#eEmail",!!email&&!/^\S+@\S+\.\S+$/.test(email)),bad("#eMsg",!visit&&msg.length<10)];
   if(errs.some(Boolean)){$("#eForm .bad input,#eForm .bad textarea,#eForm .bad select")?.focus();return}
   const when=visit?new Date(date+"T00:00").toLocaleDateString("en-IN",{weekday:"short",day:"numeric",month:"short"})+", "+slot:"";
-  pend={visit,mode,name,phone:phone.slice(-10),email,msg,date,slot,when,home:cur};
-  const rows=[["Home",`${cur.name} · ${cur.bhk}`],["Request",visit?"Book a viewing":"Ask a question"],...(visit?[["Viewing",mode],["Preferred",when]]:[]),["Name",name],["Mobile","+91 "+pend.phone],...(email?[["Email",email]]:[]),...(msg?[["Message",msg]]:[])];
+  pend={visit,mode,name,phone,email,msg,date,slot,when,home:cur};
+  const rows=[["Home",`${cur.name} · ${cur.bhk}`],["Request",visit?"Book a viewing":"Ask a question"],...(visit?[["Viewing",mode],["Preferred",when]]:[]),["Name",name],["Mobile",pend.phone],...(email?[["Email",email]]:[]),...(msg?[["Message",msg]]:[])];
   $("#eReview").innerHTML=`<h3 style="font-size:26px">Check your details</h3><dl class="rvl">${rows.map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
     <div class="dacts" style="margin-top:0"><button class="btn" type="button" id="eConfirm" style="flex:1">${visit?"Confirm viewing request":"Send enquiry"} ${ic("arrow")}</button><button class="btn line" type="button" id="eEdit">Edit</button></div>${CONSENT}`;
   $("#eForm").classList.add("rev");$("#eTitle").textContent="Review your request";$("#eForm").scrollIntoView({block:"start"});
@@ -1232,16 +1291,16 @@ const unreview=()=>{$("#eForm").classList.remove("rev");kindSync()};
 $("#eForm").addEventListener("click",async e=>{
   if(e.target.closest("#eEdit")){unreview();return}
   if(!e.target.closest("#eConfirm")||!pend)return;
-  const b=$("#eConfirm");b.disabled=true;b.style.opacity=.7;
+  const b=$("#eConfirm"),bl=b.innerHTML;b.disabled=true;b.style.opacity=.7;b.setAttribute("aria-busy","true");b.textContent="Sending…";
   const {visit,mode,name,phone,email,msg,date,slot,when,home}=pend;
   const ref="MTV-"+String(Math.floor(1000+Math.random()*9000));
-  const ok=await sendForm("enquiry",{home:`${home.name} (${home.bhk}, ${home.area})`,ref,kind:visit?"Book a viewing":"Ask a question",viewing_type:visit?mode:"",date:visit?date:"",slot:visit?slot:"",name,phone:"+91 "+phone,email,message:msg});
-  b.disabled=false;b.style.opacity="";
-  const body=`${visit?"Viewing request":"Enquiry"} ${ref}\nHome: ${home.name} (${home.bhk}, ${home.area})${visit?"\nViewing: "+mode+"\nPreferred: "+when:""}\nName: ${name}\nPhone: +91 ${phone}${email?"\nEmail: "+email:""}${msg?"\nMessage: "+msg:""}`;
+  const ok=await sendForm("enquiry",{home:`${home.name} (${home.bhk}, ${home.area})`,ref,kind:visit?"Book a viewing":"Ask a question",viewing_type:visit?mode:"",date:visit?date:"",slot:visit?slot:"",name,phone,email,message:msg});
+  b.disabled=false;b.style.opacity="";b.removeAttribute("aria-busy");b.innerHTML=bl;
+  const body=`${visit?"Viewing request":"Enquiry"} ${ref}\nHome: ${home.name} (${home.bhk}, ${home.area})${visit?"\nViewing: "+mode+"\nPreferred: "+when:""}\nName: ${name}\nPhone: ${phone}${email?"\nEmail: "+email:""}${msg?"\nMessage: "+msg:""}`;
   const wa=CONTACT.whatsapp?`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(body)}`:"";
   const mail=CONTACT.email?`mailto:${CONTACT.email}?subject=${encodeURIComponent("Mativio "+ref+" · "+home.name)}&body=${encodeURIComponent(body)}`:"";
   const first=esc(name.split(" ")[0]);
-  $("#done").innerHTML=`<div class="tick">${ic(ok?"check":"mail")}</div><h2>${ok?(visit?"Viewing requested!":"Enquiry received!"):`Almost there, ${first}`}</h2>
+  $("#done").innerHTML=`<div class="tick">${ic(ok?"check":"mail")}</div><h1>${ok?(visit?"Viewing requested!":"Enquiry received!"):`Almost there, ${first}`}</h1>
     <p class="mute">${ok?`Thank you, ${first}. ${visit?(mode==="Video call"?"We'll call you to confirm the time and send a video-call link":"We'll call you to confirm the viewing time"):"Our family will get back to you"} within 1 business day.`:(navigator.onLine?"We couldn't send your request from this page.":"You seem to be offline, so we couldn't send your request.")+(wa||mail?" Tap below to send it directly.":" Please try again in a moment.")}</p>
     <div class="sum"><div>${ic("home")}<span><b>${esc(home.name)}</b><br><span class="mute">${home.bhk}</span></span></div>${visit?`<div>${ic("cal")}<span>${esc(mode)} · ${esc(when)}</span></div>`:""}${ok?`<div>${ic("check")}<span>Reference <b>${ref}</b></span></div>`:""}</div>
     <div class="dacts" style="justify-content:center">${!ok&&wa?`<a class="btn" href="${wa}" target="_blank" rel="noopener">Send on WhatsApp</a>`:""}${!ok&&mail?`<a class="btn${wa?" line":""}" href="${mail}">Send by email</a>`:""}${!ok&&!wa&&!mail?`<button class="btn" type="button" id="retry">Try again</button>`:""}${ok&&wa?`<a class="btn line" href="${wa}" target="_blank" rel="noopener">Also message us on WhatsApp</a>`:""}<a class="btn line" href="#properties">Back to Properties ${ic("arrow")}</a></div>`;
@@ -1294,10 +1353,10 @@ tspReset();
 $("#rLoc").innerHTML="<option>Any</option>"+[...new Set(P.map(x=>x.name))].map(n=>`<option>${n}</option>`).join("")+"<option>Elsewhere in Bengaluru</option>";
 $("#rWhen").innerHTML="<option>Flexible</option>"+[0,1,2,3].map(i=>{const d=new Date();d.setDate(1);d.setMonth(d.getMonth()+i);return `<option>${d.toLocaleDateString("en-IN",{month:"long",year:"numeric"})}</option>`}).join("");
 $("#rForm").addEventListener("submit",async e=>{e.preventDefault();
-  const n=$("#rName").value.trim(),ph=$("#rPhone").value.replace(/\D/g,"").slice(-10);
-  const errs=[bad("#rName",!n),bad("#rPhone",!/^[6-9]\d{9}$/.test(ph))];if(errs.some(Boolean))return;
+  const n=$("#rName").value.trim(),RP=phoneOf("#rCC","#rPhone"),ph=RP.value;
+  const errs=[bad("#rName",!n),bad("#rPhone",!RP.ok)];if(errs.some(Boolean))return;
   $("#rNote").textContent="Sending…";
-  const ok=await sendForm("requirement",{locality:$("#rLoc").value,size:$("#rSize").value,budget:$("#rBud").value,move_in:$("#rWhen").value,name:n,phone:"+91 "+ph});
+  const ok=await sendForm("requirement",{locality:$("#rLoc").value,size:$("#rSize").value,budget:$("#rBud").value,move_in:$("#rWhen").value,name:n,phone:ph});
   $("#rNote").textContent=ok?`Thank you, ${n.split(" ")[0]}. We'll message you when a matching home opens up.`:"We couldn't save this just now. Please try again in a moment.";
   if(ok)$("#rForm").reset();
 });
@@ -1344,6 +1403,7 @@ function route(){
   if(!h.startsWith("interest-"))scrollTo({top:0});
 }
 addEventListener("hashchange",route);route();
+$("#skip").addEventListener("click",e=>{e.preventDefault();const h=document.querySelector("[data-view].on h1, [data-view].on h2");if(h){h.tabIndex=-1;h.focus()}});
 }
 </script>
 </body>
