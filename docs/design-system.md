@@ -60,7 +60,6 @@ Side padding `--side`: 80 px (≥ 1440), 48 (≤ 1439), 32 (≤ 1279), 24 (≤ 1
 
 | Range | Behaviour |
 |---|---|
-| ≥ 1366 | Header shows the wordmark plus the "LAND · LIVING · LEGACY" tagline |
 | ≥ 1024 | Full navigation: Home, Properties, Localities, Our Story, Contact · theme switch · "Book a viewing" |
 | 1024–1199 landscape and desktop | Hero split ≈ 42% copy / 58% photo; the photo bleeds to the right edge and fades into the page |
 | 834–1199 portrait | Hero stacks: copy first, then a full-width photo |
@@ -97,6 +96,8 @@ The page sits on a soft spiral-wave gradient from the owner's "Light Spiral Grad
 - Hero photos fade into the background with **CSS masks**, not colour overlays, so they blend into the waves without a visible box. This applies to the desktop split hero, the tablet-portrait stacked hero and the mobile full-bleed hero. The fade stops are the same as before.
 - **Contrast:** the wave intensity is tuned so all text that sits directly on the background keeps ≥ 4.5:1 (≥ 3:1 for large text). This was measured against the rendered pixels, in both themes, at 1440/834/390 across 10 views. If you edit the SVGs, re-check this: `tools/audit/measure.py` only reads CSS colours and can't see the art.
 
+Leaf nudges (26 Nov 2026): the left hero leaf `.lf-c` sits further off-canvas from 834 to 1279 px (`left:-118px`) so it doesn't cross the hero copy. On phones it sits beside the "Our Properties" heading (`top: calc(100svh - 40px)`, above the photo) rather than over the H1.
+
 ## Botanical theme (approved, PR #6)
 
 Real photographic leaf cut-outs (`assets/leaves/*.png`, classes `.lf .lf-a/-b/-c/-s/-m`) are absolutely positioned around the hero, the pillars and the banner. They're non-interactive (`pointer-events:none`, `aria-hidden`) and dimmed in dark mode (`opacity .6; brightness .55`). The spiral-wave page background (above) sits behind them. Keep this restrained; don't add drawn leaves or heavier gradients.
@@ -105,7 +106,7 @@ Real photographic leaf cut-outs (`assets/leaves/*.png`, classes `.lf .lf-a/-b/-c
 
 | Element | Behaviour |
 |---|---|
-| Wordmark fold | "ATIVIO" and the header tagline collapse with `grid-template-columns: 1fr → 0fr` (0.8 s `cubic-bezier(.4,0,.2,1)`), with opacity fading over 0.55 s after a 0.15 s delay. This animates to the exact letter width whatever the font (it fixed the missing "O" bug). The M image shrinks from 42 to 38 px |
+| Wordmark fold | "ATIVIO" collapses with `grid-template-columns: 1fr → 0fr` (0.8 s `cubic-bezier(.4,0,.2,1)`), with opacity fading over 0.55 s after a 0.15 s delay. This animates to the exact letter width whatever the font (it fixed the missing "O" bug). The M image shrinks from 42 to 38 px |
 | Fold trigger | Collapses when `scrollY > 80` and re-expands when `< 16` (hysteresis, rAF-throttled) |
 | Header | Background and shadow transition 0.5 s; blur 12 px when scrolled |
 | View change | `fade`: 0.4 s, opacity 0→1, translateY 8 px→0 |

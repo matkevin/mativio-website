@@ -610,6 +610,9 @@ header.scrolled .bar{padding-block:0;min-height:calc(var(--hdr) - 10px)}
  :root[data-theme=dark] .hero{background:none}
  :root[data-theme=dark] .mhero{-webkit-mask-image:linear-gradient(0deg,transparent 0%,#000 14%),linear-gradient(180deg,transparent 0%,rgba(0,0,0,.4) 18%,#000 45%);mask-image:linear-gradient(0deg,transparent 0%,#000 14%),linear-gradient(180deg,transparent 0%,rgba(0,0,0,.4) 18%,#000 45%)}
 }
+/* leaf nudges: keep the left hero leaf clear of the copy */
+@media(min-width:834px) and (max-width:1279px){.lf-c{left:-118px}}
+@media(max-width:833px){.lf-c{top:calc(100svh - 40px);left:-50px;z-index:3}}
 </style>
 </head>
 <body>
@@ -663,7 +666,6 @@ header.scrolled .bar{padding-block:0;min-height:calc(var(--hdr) - 10px)}
 <header id="hdr"><div class="wrap bar">
   <a class="brand" href="#home" aria-label="Mativio home">
     <span class="word"><img src="assets/logo.png" alt=""><span class="rest" aria-hidden="true"><span>ATIVIO</span></span></span>
-    <span class="tag tagline"><span>Land · Living · Legacy</span></span>
   </a>
   <nav class="nav" aria-label="Main">
     <a href="#home" data-nav="home">Home</a>
@@ -703,7 +705,6 @@ header.scrolled .bar{padding-block:0;min-height:calc(var(--hdr) - 10px)}
   <div class="hero">
     <div class="mhero" aria-hidden="true"><img class="only-l" src="assets/photos/mhero_l.jpg" alt=""><img class="only-d" src="assets/photos/mhero_d.jpg" alt=""></div>
     <div>
-      <div class="tag rule">Land · Living · Legacy</div>
       <h1>Find a place to call home.</h1>
       <p class="sub">Family-owned homes, thoughtfully cared for in Bengaluru.</p>
       <div class="ctas"><a class="btn" href="#properties">Explore available homes <svg class="i"><use href="#arrow"/></svg></a><a class="link know" href="#story">Get to know us</a></div>

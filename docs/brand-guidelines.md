@@ -5,7 +5,7 @@ Source: the owner's brand board (Nov 2026), the first brand draft and approved w
 ## Name and lockups
 
 - Public brand: **MATIVIO**, always in capitals in the wordmark. Write "Mativio" in running text.
-- Tagline: **LAND · LIVING · LEGACY** (capitals, middle dots, wide letter-spacing).
+- Tagline: **LAND · LIVING · LEGACY** (capitals, middle dots, wide letter-spacing). It appears **only in the footer** (owner's decision, 26 Nov 2026); the header and the home hero don't repeat it.
 - Headline: *Rooted in Bengaluru. Built for Generations.*
 - Hero line: **Find a place to call home.** Supporting line: *Family-owned homes, thoughtfully cared for in Bengaluru.*
 - Brand promise: a family legacy of thoughtfully owned properties, enduring value and a vision for the future.
@@ -13,7 +13,7 @@ Source: the owner's brand board (Nov 2026), the first brand draft and approved w
 ## Logo
 
 - The mark is a serif **"M" with a sweeping stroke** (`assets/logo.png`). The owner particularly likes it being **the first letter of the wordmark**: the site renders the image M followed by the text "ATIVIO" in Cormorant Garamond. Never redraw, recolour or distort the M.
-- **Header behaviour (approved):** the wordmark (M + ATIVIO) and, on wide screens, the "LAND · LIVING · LEGACY" tagline beside it fold away on scroll so only the M remains, then unfold near the top. See `docs/design-system.md` → Animations.
+- **Header behaviour (approved):** the wordmark (M + ATIVIO) folds away on scroll so only the M remains, then unfold near the top. See `docs/design-system.md` → Animations.
 - Variants on the brand board: gold on navy (dark), navy on ivory (light), and app icons (M on a navy square, M on an ivory square). The site uses the same `logo.png` in both themes.
 - Favicon: `assets/logo.png`.
 
