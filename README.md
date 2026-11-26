@@ -40,6 +40,12 @@ The main button on cards and pages follows the status: Available now → Book a 
 - The home page shows up to 6 homes (best first) and "View all N properties".
 - Optional fields per home: `listed: "YYYY-MM-DD"`, `featured: true`.
 
+## Viewing times (booking)
+Edit `VIEWING` in the script: `days` (how many days ahead to offer), `closed` (weekdays with no viewings, 0 = Sunday), `times` (24-hour, e.g. "10:00"), `taken` (booked slots as "YYYY-MM-DD HH:MM"). The booking form shows a day strip and that day's times; the chosen date and time are sent with the enquiry.
+
+## Photos
+A home's `photos` can be file names (`"dev_l"`) or `{f:"dev_l", title:"Living room", cat:"Living room"}`. Categories become filter chips in the Photos tab; tapping a photo opens a full-screen viewer (swipe, arrow keys, Esc).
+
 ## Neighbourhood guide
 `NB` (in the script) lists nearby colleges, hospitals, shops, transport and business hubs for each locality. It shows on the locality page and in the Neighbourhood tab of each home.
 

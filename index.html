@@ -468,6 +468,57 @@ html{overflow-x:clip}
 @media(max-width:599px){.vtog{display:none}.grid.list{grid-template-columns:1fr}.grid.list .card{display:flex;flex-direction:column}.grid.list .card .pic{margin:12px 12px 0;aspect-ratio:16/10}.grid.list .card .body{display:flex}}
 .more{text-align:center;margin-top:28px;display:grid;justify-items:center;gap:6px}.more p{margin:0;font-size:14px}
 @media(min-width:600px){.minis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* time slot picker */
+.tsp{display:grid;gap:12px;margin-top:4px}
+.tsp-strip-wrap{display:flex;align-items:center;gap:6px}
+.tsp-nav{flex:none;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.tsp-nav svg.i{width:16px;height:16px}
+.tsp-days{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;padding:4px 2px 6px;scrollbar-width:none;flex:1}.tsp-days::-webkit-scrollbar{display:none}
+.tsp-day{flex:none;width:64px;display:grid;justify-items:center;gap:1px;padding:8px 0 7px;border-radius:16px;border:1px solid var(--line);background:var(--field);color:var(--ink);cursor:pointer;scroll-snap-align:start;transition:background .2s,border-color .2s,transform .2s}
+.tsp-day:hover{border-color:var(--accent)}
+.tsp-day .dw{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.tsp-day .dn{font-size:20px;font-weight:700;line-height:1.1}
+.tsp-day .dm{font-size:11px;color:var(--mute)}
+.tsp-day .dd{width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:3px}
+.tsp-day.full{opacity:.55}.tsp-day.full .dd{background:transparent}
+.tsp-day[aria-checked=true]{background:var(--navy);border-color:var(--navy);color:var(--ivory);transform:translateY(-1px)}
+.tsp-day[aria-checked=true] .dw,.tsp-day[aria-checked=true] .dm{color:#c9d1db}.tsp-day[aria-checked=true] .dd{background:var(--gold)}
+:root[data-theme=dark] .tsp-day[aria-checked=true]{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+:root[data-theme=dark] .tsp-day[aria-checked=true] .dw,:root[data-theme=dark] .tsp-day[aria-checked=true] .dm{color:#3a3020}:root[data-theme=dark] .tsp-day[aria-checked=true] .dd{background:var(--navy)}
+.tsp-when{font-size:14px;font-weight:600;color:var(--mute)}
+.tsp-slots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+@media(max-width:599px){.tsp-slots{grid-template-columns:repeat(3,minmax(0,1fr))}.tsp-nav{display:none}}
+.tsp-slot{min-height:44px;border-radius:999px;border:1px solid var(--line);background:var(--field);color:var(--ink);font:600 14px Manrope,sans-serif;cursor:pointer;font-variant-numeric:tabular-nums;transition:background .2s,border-color .2s}
+.tsp-slot:hover:not(:disabled){border-color:var(--accent)}
+.tsp-slot[aria-checked=true]{background:var(--btn);border-color:transparent;color:var(--btnInk);font-weight:700}
+.tsp-slot:disabled{cursor:not-allowed;text-decoration:line-through;color:var(--mute);background:transparent;border-color:transparent;opacity:.7}
+.tsp-none{border:1px dashed var(--line);border-radius:16px;padding:18px;text-align:center;color:var(--mute);margin:0;font-size:14px}
+.tsp-zone{margin:0;font-size:12.5px;color:var(--mute)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.fld.bad .tsp-days .tsp-day,.fld.bad .tsp-slot:not(:disabled){border-color:#c0473b}
+/* photo gallery */
+.gchips{display:flex;gap:6px;overflow-x:auto;padding:2px 0 12px;scrollbar-width:none}.gchips::-webkit-scrollbar{display:none}
+.gchip{flex:none;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--mute);font:600 13px Manrope,sans-serif;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.gchip[aria-pressed=true]{background:var(--navy);border-color:var(--navy);color:var(--ivory)}:root[data-theme=dark] .gchip[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.ggrid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.ggrid li[hidden]{display:none}
+.gtile{position:relative;display:block;width:100%;aspect-ratio:4/3;padding:0;border:0;border-radius:14px;overflow:hidden;cursor:zoom-in;background:var(--line)}
+.gz{position:absolute;inset:0;display:block}.gz img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.gcap{position:absolute;inset:auto 0 0 0;display:grid;gap:1px;padding:26px 12px 9px;text-align:left;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.65));font-size:12px;transition:opacity .3s,transform .3s}
+.gcap b{font-size:13.5px}.gcap span{opacity:.8}
+@media(hover:hover){.gcap{opacity:0;transform:translateY(4px)}.gtile:hover .gcap,.gtile:focus-visible .gcap{opacity:1;transform:none}.gtile:hover .gz img{transform:scale(1.06)}}
+.lb{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px}
+.lb[hidden]{display:none}
+.lb-bg{position:absolute;inset:0;border:0;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);cursor:default}
+.lb-top{position:absolute;inset:0 0 auto 0;display:flex;justify-content:space-between;align-items:center;padding:16px;z-index:2}
+.lb-count{margin:0;font-size:13px;font-weight:600;padding:5px 12px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-variant-numeric:tabular-nums}
+.lb-x,.lb-nav{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--card) 90%,transparent);color:var(--ink);display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2}.lb-prev{left:16px}.lb-next{right:16px}
+.lb-fig{position:relative;z-index:1;margin:0;display:grid;justify-items:center;gap:12px}
+.lb-frame{width:min(88vw,1100px,calc(74vh * 4 / 3));aspect-ratio:4/3;border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.3);background:var(--line);touch-action:pan-y;cursor:grab}
+.lb-frame img{width:100%;height:100%;object-fit:cover;user-select:none;pointer-events:none}
+.lb-cap{text-align:center;display:grid;gap:2px}.lb-cap b{font-size:15px}.lb-cap span{font-size:13px;color:var(--mute)}
+@media(max-width:599px){.lb-nav{display:none!important}.lb-frame{width:94vw}}
 </style>
 </head>
 <body>
@@ -653,10 +704,11 @@ html{overflow-x:clip}
       <div class="fld"><span class="lab">Viewing type</span><div class="seg">
         <label><input type="radio" name="mode" value="In person" checked>In person</label>
         <label><input type="radio" name="mode" value="Video call">Video call (remote)</label></div></div>
-      <div class="two">
-        <div class="fld"><label for="eDate">Preferred date *</label><input id="eDate" name="date" type="date"><span class="err">Please choose a date from tomorrow onwards.</span></div>
-        <div class="fld"><label for="eSlot">Preferred time</label><select id="eSlot" name="slot"><option>Morning (9 am – 12 pm)</option><option>Afternoon (12 – 4 pm)</option><option>Evening (4 – 7 pm)</option></select></div>
-      </div></div>
+      <div class="fld tsp-fld"><span class="lab" id="tspLab">Choose a day and time *</span>
+        <input type="hidden" id="eDate" name="date"><input type="hidden" id="eSlot" name="slot">
+        <div class="tsp" id="tsp" role="group" aria-labelledby="tspLab"></div>
+        <span class="err">Please choose a day and a time.</span></div>
+      </div>
       <div class="fld"><label for="eName">Your name *</label><input id="eName" name="name" autocomplete="name" placeholder="Enter your full name"><span class="err">Please enter your name.</span></div>
       <div class="fld"><label for="ePhone">Phone number *</label><div class="tel"><span>+91</span><input id="ePhone" name="phone" inputmode="tel" autocomplete="tel-national" placeholder="Enter your number"></div><span class="err">Please enter a 10-digit mobile number.</span></div>
       <div class="fld"><label for="eEmail">Email address</label><input id="eEmail" name="email" type="email" autocomplete="email" placeholder="Enter your email"><span class="err">Please check this email address.</span></div>
@@ -1003,7 +1055,7 @@ function detail(p){
         <dl class="spec"><dt>Monthly rent</dt><dd>${p.fromPrice?"From ":""}${inr(p.rent)}</dd><dt>Security deposit</dt><dd>${esc(p.deposit)}</dd><dt>Availability</dt><dd>${avail(p)}</dd><dt>Property type</dt><dd>${p.type}</dd><dt>Configuration</dt><dd>${p.bhk}</dd><dt>Area</dt><dd>${p.sqft?p.sqft.toLocaleString("en-IN")+" sq ft":"TBC"}</dd><dt>Bathrooms</dt><dd>${tbc(p.baths)}</dd><dt>Furnishing</dt><dd>${p.furn}</dd><dt>Parking</dt><dd>${tbc(p.parking)}</dd><dt>Rental</dt><dd>Direct from the owner</dd></dl>
         <p class="note">*Details marked TBC are being confirmed.</p>
         <div class="amen">${p.amen.map(a=>`<span>${esc(a)}</span>`).join("")}</div></div>
-      <div data-tp="ph" hidden><div class="thumbs">${p.photos.map((f,i)=>`<button type="button" data-g="${i}" aria-label="Show photo ${i+1}"><img src="${ph(f)}" alt=""></button>`).join("")}</div></div>
+      <div data-tp="ph" hidden>${galleryHTML(p)}</div>
       <div data-tp="lo" hidden><p class="mute" style="margin-top:0">${esc(p.area)}. The exact address is shared when you book a viewing.</p>${nbHTML((locOf(p)||{}).id)}
         <div class="dacts" style="margin-top:14px"><a class="link gold" href="${maps}" target="_blank" rel="noopener">Open in Google Maps ${ic("arrow")}</a>${locOf(p)?`<a class="link gold" href="#loc-${locOf(p).id}">About ${esc(p.name)} ${ic("arrow")}</a>`:""}</div></div>
       <div class="dacts">${p.status==="now"?`<a class="btn" href="#visit-${p.id}">${ic("cal")}Book a viewing</a>`:`<a class="btn" href="#interest-${p.id}">${ic("bell")}${CTA(p).label}</a>`}${p.status==="let"?"":`<a class="btn line" href="#enquire-${p.id}">Ask a question</a>`}
@@ -1017,11 +1069,16 @@ function detail(p){
   const imgs=$$("#gal img"),dots=$$("#gal .dots button");
   const go=i=>{gi=(i+imgs.length)%imgs.length;imgs.forEach((m,k)=>m.classList.toggle("on",k===gi));dots.forEach((d,k)=>d.classList.toggle("on",k===gi))};
   let sx=null;const g=$("#gal");g.addEventListener("pointerdown",e=>{sx=e.clientX});
-  g.addEventListener("pointerup",e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>40)go(gi+(dx<0?1:-1))});
+  g.addEventListener("pointerup",e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>40)go(gi+(dx<0?1:-1));else if(e.target.tagName==="IMG")lbOpen(photosOf(p),gi,imgs[gi])});
+  g.querySelectorAll("img").forEach(m=>{m.style.cursor="zoom-in"});
   g.addEventListener("pointercancel",()=>sx=null);
   $("#mcta").innerHTML=`<span class="rent">${p.fromPrice?"<small>From </small>":""}${inr(p.rent)}<small> / month</small></span><a class="btn" href="${CTA(p).href}">${ic(CTA(p).icon)}${CTA(p).label}</a>`;
   $("#detail").onclick=e=>{const t=e.target.closest("button");if(!t)return;
     if(t.classList.contains("prev"))go(gi-1);else if(t.classList.contains("next"))go(gi+1);
+    else if(t.dataset.lb!==undefined){const vis=[...$$("#detail .ggrid li")].filter(li=>!li.hidden);const all=photosOf(p);const idx=vis.map(li=>+li.querySelector("[data-lb]").dataset.lb);
+      lbOpen(idx.map(i=>all[i]),idx.indexOf(+t.dataset.lb),t.querySelector("img"))}
+    else if(t.dataset.gcat!==undefined){$$("#detail .gchip").forEach(c=>c.setAttribute("aria-pressed",c===t));const c=t.dataset.gcat;
+      $$("#detail .ggrid li").forEach(li=>{const show=c==="All"||li.dataset.cat===c;if(show&&li.hidden){li.hidden=false;if(!RM.matches)li.animate([{opacity:0,transform:"scale(.94)"},{opacity:1,transform:"none"}],{duration:260,easing:"cubic-bezier(.22,1,.36,1)"})}else if(!show)li.hidden=true})}
     else if(t.dataset.g){go(+t.dataset.g);$("#gal").scrollIntoView({block:"center"})}
     else if(t.dataset.m)media(p,t.dataset.m);
     else if(t.dataset.sc&&pv){pv.loadScene(t.dataset.sc);$$(".scenes button").forEach(b=>b.setAttribute("aria-pressed",b===t))}
@@ -1036,6 +1093,49 @@ function detail(p){
     $("#nNote").textContent=ok?`Thank you, ${n.split(" ")[0]}. We'll let you know as soon as ${p.name} is ready.`:"We couldn't save this just now. Please try again, or use the Contact page.";
     if(ok)nf.querySelectorAll("input,button").forEach(x=>x.disabled=true)});
 }
+/* ---- Photo gallery with lightbox (adapted from 21st.dev "Image Gallery" by my) ----
+   A home's photos can be names ("dev_l") or {f:"dev_l", title:"Living room", cat:"Living room"}. */
+const PHOTO_META={dev_l:["Living room","Living room"],dev_d:["Building and garden","Exterior"],cof_l:["Tree-lined entrance","Exterior"],cof_d:["Building at dusk","Exterior"],
+  kem_l:["Bedroom","Bedroom"],kem_d:["Garden entrance","Exterior"],hero_light:["Residence in daylight","Exterior"],hero_dark:["Residence at dusk","Exterior"]};
+const photosOf=p=>p.photos.map((x,i)=>{const o=typeof x==="string"?{f:x}:x;const m=PHOTO_META[o.f]||[];return {src:ph(o.f),title:o.title||m[0]||`Photo ${i+1}`,cat:o.cat||m[1]||"Photos"}});
+const RM=matchMedia("(prefers-reduced-motion: reduce)");
+function galleryHTML(p){const L=photosOf(p),cats=[...new Set(L.map(x=>x.cat))];
+  return `${cats.length>1?`<div class="gchips" role="group" aria-label="Filter photos">${["All",...cats].map((c,i)=>`<button type="button" class="gchip" data-gcat="${esc(c)}" aria-pressed="${!i}">${esc(c)}</button>`).join("")}</div>`:""}
+  <ul class="ggrid">${L.map((x,i)=>`<li data-cat="${esc(x.cat)}"><button type="button" class="gtile" data-lb="${i}" aria-label="Open ${esc(x.title)}" aria-haspopup="dialog"><span class="gz"><img src="${x.src}" alt="${esc(x.title)}" loading="lazy" draggable="false"></span><span class="gcap"><b>${esc(x.title)}</b><span>${esc(x.cat)}</span></span></button></li>`).join("")}</ul>`}
+const LB={el:null,list:[],i:0,from:null,ret:null};
+function lbBuild(){if(LB.el)return LB.el;const d=document.createElement("div");d.className="lb";d.setAttribute("role","dialog");d.setAttribute("aria-modal","true");d.hidden=true;
+  d.innerHTML=`<button type="button" class="lb-bg" tabindex="-1" aria-label="Close"></button><div class="lb-top"><p class="lb-count" aria-live="polite"></p><button type="button" class="lb-x" aria-label="Close gallery">${ic("close")}</button></div>
+  <figure class="lb-fig"><div class="lb-frame"><img alt="" draggable="false"></div><figcaption class="lb-cap"></figcaption></figure>
+  <button type="button" class="lb-nav lb-prev" aria-label="Previous photo">${ic("left")}</button><button type="button" class="lb-nav lb-next" aria-label="Next photo">${ic("right")}</button>`;
+  document.body.append(d);LB.el=d;
+  d.querySelector(".lb-bg").onclick=d.querySelector(".lb-x").onclick=lbClose;d.querySelector(".lb-prev").onclick=()=>lbStep(-1);d.querySelector(".lb-next").onclick=()=>lbStep(1);
+  let sx=null,sy=0;const fr=d.querySelector(".lb-frame");
+  fr.addEventListener("pointerdown",e=>{sx=e.clientX;sy=e.clientY;fr.setPointerCapture(e.pointerId)});
+  fr.addEventListener("pointermove",e=>{if(sx===null||LB.list.length<2)return;fr.style.transform=`translateX(${(e.clientX-sx)*.6}px)`});
+  const end=e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;fr.style.transition="transform .25s";fr.style.transform="";setTimeout(()=>fr.style.transition="",260);if(Math.abs(dx)>70&&LB.list.length>1)lbStep(dx<0?1:-1)};
+  fr.addEventListener("pointerup",end);fr.addEventListener("pointercancel",end);
+  document.addEventListener("keydown",e=>{if(d.hidden)return;
+    if(e.key==="Escape"){e.preventDefault();lbClose()}else if(e.key==="ArrowRight"){e.preventDefault();lbStep(1)}else if(e.key==="ArrowLeft"){e.preventDefault();lbStep(-1)}
+    else if(e.key==="Tab"){const f=[...d.querySelectorAll("button:not([tabindex='-1'])")].filter(b=>!b.hidden&&b.offsetParent);if(!f.length)return;const a=document.activeElement;
+      if(e.shiftKey&&(a===f[0]||!d.contains(a))){e.preventDefault();f[f.length-1].focus()}else if(!e.shiftKey&&(a===f[f.length-1]||!d.contains(a))){e.preventDefault();f[0].focus()}}});
+  return d}
+function lbShow(dir){const d=LB.el,x=LB.list[LB.i],img=d.querySelector(".lb-frame img");
+  d.querySelector(".lb-count").textContent=`${LB.i+1} / ${LB.list.length}`;d.querySelector(".lb-cap").innerHTML=`<b>${esc(x.title)}</b><span>${esc(x.cat)}</span>`;
+  d.setAttribute("aria-label",`${x.title}, photo ${LB.i+1} of ${LB.list.length}`);d.querySelectorAll(".lb-nav").forEach(b=>b.hidden=LB.list.length<2);
+  if(dir&&!RM.matches){img.animate([{opacity:1,transform:"translateX(0)"},{opacity:0,transform:`translateX(${-40*dir}px)`}],{duration:140,easing:"ease-out"}).onfinish=()=>{img.src=x.src;img.alt=x.title;
+    img.animate([{opacity:0,transform:`translateX(${48*dir}px)`},{opacity:1,transform:"translateX(0)"}],{duration:320,easing:"cubic-bezier(.22,1,.36,1)"})}}
+  else{img.src=x.src;img.alt=x.title}}
+function lbOpen(list,i,fromEl){const d=lbBuild();LB.list=list;LB.i=i;LB.ret=document.activeElement;d.hidden=false;document.body.style.overflow="hidden";lbShow(0);
+  const fr=d.querySelector(".lb-frame"),fade=[{opacity:0},{opacity:1}];
+  d.querySelectorAll(".lb-bg,.lb-top,.lb-nav,.lb-cap").forEach(n=>n.animate(fade,{duration:220,easing:"ease-out"}));
+  if(fromEl&&!RM.matches){const a=fromEl.getBoundingClientRect(),b=fr.getBoundingClientRect();
+    fr.animate([{transform:`translate(${a.left-b.left+(a.width-b.width)/2}px,${a.top-b.top+(a.height-b.height)/2}px) scale(${a.width/b.width},${a.height/b.height})`,borderRadius:"14px"},{transform:"none",borderRadius:"20px"}],{duration:420,easing:"cubic-bezier(.22,1,.36,1)"})}
+  else fr.animate(fade,{duration:200});
+  LB.from=fromEl;requestAnimationFrame(()=>d.querySelector(".lb-x").focus({preventScroll:true}))}
+function lbStep(dir){if(LB.list.length<2)return;LB.i=(LB.i+dir+LB.list.length)%LB.list.length;LB.from=null;lbShow(dir)}
+function lbClose(){const d=LB.el;if(!d||d.hidden)return;const done=()=>{d.hidden=true;document.body.style.overflow="";if(LB.ret&&LB.ret.isConnected)LB.ret.focus({preventScroll:true})};
+  if(RM.matches)return done();d.animate([{opacity:1},{opacity:0}],{duration:160,easing:"ease-out"}).onfinish=done}
+
 /* media: photos / 360° tour / video */
 let pv=null;
 const loadPano=()=>window.pannellum?Promise.resolve():new Promise((res,rej)=>{const l=document.createElement("link");l.rel="stylesheet";l.href="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.css";document.head.append(l);
@@ -1069,7 +1169,7 @@ const open=P.filter(x=>x.status!=="let");
 $("#eHomeSel").innerHTML=`<option value="">Choose a home</option>`+open.map(x=>`<option value="${x.id}">${esc(x.name)} · ${x.bhk} · ${x.fromPrice?"from ":""}${inr(x.rent)}</option>`).join("");
 const subOf=p=>`${p.title} · ${p.bhk} · ${p.fromPrice?"from ":""}${inr(p.rent)} / month`;
 $("#eHomeSel").addEventListener("change",e=>{cur=P.find(x=>x.id===e.target.value)||null;$("#eSub").textContent=cur?subOf(cur):"Choose a home and a time that suits you."});
-function enquire(p,visit){$("#eForm").classList.remove("rev");$("#eForm").querySelector(`input[value="${visit?"Book a viewing":"Ask a question"}"]`).checked=true;$("#eDate").min=tmr();kindSync();$$("#eForm .fld").forEach(f=>f.classList.remove("bad"));
+function enquire(p,visit){$("#eForm").classList.remove("rev");if(typeof tspReset==="function"&&!$("#eDate").value)tspReset();$("#eForm").querySelector(`input[value="${visit?"Book a viewing":"Ask a question"}"]`).checked=true;$("#eDate").min=tmr();kindSync();$$("#eForm .fld").forEach(f=>f.classList.remove("bad"));
   cur=p;$("#homeF").hidden=!!p;$("#eHomeSel").value=p?p.id:"";$("#eSub").textContent=p?subOf(p):"Choose a home and a time that suits you.";$("#eBack").href=p?"#p-"+p.id:"#properties";$("#eBack").lastChild.textContent=p?"Back to property":"Back to properties"}
 const bad=(id,b)=>{$(id).closest(".fld").classList.toggle("bad",b);return b};
 let pend=null;
@@ -1078,9 +1178,9 @@ $("#eForm").addEventListener("submit",e=>{e.preventDefault();
   const mode=$("#eForm").querySelector("input[name=mode]:checked").value;
   const name=$("#eName").value.trim(),phone=$("#ePhone").value.replace(/\D/g,""),email=$("#eEmail").value.trim(),msg=$("#eMsg").value.trim(),date=$("#eDate").value,slot=$("#eSlot").value;
   if(!cur){bad("#eHomeSel",true);$("#eHomeSel").focus();return}bad("#eHomeSel",false);
-  const errs=[bad("#eDate",visit&&(!date||date<tmr())),bad("#eName",!name),bad("#ePhone",!/^[6-9]\d{9}$/.test(phone.slice(-10))||phone.length<10),bad("#eEmail",!!email&&!/^\S+@\S+\.\S+$/.test(email)),bad("#eMsg",!visit&&msg.length<10)];
+  const errs=[bad("#eDate",visit&&(!date||date<tmr()||!slot)),bad("#eName",!name),bad("#ePhone",!/^[6-9]\d{9}$/.test(phone.slice(-10))||phone.length<10),bad("#eEmail",!!email&&!/^\S+@\S+\.\S+$/.test(email)),bad("#eMsg",!visit&&msg.length<10)];
   if(errs.some(Boolean)){$("#eForm .bad input,#eForm .bad textarea,#eForm .bad select")?.focus();return}
-  const when=visit?new Date(date+"T00:00").toLocaleDateString("en-IN",{weekday:"short",day:"numeric",month:"short"})+", "+slot.replace(/ \(.*/,""):"";
+  const when=visit?new Date(date+"T00:00").toLocaleDateString("en-IN",{weekday:"short",day:"numeric",month:"short"})+", "+slot:"";
   pend={visit,mode,name,phone:phone.slice(-10),email,msg,date,slot,when,home:cur};
   const rows=[["Home",`${cur.name} · ${cur.bhk}`],["Request",visit?"Book a viewing":"Ask a question"],...(visit?[["Viewing",mode],["Preferred",when]]:[]),["Name",name],["Mobile","+91 "+pend.phone],...(email?[["Email",email]]:[]),...(msg?[["Message",msg]]:[])];
   $("#eReview").innerHTML=`<h3 style="font-size:26px">Check your details</h3><dl class="rvl">${rows.map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
@@ -1105,9 +1205,50 @@ $("#eForm").addEventListener("click",async e=>{
     <p class="mute">${ok?`Thank you, ${first}. ${visit?(mode==="Video call"?"We'll call you to confirm the time and send a video-call link":"We'll call you to confirm the viewing time"):"Our family will get back to you"} within 1 business day.`:(navigator.onLine?"We couldn't send your request from this page.":"You seem to be offline, so we couldn't send your request.")+(wa||mail?" Tap below to send it directly.":" Please try again in a moment.")}</p>
     <div class="sum"><div>${ic("home")}<span><b>${esc(home.name)}</b><br><span class="mute">${home.bhk}</span></span></div>${visit?`<div>${ic("cal")}<span>${esc(mode)} · ${esc(when)}</span></div>`:""}${ok?`<div>${ic("check")}<span>Reference <b>${ref}</b></span></div>`:""}</div>
     <div class="dacts" style="justify-content:center">${!ok&&wa?`<a class="btn" href="${wa}" target="_blank" rel="noopener">Send on WhatsApp</a>`:""}${!ok&&mail?`<a class="btn${wa?" line":""}" href="${mail}">Send by email</a>`:""}${!ok&&!wa&&!mail?`<button class="btn" type="button" id="retry">Try again</button>`:""}${ok&&wa?`<a class="btn line" href="${wa}" target="_blank" rel="noopener">Also message us on WhatsApp</a>`:""}<a class="btn line" href="#properties">Back to Properties ${ic("arrow")}</a></div>`;
-  if(ok){$("#eForm").reset();pend=null}unreview();location.hash="thanks";
+  if(ok){$("#eForm").reset();pend=null;tspReset()}unreview();location.hash="thanks";
 });
 $("#done").addEventListener("click",e=>{if(e.target.closest("#retry")&&pend){const k=pend;history.back();setTimeout(()=>{cur=k.home;$("#eHomeSel").value=cur.id;$("#eSub").textContent=subOf(cur);$("#eForm").requestSubmit()},80)}});
+
+/* ---- Viewing time slot picker (adapted from 21st.dev "Time Slot Picker" by klyv-ui) ----
+   Edit VIEWING to match when you can show homes. closed: weekdays with no viewings (0 = Sunday).
+   taken: slots already booked, as "YYYY-MM-DD HH:MM". */
+const VIEWING={days:14,closed:[],times:["10:00","11:00","12:00","15:00","16:00","17:00","18:00"],taken:[],zone:"India Standard Time (IST)"};
+const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+const t12=t=>{const [h,m]=t.split(":").map(Number);return `${(h%12)||12}:${String(m).padStart(2,"0")} ${h<12?"AM":"PM"}`};
+const tspDays=()=>{const out=[];const d=new Date();d.setHours(0,0,0,0);for(let i=1;out.length<VIEWING.days&&i<60;i++){const x=new Date(d);x.setDate(d.getDate()+i);
+  out.push({date:iso(x),dt:x,closed:VIEWING.closed.includes(x.getDay()),slots:VIEWING.times.map(t=>({time:t,available:!VIEWING.taken.includes(iso(x)+" "+t)}))})}return out};
+let TSP={days:[],di:0,date:"",time:""};
+const freeCount=day=>day.closed?0:day.slots.filter(x=>x.available).length;
+function tspRender(focus){
+  const box=$("#tsp");if(!box)return;const D=TSP.days,day=D[TSP.di];
+  const long=dt=>dt.toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long"});
+  const slots=day.closed?[]:day.slots,checked=TSP.date===day.date?slots.findIndex(x=>x.time===TSP.time):-1,stop=checked>=0?checked:slots.findIndex(x=>x.available);
+  box.innerHTML=`<div class="tsp-strip-wrap"><button type="button" class="tsp-nav" data-tsp-scroll="-1" aria-label="Earlier days">${ic("left")}</button>
+    <div class="tsp-days" role="radiogroup" aria-label="Day">${D.map((d,i)=>{const n=freeCount(d);return `<button type="button" role="radio" class="tsp-day${n?"":" full"}" aria-checked="${i===TSP.di}" tabindex="${i===TSP.di?0:-1}" data-di="${i}" aria-label="${long(d.dt)}, ${n?n+" "+(n===1?"time":"times")+" free":d.closed?"no viewings":"fully booked"}">
+      <span class="dw">${d.dt.toLocaleDateString("en-IN",{weekday:"short"})}</span><span class="dn">${d.dt.getDate()}</span><span class="dm">${d.dt.toLocaleDateString("en-IN",{month:"short"})}</span><span class="dd" aria-hidden="true"></span></button>`}).join("")}</div>
+    <button type="button" class="tsp-nav" data-tsp-scroll="1" aria-label="Later days">${ic("right")}</button></div>
+    <div class="tsp-when" id="tspDay">${long(day.dt)}</div>
+    ${freeCount(day)?`<div class="tsp-slots" role="radiogroup" aria-labelledby="tspDay">${slots.map((x,i)=>`<button type="button" role="radio" class="tsp-slot" aria-checked="${i===checked}" ${x.available?"":"disabled"} tabindex="${i===stop?0:-1}" data-si="${i}">${t12(x.time)}${x.available?"":'<span class="sr">, unavailable</span>'}</button>`).join("")}</div>`
+      :`<p class="tsp-none">${day.closed?"No viewings on this day.":"No times left on this day."} Try another day.</p>`}
+    <p class="tsp-zone">Times shown in ${VIEWING.zone}. We'll call to confirm.</p>`;
+  if(focus==="day")box.querySelector(`.tsp-day[data-di="${TSP.di}"]`)?.focus();
+  if(focus==="slot")box.querySelector('.tsp-slot[aria-checked="true"]')?.focus();
+  const strip=box.querySelector(".tsp-days"),cur=strip.querySelector(`[data-di="${TSP.di}"]`);if(cur&&focus!==false)cur.scrollIntoView({block:"nearest",inline:"nearest"});
+}
+function tspSet(){const day=TSP.days[TSP.di];$("#eDate").value=TSP.date;$("#eSlot").value=TSP.time?t12(TSP.time):"";if(TSP.time)bad("#eDate",false)}
+function tspReset(){TSP={days:tspDays(),di:0,date:"",time:""};const f=TSP.days.findIndex(d=>freeCount(d)>0);TSP.di=f<0?0:f;tspSet();tspRender(false)}
+$("#tsp").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.tspScroll){$("#tsp .tsp-days").scrollBy({left:+b.dataset.tspScroll*220,behavior:"smooth"});return}
+  if(b.dataset.di!==undefined){TSP.di=+b.dataset.di;tspRender("day");return}
+  if(b.dataset.si!==undefined){const day=TSP.days[TSP.di];TSP.date=day.date;TSP.time=day.slots[+b.dataset.si].time;tspSet();tspRender("slot")}});
+$("#tsp").addEventListener("keydown",e=>{const b=e.target.closest("button");if(!b)return;
+  const rove=(i,n,delta,ok,act)=>{for(let k=1;k<=n;k++){const j=(((i+delta*k)%n)+n)%n;if(ok(j))return act(j)}};
+  if(b.dataset.di!==undefined){const d={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];if(d===undefined)return;e.preventDefault();
+    rove(+b.dataset.di,TSP.days.length,d,()=>true,j=>{TSP.di=j;tspRender("day")})}
+  else if(b.dataset.si!==undefined){const cols=getComputedStyle($("#tsp .tsp-slots")).gridTemplateColumns.split(" ").length;
+    const d={ArrowRight:1,ArrowLeft:-1,ArrowDown:cols,ArrowUp:-cols}[e.key];if(d===undefined)return;e.preventDefault();const day=TSP.days[TSP.di];
+    rove(+b.dataset.si,day.slots.length,d,j=>day.slots[j].available,j=>{TSP.date=day.date;TSP.time=day.slots[j].time;tspSet();tspRender("slot")})}});
+tspReset();
 
 /* requirement / alert sign-up */
 $("#rLoc").innerHTML="<option>Any</option>"+[...new Set(P.map(x=>x.name))].map(n=>`<option>${n}</option>`).join("")+"<option>Elsewhere in Bengaluru</option>";
