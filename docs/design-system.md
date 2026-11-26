@@ -9,7 +9,8 @@ Themes switch with `html[data-theme=dark]`, saved in `localStorage["mativio-them
 | Token | Light | Dark | Use |
 |---|---|---|---|
 | `--bg` | `#F8F5EF` | `#142235` | Page background |
-| `--bg2` | `#f3e9da` | `#0f1b2b` | Soft radial gradients behind sections |
+| `--bgArt` | `assets/bg/light-champagne-wave.svg` | `assets/bg/dark-sapphire-wave.svg` | Page background art (see "Page background") |
+| `--bg2` | `#f3e9da` | `#0f1b2b` | Tint mixed into the Bengaluru banner surface |
 | `--card` | `#FFFFFF` | `#1D2D40` | Surfaces: cards, forms, filter panel |
 | `--ink` | `#142235` | `#F2EEE5` | Primary text |
 | `--mute` | `#525A58` | `#B6BFCA` | Secondary text |
@@ -87,9 +88,18 @@ Property listing grid: 3 columns on desktop, 2 on tablet, 1 on mobile. Card imag
 - **System states:** loading shimmer, empty results, offline banner (`#offline`), in-page 404.
 - **Skip link:** "Skip to content", visible on focus; it moves focus to the view's heading.
 
+## Page background (owner-approved, 26 Nov 2026)
+
+The page sits on a soft spiral-wave gradient from the owner's "Light Spiral Gradient Options" board: **L2 Champagne Wave** in light mode and **D2 Sapphire Wave** in dark mode.
+
+- The waves are drawn as two small SVGs (about 1.5 KB each) in `assets/bg/`, using the board's palette: ivory `#F9F6EF`, champagne `#EED9B8`, sand `#E3C79D`, midnight navy `#0E1B2E`, deep slate `#1E3248`, steel blue `#2E4A6A` and gold `#C5AD83`.
+- `body::before` is a fixed, full-viewport layer (`z-index:-1`, `pointer-events:none`) showing `var(--bgArt)` over `var(--bg)`. It stays put while content scrolls, so every view gets the same backdrop. `--bg` is still the fallback and the colour used by the translucent header. The earlier `--bg2` radial blobs on `body` were replaced by this layer.
+- Hero photos fade into the background with **CSS masks**, not colour overlays, so they blend into the waves without a visible box. This applies to the desktop split hero, the tablet-portrait stacked hero and the mobile full-bleed hero. The fade stops are the same as before.
+- **Contrast:** the wave intensity is tuned so all text that sits directly on the background keeps ≥ 4.5:1 (≥ 3:1 for large text). This was measured against the rendered pixels, in both themes, at 1440/834/390 across 10 views. If you edit the SVGs, re-check this: `tools/audit/measure.py` only reads CSS colours and can't see the art.
+
 ## Botanical theme (approved, PR #6)
 
-Real photographic leaf cut-outs (`assets/leaves/*.png`, classes `.lf .lf-a/-b/-c/-s/-m`) are absolutely positioned around the hero, the pillars and the banner. They're non-interactive (`pointer-events:none`, `aria-hidden`) and dimmed in dark mode (`opacity .6; brightness .55`). Soft radial `--bg2` gradients sit behind sections. Keep this restrained; don't add drawn leaves or heavier gradients.
+Real photographic leaf cut-outs (`assets/leaves/*.png`, classes `.lf .lf-a/-b/-c/-s/-m`) are absolutely positioned around the hero, the pillars and the banner. They're non-interactive (`pointer-events:none`, `aria-hidden`) and dimmed in dark mode (`opacity .6; brightness .55`). The spiral-wave page background (above) sits behind them. Keep this restrained; don't add drawn leaves or heavier gradients.
 
 ## Animations (approved; keep exactly)
 

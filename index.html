@@ -22,11 +22,11 @@
    COLOUR and TYPE: Warm Ivory light (default) / Midnight Navy dark; Champagne Gold accent; Heritage Olive status; Cormorant Garamond + Manrope.
    LAYOUT: hash-routed views: home, properties, property detail, enquiry, confirmation, story, contact. */
 :root{--navy:#142235;--gold:#C5AD83;--ivory:#F2EEE5;--olive:#454C47;
---bg:#F8F5EF;--bg2:#f3e9da;--card:#FFFFFF;--ink:#142235;--mute:#525A58;--line:#e7dac6;
+--bgArt:url(assets/bg/light-champagne-wave.svg);--bg:#F8F5EF;--bg2:#f3e9da;--card:#FFFFFF;--ink:#142235;--mute:#525A58;--line:#e7dac6;
 --accent:#80613C;--btn:linear-gradient(180deg,#c9a66c,#ad8a52);--btnInk:#fff;--footer:var(--navy);--field:#fffdf9;
 --okBg:#4a5a3f;--okInk:#f2eee5;--soonBg:#f1dcb4;--soonInk:#5b4318;--occBg:#e3e0da;--occInk:#4d4f52;
 --shadow:0 18px 40px rgba(93,70,35,.12);color-scheme:light}
-:root[data-theme=dark]{--bg:#142235;--bg2:#0f1b2b;--card:#1D2D40;--ink:#F2EEE5;--mute:#B6BFCA;--footer:#0b1420;--line:#2c3f58;
+:root[data-theme=dark]{--bgArt:url(assets/bg/dark-sapphire-wave.svg);--bg:#142235;--bg2:#0f1b2b;--card:#1D2D40;--ink:#F2EEE5;--mute:#B6BFCA;--footer:#0b1420;--line:#2c3f58;
 --accent:#C5AD83;--btn:linear-gradient(180deg,#d8bb88,#c5a46c);--btnInk:#142235;--field:#13243a;
 --okBg:#3f5143;--okInk:#e9f0e4;--soonBg:#d9bd8a;--soonInk:#2b2112;--occBg:#3a4658;--occInk:#dfe4ea;
 --shadow:0 18px 44px rgba(0,0,0,.35);color-scheme:dark}
@@ -371,7 +371,9 @@ body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{
 .hero{grid-template-columns:1fr}.hero .shot{order:-1}.word{font-size:30px}.word img{height:34px}}
 @media(max-width:599px){.pillars{grid-template-columns:1fr}.shead .link{margin-left:0}.shot{border-radius:22px}}
 /* ===== Botanical theme ===== */
-body{background:radial-gradient(900px 500px at 8% 0%,var(--bg2),transparent 60%),radial-gradient(1100px 700px at 100% 55%,color-mix(in srgb,var(--bg2) 70%,transparent),transparent 60%),radial-gradient(800px 500px at 0% 90%,color-mix(in srgb,var(--bg2) 60%,transparent),transparent 60%),var(--bg)}
+body{background:var(--bg)}
+/* page background: Champagne Wave (light) / Sapphire Wave (dark), fixed behind all views */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:var(--bgArt) center/cover no-repeat,var(--bg)}
 .lf{position:absolute;display:block;pointer-events:none;z-index:3;height:auto;max-width:none;user-select:none}
 :root[data-theme=dark] .lf{opacity:.6;filter:brightness(.55) saturate(.85)}
 .botan{position:relative}
@@ -594,6 +596,20 @@ header.scrolled .bar{padding-block:0;min-height:calc(var(--hdr) - 10px)}
 .rvon .rv{opacity:0;transform:translateY(16px);transition:opacity .6s ease var(--rvd,0ms),transform .7s cubic-bezier(.2,.8,.2,1) var(--rvd,0ms)}
 .rvon .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.rvon .rv{opacity:1;transform:none;transition:none}}
+/* wave background: hero photos fade with masks (not colour overlays) so they melt into the background art */
+@media(min-width:834px){
+ .hero .shot::after{display:none}
+ .hero .shot{-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.45) 14%,#000 36%),linear-gradient(0deg,transparent 0%,#000 20%),linear-gradient(180deg,transparent 0%,#000 10%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.45) 14%,#000 36%),linear-gradient(0deg,transparent 0%,#000 20%),linear-gradient(180deg,transparent 0%,#000 10%);mask-composite:intersect}
+}
+@media(min-width:834px) and (max-width:1199px) and (orientation:portrait){
+ .hero .shot{-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 24%),linear-gradient(0deg,transparent 0%,#000 18%);mask-image:linear-gradient(180deg,transparent 0%,#000 24%),linear-gradient(0deg,transparent 0%,#000 18%)}
+}
+@media(max-width:833px){
+ .mhero::before{display:none}
+ .mhero{-webkit-mask-image:linear-gradient(0deg,transparent 0%,#000 14%),linear-gradient(180deg,transparent 0%,rgba(0,0,0,.3) 14%,#000 42%);-webkit-mask-composite:source-in;mask-image:linear-gradient(0deg,transparent 0%,#000 14%),linear-gradient(180deg,transparent 0%,rgba(0,0,0,.3) 14%,#000 42%);mask-composite:intersect}
+ :root[data-theme=dark] .hero{background:none}
+ :root[data-theme=dark] .mhero{-webkit-mask-image:linear-gradient(0deg,transparent 0%,#000 14%),linear-gradient(180deg,transparent 0%,rgba(0,0,0,.4) 18%,#000 45%);mask-image:linear-gradient(0deg,transparent 0%,#000 14%),linear-gradient(180deg,transparent 0%,rgba(0,0,0,.4) 18%,#000 45%)}
+}
 </style>
 </head>
 <body>

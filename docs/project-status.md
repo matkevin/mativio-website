@@ -5,7 +5,7 @@
 | Branch | PR | State | Contents |
 |---|---|---|---|
 | `main` | — | **Live** at https://mativio-website.netlify.app | PRs #1–#5 and #7 merged |
-| `review/botanical` | #6 | Superseded by #8; owner to close it | Botanical theme, mobile menu switch, listings scaling, gallery/lightbox, time-slot picker, legal updates, neighbourhood content, exact locations, real statuses and rents, mobile pillars 2 × 2 |
+| `review/botanical` | #6 | Closed (superseded by #8) | Botanical theme, mobile menu switch, listings scaling, gallery/lightbox, time-slot picker, legal updates, neighbourhood content, exact locations, real statuses and rents, mobile pillars 2 × 2 |
 | **`review/responsive-ux`** | **#8** | **Open, current development branch** (built on `review/botanical`, so it contains #6) | Responsive/accessibility audit fixes, plus these handover docs and `tools/audit/` |
 
 - Previews: https://deploy-preview-6--mativio-website.netlify.app and https://deploy-preview-8--mativio-website.netlify.app.
@@ -37,6 +37,7 @@
   - Country-code phone fields (fixes non-Indian numbers being saved as +91).
   - AA contrast: accent `#80613C`; 0 failures apart from the gold primary buttons in light mode, which keep white text at the owner's request (2.3–3.2:1, accepted exception).
   - Home page order: hero, Our Properties, pillars, Our Localities, Our Story (owner's request, 26 Nov 2026).
+  - Spiral-wave page background: L2 Champagne Wave (light) and D2 Sapphire Wave (dark); hero photos fade with masks (owner's request, 26 Nov 2026).
   - One H1 per view; linked form errors; skip link; modal menu and filter sheet.
   - Fluid type tokens; header 84/72/64; hero 42/58; tablet portrait stack; compact tablet nav.
   - 44 px targets; swipeable chips; keyboard-operable gallery; "Sending…" state.

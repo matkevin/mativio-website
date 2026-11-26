@@ -47,7 +47,8 @@ There's no backend or database yet. Phase 2 (admin) proposes Supabase; see `docs
 ├── assets/
 │   ├── logo.png               # Mativio "M" monogram (used as the first letter of the wordmark)
 │   ├── photos/                # hero, card and gallery photos (*_l light theme, *_d dark theme)
-│   └── leaves/                # botanical leaf cut-outs (transparent PNG)
+│   ├── leaves/                # botanical leaf cut-outs (transparent PNG)
+│   └── bg/                    # page background art: light-champagne-wave.svg, dark-sapphire-wave.svg
 ├── tools/
 │   ├── build-home-pages.mjs   # builds homes/<id>/ share pages from P
 │   └── audit/                 # Playwright responsive/a11y/regression scripts (see below)
