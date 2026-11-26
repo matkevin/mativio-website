@@ -78,10 +78,6 @@ with sync_playwright() as p:
         inv = pg.evaluate("[...document.querySelectorAll('#eForm [aria-invalid=true]')].length")
         return {"invalid_fields": bad, "aria_invalid_count": inv, "uk_number_accepted": "Phone number *" not in bad,
                 "name_kept": pg.eval_on_selector("#eName", "e=>e.value"),
-                "phone_parsed_uk": pg.evaluate("phoneOf('#eCC','#ePhone')"),
-                "phone_typed_plus44_with_IN_selected": pg.evaluate("(()=>{document.getElementById('eCC').value='+91';document.getElementById('ePhone').value='+44 7700 900123';return phoneOf('#eCC','#ePhone')})()"),
-                "phone_indian": pg.evaluate("(()=>{document.getElementById('eCC').value='+91';document.getElementById('ePhone').value='098450 12345';return phoneOf('#eCC','#ePhone')})()"),
-                "phone_indian_bad": pg.evaluate("(()=>{document.getElementById('ePhone').value='12345';return phoneOf('#eCC','#ePhone')})()"),
                 "date_error_linked": pg.evaluate("document.getElementById('tsp').getAttribute('aria-describedby')")}
     t("enquiry_validation_intl_phone", validation)
     c.close()

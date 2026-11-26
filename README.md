@@ -78,6 +78,7 @@ node tools/build-home-pages.mjs
 python3 tools/audit/measure.py index.html /tmp/audit-out     # 12 widths × light/dark × 12 views: type sizes, header, overflow, touch targets, contrast; screenshots
 python3 tools/audit/functional.py index.html                 # filters, sheet, drawer, gallery, viewing form, sticky CTA (POSTs intercepted)
 python3 tools/audit/phone_test.py index.html                 # what phone number the enquiry form would send
+python3 tools/audit/drawer_reveal_test.py index.html /tmp/dr  # drag sheet (half/full/close, keyboard) and scroll reveals, both themes
 ```
 
 The scripts block Google Fonts, so screenshots use fallback fonts; computed sizes are unaffected. Lighthouse and axe haven't been run yet; run them on a deploy preview.

@@ -45,7 +45,7 @@ Routes: `#visit-<id>` (pre-selects the home and in-person viewing), `#video-<id>
 
 1. Search by property name or locality.
 2. Availability chips with counts: All · Available now · Available soon · Under construction · Occupied. On mobile they're one swipeable row.
-3. Filters: Locality, Property type, Home size, Furnishing, Budget. On mobile they're in a bottom sheet with Reset and Show, and an active-filter count on the "Filters" button.
+3. Filters: Locality, Property type, Home size, Furnishing, Budget. On mobile they're in a bottom sheet that opens at half height; drag up for full height, drag down to close (the handle is also a button). It has Reset and Show, and an active-filter count on the "Filters" button.
 4. Sort: **Relevance** (default: available now, then soon, renovation and construction, then occupied; search matches and `featured` homes rise; then newest), Latest, Available soonest, Rent low→high, Rent high→low.
 5. Grid or list view (remembered); 9 per page with "Show more".
 6. Empty results show a message and the requirement form.

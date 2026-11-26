@@ -77,7 +77,7 @@ Property listing grid: 3 columns on desktop, 2 on tablet, 1 on mobile. Card imag
 - **Property card (standard, use everywhere):** photo → status pill (left) + furnishing (right) → title → locality → rent ("₹32,000 / month" or "Price on request") → three stats (Bathrooms* · Parking · Owner rental "Direct") → "View property details" → status action (see `docs/property-data.md`).
 - **Header:** sticky; becomes translucent with blur and a hairline on scroll; the wordmark folds (see Animations).
 - **Mobile menu (`#drawer`):** full-screen navy dialog (`role=dialog`, `aria-modal`) with links, "Book a viewing" and a dark-mode switch. Focus moves in and is trapped; Esc and the close button restore focus.
-- **Filters:** a search field; availability chips; selects for Locality, Type, Size, Furnishing, Budget and Sort; a result count; a grid/list toggle. On mobile the selects live in a bottom sheet (`#sheet`, which becomes a dialog when open) with Reset and Show, and the "Filters" button shows the active count.
+- **Filters:** a search field; availability chips; selects for Locality, Type, Size, Furnishing, Budget and Sort; a result count; a grid/list toggle. On mobile the selects live in a **drag-to-close bottom sheet** (`#sheet`, which becomes a dialog when open) with Reset and Show, and the "Filters" button shows the active count. The sheet opens at **half** height (55% of the screen, at least 320 px, with Reset and Show always visible). Dragging the handle or header up snaps it to **full** (86%); a fast or long drag down closes it. The handle (`#fGrab`) is a button, so Enter or a tap toggles half/full. Esc, the close button, the scrim and Show also close it. It was inspired by 21st.dev "Drawer" (wensity) and written in vanilla JS.
 - **Gallery:** swipeable slider with dots; tap, click or Enter opens the **lightbox** (`.lb`, modal: arrows, swipe, Esc, focus returned). The Photos tab has category chips. It was adapted from 21st.dev "Image Gallery" and rewritten without React.
 - **Time-slot picker (`#tsp`):** a strip of the next 14 days plus that day's times, keyboard navigable (arrow keys), showing the IST note. It was adapted from 21st.dev "Time Slot Picker" without React.
 - **Forms:** labelled fields (`.fld`), errors in `.err` shown with `.fld.bad` and linked by `aria-invalid` + `aria-describedby`, and a country-code picker with each phone field (`.tel select.cc`). Flow: review step, then "Sending…" (aria-busy), then the confirmation page.
@@ -102,7 +102,9 @@ Real photographic leaf cut-outs (`assets/leaves/*.png`, classes `.lf .lf-a/-b/-c
 | Buttons | Hover: `brightness(1.05)` and `translateY(-1px)` |
 | Loading | Shimmer keyframes on placeholders |
 | Lightbox | Opens from the tapped photo; slides between photos |
-| Reduced motion | `prefers-reduced-motion: reduce` turns off all animations and transitions |
+| Scroll reveal | Home pillars, home cards, the Bengaluru banner, the story band, Our Story blocks, locality tiles and neighbourhood groups fade in and rise 16 px (opacity 0.6 s, transform 0.7 s, staggered 70 ms within a row) as they enter the viewport. It uses IntersectionObserver plus a MutationObserver, so newly rendered items are picked up. The hero is never hidden. JS adds `.rvon` to `<html>` only when motion is allowed. Inspired by 21st.dev "Reveal" (klyv-ui) |
+| Filter sheet | Height animates 0.32 s between snap points; follows the finger while dragging |
+| Reduced motion | `prefers-reduced-motion: reduce` turns off all animations and transitions, and scroll reveals are not applied at all |
 
 ## Accessibility baseline (verified 26 Nov 2026, PR #8)
 

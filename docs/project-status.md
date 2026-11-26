@@ -32,6 +32,7 @@
 - **Conversion:** book a viewing (in person or video, day and slot in IST, review step, reference `MTV-xxxx`), ask a question, notify me / register interest, requirement alerts, contact form. All four are Netlify Forms with a honeypot.
 - **Content:** three locality pages with the verified neighbourhood guide; real listings and statuses (`docs/property-data.md`); SEO titles and descriptions per home and locality; share pages with Open Graph previews.
 - **Legal:** Privacy Policy and Terms (DPDP Act 2023 and Rules 2025), dated 26 Nov 2026, with no host named.
+- **Motion (PR #8):** drag-to-close filter sheet with half/full snap points; gentle scroll reveals (off under reduced motion).
 - **Responsive and accessibility audit (PR #8):**
   - Country-code phone fields (fixes non-Indian numbers being saved as +91).
   - AA contrast: accent `#80613C`; 0 failures apart from the gold primary buttons in light mode, which keep white text at the owner's request (2.3–3.2:1, accepted exception).
@@ -83,7 +84,7 @@
 - **ClickUp:** Startup space, folder "Mativio Website". The "1 · Get tenants (now)" list holds the Phase 1 to-dos.
 - **Claude project "Property Website":** source docs (brand draft, UI/UX spec, roadmap, neighbourhood content audit, responsive quality audit). Their content is carried into `docs/`.
 - **21st.dev MCP** (free tier: 2 component retrievals a day, AI generation off). The gallery and time picker were adapted from it. Its API key is **not** stored anywhere in the repo. The owner was advised to rotate the key that was shared in chat.
-- **Scheduled task:** one is set for **27 Nov 2026, 08:00 Qatar time**, in the old Claude Chat environment. It fetches the 21st.dev Drawer and Reveal components, rebuilds, pushes to `review/botanical` only, comments on PR #6 and updates a ClickUp task. Development now continues on `review/responsive-ux`, so the owner may want to cancel it or retarget it to this branch.
+- **Scheduled task:** the "next 21st.dev components" task (drag-to-close filter sheet and scroll reveal) was done early, on 27 Nov 2026, on `review/responsive-ux` instead of `review/botanical`, and its 08:00 run was cancelled. No scheduled tasks remain.
 
 ## Next suggested steps
 
