@@ -613,6 +613,15 @@ header.scrolled .bar{padding-block:0;min-height:calc(var(--hdr) - 10px)}
 /* leaf nudges: keep the left hero leaf clear of the copy */
 @media(min-width:834px) and (max-width:1279px){.lf-c{left:-118px}}
 @media(max-width:833px){.lf-c{top:calc(100svh - 40px);left:-50px;z-index:3}}
+/* full-bleed leaves: each cut-out's cropped edge sits on the screen edge, not the content column.
+   calc(50% - 50vw) = distance from the (centred) containing block to the viewport edge. */
+.lf-a{left:calc(50% - 50vw - 30px);-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 22%);mask-image:linear-gradient(180deg,transparent 0,#000 22%)}
+.lf-s{left:calc((min(100vw,1440px) - 100vw)/2 - var(--side) - 16px)}
+.lf-b{right:calc(50% - 50vw - 4px);top:auto;bottom:-10px;aspect-ratio:224/320;transform-origin:right bottom;transform:rotate(-90deg)}
+.lf-f2{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24%);mask-image:linear-gradient(90deg,transparent 0,#000 24%)}
+@media(min-width:1280px){.lf-c{left:calc(50% - 50vw - 10px)}}
+@media(max-width:1100px){.lf-b{width:118px}}
+@media(max-width:833px){.lf-m{right:calc(50% - 50vw - 10px);-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 18%);mask-image:linear-gradient(180deg,transparent 0,#000 18%)}}
 </style>
 </head>
 <body>
@@ -666,6 +675,7 @@ header.scrolled .bar{padding-block:0;min-height:calc(var(--hdr) - 10px)}
 <header id="hdr"><div class="wrap bar">
   <a class="brand" href="#home" aria-label="Mativio home">
     <span class="word"><img src="assets/logo.png" alt=""><span class="rest" aria-hidden="true"><span>ATIVIO</span></span></span>
+    <span class="tag tagline"><span>Land · Living · Legacy</span></span>
   </a>
   <nav class="nav" aria-label="Main">
     <a href="#home" data-nav="home">Home</a>

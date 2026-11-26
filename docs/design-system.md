@@ -60,6 +60,7 @@ Side padding `--side`: 80 px (≥ 1440), 48 (≤ 1439), 32 (≤ 1279), 24 (≤ 1
 
 | Range | Behaviour |
 |---|---|
+| ≥ 1366 | Header shows the wordmark plus the "LAND · LIVING · LEGACY" tagline (folds away on scroll) |
 | ≥ 1024 | Full navigation: Home, Properties, Localities, Our Story, Contact · theme switch · "Book a viewing" |
 | 1024–1199 landscape and desktop | Hero split ≈ 42% copy / 58% photo; the photo bleeds to the right edge and fades into the page |
 | 834–1199 portrait | Hero stacks: copy first, then a full-width photo |
@@ -98,7 +99,18 @@ The page sits on a subtle radial gradient from the owner's "Subtle Background Va
 - Hero photos fade into the background with **CSS masks**, not colour overlays, so they blend in without a visible box (desktop split hero, tablet-portrait stacked hero, mobile full-bleed hero).
 - **Contrast:** all text that sits directly on the background keeps ≥ 4.5:1 (≥ 3:1 for large text), measured against the rendered pixels in both themes at 1440/834/390 across 10 views. If you change `--bgArt`, re-check: `tools/audit/measure.py` only reads CSS colours and can't see gradients.
 
-Leaf nudges (26 Nov 2026): the left hero leaf `.lf-c` sits further off-canvas from 834 to 1279 px (`left:-118px`) so it doesn't cross the hero copy. On phones it sits beside the "Our Properties" heading (`top: calc(100svh - 40px)`, above the photo) rather than over the H1.
+**Full-bleed leaves (27 Nov 2026).** Each cut-out has flat cropped edges where the photo was cut. Those edges must sit on the **screen edge**, not the content column, so the leaves look as if they grow in from outside the screen at every width (including > 1440 px):
+
+| Leaf | Cropped edges | Rule |
+|---|---|---|
+| `.lf-a` (`d_tl`, hero top-left, > 1100 px) | left, top | `left: calc(50% - 50vw - 30px)`; the top crop fades with a mask |
+| `.lf-c` (`d_l`, hero left) | left | ≥ 1280: `left: calc(50% - 50vw - 10px)`; 834–1279: `-118px`; phones: beside the "Our Properties" heading |
+| `.lf-b` (`t_br`, pillars right, > 833 px) | bottom | turned −90° about its bottom-right corner so the crop faces the right screen edge: `right: calc(50% - 50vw - 4px)`, `bottom:-10px`, `aspect-ratio:224/320` (needed so the lazy image loads); 118 px wide ≤ 1100 |
+| `.lf-s` (`t_l`, Our Story) | left | `left: calc((min(100vw,1440px) - 100vw)/2 - var(--side) - 16px)` (its section isn't centred) |
+| `.lf-m` (`m_tr`, phone hero top-right) | right, top | `right: calc(50% - 50vw - 10px)`; the top crop fades with a mask |
+| `.lf-f1` / `.lf-f2` (footer) | left / both | the footer is full width; the left crop of `.lf-f2` fades with a mask |
+
+`calc(50% - 50vw)` is the distance from a centred containing block to the screen edge. `body{overflow-x:clip}` stops the bleed causing sideways scroll.
 
 ## Botanical theme (approved, PR #6)
 
@@ -108,7 +120,7 @@ Real photographic leaf cut-outs (`assets/leaves/*.png`, classes `.lf .lf-a/-b/-c
 
 | Element | Behaviour |
 |---|---|
-| Wordmark fold | "ATIVIO" collapses with `grid-template-columns: 1fr → 0fr` (0.8 s `cubic-bezier(.4,0,.2,1)`), with opacity fading over 0.55 s after a 0.15 s delay. This animates to the exact letter width whatever the font (it fixed the missing "O" bug). The M image shrinks from 42 to 38 px |
+| Wordmark fold | "ATIVIO" and the header tagline collapse with `grid-template-columns: 1fr → 0fr` (0.8 s `cubic-bezier(.4,0,.2,1)`), with opacity fading over 0.55 s after a 0.15 s delay. This animates to the exact letter width whatever the font (it fixed the missing "O" bug). The M image shrinks from 42 to 38 px |
 | Fold trigger | Collapses when `scrollY > 80` and re-expands when `< 16` (hysteresis, rAF-throttled) |
 | Header | Background and shadow transition 0.5 s; blur 12 px when scrolled |
 | View change | `fade`: 0.4 s, opacity 0→1, translateY 8 px→0 |

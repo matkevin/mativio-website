@@ -7,7 +7,7 @@
 | `main` | — | **Live** at https://mativio-website.netlify.app | PRs #1–#5, #7 and #8 merged |
 | `review/botanical` | #6 | Closed (superseded by #8) | Botanical theme, mobile menu switch, listings scaling, gallery/lightbox, time-slot picker, legal updates, neighbourhood content, exact locations, real statuses and rents, mobile pillars 2 × 2 |
 | `review/responsive-ux` | #8 | **Merged** 26 Nov 2026 (contains #6) | Responsive/accessibility audit, handover docs, `tools/audit/`, spiral-wave background, home order, tagline in footer only, drag-to-close filter sheet, scroll reveals |
-| **`review/radial-backgrounds`** | **#9** | **Open, current development branch** | L4 Radial Mist / D4 Radial Depth page backgrounds (replace the spiral waves); docs refreshed after #8 |
+| **`review/radial-backgrounds`** | **#9** | **Open, current development branch** | L4 Radial Mist / D4 Radial Depth page backgrounds (replace the spiral waves); full-bleed leaves; header tagline restored; docs refreshed after #8 |
 
 - Preview: https://deploy-preview-9--mativio-website.netlify.app.
 - **Merge plan (owner decides):** merge #9 when the owner approves the new backgrounds.
@@ -40,7 +40,8 @@
   - AA contrast: accent `#80613C`; 0 failures apart from the gold primary buttons in light mode, which keep white text at the owner's request (2.3–3.2:1, accepted exception).
   - Home page order: hero, Our Properties, pillars, Our Localities, Our Story (owner's request, 26 Nov 2026).
   - Page background: L4 Radial Mist (light) and D4 Radial Depth (dark), PR #9; it replaces the L2/D2 spiral waves from #8. Hero photos fade with masks.
-  - Tagline "Land · Living · Legacy" only in the footer (removed from the header and the hero); left hero leaf nudged clear of the text at tablet and phone widths.
+  - Tagline "Land · Living · Legacy" in the header (folds on scroll) and the footer, not in the hero; left hero leaf nudged clear of the text at tablet and phone widths.
+  - Full-bleed leaves (PR #9): every cut-out's cropped edge sits on the screen edge at all widths.
   - One H1 per view; linked form errors; skip link; modal menu and filter sheet.
   - Fluid type tokens; header 84/72/64; hero 42/58; tablet portrait stack; compact tablet nav.
   - 44 px targets; swipeable chips; keyboard-operable gallery; "Sending…" state.
