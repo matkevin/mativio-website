@@ -44,6 +44,8 @@
   - Full-bleed leaves (PR #9): every cut-out's cropped edge sits on the screen edge at all widths.
   - Mobile congestion fixes (PR #9): status pills sit on the card photo (≤ 1199 px); the details badge is on its own line above the address (≤ 599 px); key facts are 2 × 2 (≤ 374 px). Button labels stay on one line at all phone widths.
   - Sticky phone action bar shows only while the page's own action button is off screen (PR #9).
+  - Parking shown in general terms: "Available" for apartments, "Bike parking" for the hostel (PR #9; see `docs/property-data.md`).
+  - Mobile menu: the dark-mode switch sits directly under "Book a viewing" (PR #9).
   - One H1 per view; linked form errors; skip link; modal menu and filter sheet.
   - Fluid type tokens; header 84/72/64; hero 42/58; tablet portrait stack; compact tablet nav.
   - 44 px targets; swipeable chips; keyboard-operable gallery; "Sending…" state.
