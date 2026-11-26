@@ -452,6 +452,17 @@ footer .wrap{position:relative;z-index:2}
 html{overflow-x:clip}
 @media(max-width:1100px){.lf-a{display:none}}
 @media(max-width:599px){.ctitle{font-size:32px;gap:12px}.ctitle::before,.ctitle::after{width:34px}.pillars{grid-template-columns:repeat(4,minmax(0,1fr))}}
+/* phones: pillars as a roomy 2x2 grid instead of four squeezed columns */
+@media(max-width:599px){
+  .pillars{grid-template-columns:repeat(2,minmax(0,1fr));gap:0;padding:18px 0 6px}
+  .pillars div{flex-direction:column;align-items:flex-start;text-align:left;gap:10px;padding:16px 14px;border:0}
+  .pillars div:nth-child(odd){padding-left:0;padding-right:16px;border-right:1px solid var(--line)}
+  .pillars div:nth-child(even){padding-left:16px}
+  .pillars div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .pillars svg.i{width:32px;height:32px}
+  .pillars b{font-size:15px;line-height:1.25;margin-bottom:4px}
+  .pillars span{display:block;font-size:12.5px;line-height:1.45}
+}
 /* view toggle, list view and paging */
 .vtog{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--card)}
 .vtog button{width:40px;height:36px;border:0;border-radius:999px;background:transparent;color:var(--mute);display:grid;place-items:center;cursor:pointer}
