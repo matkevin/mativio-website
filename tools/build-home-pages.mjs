@@ -19,7 +19,7 @@ if (existsSync(out)) rmSync(out, { recursive: true });
 for (const p of P) {
   const dir = new URL(`${p.id}/`, out);
   mkdirSync(dir, { recursive: true });
-  const title = `${p.title} · ${p.bhk} · ${p.fromPrice ? "from " : ""}${inr(p.rent)}/month`;
+  const title = `${p.title} · ${p.bhk} · ${p.rent == null ? "Price on request" : (p.fromPrice ? "from " : "") + inr(p.rent) + "/month"}`;
   const desc = `${p.seo ? p.seo + " " : ""}${status[p.status]} · ${p.furn}. Family-owned home, rented directly by Mativio.`;
   const img = `${SITE}/assets/photos/${p.card[0]}.jpg`;
   const target = `/#p-${p.id}`;

@@ -879,20 +879,24 @@ const CONTACT={phone:"",whatsapp:"",email:"",address:"Bengaluru, Karnataka"};
    listed: date the home was listed "YYYY-MM-DD" (used by Latest; optional). featured: true to pin it near the top and on the home page (optional).
    parking: "Available", "Not available" or null. floorplan: an image path like "assets/plans/devasandra.jpg", or "". */
 const P=[
- {id:"devasandra",title:"Devasandra Residence",hint:"Near New BEL Road",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Devasandra",area:"Devasandra, New BEL Road, Bengaluru",type:"Apartment",bhk:"2 BHK",furn:"Semi-furnished",rent:28000,fromPrice:false,status:"now",from:"",added:3,
+ {id:"devasandra",title:"Devasandra Residence",map:"https://maps.app.goo.gl/Pbh5tyYMyPwbS9TV8",hint:"Near New BEL Road",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Devasandra",area:"Devasandra, New BEL Road, Bengaluru",type:"Apartment",bhk:"2 BHK",furn:"Semi-furnished",rent:28000,fromPrice:false,status:"now",from:"",added:3,
   deposit:"To be confirmed",about:"A semi-furnished home in an established residential neighbourhood near New BEL Road, close to Ramaiah Institute of Technology, Ramaiah Medical College and Ramaiah Memorial Hospital, with cafés, shops and everyday conveniences nearby.",seo:"Apartment for rent in Devasandra, Bengaluru, near New BEL Road and MS Ramaiah College.",
   amen:["Balcony","Power backup","Water supply 24×7","Covered parking","CCTV"],card:["dev_l","dev_d"],photos:["dev_l","dev_d","hero_light"],tour:[],video:"",youtube:""},
- {id:"coffee-board",title:"Coffee Board Residence",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Coffee Board",area:"Coffee Board Layout, Hebbal, Bengaluru",type:"Apartment",bhk:"3 BHK",furn:"Semi-furnished",rent:32000,fromPrice:false,status:"now",from:"",added:2,
+ {id:"coffee-board",title:"Coffee Board Residence, #568",addr:"#568, Coffee Board Layout, Hebbal Kempapura, Bengaluru 560024",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Coffee Board",area:"Coffee Board Layout, Hebbal, Bengaluru",type:"Apartment",bhk:"3 BHK",furn:"Semi-furnished",rent:32000,fromPrice:false,status:"now",from:"",added:2,
   deposit:"To be confirmed",about:"A spacious semi-furnished family home in Coffee Board Layout, Hebbal, an established residential neighbourhood with green spaces, reputed schools and easy access to Embassy Manyata Business Park.",seo:"Family apartment for rent in Coffee Board Layout, Hebbal, North Bengaluru.",
   amen:["Balconies","Lift","Power backup","Covered parking","CCTV"],card:["cof_l","cof_d"],photos:["cof_l","cof_d","hero_dark"],tour:[],video:"",youtube:""},
- {id:"kempapura",title:"Kempapura Residence",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Kempapura",area:"Kempapura, Hebbal, Bengaluru",type:"Hostel Residence",bhk:"Rooms",furn:"Semi-furnished",rent:26000,fromPrice:true,status:"soon",from:"",added:1,
-  deposit:"To be confirmed",about:"Semi-furnished hostel rooms in a well-kept residence in Kempapura, Hebbal, for IT professionals, corporate employees and college students, close to Embassy Manyata Business Park and the Bellary Road corridor.",seo:"Hostel accommodation in Kempapura, Hebbal, near Manyata Tech Park.",
+ {id:"coffee-board-674",title:"Coffee Board Residence, #674",addr:"#674, Coffee Board Layout, Hebbal Kempapura, Bengaluru 560024",map:"https://maps.app.goo.gl/1DsC1DBcLu2BLS2V6",hint:"Upcoming new building",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Coffee Board",area:"Coffee Board Layout, Hebbal, Bengaluru",type:"Apartment",bhk:"TBC",furn:"Semi-furnished",rent:null,fromPrice:false,status:"soon",from:"",added:4,
+  deposit:"To be confirmed",about:"An upcoming new residential building in Coffee Board Layout, Hebbal, in the same established neighbourhood as our #568 residence, with green spaces, reputed schools and easy access to Embassy Manyata Business Park. Register your interest to hear first when homes open.",seo:"Upcoming apartments for rent in Coffee Board Layout, Hebbal, North Bengaluru.",
+  amen:["New building","Covered parking"],card:["cof_d","cof_d"],photos:["cof_d","cof_l"],tour:[],video:"",youtube:""},
+ {id:"kempapura",title:"Kempapura Residence",addr:"1st Cross Road, Vinayaka Layout 2nd Stage, Hebbal Kempapura, Bengaluru 560024",near:"Near Treat restaurant. Presidency College and St Mary's College are close by.",map:"https://maps.app.goo.gl/YaLAnFr4UK3qQGUf6",hint:"Hostel · Vinayaka Layout",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Kempapura",area:"Vinayaka Layout, Hebbal Kempapura, Bengaluru",type:"Hostel Residence",bhk:"Rooms",furn:"Semi-furnished",rent:26000,fromPrice:true,status:"soon",from:"",added:1,
+  deposit:"To be confirmed",about:"Semi-furnished hostel rooms in a well-kept residence on 1st Cross Road, Vinayaka Layout 2nd Stage, Hebbal Kempapura, with Presidency College and St Mary's College close by. Suited to college students, IT professionals and corporate employees, near Embassy Manyata Business Park and the Bellary Road corridor.",seo:"Hostel accommodation in Kempapura, Hebbal, near Presidency College, St Mary's College and Manyata Tech Park.",
   amen:["Semi-furnished rooms","Covered parking","Housekeeping","Power backup","Gated entry","CCTV"],card:["kem_l","kem_l"],photos:["kem_l","kem_d"],tour:[],video:"",youtube:""}
 ];
 
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const ph=n=>`assets/photos/${n}.jpg`;
 const inr=n=>"₹"+n.toLocaleString("en-IN");
+const rentTxt=p=>p.rent==null?"Price on request":`${p.fromPrice?"from ":""}${inr(p.rent)} / month`;
 const fdate=d=>new Date(d+"T00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short"});
 const ST={now:["Available now","b-now"],soon:["Available soon","b-soon"],let:["Currently occupied","b-occ"],reno:["Under renovation","b-reno"]};
 /* primary call to action by status (spec): now → Book a viewing; soon, reno → Register interest; let → Notify me */
@@ -930,7 +934,7 @@ const card=p=>{const c=CTA(p);return `<article class="card">
     <div class="crow"><span class="badge inline ${ST[p.status][1]}">${p.status==="soon"&&p.from?"Available "+fdate(p.from):ST[p.status][0]}</span><span class="mute">${esc(p.furn)}</span></div>
     <h3><a href="#p-${p.id}">${esc(p.title)}</a></h3>
     <div class="loc">${ic("pin")}${esc(p.name)}, Bengaluru</div>
-    <div class="cprice">${p.fromPrice?"<small>From </small>":""}<b>${inr(p.rent)}</b> <small>/ month</small></div>
+    <div class="cprice">${p.rent==null?"<b style=\"font-size:20px\">Price on request</b>":`${p.fromPrice?"<small>From </small>":""}<b>${inr(p.rent)}</b> <small>/ month</small>`}</div>
     <div class="stats"><div>${ic("bath")}<b>${tbc(p.baths)}</b><span>Bathrooms*</span></div><div>${ic("car")}<b>${tbc(p.parking)}</b><span>Parking</span></div><div>${ic("key")}<b>Direct</b><span>Owner rental</span></div></div>
     <a class="btn navy" href="#p-${p.id}">View property details</a>
     <a class="btn line" href="${c.href}">${ic(c.icon)}${c.label}</a>
@@ -947,13 +951,13 @@ function sortHomes(L,how,q){
     rel:(a,b)=>hit(b)-hit(a)||RANK[a.status]-RANK[b.status]||(b.featured?1:0)-(a.featured?1:0)||latest(a,b),
     new:latest,
     soon:(a,b)=>RANK[a.status]-RANK[b.status]||(a.from||"9999").localeCompare(b.from||"9999")||latest(a,b),
-    lo:(a,b)=>a.rent-b.rent,hi:(a,b)=>b.rent-a.rent}[how]||latest;
+    lo:(a,b)=>(a.rent??1e12)-(b.rent??1e12),hi:(a,b)=>(b.rent??-1)-(a.rent??-1)}[how]||latest;
   return [...L].sort(by);
 }
 const hint=p=>p.hint||(p.type==="Hostel Residence"?"Hostel accommodation":`${p.bhk} ${p.type.toLowerCase()}`);
 const mini=p=>`<a class="mini" href="#p-${p.id}"><div class="mpic"><img class="only-l" src="${ph(p.card[0])}" alt="${esc(p.title)}" loading="lazy"><img class="only-d" src="${ph(p.card[1])}" alt="" loading="lazy"></div>
   <div class="mb"><div class="mr"><b>${esc(p.name)}</b><span class="mpill ${p.status==="now"?"ok":""}">${p.status==="now"?"Available":p.status==="soon"?"Opening soon":p.status==="reno"?"Renovation":"Occupied"}</span></div>
-  <div class="ms">${p.status==="now"?`${p.fromPrice?"From ":""}${inr(p.rent)} / month`:`<span class="dot"></span>${avail(p)}`}</div>
+  <div class="ms">${p.status==="now"?`${rentTxt(p)}`:`<span class="dot"></span>${avail(p)}`}</div>
   <div class="mm"><span>${p.status==="now"?esc(p.furn)+" · ":""}${esc(hint(p))}</span><span class="go">${ic("arrow")}</span></div></div></a>`;
 const HOME_MAX=6;const homeList=sortHomes(P,"rel","").slice(0,HOME_MAX);
 $("#homeGrid").innerHTML=homeList.map(mini).join("");
@@ -994,7 +998,7 @@ const NB={
   ["bus","Connectivity",["Kempapura Main Road","Outer Ring Road","Hebbal Junction","Bellary Road","Kempegowda International Airport corridor","Sahakar Nagar, Amruthahalli and Nagawara"]]],
  "kempapura":[
   ["bldg","Business and employment",["Embassy Manyata Business Park","Kirloskar Business Park","Brigade Magnum","Hebbal corporate corridor"]],
-  ["cap","Education",["Presidency College","Sindhi College","Vidya Niketan School","Jain Heritage School"]],
+  ["cap","Education",["Presidency College","St Mary's College","Sindhi College","Vidya Niketan School","Jain Heritage School"]],
   ["plus","Healthcare",["Manipal Hospital Hebbal","Aster CMI Hospital","Bangalore Baptist Hospital"]],
   ["cart","Lifestyle and recreation",["Esteem Mall","Elements Mall","Hebbal Lake","Restaurants and cafés","Supermarkets","Fitness centres"]],
   ["bus","Connectivity",["Hebbal Flyover","Outer Ring Road","Bellary Road (NH 44)","Kempegowda International Airport corridor","BMTC and airport bus services","Nagawara, Sahakar Nagar and Amruthahalli"]]]
@@ -1056,7 +1060,7 @@ $("#listGrid").addEventListener("click",e=>{if(e.target.id==="clr")resetF()});
 /* detail */
 let gi=0;
 function detail(p){
-  gi=0;const maps="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(p.area);
+  gi=0;const maps=p.map||"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(p.area);
   $("#detail").innerHTML=`<a class="back" href="#properties">${ic("left")}Back to Properties</a>
   <div class="detail">
     <div><div class="mtabs" role="group" aria-label="Media">
@@ -1068,16 +1072,16 @@ function detail(p){
       <button class="nav2 prev" type="button" aria-label="Previous photo">${ic("left")}</button><button class="nav2 next" type="button" aria-label="Next photo">${ic("right")}</button>
       <div class="dots">${p.photos.map((f,i)=>`<button type="button" aria-label="Photo ${i+1}" class="${i?"":"on"}" data-g="${i}"></button>`).join("")}</div></div><div id="alt" hidden></div></div></div>
     <div>
-      <div class="dhead"><h2>${esc(p.title)}</h2><span class="rent">${p.fromPrice?"<small>From </small>":""}${inr(p.rent)} <small>/ month</small></span></div>
+      <div class="dhead"><h2>${esc(p.title)}</h2><span class="rent">${p.rent==null?"Price on request":`${p.fromPrice?"<small>From </small>":""}${inr(p.rent)} <small>/ month</small>`}</span></div>
       <div class="loc" style="margin-top:8px">${ic("pin")}${esc(p.area)}<span class="badge inline ${ST[p.status][1]}" style="margin-left:8px">${ST[p.status][0]}</span></div>
       <div class="stats s4" style="margin-top:16px"><div>${ic("bed")}<b>${p.bhk}</b><span>Size</span></div><div>${ic("bath")}<b>${tbc(p.baths)}</b><span>Bathrooms*</span></div><div>${ic("car")}<b>${tbc(p.parking)}</b><span>Parking</span></div><div>${ic("key")}<b>Direct</b><span>Owner rental</span></div></div>
       <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-t="ov">Overview</button><button role="tab" aria-selected="false" data-t="ph">Photos</button><button role="tab" aria-selected="false" data-t="lo">Neighbourhood</button></div>
       <div data-tp="ov"><h3 style="font-size:24px">About this home</h3><p class="mute">${esc(p.about)}</p>
-        <dl class="spec"><dt>Monthly rent</dt><dd>${p.fromPrice?"From ":""}${inr(p.rent)}</dd><dt>Security deposit</dt><dd>${esc(p.deposit)}</dd><dt>Availability</dt><dd>${avail(p)}</dd><dt>Property type</dt><dd>${p.type}</dd><dt>Configuration</dt><dd>${p.bhk}</dd><dt>Area</dt><dd>${p.sqft?p.sqft.toLocaleString("en-IN")+" sq ft":"TBC"}</dd><dt>Bathrooms</dt><dd>${tbc(p.baths)}</dd><dt>Furnishing</dt><dd>${p.furn}</dd><dt>Parking</dt><dd>${tbc(p.parking)}</dd><dt>Rental</dt><dd>Direct from the owner</dd></dl>
+        <dl class="spec"><dt>Monthly rent</dt><dd>${p.rent==null?"Price on request":(p.fromPrice?"From ":"")+inr(p.rent)}</dd><dt>Security deposit</dt><dd>${esc(p.deposit)}</dd><dt>Availability</dt><dd>${avail(p)}</dd><dt>Property type</dt><dd>${p.type}</dd><dt>Configuration</dt><dd>${p.bhk}</dd><dt>Area</dt><dd>${p.sqft?p.sqft.toLocaleString("en-IN")+" sq ft":"TBC"}</dd><dt>Bathrooms</dt><dd>${tbc(p.baths)}</dd><dt>Furnishing</dt><dd>${p.furn}</dd><dt>Parking</dt><dd>${tbc(p.parking)}</dd><dt>Rental</dt><dd>Direct from the owner</dd></dl>
         <p class="note">*Details marked TBC are being confirmed.</p>
         <div class="amen">${p.amen.map(a=>`<span>${esc(a)}</span>`).join("")}</div></div>
       <div data-tp="ph" hidden>${galleryHTML(p)}</div>
-      <div data-tp="lo" hidden><p class="mute" style="margin-top:0">${esc(p.area)}. The exact address is shared when you book a viewing.</p>${nbHTML((locOf(p)||{}).id)}
+      <div data-tp="lo" hidden><p class="mute" style="margin-top:0">${esc(p.addr||p.area)}.${p.near?" "+esc(p.near):""}${p.map?"":" The exact address is shared when you book a viewing."}</p>${nbHTML((locOf(p)||{}).id)}
         <div class="dacts" style="margin-top:14px"><a class="link gold" href="${maps}" target="_blank" rel="noopener">Open in Google Maps ${ic("arrow")}</a>${locOf(p)?`<a class="link gold" href="#loc-${locOf(p).id}">About ${esc(p.name)} ${ic("arrow")}</a>`:""}</div></div>
       <div class="dacts">${p.status==="now"?`<a class="btn" href="#visit-${p.id}">${ic("cal")}Book a viewing</a>`:`<a class="btn" href="#interest-${p.id}">${ic("bell")}${CTA(p).label}</a>`}${p.status==="let"?"":`<a class="btn line" href="#enquire-${p.id}">Ask a question</a>`}
       <button class="btn line" type="button" id="share">${ic("share")}Share</button></div>
@@ -1093,7 +1097,7 @@ function detail(p){
   g.addEventListener("pointerup",e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>40)go(gi+(dx<0?1:-1));else if(e.target.tagName==="IMG")lbOpen(photosOf(p),gi,imgs[gi])});
   g.querySelectorAll("img").forEach(m=>{m.style.cursor="zoom-in"});
   g.addEventListener("pointercancel",()=>sx=null);
-  $("#mcta").innerHTML=`<span class="rent">${p.fromPrice?"<small>From </small>":""}${inr(p.rent)}<small> / month</small></span><a class="btn" href="${CTA(p).href}">${ic(CTA(p).icon)}${CTA(p).label}</a>`;
+  $("#mcta").innerHTML=`<span class="rent">${p.rent==null?"Price on request":`${p.fromPrice?"<small>From </small>":""}${inr(p.rent)}<small> / month</small>`}</span><a class="btn" href="${CTA(p).href}">${ic(CTA(p).icon)}${CTA(p).label}</a>`;
   $("#detail").onclick=e=>{const t=e.target.closest("button");if(!t)return;
     if(t.classList.contains("prev"))go(gi-1);else if(t.classList.contains("next"))go(gi+1);
     else if(t.dataset.lb!==undefined){const vis=[...$$("#detail .ggrid li")].filter(li=>!li.hidden);const all=photosOf(p);const idx=vis.map(li=>+li.querySelector("[data-lb]").dataset.lb);
@@ -1104,7 +1108,7 @@ function detail(p){
     else if(t.dataset.m)media(p,t.dataset.m);
     else if(t.dataset.sc&&pv){pv.loadScene(t.dataset.sc);$$(".scenes button").forEach(b=>b.setAttribute("aria-pressed",b===t))}
     else if(t.dataset.t){$$(".tabs button").forEach(b=>b.setAttribute("aria-selected",b===t));$$("[data-tp]").forEach(x=>x.hidden=x.dataset.tp!==t.dataset.t)}
-    else if(t.id==="share"){const url=location.origin+"/homes/"+p.id+"/";const txt=`${p.title} · ${p.bhk} · ${p.fromPrice?"from ":""}${inr(p.rent)}/month. ${url}`;
+    else if(t.id==="share"){const url=location.origin+"/homes/"+p.id+"/";const txt=`${p.title} · ${p.bhk} · ${rentTxt(p)}. ${url}`;
       (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast("Link copied. Paste it into WhatsApp or email."),()=>toast(url))}};
   const nf=$("#nForm");if(nf)nf.addEventListener("submit",async e=>{e.preventDefault();
     const n=$("#nName").value.trim(),ph=$("#nPhone").value.replace(/\D/g,"").slice(-10),em=$("#nEmail").value.trim();
@@ -1187,8 +1191,8 @@ const kindSync=()=>{const v=$("#eForm").querySelector("input[name=kind]:checked"
 $$("#eForm input[name=kind]").forEach(r=>r.addEventListener("change",kindSync));
 const tmr=()=>{const d=new Date(Date.now()+864e5);return d.toISOString().slice(0,10)};
 const open=P.filter(x=>x.status!=="let");
-$("#eHomeSel").innerHTML=`<option value="">Choose a home</option>`+open.map(x=>`<option value="${x.id}">${esc(x.name)} · ${x.bhk} · ${x.fromPrice?"from ":""}${inr(x.rent)}</option>`).join("");
-const subOf=p=>`${p.title} · ${p.bhk} · ${p.fromPrice?"from ":""}${inr(p.rent)} / month`;
+$("#eHomeSel").innerHTML=`<option value="">Choose a home</option>`+open.map(x=>`<option value="${x.id}">${esc(x.title)} · ${x.bhk} · ${rentTxt(x)}</option>`).join("");
+const subOf=p=>`${p.title} · ${p.bhk} · ${rentTxt(p)}`;
 $("#eHomeSel").addEventListener("change",e=>{cur=P.find(x=>x.id===e.target.value)||null;$("#eSub").textContent=cur?subOf(cur):"Choose a home and a time that suits you."});
 function enquire(p,visit){$("#eForm").classList.remove("rev");if(typeof tspReset==="function"&&!$("#eDate").value)tspReset();$("#eForm").querySelector(`input[value="${visit?"Book a viewing":"Ask a question"}"]`).checked=true;$("#eDate").min=tmr();kindSync();$$("#eForm .fld").forEach(f=>f.classList.remove("bad"));
   cur=p;$("#homeF").hidden=!!p;$("#eHomeSel").value=p?p.id:"";$("#eSub").textContent=p?subOf(p):"Choose a home and a time that suits you.";$("#eBack").href=p?"#p-"+p.id:"#properties";$("#eBack").lastChild.textContent=p?"Back to property":"Back to properties"}
