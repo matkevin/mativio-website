@@ -622,6 +622,18 @@ header.scrolled .bar{padding-block:0;min-height:calc(var(--hdr) - 10px)}
 @media(min-width:1280px){.lf-c{left:calc(50% - 50vw - 10px)}}
 @media(max-width:1100px){.lf-b{width:118px}}
 @media(max-width:833px){.lf-m{right:calc(50% - 50vw - 10px);-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 18%);mask-image:linear-gradient(180deg,transparent 0,#000 18%)}}
+/* phones/tablets: give titles and addresses room; status pills never squeeze */
+.mpill{flex:none}
+@media(max-width:599px){
+ .dloc{display:grid;grid-template-columns:auto 1fr;column-gap:8px;row-gap:12px;align-items:start}
+ .dloc .badge{grid-column:1/-1;grid-row:1;justify-self:start;margin:0!important}
+ .dloc svg.i{margin-top:3px}
+}
+@media(max-width:374px){.stats.s4{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:16px}}
+@media(max-width:1199px){
+ .mini{position:relative}
+ .mpill{position:absolute;top:12px;left:12px;z-index:1;padding:5px 12px;box-shadow:0 2px 10px rgba(20,34,53,.18)}
+}
 </style>
 </head>
 <body>
@@ -1207,7 +1219,7 @@ function detail(p){
       <div class="dots">${p.photos.map((f,i)=>`<button type="button" aria-label="Photo ${i+1}" class="${i?"":"on"}" data-g="${i}"></button>`).join("")}</div></div><div id="alt" hidden></div></div></div>
     <div>
       <div class="dhead"><h1>${esc(p.title)}</h1><span class="rent">${p.rent==null?"Price on request":`${p.fromPrice?"<small>From </small>":""}${inr(p.rent)} <small>/ month</small>`}</span></div>
-      <div class="loc" style="margin-top:8px">${ic("pin")}${esc(p.area)}<span class="badge inline ${ST[p.status][1]}" style="margin-left:8px">${ST[p.status][0]}</span></div>
+      <div class="loc dloc" style="margin-top:8px">${ic("pin")}<span class="addr">${esc(p.area)}</span><span class="badge inline ${ST[p.status][1]}" style="margin-left:8px">${ST[p.status][0]}</span></div>
       <div class="stats s4" style="margin-top:16px"><div>${ic("bed")}<b>${p.bhk}</b><span>Size</span></div><div>${ic("bath")}<b>${tbc(p.baths)}</b><span>Bathrooms*</span></div><div>${ic("car")}<b>${tbc(p.parking)}</b><span>Parking</span></div><div>${ic("key")}<b>Direct</b><span>Owner rental</span></div></div>
       <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-t="ov">Overview</button><button role="tab" aria-selected="false" data-t="ph">Photos</button><button role="tab" aria-selected="false" data-t="lo">Neighbourhood</button></div>
       <div data-tp="ov"><h3 style="font-size:24px">About this home</h3><p class="mute">${esc(p.about)}</p>
