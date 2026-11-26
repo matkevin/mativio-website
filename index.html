@@ -634,6 +634,12 @@ header.scrolled .bar{padding-block:0;min-height:calc(var(--hdr) - 10px)}
  .mini{position:relative}
  .mpill{position:absolute;top:12px;left:12px;z-index:1;padding:5px 12px;box-shadow:0 2px 10px rgba(20,34,53,.18)}
 }
+/* Our Story band: keep "Get to know us" on one line on phones */
+@media(max-width:599px){.stx .btn{white-space:nowrap;padding:0 20px;gap:10px}}
+@media(max-width:374px){.stx .btn{padding:0 16px;gap:8px;font-size:15px}}
+/* phones: form buttons keep their label on one line */
+@media(max-width:599px){.notify .row .btn{grid-column:1/-1;white-space:nowrap}}
+@media(max-width:374px){.dacts .btn{white-space:nowrap;padding:0 16px;font-size:15px}}
 </style>
 </head>
 <body>

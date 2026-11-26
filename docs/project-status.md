@@ -42,7 +42,7 @@
   - Page background: L4 Radial Mist (light) and D4 Radial Depth (dark), PR #9; it replaces the L2/D2 spiral waves from #8. Hero photos fade with masks.
   - Tagline "Land · Living · Legacy" in the header (folds on scroll) and the footer, not in the hero; left hero leaf nudged clear of the text at tablet and phone widths.
   - Full-bleed leaves (PR #9): every cut-out's cropped edge sits on the screen edge at all widths.
-  - Mobile congestion fixes (PR #9): status pills sit on the card photo (≤ 1199 px); the details badge is on its own line above the address (≤ 599 px); key facts are 2 × 2 (≤ 374 px).
+  - Mobile congestion fixes (PR #9): status pills sit on the card photo (≤ 1199 px); the details badge is on its own line above the address (≤ 599 px); key facts are 2 × 2 (≤ 374 px). Button labels stay on one line at all phone widths.
   - One H1 per view; linked form errors; skip link; modal menu and filter sheet.
   - Fluid type tokens; header 84/72/64; hero 42/58; tablet portrait stack; compact tablet nav.
   - 44 px targets; swipeable chips; keyboard-operable gallery; "Sending…" state.
