@@ -261,9 +261,11 @@ select,input,textarea{font:16px Manrope,system-ui,sans-serif;color:var(--ink)}
 /* sticky mobile CTA */
 .mcta{display:none}
 @media(max-width:599px){body[data-v=property] .mcta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;gap:12px;align-items:center;justify-content:space-between;padding:12px 20px calc(12px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--card) 94%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--line);box-shadow:0 -10px 30px rgba(0,0,0,.08)}
-body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{min-height:48px;padding:0 20px}
+.mcta .rent{font-size:19px}.mcta .btn{min-height:48px;padding:0 20px}
 body[data-v=property] .mcta{transition:transform .3s ease,visibility 0s}
-body[data-v=property] .mcta.off{transform:translateY(110%);visibility:hidden;transition:transform .3s ease,visibility 0s .3s}}
+body[data-v=property] .mcta.off{transform:translateY(110%);visibility:hidden;transition:transform .3s ease,visibility 0s .3s}
+/* room for the bar only while it shows, inside the navy footer (no beige gap) */
+body[data-v=property].cta-on footer::after{content:"";display:block;height:calc(76px + env(safe-area-inset-bottom))}}
 /* review step */
 .rev>*:not(#eReview){display:none!important}
 #eReview{display:none}.rev #eReview{display:block}
@@ -1030,7 +1032,7 @@ const ST={now:["Available now","b-now"],soon:["Available soon","b-soon"],let:["C
 /* sticky phone CTA: shown only while the page's own action buttons are off screen */
 let ctaIO=null;
 const watchCTA=()=>{ctaIO&&ctaIO.disconnect();const bar=$("#mcta"),els=[...$("#detail").querySelectorAll("[data-pcta]")],seen=new Set();
-  const set=off=>{bar.classList.toggle("off",off);bar.inert=off;bar.setAttribute("aria-hidden",off?"true":"false")};
+  const set=off=>{bar.classList.toggle("off",off);document.body.classList.toggle("cta-on",!off);bar.inert=off;bar.setAttribute("aria-hidden",off?"true":"false")};
   if(!els.length||!("IntersectionObserver" in window)){set(false);return}
   set(true);ctaIO=new IntersectionObserver(es=>{es.forEach(e=>e.isIntersecting?seen.add(e.target):seen.delete(e.target));set(seen.size>0)},{threshold:0});
   els.forEach(e=>ctaIO.observe(e))};
