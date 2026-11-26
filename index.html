@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mativio — Homes for Rent</title>
-<meta name="description" content="Family-owned rental homes, thoughtfully cared for in Bengaluru.">
+<title>Mativio — Homes for Rent in North Bengaluru</title>
+<meta name="description" content="Family-owned homes for rent in North Bengaluru: apartments near New BEL Road and MS Ramaiah College in Devasandra, family apartments in Coffee Board Layout, and hostel accommodation in Kempapura, Hebbal, near Manyata Tech Park.">
 <link rel="icon" href="assets/logo.png">
-<meta property="og:title" content="Mativio — Family-owned homes for rent in Bengaluru">
-<meta property="og:description" content="Find a place to call home. See homes ready to move in and opening soon.">
+<meta property="og:title" content="Mativio — Family-owned homes for rent in North Bengaluru">
+<meta property="og:description" content="Apartments and hostel accommodation in Devasandra (New BEL Road), Coffee Board Layout and Kempapura, Hebbal. See homes ready to move in and opening soon.">
 <meta property="og:image" content="https://mativio-website.netlify.app/assets/photos/hero_light.jpg">
 <meta property="og:url" content="https://mativio-website.netlify.app/">
 <meta property="og:type" content="website">
@@ -880,13 +880,13 @@ const CONTACT={phone:"",whatsapp:"",email:"",address:"Bengaluru, Karnataka"};
    parking: "Available", "Not available" or null. floorplan: an image path like "assets/plans/devasandra.jpg", or "". */
 const P=[
  {id:"devasandra",title:"Devasandra Residence",hint:"Near New BEL Road",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Devasandra",area:"Devasandra, New BEL Road, Bengaluru",type:"Apartment",bhk:"2 BHK",furn:"Semi-furnished",rent:28000,fromPrice:false,status:"now",from:"",added:3,
-  deposit:"To be confirmed",about:"A well-located residential home in Devasandra, offering a comfortable and practical place to live in a peaceful neighbourhood, with good natural light and easy access to daily essentials.",
+  deposit:"To be confirmed",about:"A semi-furnished home in an established residential neighbourhood near New BEL Road, close to Ramaiah Institute of Technology, Ramaiah Medical College and Ramaiah Memorial Hospital, with cafés, shops and everyday conveniences nearby.",seo:"Apartment for rent in Devasandra, Bengaluru, near New BEL Road and MS Ramaiah College.",
   amen:["Balcony","Power backup","Water supply 24×7","Covered parking","CCTV"],card:["dev_l","dev_d"],photos:["dev_l","dev_d","hero_light"],tour:[],video:"",youtube:""},
- {id:"coffee-board",title:"Coffee Board Residence",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Coffee Board",area:"Coffee Board Layout, Bengaluru",type:"Apartment",bhk:"3 BHK",furn:"Semi-furnished",rent:32000,fromPrice:false,status:"now",from:"",added:2,
-  deposit:"To be confirmed",about:"A spacious semi-furnished home on a quiet, tree-lined street in Coffee Board Layout. Generous rooms, private balconies and a calm green setting.",
+ {id:"coffee-board",title:"Coffee Board Residence",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Coffee Board",area:"Coffee Board Layout, Hebbal, Bengaluru",type:"Apartment",bhk:"3 BHK",furn:"Semi-furnished",rent:32000,fromPrice:false,status:"now",from:"",added:2,
+  deposit:"To be confirmed",about:"A spacious semi-furnished family home in Coffee Board Layout, Hebbal, an established residential neighbourhood with green spaces, reputed schools and easy access to Embassy Manyata Business Park.",seo:"Family apartment for rent in Coffee Board Layout, Hebbal, North Bengaluru.",
   amen:["Balconies","Lift","Power backup","Covered parking","CCTV"],card:["cof_l","cof_d"],photos:["cof_l","cof_d","hero_dark"],tour:[],video:"",youtube:""},
- {id:"kempapura",title:"Kempapura Residence",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Kempapura",area:"Kempapura, Bengaluru",type:"Hostel Residence",bhk:"Rooms",furn:"Semi-furnished",rent:26000,fromPrice:true,status:"soon",from:"",added:1,
-  deposit:"To be confirmed",about:"Semi-furnished rooms in a well-kept residence in Kempapura, ready for professionals and students who want a calm, cared-for place to stay.",
+ {id:"kempapura",title:"Kempapura Residence",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Kempapura",area:"Kempapura, Hebbal, Bengaluru",type:"Hostel Residence",bhk:"Rooms",furn:"Semi-furnished",rent:26000,fromPrice:true,status:"soon",from:"",added:1,
+  deposit:"To be confirmed",about:"Semi-furnished hostel rooms in a well-kept residence in Kempapura, Hebbal, for IT professionals, corporate employees and college students, close to Embassy Manyata Business Park and the Bellary Road corridor.",seo:"Hostel accommodation in Kempapura, Hebbal, near Manyata Tech Park.",
   amen:["Semi-furnished rooms","Covered parking","Housekeeping","Power backup","Gated entry","CCTV"],card:["kem_l","kem_l"],photos:["kem_l","kem_d"],tour:[],video:"",youtube:""}
 ];
 
@@ -962,29 +962,51 @@ $(".cmore .link").firstChild.textContent=P.length>HOME_MAX?`View all ${P.length}
 /* localities */
 const LOC=[
  {id:"devasandra",name:"Devasandra",area:"Devasandra, off New BEL Road, near Mathikere, North Bengaluru",img:"dev_d",
-  about:"A settled residential neighbourhood off New BEL Road near Mathikere in North Bengaluru, close to some of the city's best-known hospitals and institutions.",
-  hl:[["home","Ramaiah Memorial Hospital a short distance away"],["bldg","Near the Indian Institute of Science and M S Ramaiah Institute of Technology"],["pin","New BEL Road, CV Raman Road and the Outer Ring Road for travel across the city"],["sprout","Shops, cafes and eateries along New BEL Road and Mathikere Main Road"]]},
+  tagline:"Live close to everything",
+  about:"Experience the vibrancy of North Bengaluru in an established residential neighbourhood near New BEL Road. Renowned educational institutions, healthcare facilities, cafés, restaurants and everyday conveniences bring together accessibility, comfort and urban living.",
+  hl:[["sprout","Vibrant urban living with education, healthcare and lifestyle conveniences"],["cap","Ramaiah Institute of Technology, Ramaiah Medical College and IISc nearby"],["pin","New BEL Road, M.S. Ramaiah Road and Yeshwanthpur Metro Station"],["home","Ideal for students, researchers, medical professionals, working professionals and families"]],
+  seo:"Apartments for rent in Devasandra, Bengaluru, near New BEL Road and MS Ramaiah College. Family-owned homes close to Ramaiah Medical College, IISc and Ramaiah Memorial Hospital."},
  {id:"coffee-board",name:"Coffee Board",area:"Coffee Board Layout, Hebbal Kempapura, North Bengaluru",img:"cof_l",
-  about:"A quiet, leafy residential layout in Hebbal Kempapura, North Bengaluru, popular with families and professionals working nearby.",
-  hl:[["bldg","About 3 km from Manyata Tech Park"],["bldg","Close to Karle Town Centre and Kirloskar Business Park"],["home","Schools, banks and daily shops within walking distance"],["sprout","Calm, green streets"]]},
+  tagline:"A neighbourhood to call home",
+  about:"Enjoy the charm of an established residential neighbourhood with green spaces and everyday conveniences. With neighbourhood parks, reputed schools, healthcare facilities and access to major business hubs, Coffee Board Layout offers an inviting setting for family living and long-term comfort.",
+  hl:[["sprout","Established residential living with green spaces and family-oriented conveniences"],["cap","Jain Heritage School, Vidya Niketan School, Presidency College and Sindhi College nearby"],["bldg","Access to Embassy Manyata Business Park, Kirloskar Business Park and Brigade Magnum"],["home","Ideal for families, working professionals and long-term residential tenants"]],
+  seo:"Apartments for rent in Coffee Board Layout, Hebbal. Family apartments in North Bengaluru near Manyata Tech Park, reputed schools and Manipal Hospital Hebbal."},
  {id:"kempapura",name:"Kempapura",area:"Hebbal Kempapura, North Bengaluru",img:"kem_l",
-  about:"A well-connected residential neighbourhood along Bellary Road in North Bengaluru, right next to Manyata Tech Park.",
-  hl:[["bldg","Next to Manyata Tech Park"],["pin","Good links to Bellary Road, the airport road and the Outer Ring Road"],["sprout","Jakkur Lake and green spaces nearby"],["home","Cafes, shops and everyday services around"]]}
+  tagline:"Stay connected to opportunity",
+  about:"Discover well-connected living within Hebbal's thriving residential and commercial corridor. Access to major technology parks, educational institutions, healthcare facilities and the airport corridor makes Kempapura a convenient location for students and working professionals.",
+  hl:[["sprout","Connected living with access to employment and educational opportunities"],["bldg","Embassy Manyata Business Park, Kirloskar Business Park and Brigade Magnum nearby"],["pin","Hebbal Flyover, Outer Ring Road, Bellary Road (NH 44) and the airport corridor"],["home","Ideal for IT professionals, corporate employees, college students and hostel residents"]],
+  seo:"Accommodation in Kempapura, Hebbal. Hostel accommodation in Hebbal near Manyata Tech Park, with easy access to Bellary Road, the Outer Ring Road and the airport corridor."}
 ];
-/* neighbourhood guide: nearby places by category. Distances are approximate, by road. */
+/* neighbourhood guide: nearby places by category (owner's verified master list). No distances are shown
+   until they are measured from each property's exact location. */
 const NB={
- "devasandra":[["cap","Colleges",["Indian Institute of Science (IISc)","M S Ramaiah Institute of Technology"]],["plus","Hospitals",["Ramaiah Memorial Hospital, New BEL Road"]],["cart","Shops & daily needs",["Shops, cafes and eateries on New BEL Road","Grocery and daily shops on Mathikere Main Road"]],["bus","Transport",["New BEL Road and CV Raman Road","Yeshwantpur railway station and bus depot"]],["bldg","Commercial areas",["New BEL Road shopping street"]]],
- "coffee-board":[["cap","Schools",["St Johns School (about 0.3 km)","Eurokids preschool (about 0.3 km)"]],["plus","Hospitals",["Rainbow Children's Hospital, Hebbal (about 3.8 km)"]],["cart","Shops & daily needs",["Banks, post office and daily shops close by"]],["bus","Transport",["Coffee Board Layout and Kempapura bus stops","Bellary Road and the Outer Ring Road"]],["bldg","Business hubs",["Karle Town Centre (about 1.2 km)","Kirloskar Business Park (about 2.1 km)","Brigade Magnum (about 2.1 km)","Manyata Tech Park (about 2.9 km)"]]],
- "kempapura":[["plus","Hospitals",["Bangalore Baptist Hospital, Bellary Road"]],["cart","Shops & daily needs",["Cafes, juice shops and daily stores around Hebbal"]],["bus","Transport",["Bellary Road","Airport Road and the Outer Ring Road"]],["bldg","Business hubs",["Manyata Tech Park (next door)","Kirloskar Business Park","Golden Square Business Centre"]],["sprout","Leisure",["Jakkur Lake"]]]
+ "devasandra":[
+  ["cap","Education",["Ramaiah Institute of Technology","Ramaiah Medical College","Ramaiah University of Applied Sciences","Indian Institute of Science (IISc)"]],
+  ["plus","Healthcare",["Ramaiah Memorial Hospital","Ramaiah Medical College Hospital","Local clinics and pharmacies"]],
+  ["cart","Lifestyle and essentials",["New BEL Road shopping district","Cafés and restaurants","Supermarkets and grocery stores","Bakeries","Gyms and wellness centres","Banks and ATMs"]],
+  ["bus","Connectivity",["New BEL Road","M.S. Ramaiah Road","Yeshwanthpur Metro Station","Yesvantpur Railway Junction","BMTC bus services","Mathikere, Sanjaynagar, Dollars Colony and Hebbal"]]],
+ "coffee-board":[
+  ["sprout","Parks and recreation",["Neighbourhood parks and green spaces","Walking and jogging areas","Outdoor recreational facilities"]],
+  ["cap","Education",["Jain Heritage School","Vidya Niketan School","Presidency College","Sindhi College","Nearby preschools"]],
+  ["bldg","Business and employment",["Embassy Manyata Business Park","Kirloskar Business Park","Brigade Magnum","Hebbal and Nagawara business corridors"]],
+  ["plus","Healthcare",["Manipal Hospital Hebbal","Aster CMI Hospital","Bangalore Baptist Hospital"]],
+  ["cart","Lifestyle and essentials",["Neighbourhood supermarkets","Fresh produce and grocery stores","Restaurants and cafés","Bakeries","Pharmacies","Banks and ATMs","Shopping centres"]],
+  ["bus","Connectivity",["Kempapura Main Road","Outer Ring Road","Hebbal Junction","Bellary Road","Kempegowda International Airport corridor","Sahakar Nagar, Amruthahalli and Nagawara"]]],
+ "kempapura":[
+  ["bldg","Business and employment",["Embassy Manyata Business Park","Kirloskar Business Park","Brigade Magnum","Hebbal corporate corridor"]],
+  ["cap","Education",["Presidency College","Sindhi College","Vidya Niketan School","Jain Heritage School"]],
+  ["plus","Healthcare",["Manipal Hospital Hebbal","Aster CMI Hospital","Bangalore Baptist Hospital"]],
+  ["cart","Lifestyle and recreation",["Esteem Mall","Elements Mall","Hebbal Lake","Restaurants and cafés","Supermarkets","Fitness centres"]],
+  ["bus","Connectivity",["Hebbal Flyover","Outer Ring Road","Bellary Road (NH 44)","Kempegowda International Airport corridor","BMTC and airport bus services","Nagawara, Sahakar Nagar and Amruthahalli"]]]
 };
-const nbHTML=id=>{const g=NB[id]||[];return g.length?`<div class="nbg">${g.map(([i,t,xs])=>`<div><h4>${ic(i)}${t}</h4><ul>${xs.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`).join("")}</div><p class="note">Distances are approximate, by road.</p>`:""};
+const nbHTML=id=>{const g=NB[id]||[];return g.length?`<div class="nbg">${g.map(([i,t,xs])=>`<div><h4>${ic(i)}${t}</h4><ul>${xs.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`).join("")}</div>`:""};
 const locOf=p=>LOC.find(l=>l.name===p.name);
 const ltile=l=>{const n=P.filter(p=>p.name===l.name&&p.status!=="let").length;return `<a class="ltile" href="#loc-${l.id}"><img src="${ph(l.img)}" alt="${esc(l.name)}" loading="lazy"><div><b>${esc(l.name)}</b><span>${n} ${n===1?"home":"homes"} available or opening soon</span></div></a>`};
 $("#locList").innerHTML=LOC.map(ltile).join("");
 function locality(l){
   const homes=P.filter(p=>p.name===l.name);const maps="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(l.area);
   $("#locPage").innerHTML=`<a class="back" href="#localities">${ic("left")}All localities</a>
-  <div class="lhero"><div><div class="tag rule" style="margin-bottom:18px">Locality</div><h2>${esc(l.name)}</h2><div class="loc" style="margin-top:8px">${ic("pin")}${esc(l.area)}</div>
+  <div class="lhero"><div><div class="tag rule" style="margin-bottom:18px">${esc(l.tagline||"Locality")}</div><h2>${esc(l.name)}</h2><div class="loc" style="margin-top:8px">${ic("pin")}${esc(l.area)}</div>
     <p class="mute" style="font-size:17px">${esc(l.about)}</p><ul class="hl">${l.hl.map(([i,t])=>`<li>${ic(i)}<span>${esc(t)}</span></li>`).join("")}</ul>
     <div class="dacts" style="margin-top:8px"><a class="link gold" href="${maps}" target="_blank" rel="noopener">Open in Google Maps ${ic("arrow")}</a></div></div>
     <div class="shot"><img src="${ph(l.img)}" alt="${esc(l.name)}"></div></div>
@@ -1298,6 +1320,7 @@ function route(){
   document.body.dataset.v=v;sheet(false);
   $$("[data-nav]").forEach(a=>a.toggleAttribute("aria-current",a.dataset.nav===v||(v==="property"&&a.dataset.nav==="properties")||(v==="locality"&&a.dataset.nav==="localities")));
   $$("[data-nav][aria-current]").forEach(a=>a.setAttribute("aria-current","page"));
+  {const md=document.querySelector('meta[name="description"]');md.dataset.d=md.dataset.d||md.content;md.content=(p&&(p.seo||((locOf(p)||{}).seo)))||(l&&l.seo)||md.dataset.d}
   document.title=(p?p.title+" · ":l?l.name+" · ":v==="privacy"?"Privacy · ":v==="terms"?"Terms · ":v==="notfound"?"Not found · ":"")+"Mativio — Homes for Rent";
   if(!h.startsWith("interest-"))scrollTo({top:0});
 }
