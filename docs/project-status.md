@@ -1,15 +1,16 @@
-# Mativio — Project status (handover, 26 Nov 2026)
+# Mativio — Project status (updated 27 Nov 2026)
 
 ## Branches and deployments
 
 | Branch | PR | State | Contents |
 |---|---|---|---|
-| `main` | — | **Live** at https://mativio-website.netlify.app | PRs #1–#5 and #7 merged |
+| `main` | — | **Live** at https://mativio-website.netlify.app | PRs #1–#5, #7 and #8 merged |
 | `review/botanical` | #6 | Closed (superseded by #8) | Botanical theme, mobile menu switch, listings scaling, gallery/lightbox, time-slot picker, legal updates, neighbourhood content, exact locations, real statuses and rents, mobile pillars 2 × 2 |
-| **`review/responsive-ux`** | **#8** | **Open, current development branch** (built on `review/botanical`, so it contains #6) | Responsive/accessibility audit fixes, plus these handover docs and `tools/audit/` |
+| `review/responsive-ux` | #8 | **Merged** 26 Nov 2026 (contains #6) | Responsive/accessibility audit, handover docs, `tools/audit/`, spiral-wave background, home order, tagline in footer only, drag-to-close filter sheet, scroll reveals |
+| **`review/radial-backgrounds`** | **#9** | **Open, current development branch** | L4 Radial Mist / D4 Radial Depth page backgrounds (replace the spiral waves); docs refreshed after #8 |
 
-- Previews: https://deploy-preview-6--mativio-website.netlify.app and https://deploy-preview-8--mativio-website.netlify.app.
-- **Merge plan (owner decides):** #8 contains everything in #6, so #6 can be closed without merging. `main` (including the PR #7 skill files) was merged into `review/responsive-ux` on 26 Nov 2026, so #8 is up to date with production.
+- Preview: https://deploy-preview-9--mativio-website.netlify.app.
+- **Merge plan (owner decides):** merge #9 when the owner approves the new backgrounds.
 - Other branches (`claude/*`, `review/spec-alignment`, `review/batch-2`, `review/batch-3`) are already merged.
 - Ship to production in **one batch** when the owner approves (about 15 Netlify credits per production deploy).
 
@@ -23,6 +24,7 @@
 | #4 | All homes semi-furnished with parking; Privacy and Terms approved; pricing placeholders |
 | #5 | Mobile first fold: full-bleed photo hero with theme button; Netlify badge hidden |
 | #7 | Adds the `ui-ux-pro-max` Claude skill |
+| #8 | Responsive UX audit, handover docs, spiral-wave backgrounds, home order (properties before pillars), white button text in light mode, tagline in footer only, drag-to-close filter sheet, scroll reveals |
 
 ## Completed features (on the development branch)
 
@@ -37,7 +39,7 @@
   - Country-code phone fields (fixes non-Indian numbers being saved as +91).
   - AA contrast: accent `#80613C`; 0 failures apart from the gold primary buttons in light mode, which keep white text at the owner's request (2.3–3.2:1, accepted exception).
   - Home page order: hero, Our Properties, pillars, Our Localities, Our Story (owner's request, 26 Nov 2026).
-  - Spiral-wave page background: L2 Champagne Wave (light) and D2 Sapphire Wave (dark); hero photos fade with masks (owner's request, 26 Nov 2026).
+  - Page background: L4 Radial Mist (light) and D4 Radial Depth (dark), PR #9; it replaces the L2/D2 spiral waves from #8. Hero photos fade with masks.
   - Tagline "Land · Living · Legacy" only in the footer (removed from the header and the hero); left hero leaf nudged clear of the text at tablet and phone widths.
   - One H1 per view; linked form errors; skip link; modal menu and filter sheet.
   - Fluid type tokens; header 84/72/64; hero 42/58; tablet portrait stack; compact tablet nav.
@@ -54,12 +56,12 @@
 5. The name of the Coffee Board Layout park; measured distances for the neighbourhood guide.
 6. **Netlify:** enable form detection, redeploy, set the form-notification email recipient. Not confirmed as done.
 7. **Own domain** (e.g. mativio.in), then update `SITE`, the OG URLs and rebuild `homes/`.
-8. Approval to merge #6/#8 and **go live** (the site is in test mode until the owner says so).
+8. Approval to merge #9, and to say when the site leaves test mode for real tenants.
 9. CCTV system brand/model (for Phase 5).
 
 ## Known issues and limitations
 
-- Lighthouse and axe-core haven't been run (they couldn't be installed in the cloud sandbox). Run them on the PR #8 preview.
+- Lighthouse and axe-core haven't been run (they couldn't be installed in the cloud sandbox). Run them on the live site or the current PR preview.
 - No real screen-reader or 200% zoom pass yet; no physical-device testing.
 - Images are low-resolution placeholders with no `srcset`/WebP (the hero is 850 px wide but displayed at about 940 px). Fix when the real photos arrive (responsive sizes, WebP/AVIF, width/height attributes).
 - Google Fonts: no `preconnect` to `fonts.gstatic.com`; consider self-hosting.
@@ -90,7 +92,7 @@
 
 ## Next suggested steps
 
-1. The owner reviews the PR #8 preview on phone, tablet and desktop.
+1. The owner reviews the PR #9 preview (new backgrounds) on phone, tablet and desktop.
 2. Run Lighthouse and axe on the preview and fix anything real.
 3. Fill in `CONTACT`, set up Netlify Forms notifications, then do one end-to-end test enquiry agreed with the owner.
 4. Replace placeholder media as it arrives (with responsive images).

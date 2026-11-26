@@ -11,7 +11,7 @@ The owner (repo owner `matkevin`) approves every change that goes live. The site
 ## Working rules (non-negotiable)
 
 1. **Never push to `main` or merge a PR without the owner's explicit approval.** `main` auto-deploys to production on Netlify.
-2. **Work on a `review/*` branch and open a PR.** PR deploy previews are free; use them for review. The current development branch is `review/responsive-ux` (PR #8); see `docs/project-status.md`.
+2. **Work on a `review/*` branch and open a PR.** PR deploy previews are free; use them for review. The current development branch is `review/radial-backgrounds` (PR #9); see `docs/project-status.md`.
 3. **Batch changes.** Each production deploy costs about 15 Netlify credits. Collect reviewed work and ship it together when the owner says go.
 4. **Don't redesign.** The visual direction, brand, animations, responsive behaviour and journeys are approved. Refine; don't replace. When a task is content-only, don't touch layout, styles, animations or journeys.
 5. **Never invent property facts.** Rents, deposits, sizes, bathrooms, dates, distances and photos come only from the owner. Unknown values show as "TBC" or "To be confirmed" (rent `null` shows "Price on request"). See `docs/property-data.md`.

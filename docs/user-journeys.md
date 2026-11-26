@@ -1,6 +1,6 @@
 # Mativio — User journeys and functionality
 
-These are the journeys as built on `review/responsive-ux` (PR #8, which includes PR #6). All are approved; preserve them. Routes are hash links handled by `route()` in `index.html`.
+These are the journeys live on `main` (PR #8 merged 26 Nov 2026). All are approved; preserve them. Routes are hash links handled by `route()` in `index.html`.
 
 ## Global
 
