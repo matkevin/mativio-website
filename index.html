@@ -129,6 +129,7 @@ header.scrolled .word img{height:38px}
 .card .pic{aspect-ratio:16/10}
 .badge{position:absolute;top:16px;left:16px;font:600 14px Manrope;padding:6px 14px;border-radius:999px;display:inline-flex;gap:8px;align-items:center}
 .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.b-build{background:#f3e3c4;color:#6a4a12}:root[data-theme=dark] .b-build{background:#7a5a24;color:#fbefd8}
 .b-reno{background:#e6dcf0;color:#4b2d6b}:root[data-theme=dark] .b-reno{background:#5a4670;color:#f1e9fa}
 .b-now{background:var(--okBg);color:var(--okInk)}.b-soon{background:var(--soonBg);color:var(--soonInk)}.b-occ{background:var(--occBg);color:var(--occInk)}
 .badge.inline{position:static}
@@ -874,23 +875,26 @@ const CONTACT={phone:"",whatsapp:"",email:"",address:"Bengaluru, Karnataka"};
 /* ---- Listings: add or change homes here ---- */
 /* tour: 360° photos, e.g. [{title:"Living room",src:"assets/360/devasandra-living.jpg"}] (equirectangular JPGs)
    video: an MP4 path like "assets/video/devasandra.mp4", or youtube: the video id (e.g. "dQw4w9WgXcQ") */
-/* status: "now" (Available now), "soon" (Available soon), "let" (Currently occupied), "reno" (Under renovation). from: "YYYY-MM-DD" or ""
+/* status: "now" (Available now), "soon" (Available soon), "let" (Currently occupied), "reno" (Under renovation), "build" (Under construction). from: "YYYY-MM-DD" or ""
    title: the name shown on cards. name: the locality (matches LOC). baths, sqft: number or null (null shows "TBC").
    listed: date the home was listed "YYYY-MM-DD" (used by Latest; optional). featured: true to pin it near the top and on the home page (optional).
    parking: "Available", "Not available" or null. floorplan: an image path like "assets/plans/devasandra.jpg", or "". */
 const P=[
- {id:"devasandra",title:"Devasandra Residence",map:"https://maps.app.goo.gl/Pbh5tyYMyPwbS9TV8",hint:"Near New BEL Road",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Devasandra",area:"Devasandra, New BEL Road, Bengaluru",type:"Apartment",bhk:"2 BHK",furn:"Semi-furnished",rent:28000,fromPrice:false,status:"now",from:"",added:3,
-  deposit:"To be confirmed",about:"A semi-furnished home in an established residential neighbourhood near New BEL Road, close to Ramaiah Institute of Technology, Ramaiah Medical College and Ramaiah Memorial Hospital, with cafés, shops and everyday conveniences nearby.",seo:"Apartment for rent in Devasandra, Bengaluru, near New BEL Road and MS Ramaiah College.",
-  amen:["Balcony","Power backup","Water supply 24×7","Covered parking","CCTV"],card:["dev_l","dev_d"],photos:["dev_l","dev_d","hero_light"],tour:[],video:"",youtube:""},
- {id:"coffee-board",title:"Coffee Board Residence, #568",addr:"#568, Coffee Board Layout, Hebbal Kempapura, Bengaluru 560024",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Coffee Board",area:"Coffee Board Layout, Hebbal, Bengaluru",type:"Apartment",bhk:"3 BHK",furn:"Semi-furnished",rent:32000,fromPrice:false,status:"now",from:"",added:2,
-  deposit:"To be confirmed",about:"A spacious semi-furnished family home in Coffee Board Layout, Hebbal, an established residential neighbourhood with green spaces, reputed schools and easy access to Embassy Manyata Business Park.",seo:"Family apartment for rent in Coffee Board Layout, Hebbal, North Bengaluru.",
-  amen:["Balconies","Lift","Power backup","Covered parking","CCTV"],card:["cof_l","cof_d"],photos:["cof_l","cof_d","hero_dark"],tour:[],video:"",youtube:""},
- {id:"coffee-board-674",title:"Coffee Board Residence, #674",addr:"#674, Coffee Board Layout, Hebbal Kempapura, Bengaluru 560024",map:"https://maps.app.goo.gl/1DsC1DBcLu2BLS2V6",hint:"Upcoming new building",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Coffee Board",area:"Coffee Board Layout, Hebbal, Bengaluru",type:"Apartment",bhk:"TBC",furn:"Semi-furnished",rent:null,fromPrice:false,status:"soon",from:"",added:4,
-  deposit:"To be confirmed",about:"An upcoming new residential building in Coffee Board Layout, Hebbal, in the same established neighbourhood as our #568 residence, with green spaces, reputed schools and easy access to Embassy Manyata Business Park. Register your interest to hear first when homes open.",seo:"Upcoming apartments for rent in Coffee Board Layout, Hebbal, North Bengaluru.",
-  amen:["New building","Covered parking"],card:["cof_d","cof_d"],photos:["cof_d","cof_l"],tour:[],video:"",youtube:""},
- {id:"kempapura",title:"Kempapura Residence",addr:"1st Cross Road, Vinayaka Layout 2nd Stage, Hebbal Kempapura, Bengaluru 560024",near:"Near Treat restaurant. Presidency College and St Mary's College are close by.",map:"https://maps.app.goo.gl/YaLAnFr4UK3qQGUf6",hint:"Hostel · Vinayaka Layout",baths:null,sqft:null,parking:"Available",floorplan:"",name:"Kempapura",area:"Vinayaka Layout, Hebbal Kempapura, Bengaluru",type:"Hostel Residence",bhk:"Rooms",furn:"Semi-furnished",rent:26000,fromPrice:true,status:"soon",from:"",added:1,
-  deposit:"To be confirmed",about:"Semi-furnished hostel rooms in a well-kept residence on 1st Cross Road, Vinayaka Layout 2nd Stage, Hebbal Kempapura, with Presidency College and St Mary's College close by. Suited to college students, IT professionals and corporate employees, near Embassy Manyata Business Park and the Bellary Road corridor.",seo:"Hostel accommodation in Kempapura, Hebbal, near Presidency College, St Mary's College and Manyata Tech Park.",
-  amen:["Semi-furnished rooms","Covered parking","Housekeeping","Power backup","Gated entry","CCTV"],card:["kem_l","kem_l"],photos:["kem_l","kem_d"],tour:[],video:"",youtube:""}
+ {id:"devasandra",title:"Devasandra Residence",map:"https://maps.app.goo.gl/Pbh5tyYMyPwbS9TV8",hint:"1 of 2 units available · Near New BEL Road",units:"2 apartments (1 available now)",baths:null,sqft:null,parking:"2 car spaces",floorplan:"",name:"Devasandra",area:"Devasandra, New BEL Road, Bengaluru",type:"Apartment",bhk:"2 BHK",furn:"Semi-furnished",rent:32000,fromPrice:false,status:"now",from:"",added:3,
+  deposit:"To be confirmed",about:"A semi-furnished apartment in an established residential neighbourhood near New BEL Road, close to Ramaiah Institute of Technology, Ramaiah Medical College and Ramaiah Memorial Hospital, with cafés, shops and everyday conveniences nearby. The building has 2 apartments at ₹32,000 per month each, with 2 car parking spaces; 1 apartment is available now.",seo:"Apartment for rent in Devasandra, Bengaluru, near New BEL Road and MS Ramaiah College.",
+  amen:["2 car parking spaces","Balcony","Power backup","Water supply 24×7","CCTV"],card:["dev_l","dev_d"],photos:["dev_l","dev_d","hero_light"],tour:[],video:"",youtube:""},
+ {id:"coffee-board",title:"Coffee Board Residence, #568",addr:"#568, Coffee Board Layout, Hebbal Kempapura, Bengaluru 560024",hint:"3 × 3 BHK apartments",units:"3 × 3 BHK apartments (all occupied)",baths:"1 + WC",sqft:null,parking:"Car + bike",floorplan:"",name:"Coffee Board",area:"Coffee Board Layout, Hebbal, Bengaluru",type:"Apartment",bhk:"3 BHK",furn:"Semi-furnished",rent:40000,fromPrice:false,status:"let",from:"",added:2,
+  deposit:"To be confirmed",about:"Spacious semi-furnished 3 BHK family apartments in Coffee Board Layout, Hebbal, an established residential neighbourhood with green spaces, reputed schools and easy access to Embassy Manyata Business Park. Each apartment has 1 bathroom and 1 separate toilet. The building has 3 car parking spaces and bike parking. All apartments are currently occupied.",seo:"Family apartment for rent in Coffee Board Layout, Hebbal, North Bengaluru.",
+  amen:["1 bathroom + 1 toilet","3 car parking spaces (building)","Bike parking","Balconies","Power backup","CCTV"],card:["cof_l","cof_d"],photos:["cof_l","cof_d","hero_dark"],tour:[],video:"",youtube:""},
+ {id:"coffee-board-1hk",title:"Coffee Board Residence, #568 (1 HK)",addr:"#568, Coffee Board Layout, Hebbal Kempapura, Bengaluru 560024",hint:"1 HK unit",units:"1 × 1 HK (occupied)",baths:"1 toilet",sqft:null,parking:"Shared",floorplan:"",name:"Coffee Board",area:"Coffee Board Layout, Hebbal, Bengaluru",type:"Apartment",bhk:"1 HK",furn:"Semi-furnished",rent:20000,fromPrice:false,status:"let",from:"",added:2,
+  deposit:"To be confirmed",about:"A compact semi-furnished 1 HK (hall and kitchen) unit with 1 toilet in our #568 building in Coffee Board Layout, Hebbal, sharing the building's car and bike parking. Currently occupied.",seo:"1 HK for rent in Coffee Board Layout, Hebbal, North Bengaluru.",
+  amen:["1 toilet","Shared car and bike parking","Power backup","CCTV"],card:["cof_d","cof_l"],photos:["cof_d","cof_l"],tour:[],video:"",youtube:""},
+ {id:"coffee-board-674",title:"Coffee Board Residence, #674",addr:"#674, Coffee Board Layout, Hebbal Kempapura, Bengaluru 560024",map:"https://maps.app.goo.gl/1DsC1DBcLu2BLS2V6",hint:"New building · 2 × 2 BHK, 5 × 1 BHK",units:"7 apartments: 2 × 2 BHK and 5 × 1 BHK",baths:null,sqft:null,parking:"TBC",floorplan:"",name:"Coffee Board",area:"Coffee Board Layout, Hebbal, Bengaluru",type:"Apartment",bhk:"1 & 2 BHK",furn:"TBC",rent:null,fromPrice:false,status:"build",from:"",added:4,featured:true,
+  deposit:"To be confirmed",about:"A new residential building under construction in Coffee Board Layout, Hebbal, with 7 apartments: 2 two-bedroom (2 BHK) and 5 one-bedroom (1 BHK) homes. It sits in the same established neighbourhood as our #568 residence, with green spaces, reputed schools and easy access to Embassy Manyata Business Park. Rents will be announced closer to completion. Register your interest to hear first.",seo:"New apartments for rent in Coffee Board Layout, Hebbal: 2 BHK and 1 BHK homes, under construction.",
+  amen:["New building","2 × 2 BHK","5 × 1 BHK"],card:["cof674_wide","cof674_wide"],photos:["cof674","cof674_wide"],tour:[],video:"",youtube:""},
+ {id:"kempapura",title:"Kempapura Hostel",addr:"1st Cross Road, Vinayaka Layout 2nd Stage, Hebbal Kempapura, Bengaluru 560024",near:"Near Treat restaurant. Presidency College and St Mary's College are close by.",map:"https://maps.app.goo.gl/YaLAnFr4UK3qQGUf6",hint:"Hostel · 30 rooms · Whole building",units:"Whole hostel building: 30 rooms with hostel dining, leased as one unit",baths:null,sqft:null,parking:"Bikes only",floorplan:"",name:"Kempapura",area:"Vinayaka Layout, Hebbal Kempapura, Bengaluru",type:"Hostel",bhk:"30 rooms",furn:"Semi-furnished",rent:185000,fromPrice:false,status:"let",from:"",added:1,
+  deposit:"To be confirmed",about:"A 30-room hostel building with hostel dining and bike parking on 1st Cross Road, Vinayaka Layout 2nd Stage, Hebbal Kempapura, with Presidency College and St Mary's College close by. It is leased as one whole unit at ₹1,85,000 per month and is currently occupied.",seo:"Hostel accommodation in Kempapura, Hebbal, near Presidency College, St Mary's College and Manyata Tech Park.",
+  amen:["30 rooms","Hostel dining","Bike parking only","Leased as a whole unit"],card:["kem_l","kem_l"],photos:["kem_l","kem_d"],tour:[],video:"",youtube:""}
 ];
 
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
@@ -898,11 +902,11 @@ const ph=n=>`assets/photos/${n}.jpg`;
 const inr=n=>"₹"+n.toLocaleString("en-IN");
 const rentTxt=p=>p.rent==null?"Price on request":`${p.fromPrice?"from ":""}${inr(p.rent)} / month`;
 const fdate=d=>new Date(d+"T00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short"});
-const ST={now:["Available now","b-now"],soon:["Available soon","b-soon"],let:["Currently occupied","b-occ"],reno:["Under renovation","b-reno"]};
+const ST={now:["Available now","b-now"],soon:["Available soon","b-soon"],let:["Currently occupied","b-occ"],reno:["Under renovation","b-reno"],build:["Under construction","b-build"]};
 /* primary call to action by status (spec): now → Book a viewing; soon, reno → Register interest; let → Notify me */
 const CTA=p=>p.status==="now"?{label:"Book a viewing",href:"#visit-"+p.id,icon:"cal"}:{label:p.status==="let"?"Notify me":"Register interest",href:"#interest-"+p.id,icon:"bell"};
 const tbc=v=>v===null||v===undefined||v===""?"TBC":v;
-const avail=p=>p.status==="now"?"Available now":p.status==="soon"?(p.from?"From "+fdate(p.from):"Available soon"):p.status==="reno"?"Under renovation":"Currently occupied";
+const avail=p=>p.status==="now"?"Available now":p.status==="soon"?(p.from?"From "+fdate(p.from):"Available soon"):p.status==="reno"?"Under renovation":p.status==="build"?"Under construction":"Currently occupied";
 const ic=(n,s="")=>`<svg class="i" ${s}><use href="#${n}"/></svg>`;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const toast=t=>{const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2800)};
@@ -942,7 +946,7 @@ const card=p=>{const c=CTA(p);return `<article class="card">
 /* Many listings: relevance and latest sorting, grid or list view, and paging */
 const PAGE=9;let pg=1;
 let VIEW="grid";try{VIEW=localStorage.getItem("mativio-view")||"grid"}catch(e){}
-const RANK={now:0,soon:1,reno:2,let:3};
+const RANK={now:0,soon:1,build:2,reno:3,let:4};
 const listedOf=p=>p.listed||"";
 function sortHomes(L,how,q){
   const latest=(a,b)=>listedOf(b).localeCompare(listedOf(a))||(b.added||0)-(a.added||0);
@@ -956,7 +960,7 @@ function sortHomes(L,how,q){
 }
 const hint=p=>p.hint||(p.type==="Hostel Residence"?"Hostel accommodation":`${p.bhk} ${p.type.toLowerCase()}`);
 const mini=p=>`<a class="mini" href="#p-${p.id}"><div class="mpic"><img class="only-l" src="${ph(p.card[0])}" alt="${esc(p.title)}" loading="lazy"><img class="only-d" src="${ph(p.card[1])}" alt="" loading="lazy"></div>
-  <div class="mb"><div class="mr"><b>${esc(p.name)}</b><span class="mpill ${p.status==="now"?"ok":""}">${p.status==="now"?"Available":p.status==="soon"?"Opening soon":p.status==="reno"?"Renovation":"Occupied"}</span></div>
+  <div class="mb"><div class="mr"><b>${esc(p.name)}</b><span class="mpill ${p.status==="now"?"ok":""}">${p.status==="now"?"Available":p.status==="soon"?"Opening soon":p.status==="reno"?"Renovation":p.status==="build"?"Under construction":"Occupied"}</span></div>
   <div class="ms">${p.status==="now"?`${rentTxt(p)}`:`<span class="dot"></span>${avail(p)}`}</div>
   <div class="mm"><span>${p.status==="now"?esc(p.furn)+" · ":""}${esc(hint(p))}</span><span class="go">${ic("arrow")}</span></div></div></a>`;
 const HOME_MAX=6;const homeList=sortHomes(P,"rel","").slice(0,HOME_MAX);
@@ -1031,7 +1035,7 @@ $("#fFur").innerHTML=`<option value="">Furnishing: Any</option>`+uniq("furn").ma
 $("#fType").innerHTML=`<option value="">Type: Any</option>`+uniq("type").map(v=>`<option>${v}</option>`).join("");
 function renderList(){
   const n=s=>P.filter(p=>!s||p.status===s).length;
-  $("#pills").innerHTML=[["","All"],["now","Available now"],["soon","Available soon"],["let","Occupied"],["reno","Under renovation"]].filter(([v])=>!v||v!=="reno"||n("reno")).map(([v,l])=>`<button type="button" class="pill" data-st="${v}" aria-pressed="${F.st===v}">${l}<span class="n">${n(v)}</span></button>`).join("");
+  $("#pills").innerHTML=[["","All"],["now","Available now"],["soon","Available soon"],["build","Under construction"],["let","Occupied"],["reno","Under renovation"]].filter(([v])=>!["reno","build"].includes(v)||n(v)).map(([v,l])=>`<button type="button" class="pill" data-st="${v}" aria-pressed="${F.st===v}">${l}<span class="n">${n(v)}</span></button>`).join("");
   const q=F.q.trim().toLowerCase();
   const [bl,bh]=F.bud?F.bud.split("-").map(Number):[0,1e12];
   let L=P.filter(p=>(!F.st||p.status===F.st)&&(!F.loc||p.name===F.loc)&&(!F.type||p.type===F.type)&&(!F.bhk||p.bhk===F.bhk)&&(!F.fur||p.furn===F.fur)&&p.rent>=bl&&p.rent<=bh&&(!q||(p.title+" "+p.name+" "+p.area+" "+p.type).toLowerCase().includes(q)));
@@ -1077,7 +1081,7 @@ function detail(p){
       <div class="stats s4" style="margin-top:16px"><div>${ic("bed")}<b>${p.bhk}</b><span>Size</span></div><div>${ic("bath")}<b>${tbc(p.baths)}</b><span>Bathrooms*</span></div><div>${ic("car")}<b>${tbc(p.parking)}</b><span>Parking</span></div><div>${ic("key")}<b>Direct</b><span>Owner rental</span></div></div>
       <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-t="ov">Overview</button><button role="tab" aria-selected="false" data-t="ph">Photos</button><button role="tab" aria-selected="false" data-t="lo">Neighbourhood</button></div>
       <div data-tp="ov"><h3 style="font-size:24px">About this home</h3><p class="mute">${esc(p.about)}</p>
-        <dl class="spec"><dt>Monthly rent</dt><dd>${p.rent==null?"Price on request":(p.fromPrice?"From ":"")+inr(p.rent)}</dd><dt>Security deposit</dt><dd>${esc(p.deposit)}</dd><dt>Availability</dt><dd>${avail(p)}</dd><dt>Property type</dt><dd>${p.type}</dd><dt>Configuration</dt><dd>${p.bhk}</dd><dt>Area</dt><dd>${p.sqft?p.sqft.toLocaleString("en-IN")+" sq ft":"TBC"}</dd><dt>Bathrooms</dt><dd>${tbc(p.baths)}</dd><dt>Furnishing</dt><dd>${p.furn}</dd><dt>Parking</dt><dd>${tbc(p.parking)}</dd><dt>Rental</dt><dd>Direct from the owner</dd></dl>
+        <dl class="spec"><dt>Monthly rent</dt><dd>${p.rent==null?"Price on request":(p.fromPrice?"From ":"")+inr(p.rent)}</dd><dt>Security deposit</dt><dd>${esc(p.deposit)}</dd><dt>Availability</dt><dd>${avail(p)}</dd><dt>Property type</dt><dd>${p.type}</dd>${p.units?`<dt>Units</dt><dd>${esc(p.units)}</dd>`:""}<dt>Configuration</dt><dd>${p.bhk}</dd><dt>Area</dt><dd>${p.sqft?p.sqft.toLocaleString("en-IN")+" sq ft":"TBC"}</dd><dt>Bathrooms</dt><dd>${tbc(p.baths)}</dd><dt>Furnishing</dt><dd>${p.furn}</dd><dt>Parking</dt><dd>${tbc(p.parking)}</dd><dt>Rental</dt><dd>Direct from the owner</dd></dl>
         <p class="note">*Details marked TBC are being confirmed.</p>
         <div class="amen">${p.amen.map(a=>`<span>${esc(a)}</span>`).join("")}</div></div>
       <div data-tp="ph" hidden>${galleryHTML(p)}</div>
@@ -1085,8 +1089,8 @@ function detail(p){
         <div class="dacts" style="margin-top:14px"><a class="link gold" href="${maps}" target="_blank" rel="noopener">Open in Google Maps ${ic("arrow")}</a>${locOf(p)?`<a class="link gold" href="#loc-${locOf(p).id}">About ${esc(p.name)} ${ic("arrow")}</a>`:""}</div></div>
       <div class="dacts">${p.status==="now"?`<a class="btn" href="#visit-${p.id}">${ic("cal")}Book a viewing</a>`:`<a class="btn" href="#interest-${p.id}">${ic("bell")}${CTA(p).label}</a>`}${p.status==="let"?"":`<a class="btn line" href="#enquire-${p.id}">Ask a question</a>`}
       <button class="btn line" type="button" id="share">${ic("share")}Share</button></div>
-      ${p.status!=="let"?`<div class="vv">${ic("video")}<span>Relocating to Bengaluru? <a href="#video-${p.id}">Book a video-call viewing</a> and we'll walk you through the home live.</span></div>`:""}
-      ${p.status==="now"?"":`<form class="notify" id="nForm" novalidate><b>${ic("bell",'style="color:var(--accent);vertical-align:-3px;margin-right:6px"')}${p.status==="let"?"Currently occupied. Want to know first?":p.status==="reno"?"Under renovation. Register your interest":"Available soon. Register your interest"}</b>
+      ${p.status==="now"||p.status==="soon"?`<div class="vv">${ic("video")}<span>Relocating to Bengaluru? <a href="#video-${p.id}">Book a video-call viewing</a> and we'll walk you through the home live.</span></div>`:""}
+      ${p.status==="now"?"":`<form class="notify" id="nForm" novalidate><b>${ic("bell",'style="color:var(--accent);vertical-align:-3px;margin-right:6px"')}${p.status==="let"?"Currently occupied. Want to know first?":p.status==="build"?"Under construction. Register your interest":p.status==="reno"?"Under renovation. Register your interest":"Available soon. Register your interest"}</b>
         <span class="mute" style="font-size:14px">We'll message you the day ${esc(p.name)} is ready to view.</span>
         <div class="row"><input id="nName" placeholder="Your name *" autocomplete="name" aria-label="Your name"><input id="nPhone" placeholder="Mobile number *" inputmode="tel" aria-label="Mobile number"><input id="nEmail" type="email" placeholder="Email (optional)" aria-label="Email"><button class="btn" type="submit" style="min-height:48px">${p.status==="let"?"Notify me":"Register interest"}</button></div>
         <p class="note" id="nNote" role="status"></p></form>`}
@@ -1120,7 +1124,7 @@ function detail(p){
 }
 /* ---- Photo gallery with lightbox (adapted from 21st.dev "Image Gallery" by my) ----
    A home's photos can be names ("dev_l") or {f:"dev_l", title:"Living room", cat:"Living room"}. */
-const PHOTO_META={dev_l:["Living room","Living room"],dev_d:["Building and garden","Exterior"],cof_l:["Tree-lined entrance","Exterior"],cof_d:["Building at dusk","Exterior"],
+const PHOTO_META={cof674:["Front elevation (artist's impression)","Exterior"],cof674_wide:["Front elevation (artist's impression)","Exterior"],dev_l:["Living room","Living room"],dev_d:["Building and garden","Exterior"],cof_l:["Tree-lined entrance","Exterior"],cof_d:["Building at dusk","Exterior"],
   kem_l:["Bedroom","Bedroom"],kem_d:["Garden entrance","Exterior"],hero_light:["Residence in daylight","Exterior"],hero_dark:["Residence at dusk","Exterior"]};
 const photosOf=p=>p.photos.map((x,i)=>{const o=typeof x==="string"?{f:x}:x;const m=PHOTO_META[o.f]||[];return {src:ph(o.f),title:o.title||m[0]||`Photo ${i+1}`,cat:o.cat||m[1]||"Photos"}});
 const RM=matchMedia("(prefers-reduced-motion: reduce)");
@@ -1190,7 +1194,7 @@ const kindSync=()=>{const v=$("#eForm").querySelector("input[name=kind]:checked"
   $("#eBtn").firstChild.textContent=v?"Request viewing ":"Send enquiry ";$("#eMsgL").textContent=v?"Message (optional)":"Message *"};
 $$("#eForm input[name=kind]").forEach(r=>r.addEventListener("change",kindSync));
 const tmr=()=>{const d=new Date(Date.now()+864e5);return d.toISOString().slice(0,10)};
-const open=P.filter(x=>x.status!=="let");
+const open=P.filter(x=>x.status==="now"||x.status==="soon");
 $("#eHomeSel").innerHTML=`<option value="">Choose a home</option>`+open.map(x=>`<option value="${x.id}">${esc(x.title)} · ${x.bhk} · ${rentTxt(x)}</option>`).join("");
 const subOf=p=>`${p.title} · ${p.bhk} · ${rentTxt(p)}`;
 $("#eHomeSel").addEventListener("change",e=>{cur=P.find(x=>x.id===e.target.value)||null;$("#eSub").textContent=cur?subOf(cur):"Choose a home and a time that suits you."});

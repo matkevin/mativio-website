@@ -12,7 +12,7 @@ const P = Function(`"use strict";return (${m[1]})`)();
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 const inr = n => "₹" + n.toLocaleString("en-IN");
-const status = { now: "Available now", soon: "Available soon", let: "Currently occupied", reno: "Under renovation" };
+const status = { now: "Available now", soon: "Available soon", let: "Currently occupied", reno: "Under renovation", build: "Under construction" };
 
 const out = new URL("../homes/", import.meta.url);
 if (existsSync(out)) rmSync(out, { recursive: true });
