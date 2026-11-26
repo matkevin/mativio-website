@@ -14,7 +14,7 @@ These are the journeys live on `main` (PR #8 merged 26 Nov 2026). All are approv
 
 1. **Home** (`#home`): hero "Find a place to call home." with "Explore available homes" and "Get to know us". Then "Our Properties" (up to 6 homes, best first, then "View all N properties"), the four pillars, the Bengaluru/localities banner, the Our Story band and the footer.
 2. **Properties** (`#properties`): search, filters and sort (journey D). Cards follow the standard card order.
-3. **Property details** (`#p-<id>`): back link; tabs Overview · Photos · 360° Tour · Video · Location · Neighbourhood; gallery with lightbox; title (H1), rent, address and status badge; key facts (size, bathrooms*, parking, owner rental "Direct"); about text; amenities; Google Maps link; neighbourhood guide. The action follows status (see `docs/property-data.md`). On phones an available home shows a **sticky bottom bar** with the rent and "Book a viewing".
+3. **Property details** (`#p-<id>`): back link; tabs Overview · Photos · 360° Tour · Video · Location · Neighbourhood; gallery with lightbox; title (H1), rent, address and status badge; key facts (size, bathrooms*, parking, owner rental "Direct"); about text; amenities; Google Maps link; neighbourhood guide. The action follows status (see `docs/property-data.md`). On phones a **sticky bottom bar** with the rent and the status action appears whenever the page's own action button (or the notify form) is off screen, and slides away while it is visible.
 4. **Enquire or book** (journeys B and C), leading to the **confirmation** (`#thanks`) with a reference `MTV-xxxx`.
 5. The owner follows up by phone, WhatsApp or email to arrange the viewing.
 

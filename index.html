@@ -261,7 +261,9 @@ select,input,textarea{font:16px Manrope,system-ui,sans-serif;color:var(--ink)}
 /* sticky mobile CTA */
 .mcta{display:none}
 @media(max-width:599px){body[data-v=property] .mcta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;gap:12px;align-items:center;justify-content:space-between;padding:12px 20px calc(12px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--card) 94%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--line);box-shadow:0 -10px 30px rgba(0,0,0,.08)}
-body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{min-height:48px;padding:0 20px}}
+body[data-v=property]{padding-bottom:84px}.mcta .rent{font-size:19px}.mcta .btn{min-height:48px;padding:0 20px}
+body[data-v=property] .mcta{transition:transform .3s ease,visibility 0s}
+body[data-v=property] .mcta.off{transform:translateY(110%);visibility:hidden;transition:transform .3s ease,visibility 0s .3s}}
 /* review step */
 .rev>*:not(#eReview){display:none!important}
 #eReview{display:none}.rev #eReview{display:block}
@@ -1025,6 +1027,13 @@ const rentTxt=p=>p.rent==null?"Price on request":`${p.fromPrice?"from ":""}${inr
 const fdate=d=>new Date(d+"T00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short"});
 const ST={now:["Available now","b-now"],soon:["Available soon","b-soon"],let:["Currently occupied","b-occ"],reno:["Under renovation","b-reno"],build:["Under construction","b-build"]};
 /* primary call to action by status (spec): now → Book a viewing; soon, reno → Register interest; let → Notify me */
+/* sticky phone CTA: shown only while the page's own action buttons are off screen */
+let ctaIO=null;
+const watchCTA=()=>{ctaIO&&ctaIO.disconnect();const bar=$("#mcta"),els=[...$("#detail").querySelectorAll("[data-pcta]")],seen=new Set();
+  const set=off=>{bar.classList.toggle("off",off);bar.inert=off;bar.setAttribute("aria-hidden",off?"true":"false")};
+  if(!els.length||!("IntersectionObserver" in window)){set(false);return}
+  set(true);ctaIO=new IntersectionObserver(es=>{es.forEach(e=>e.isIntersecting?seen.add(e.target):seen.delete(e.target));set(seen.size>0)},{threshold:0});
+  els.forEach(e=>ctaIO.observe(e))};
 const CTA=p=>p.status==="now"?{label:"Book a viewing",href:"#visit-"+p.id,icon:"cal"}:{label:p.status==="let"?"Notify me":"Register interest",href:"#interest-"+p.id,icon:"bell"};
 const tbc=v=>v===null||v===undefined||v===""?"TBC":v;
 const avail=p=>p.status==="now"?"Available now":p.status==="soon"?(p.from?"From "+fdate(p.from):"Available soon"):p.status==="reno"?"Under renovation":p.status==="build"?"Under construction":"Currently occupied";
@@ -1235,12 +1244,12 @@ function detail(p){
       <div data-tp="ph" hidden>${galleryHTML(p)}</div>
       <div data-tp="lo" hidden><p class="mute" style="margin-top:0">${esc(p.addr||p.area)}.${p.near?" "+esc(p.near):""}${p.map?"":" The exact address is shared when you book a viewing."}</p>${nbHTML((locOf(p)||{}).id)}
         <div class="dacts" style="margin-top:14px"><a class="link gold" href="${maps}" target="_blank" rel="noopener">Open in Google Maps ${ic("arrow")}</a>${locOf(p)?`<a class="link gold" href="#loc-${locOf(p).id}">About ${esc(p.name)} ${ic("arrow")}</a>`:""}</div></div>
-      <div class="dacts">${p.status==="now"?`<a class="btn" href="#visit-${p.id}">${ic("cal")}Book a viewing</a>`:`<a class="btn" href="#interest-${p.id}">${ic("bell")}${CTA(p).label}</a>`}${p.status==="let"?"":`<a class="btn line" href="#enquire-${p.id}">Ask a question</a>`}
+      <div class="dacts">${p.status==="now"?`<a class="btn" data-pcta href="#visit-${p.id}">${ic("cal")}Book a viewing</a>`:`<a class="btn" data-pcta href="#interest-${p.id}">${ic("bell")}${CTA(p).label}</a>`}${p.status==="let"?"":`<a class="btn line" href="#enquire-${p.id}">Ask a question</a>`}
       <button class="btn line" type="button" id="share">${ic("share")}Share</button></div>
       ${p.status==="now"||p.status==="soon"?`<div class="vv">${ic("video")}<span>Relocating to Bengaluru? <a href="#video-${p.id}">Book a video-call viewing</a> and we'll walk you through the home live.</span></div>`:""}
       ${p.status==="now"?"":`<form class="notify" id="nForm" novalidate><b>${ic("bell",'style="color:var(--accent);vertical-align:-3px;margin-right:6px"')}${p.status==="let"?"Currently occupied. Want to know first?":p.status==="build"?"Under construction. Register your interest":p.status==="reno"?"Under renovation. Register your interest":"Available soon. Register your interest"}</b>
         <span class="mute" style="font-size:14px">We'll message you the day ${esc(p.name)} is ready to view.</span>
-        <div class="row"><input id="nName" placeholder="Your name *" autocomplete="name" aria-label="Your name"><div class="tel"><select class="cc" id="nCC" aria-label="Country code"><option value="+91">+91 IN</option><option value="+974">+974 QA</option><option value="+971">+971 AE</option><option value="+966">+966 SA</option><option value="+965">+965 KW</option><option value="+968">+968 OM</option><option value="+973">+973 BH</option><option value="+44">+44 UK</option><option value="+1">+1 US/CA</option><option value="+61">+61 AU</option><option value="+65">+65 SG</option><option value="+49">+49 DE</option></select><input id="nPhone" type="tel" placeholder="Mobile number *" inputmode="tel" autocomplete="tel-national" aria-label="Mobile number"></div><input id="nEmail" type="email" placeholder="Email (optional)" aria-label="Email"><button class="btn" type="submit" style="min-height:48px">${p.status==="let"?"Notify me":"Register interest"}</button></div>
+        <div class="row"><input id="nName" placeholder="Your name *" autocomplete="name" aria-label="Your name"><div class="tel"><select class="cc" id="nCC" aria-label="Country code"><option value="+91">+91 IN</option><option value="+974">+974 QA</option><option value="+971">+971 AE</option><option value="+966">+966 SA</option><option value="+965">+965 KW</option><option value="+968">+968 OM</option><option value="+973">+973 BH</option><option value="+44">+44 UK</option><option value="+1">+1 US/CA</option><option value="+61">+61 AU</option><option value="+65">+65 SG</option><option value="+49">+49 DE</option></select><input id="nPhone" type="tel" placeholder="Mobile number *" inputmode="tel" autocomplete="tel-national" aria-label="Mobile number"></div><input id="nEmail" type="email" placeholder="Email (optional)" aria-label="Email"><button class="btn" data-pcta type="submit" style="min-height:48px">${p.status==="let"?"Notify me":"Register interest"}</button></div>
         <p class="note" id="nNote" role="status"></p></form>`}
     </div></div>`;
   const imgs=$$("#gal img"),dots=$$("#gal .dots button");
@@ -1250,6 +1259,7 @@ function detail(p){
   g.querySelectorAll("img").forEach(m=>{m.style.cursor="zoom-in"});g.tabIndex=0;g.setAttribute("role","group");g.setAttribute("aria-roledescription","gallery");g.setAttribute("aria-label",`Photos of ${p.name}. Press Enter to enlarge, arrow keys to move.`);g.addEventListener("keydown",e=>{if(e.target!==g)return;if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();go(gi+(e.key==="ArrowRight"?1:-1))}else if(e.key==="Enter"||e.key===" "){e.preventDefault();lbOpen(photosOf(p),gi,imgs[gi])}});
   g.addEventListener("pointercancel",()=>sx=null);
   $("#mcta").innerHTML=`<span class="rent">${p.rent==null?"Price on request":`${p.fromPrice?"<small>From </small>":""}${inr(p.rent)}<small> / month</small>`}</span><a class="btn" href="${CTA(p).href}">${ic(CTA(p).icon)}${CTA(p).label}</a>`;
+  watchCTA();
   $("#detail").onclick=e=>{const t=e.target.closest("button");if(!t)return;
     if(t.classList.contains("prev"))go(gi-1);else if(t.classList.contains("next"))go(gi+1);
     else if(t.dataset.lb!==undefined){const vis=[...$$("#detail .ggrid li")].filter(li=>!li.hidden);const all=photosOf(p);const idx=vis.map(li=>+li.querySelector("[data-lb]").dataset.lb);
