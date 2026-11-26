@@ -12,15 +12,15 @@ const P = Function(`"use strict";return (${m[1]})`)();
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 const inr = n => "₹" + n.toLocaleString("en-IN");
-const status = { now: "Available now", soon: "Available soon", let: "Currently occupied", reno: "Under renovation" };
+const status = { now: "Available now", soon: "Available soon", let: "Currently occupied", reno: "Under renovation", build: "Under construction" };
 
 const out = new URL("../homes/", import.meta.url);
 if (existsSync(out)) rmSync(out, { recursive: true });
 for (const p of P) {
   const dir = new URL(`${p.id}/`, out);
   mkdirSync(dir, { recursive: true });
-  const title = `${p.title} · ${p.bhk} · ${p.fromPrice ? "from " : ""}${inr(p.rent)}/month`;
-  const desc = `${status[p.status]} · ${p.furn} · ${p.area}. Family-owned home, rented directly by Mativio.`;
+  const title = `${p.title} · ${p.bhk} · ${p.rent == null ? "Price on request" : (p.fromPrice ? "from " : "") + inr(p.rent) + "/month"}`;
+  const desc = `${p.seo ? p.seo + " " : ""}${status[p.status]} · ${p.furn}. Family-owned home, rented directly by Mativio.`;
   const img = `${SITE}/assets/photos/${p.card[0]}.jpg`;
   const target = `/#p-${p.id}`;
   writeFileSync(new URL("index.html", dir), `<!DOCTYPE html>

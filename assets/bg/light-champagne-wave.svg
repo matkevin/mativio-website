@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FBF8F2"/><stop offset=".55" stop-color="#F8F2E7"/><stop offset="1" stop-color="#F5ECDB"/></linearGradient>
+<linearGradient id="w1" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#EED9B8" stop-opacity=".1"/><stop offset=".5" stop-color="#EED9B8" stop-opacity=".36"/><stop offset="1" stop-color="#E3C79D" stop-opacity=".3"/></linearGradient>
+<linearGradient id="w2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".7"/><stop offset="1" stop-color="#fff" stop-opacity=".2"/></linearGradient>
+<linearGradient id="w3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3C79D" stop-opacity="0"/><stop offset="1" stop-color="#E3C79D" stop-opacity=".2"/></linearGradient>
+<filter id="s" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="28"/></filter>
+<filter id="t" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="10"/></filter>
+</defs>
+<rect width="1600" height="1000" fill="url(#b)"/>
+<path filter="url(#s)" fill="url(#w1)" d="M-100 860C260 820 520 640 820 470S1320 120 1700 60V1100H-100Z"/>
+<path filter="url(#t)" fill="url(#w2)" d="M-100 900C300 860 560 690 860 520S1340 180 1700 110V150C1360 230 1120 420 880 580S320 920-100 960Z"/>
+<path filter="url(#s)" fill="url(#w3)" d="M500 1100C800 940 1100 760 1700 520V1100Z"/>
+</svg>
